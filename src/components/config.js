@@ -1568,7 +1568,7 @@ export const userSettings = {
 			},
 			type: "dropdown",
 			restart: true,
-			value: "holiday",
+			value: "default",
 			options: [],
 			writable: true,
 		},
