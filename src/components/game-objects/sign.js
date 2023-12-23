@@ -18,7 +18,7 @@ export default class Sign extends Phaser.GameObjects.Container {
 	}
 
 	resetAd() {
-		this.adText = this.scene.ticker === "ETH" ? "Your Ad Here!" : "Contribute Here";
+		this.adText = this.scene.ticker === "ETH" ? "Ethereum!" : "Contribute Here";
 		this.adLink = this.scene.ticker === "ETH" && "https://n8u0k9wgiua.typeform.com/to/xT00e4FR"
 
 		if (!this.adSprites) return;
