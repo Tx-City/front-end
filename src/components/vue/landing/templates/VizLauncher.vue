@@ -251,6 +251,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #zoomer_video {
+	display: none;
 	.title,
 	.subtitle {
 		color: black !important;
