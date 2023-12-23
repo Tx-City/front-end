@@ -1,0 +1,112 @@
+@charset "utf-8";
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
+
+$tablet: 861px;
+
+$primary: #0bc2a6;
+$dark: #1f1f1f;
+$scheme-main-bis: hsl(0, 0%, 98%);
+
+$switch-focus: none;
+
+$tooltip-background-color: $black;
+$size-7: 1.2rem;
+
+$navbar-breakpoint: 0;
+// $modal-breakpoint: 0;
+$modal-card-head-radius: 0px;
+$modal-card-body-padding: 1rem;
+
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+$table-cell-border-width: 0;
+$table-striped-row-even-background-color: hsl(0, 0%, 96.5%);
+
+$navbar-item-hover-color: $primary;
+$navbar-item-active-background-color: $primary !important;
+$navbar-dropdown-item-active-background-color: $primary !important;
+$navbar-item-active-color: $scheme-main-bis !important;
+$navbar-dropdown-item-active-color: $scheme-main-bis !important;
+
+$dropdown-content-arrow: $primary;
+$navbar-dropdown-arrow: $primary;
+
+$striped-color: rgba(0, 0, 0, 0.04);
+$dark-striped-color: #e7e7e7;
+
+$column-gap: 0.45rem;
+
+$opensea: #2081E2;
+$opensea-invert: findColorInvert($opensea);
+$twitter: #55acee;
+$twitter-invert: findColorInvert($twitter);
+$discord: #5865f2;
+$discord-invert: findColorInvert($discord);
+@import "~bulma/sass/utilities/derived-variables";
+$addColors: (
+	"twitter": ($twitter,
+		$twitter-invert,
+	),
+	"discord": ($discord,
+		$discord-invert,
+	),
+	"opensea": ($opensea,
+		$opensea-invert,
+	),
+);
+$colors: map-merge($colors, $addColors);
+
+a.navbar-item.is-active,
+.dropdown-item.is-active {
+	background-color: $navbar-item-active-background-color;
+}
+
+.t-yellow {
+	color: #f2a445;
+}
+
+.ta-c {
+	text-align: center !important;
+	text-align: -webkit-center !important;
+}
+
+.ta-l {
+	text-align: left !important;
+	text-align: -webkit-left !important;
+}
+
+.ta-r {
+	text-align: right !important;
+	text-align: -webkit-right !important;
+}
+
+.contributeInner {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.relative {
+	position: relative;
+}
+
+.soon {
+	padding: 2px 10px;
+	background-color: #0bc2a6;
+	color: black;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: 600;
+	position: absolute;
+	bottom: -11px;
+	right: -15px;
+}
+
+@import "~bulma/bulma.sass";
+@import "~bulma-extensions/bulma-switch/src/sass/index.sass";
+@import "~bulma-extensions/bulma-divider/src/sass/index.sass";
+@import "~bulma-extensions/bulma-tooltip/src/sass/index.sass";
+@import "style.scss";
+@import "toast.scss";
+@import "~bulma-multiselect/sass/multiselect";
