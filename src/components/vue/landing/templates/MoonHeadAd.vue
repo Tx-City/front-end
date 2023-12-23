@@ -5,7 +5,7 @@
 			<span v-else>{{ adText }}</span>
 		</a>
 		<div class="ad-source tag">
-			<span>Your ad here with <a target="_blank" href="https://moonheads.io/ads">MoonHeads</a></span>
+			<!-- <span>Your ad here with <a target="_blank" href="https://moonheads.io/ads">MoonHeads</a></span> -->
 		</div>
 	</div>
 </template>
