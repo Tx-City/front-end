@@ -15,7 +15,7 @@
 				</div>
 			</div>
 			<div class="launch-container">
-				<div class="launcher-logo-container">
+				<!-- <div class="launcher-logo-container">
 					<img
 						v-if="splash"
 						class="launcher-logo tag"
@@ -26,7 +26,7 @@
 							$root.appVersion
 						"
 					/>
-				</div>
+				</div> -->
 				<div v-if="!$root.loading">
 					<div class="launcher-box">
 						<button @click="launch()" class="button is-large is-primary is-rounded">Launch</button>
