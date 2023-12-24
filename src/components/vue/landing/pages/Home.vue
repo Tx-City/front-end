@@ -123,7 +123,7 @@
 				<div class="hero-body">
 					<div class="columns has-text-centered">
 						<div  class="column is-half">
-							<a href="https://twitter.com/txcityIO" target="_blank">
+							<a href="https://twitter.com/web3dopamine" target="_blank">
                             <div class="subtitle">Twitter</div><img src="/static/img/banners/twitter.png" /></a>
 						</div>						
 					</div>
