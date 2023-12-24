@@ -643,7 +643,7 @@
                 <rect>8,15,15,30</rect>
                 <key>scale9FromFile</key>
                 <false/>
-            </struct>
+            </struct>                          
             <key type="filename">../public/static/img/singles/house_logos/maker.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
