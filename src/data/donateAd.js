@@ -31,11 +31,11 @@ export const donateData = {
     <li>
     <span class="t-yellow">ETH, Polygon or any EVM blockchain:</span
     <br/>
-    0x4918251174D1E46cc17a848717152A7df47724c8</li>
+    0x93905fd3f9b8732015f2b3Ca6c16Cbcb60ECf895</li>
     <li>
     <span class="t-yellow">BTC :</span>
     <br/> 
-    bc1qz95xpc5c9wwfxmlhhmn4gptqf6h8v5nglem6th
+    bc1q8kykxdjv889fufp9muaxewx3ndy3hcf2x3hjgf
     </li>						
     </ul>									
     </div>								
