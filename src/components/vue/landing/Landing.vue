@@ -26,7 +26,7 @@
 					></a>				
 				</div>		
 				<div class="buttons social-buttons">
-					<a href="https://txstreet.com/" target="_blank" style="font-size: 7px!important;"><p class="subtitle">Forked from txstreet</p></a>
+					<a href="https://txstreet.com/" target="_blank"><p class="subtitle" style="font-size: 12px!important;">Forked from txstreet</p></a>
 				</div>		
 			</div>
 		</div>
