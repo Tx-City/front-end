@@ -19,11 +19,15 @@
 			</div>
 			<div>
 				<h2>Socials</h2>
+				
 				<div class="buttons social-buttons">
-					<a href="https://twitter.com/txcityIO" target="_blank" class="button is-twitter"
+					<a href="https://twitter.com/web3dopamine" target="_blank" class="button is-twitter"
 						><span class="fab fa-twitter"></span
 					></a>				
-				</div>				
+				</div>		
+				<div class="buttons social-buttons">
+					<a href="https://txstreet.com/" target="_blank" style="font-size: 7px!important;"><p class="subtitle">Forked from txstreet</p></a>
+				</div>		
 			</div>
 		</div>
 		<section id="landing-grid" class="section grid-section">
