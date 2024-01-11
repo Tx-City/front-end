@@ -1665,7 +1665,7 @@ export const config = {
 };
 
 export const zoomerNames = ["bat", "bear", "bull", "frog", "lion", "lizard", "monkey", "penguin", "unicorn", "wolf"];
-export const genesisNames = ["helper", "santa", "snowman", "isabella", "alien", "mib", "moonboy", "mailman", "ltc"];
+export const genesisNames = ["helper", "santa", "snowman", "isabella", "alien", "mib", "moonboy", "mailman", "ltc", "taha", "my_south_park_image"];
 export const moonheadNames = zoomerNames.concat(genesisNames);
 
 export const charConfig = {

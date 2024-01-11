@@ -13,7 +13,7 @@ export default class Popup extends Phaser.GameObjects.Container {
 		this.x = x;
 		this.y = y;
 		if (this.x > toRes(480)) this.side = "right";
-		this.maxWidth = toRes(300);
+		this.maxWidth = toRes(200);
 		this.width = toRes(1000);
 		this.height = toRes(1000);
 		this.triangleSize = toRes(20);

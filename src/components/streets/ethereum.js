@@ -1,9 +1,11 @@
 import { Street } from "../street.js";
-import { toRes, ethNewTxSetDepending } from "../utils/";
+// import { toRes, ethNewTxSetDepending } from "../utils/";
+import { mirrorX, toRes, ethNewTxSetDepending, getSheetKey } from "../utils/";
 import { ETH, ethUnits } from "../config.js";
 import i18n from "../../i18n";
 import eventHub from "../vue/eventHub.js";
 import state from "../../wallet";
+import Popup from "../game-objects/popup";
 
 export default class ETHStreet extends Street {
 	constructor(side) {
@@ -97,7 +99,7 @@ export default class ETHStreet extends Street {
 			tooltip: "Character Select",
 			hasWindow: true,
 		});
-
+		
 		this.vue.windowData.push({
 			key: "characters",
 			title: "Character Select",
@@ -126,6 +128,16 @@ export default class ETHStreet extends Street {
 			this.followAddress(address);
 		});
 		if (state.address) this.followAddress(state.address);
+		this.createIsabella();
+		this.events.on("changeSide", () => {
+			for (let i = this.clouds.children.entries.length - 1; i >= 0; i--) {
+				const cloud = this.clouds.children.entries[i];
+				this.destroyCloud(cloud);
+			}
+			this.destroyIsabella();
+			this.createIsabella();
+			this.createClouds();
+		});
 	}
 
 	crowdCountDisplay() {
@@ -298,6 +310,45 @@ export default class ETHStreet extends Street {
 		}
 
 		return true;
+	}
+	cycleIsaMessage() {
+		if (!this.isabella.isaChange) {
+			this.isabella.currentMessage = 0;
+			this.isabella.isaChange = setInterval(() => {
+				this.cycleIsaMessage();
+			}, 30000);
+		}
+
+		if (this.isapop) this.isapop.destroy();
+		if (!this.isabella.messages[this.isabella.currentMessage]) {
+			clearInterval(this.isabella.isaChange);
+			delete this.isabella.isaChange;
+			return;
+		}
+		this.isapop = new Popup(
+			this,
+			mirrorX(390, this.side),
+			toRes(170),
+			false,
+			"bubble",
+			this.isabella.messages[this.isabella.currentMessage++]
+		);
+	}
+	createIsabella() {
+		this.isabella = this.add.image(mirrorX(390, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
+		this.isabella.setDisplaySize(toRes(128), toRes(128));
+		this.isabella.setInteractive({ useHandCursor: true });
+		this.isabella.on("pointerup", () => {
+			this.cycleIsaMessage();
+		});
+		this.isabella.setDepth(this.personDepth);
+		this.isabella.messages = [
+			"Hi Anon! My name is Taha, i can help you develop web3 dApps. Reach out to me on X @web3dopamine ",
+			"Are you looking to develop Smart Contracts or Gas Optimisation?",
+			"Get all Smart Contracts test done!",
+			"Feel free to reach out to me on X @web3dopamine",
+		];
+		this.cycleIsaMessage();
 	}
 
 	//go through list
