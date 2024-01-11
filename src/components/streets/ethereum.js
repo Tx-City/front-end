@@ -167,7 +167,7 @@ export default class ETHStreet extends Street {
 		});
 		this.isabella.setDepth(this.personDepth);
 		this.isabella.messages = [
-			"Hi Anon! My name is Taha, i can help you develop web3 dApps. Reach out to me on X @web3dopamine ",
+			"Hi Anon! My name is Taha, like to add your L2 here? Reach out to me on X @web3dopamine",
 			"Are you looking to develop Smart Contracts or Gas Optimisation?",
 			"Get all Smart Contracts test done!",
 			"Feel free to reach out to me on X @web3dopamine",
