@@ -150,7 +150,7 @@ export default class ETHStreet extends Street {
 		}
 		this.isapop = new Popup(
 			this,
-			mirrorX(700, this.side),
+			mirrorX(390, this.side),
 			toRes(170),
 			false,
 			"bubble",
@@ -159,8 +159,8 @@ export default class ETHStreet extends Street {
 	}
 
 	createIsabella() {
-		this.isabella = this.add.image(mirrorX(700, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
-		this.isabella.setDisplaySize(toRes(64), toRes(64));
+		this.isabella = this.add.image(mirrorX(390, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
+		this.isabella.setDisplaySize(toRes(128), toRes(128));
 		this.isabella.setInteractive({ useHandCursor: true });
 		this.isabella.on("pointerup", () => {
 			this.cycleIsaMessage();
