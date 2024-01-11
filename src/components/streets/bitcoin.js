@@ -1,8 +1,9 @@
 import { Street } from "../street.js";
-import { toRes, getSheetKey } from "../utils/";
+import { toRes, getSheetKey, mirrorX } from "../utils/";
 import { BTC } from "../config.js";
 import { fds, default as i18n } from "../../i18n";
 import { add } from "date-fns";
+import Popup from "../game-objects/popup";
 
 export default class BTCStreet extends Street {
 	constructor(side) {
@@ -80,6 +81,45 @@ export default class BTCStreet extends Street {
 			this.calcHalving(val);
 		});
 		this.calcHalving(this.blockchain.length);
+		// this.createIsabella();
+	}
+
+	cycleIsaMessage() {
+		if (!this.isabella.isaChange) {
+			this.isabella.currentMessage = 0;
+			this.isabella.isaChange = setInterval(() => {
+				this.cycleIsaMessage();
+			}, 30000);
+		}
+
+		if (this.isapop) this.isapop.destroy();
+		if (!this.isabella.messages[this.isabella.currentMessage]) {
+			clearInterval(this.isabella.isaChange);
+			delete this.isabella.isaChange;
+			return;
+		}
+		this.isapop = new Popup(
+			this,
+			mirrorX(190, this.side),
+			toRes(200),
+			false,
+			"bubble",
+			this.isabella.messages[this.isabella.currentMessage++]
+		);
+	}
+	createIsabella() {
+		this.isabella = this.add.image(mirrorX(190, this.side), toRes(160), getSheetKey("taha-btc.png"), "taha-btc.png");
+		this.isabella.setDisplaySize(toRes(128), toRes(128));
+		this.isabella.setInteractive({ useHandCursor: true });
+		this.isabella.on("pointerup", () => {
+			this.cycleIsaMessage();
+		});
+		this.isabella.setDepth(this.personDepth);
+		this.isabella.messages = [
+			"Showcase your Bitcoin inscription on Txcity. Reach out to me at twitter @web3dopamine ",
+			"How are you anon?",
+		];
+		this.cycleIsaMessage();
 	}
 
 	calcHalving(val){
