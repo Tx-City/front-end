@@ -1515,11 +1515,11 @@ export class Street extends Phaser.Scene {
 				};
 				this.loadNFTSprite(false, data.char.sheet, data.char.texture, this.charConfig[potentialChar].pixelArt);
 			}
-			// else if (!this?.textures?.list?.characters?.frames?.[potentialChar + "-0.png"]) {
-			// 	//check if texture exists on default sheet
-			// 	console.log("deleted " + data.char, potentialChar + "-0.png");
-			// 	delete data.char;
-			// }
+			else if (!this?.textures?.list?.characters?.frames?.[potentialChar + "-0.png"]) {
+				//check if texture exists on default sheet
+				console.log("deleted " + data.char, potentialChar + "-0.png");
+				delete data.char;
+			}
 		}
 		data.charType = data?.char?.sheet || "default";
 
