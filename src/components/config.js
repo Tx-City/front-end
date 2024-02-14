@@ -1714,6 +1714,12 @@ export const charConfig = {
 		pixelArt: false,
 		contract: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"
 	},
+	milady: {
+		scaleAdjust: 0.5,
+		defaultFlip: true,
+		pixelArt: false,
+		contract: "0x5af0d9827e0c53e4799bb226655a1de152a425a5"
+	},
 	doodles: {
 		scaleAdjust: 1,
 		defaultFlip: true,
