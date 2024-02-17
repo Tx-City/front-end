@@ -914,7 +914,7 @@ export const LUKSO = {
 	stats: Vue.observable({
 		tps: {
 			title: () => {
-				return i18n.t("eth.tps");
+				return i18n.t("lukso.tps");
 			},
 			decimals: 2,
 			value: false,
@@ -923,7 +923,7 @@ export const LUKSO = {
 		},
 		ctps: {
 			title: () => {
-				return i18n.t("eth.ctps");
+				return i18n.t("lukso.ctps");
 			},
 			decimals: 2,
 			value: false,
@@ -978,7 +978,7 @@ export const LUKSO = {
 		},
 		"medianFee-gasPrice": {
 			title: () => {
-				return i18n.t("eth.medianFee-gasPrice");
+				return i18n.t("lukso.medianFee-gasPrice");
 			},
 			value: false,
 			socket: true,
@@ -989,7 +989,7 @@ export const LUKSO = {
 		},
 		"supply-circulating": {
 			title: () => {
-				return i18n.t("eth.supply-circulating");
+				return i18n.t("lukso.supply-circulating");
 			},
 			decimals: 0,
 			socket: true,
@@ -997,7 +997,7 @@ export const LUKSO = {
 		},
 		"fiatPrice-usd": {
 			title: () => {
-				return i18n.t("eth.fiatPrice-usd");
+				return i18n.t("lukso.fiatPrice-usd");
 			},
 			decimals: 2,
 			before: "$",
@@ -1080,7 +1080,7 @@ export const LUKSO = {
 		blockHeight: { hidden: true, value: false },
 		"marketCap-usd": {
 			title: () => {
-				return i18n.t("eth.marketCap-usd");
+				return i18n.t("lukso.marketCap-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -1089,7 +1089,7 @@ export const LUKSO = {
 		},
 		"volume-usd": {
 			title: () => {
-				return i18n.t("eth.volume-usd");
+				return i18n.t("lukso.volume-usd");
 			},
 			before: "$",
 			decimals: 0,
