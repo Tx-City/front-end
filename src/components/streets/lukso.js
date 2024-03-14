@@ -1,11 +1,12 @@
 import { Street } from "../street.js";
 // import { toRes, ethNewTxSetDepending } from "../utils/";
-import { mirrorX, toRes, ethNewTxSetDepending, getSheetKey } from "../utils/";
+// import { mirrorX, toRes, ethNewTxSetDepending, getSheetKey } from "../utils/";
+import { toRes, ethNewTxSetDepending } from "../utils/";
 import { LUKSO, ethUnits } from "../config.js";
 import i18n from "../../i18n";
 import eventHub from "../vue/eventHub.js";
 import state from "../../wallet";
-import Popup from "../game-objects/popup";
+// import Popup from "../game-objects/popup";
 
 export default class LUKSOStreet extends Street {
 	constructor(side) {
@@ -92,7 +93,7 @@ export default class LUKSOStreet extends Street {
 		this.addressNonces = this.config.addressNonces;
 
 		this.streetCreate();
-		
+		// await console.log("this.streetCreate()", this.streetCreate());
 		this.vue.navigation.unshift({
 			key: "characters",
 			html: "<span class='fas fa-user-astronaut'></span>",
@@ -123,58 +124,14 @@ export default class LUKSOStreet extends Street {
 			(this.vue.sizeTitle = () => {
 				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
 			}),
-			this.ethBuses();
+			this.luksoBuses();
 		this.createPeople();
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
 		});
 		if (state.address) this.followAddress(state.address);
-		this.createIsabella();
+
 	}
-
-
-
-	cycleIsaMessage() {
-		if (!this.isabella.isaChange) {
-			this.isabella.currentMessage = 0;
-			this.isabella.isaChange = setInterval(() => {
-				this.cycleIsaMessage();
-			}, 30000);
-		}
-
-		if (this.isapop) this.isapop.destroy();
-		if (!this.isabella.messages[this.isabella.currentMessage]) {
-			clearInterval(this.isabella.isaChange);
-			delete this.isabella.isaChange;
-			return;
-		}
-		this.isapop = new Popup(
-			this,
-			mirrorX(390, this.side),
-			toRes(170),
-			false,
-			"bubble",
-			this.isabella.messages[this.isabella.currentMessage++]
-		);
-	}
-
-	createIsabella() {
-		this.isabella = this.add.image(mirrorX(390, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
-		this.isabella.setDisplaySize(toRes(128), toRes(128));
-		this.isabella.setInteractive({ useHandCursor: true });
-		this.isabella.on("pointerup", () => {
-			this.cycleIsaMessage();
-		});
-		this.isabella.setDepth(this.personDepth);
-		this.isabella.messages = [
-			"Hi Anon! My name is Taha, like to add your L2 here? Reach out to me on X @web3dopamine",
-			"Are you looking to develop Smart Contracts or Gas Optimisation?",
-			"Get all Smart Contracts test done!",
-			"Feel free to reach out to me on X @web3dopamine",
-		];
-		this.cycleIsaMessage();
-	}
-
 
 	crowdCountDisplay() {
 		if (this.vue.stats["mempool-size"].value && this.vue.stats["mempool-size"].value > 75000) {
@@ -487,12 +444,12 @@ export default class LUKSOStreet extends Street {
 		return scale;
 	}
 
-	ethBuses() {
+	luksoBuses() {
 		this.busesLeaving = this.add.group();
 		this.config.busCapacity = this.vue.stats.gasLimit.value;
 		if (typeof this.config.busCapacity === "undefined" || !this.config.busCapacity) {
 			setTimeout(() => {
-				this.ethBuses();
+				this.luksoBuses();
 			}, 100);
 			return false;
 		}

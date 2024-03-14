@@ -22,7 +22,7 @@
 					<div class="coin-dropdown-section section">
 						<div class="subtitle is-4 has-text-centered">Change Street</div>
 						<div class="columns is-multiline">
-							<div v-for="(street, key) in game.streetController.enabledStreets" :key="key"
+							<div v-for="(street, key) in game.streetController.enabledStreets" :key="key"							
 								class="column has-text-centered">
 								<div class="button is-medium relative" v-on:click="switchStreet(side, street)"
 									:class="{ 'is-primary': street.config.coinName == coinConfig.coinName }">
@@ -38,6 +38,9 @@
 									<span>{{ street.config.coinName }}</span>
 									<span
 										v-if="street.config.coinName !== 'Bitcoin' && street.config.coinName !== 'Ethereum' && street.config.coinName !== 'Bitcoin Cash' && street.config.coinName !== 'Monero' && street.config.coinName !== 'Litecoin'" 
+										class="soon">Coming soon</span>
+										<span
+										v-if="street.config.coinName !== 'Bitcoin' && street.config.coinName !== 'Arbitrum' && street.config.coinName !== 'Lukso' && street.config.coinName !== 'Ethereum' && street.config.coinName !== 'Bitcoin Cash' && street.config.coinName !== 'Litecoin'" 
 										class="soon">Coming soon</span>
 								</div>
 

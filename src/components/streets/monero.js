@@ -314,11 +314,7 @@ export default class XMRStreet extends Street {
 		});
 		this.isabella.setDepth(this.personDepth);
 		this.isabella.messages = [
-			"Welcome to Monero Street! I'm Isabella.",
-			"Are you an angel or is that a ring signature on your head?",
-			"Why do we all look the same? We represent Monero's fungibility and privacy!",
-			"That bus will automatically get larger in the future when the street gets busy. Monero has a dynamic block size limit.",
-			"Don't ask where we come from. Without a sender's view key, it's impossible to see addresses associated with a transaction.",
+			"Sorry we are under consutruction. We will be back soon!"
 		];
 		this.cycleIsaMessage();
 	}
