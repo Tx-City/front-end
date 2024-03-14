@@ -1,10 +1,10 @@
 export const donateData = {
     key:"donate-ad",
-    title:"Contribute to TxCity!",
+    title:"Contribute to Cryptostreets!",
     html:	`<div class="ta-l">
     <span class="t-yellow">Crypto citizens!</span>
     <br />
-    Now you can contribute to develop the TxCity, your donations will help to develop features.						
+    Now you can contribute to develop the Cryptostreets, your donations will help to develop features.						
     <br />
     <div class="contributeInner">
     Here is a list of next improvements:
@@ -20,7 +20,7 @@ export const donateData = {
     - Show wallet info (Tokens, NFT)
     </li>				
     <li>
-    - TxCity Coin (ERC20)
+    - Cryptostreets Coin (ERC20)
     </li>						
     </ul>																		
     </div>
