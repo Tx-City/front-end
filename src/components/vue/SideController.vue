@@ -41,7 +41,7 @@
 										class="soon">Coming soon</span>
 										<span
 										v-if="street.config.coinName !== 'Bitcoin' && street.config.coinName !== 'Arbitrum' && street.config.coinName !== 'Lukso' && street.config.coinName !== 'Ethereum' && street.config.coinName !== 'Bitcoin Cash' && street.config.coinName !== 'Litecoin'" 
-										class="soon">Coming soon</span>
+										class="soon">Under Construction</span>
 								</div>
 
 							</div>
