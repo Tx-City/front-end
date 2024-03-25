@@ -800,7 +800,7 @@ export const LUKSO = {
 	busColor: "6e9adc",
 	busCapacity: 0,
 	feeVar: "gp",
-	explorerTxUrl: "https://explorer.consensus.mainnet.lukso.network/",
+	explorerTxUrl: "https://explorer.consensus.mainnet.lukso.network/tx/",
 	explorerBlockUrl: "https://explorer.consensus.mainnet.lukso.network/blocks",
 	explorerBlocksUrl: "https://explorer.consensus.mainnet.lukso.network/blocks",
 	explorerAddressUrl: "",
