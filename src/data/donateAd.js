@@ -1,26 +1,26 @@
 export const donateData = {
     key:"donate-ad",
-    title:"Contribute to Cryptostreets!",
+    title:"Contribute to Txcity!",
     html:	`<div class="ta-l">
-    <span class="t-yellow">Crypto citizens!</span>
+    <span class="t-yellow">Txcity citizens!</span>
     <br />
-    Now you can contribute to develop the Cryptostreets, your donations will help to develop features.						
+    Now you can contribute to the development of Txcity, your donations will help to develop features.						
     <br />
     <div class="contributeInner">
     Here is a list of next improvements:
     <br />
     <ul>
     <li>
-    - Add Chains : LTC,XMR,ARBITRUM
+    - Add Chains : BASE, OPTIMISM
     </li>
     <li>
-    - Renting houses interface
+    - Renting houses to dApps in the city
     </li>
     <li>
-    - Show wallet info (Tokens, NFT)
+    - Heisenberg Wallet
     </li>				
     <li>
-    - Cryptostreets Coin (ERC20)
+    - Meth Coin
     </li>						
     </ul>																		
     </div>

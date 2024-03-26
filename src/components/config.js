@@ -797,7 +797,7 @@ export const LUKSO = {
 	ticker: "LUKSO",
 	coinName: "Lukso",
 	color: "fff1f8",
-	busColor: "6e9adc",
+	busColor: "fff1f8",
 	busCapacity: 0,
 	feeVar: "gp",
 	explorerTxUrl: "https://explorer.consensus.mainnet.lukso.network/tx/",
