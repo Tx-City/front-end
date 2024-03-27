@@ -2027,6 +2027,13 @@ export const charConfig = {
 		pixelArt: false,
 		contract: "0x5af0d9827e0c53e4799bb226655a1de152a425a5"
 	},
+	//pudgypenguins
+	pudgypenguins: {
+		scaleAdjust: 1,
+		defaultFlip: true,
+		pixelArt: false,
+		contract: "0xbd3531da5cf5857e7cfaa92426877b022e612cf8"
+	},
 	doodles: {
 		scaleAdjust: 1,
 		defaultFlip: true,
