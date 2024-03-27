@@ -1508,12 +1508,13 @@ export class Street extends Phaser.Scene {
 		if (data.char && userSettings.globalSettings.nfts.value) {
 			const charSplit = data.char.split("-")
 			const potentialChar = charSplit.length > 1 ? charSplit.slice(0, -1).join("-") : data.char;
-			console.log("listing out  " + data.char, potentialChar + "-0.png");
+			
 			if (this.charConfig[potentialChar] && charSplit[charSplit.length - 1]) {
 				data.char = {
 					sheet: potentialChar,
 					texture: charSplit[charSplit.length - 1] + ".png",
 				};
+				console.log("listing out  " + data.char, potentialChar + "-0.png");
 				this.loadNFTSprite(false, data.char.sheet, data.char.texture, this.charConfig[potentialChar].pixelArt);
 			}
 			
