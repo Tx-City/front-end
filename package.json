@@ -1,8 +1,8 @@
 {
 	"name": "txstreet",
-	"version": "2.3.3",
+	"version": "3.0.0",
 	"private": true,
-	"description": "Cryptostreets Frontend",
+	"description": "Txcity Frontend",
 	"author": {
 		"name": "taha"
 	},
