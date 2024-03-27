@@ -1514,7 +1514,9 @@ export class Street extends Phaser.Scene {
 					sheet: potentialChar,
 					texture: charSplit[charSplit.length - 1] + ".png",
 				};
-				console.log("listing out  " + data.char, potentialChar + "-0.png");
+				console.log("listing out  data.char.sheet" + data.char.sheet);
+
+				console.log("listing out  data.char.texture" + data.char.texture);
 				this.loadNFTSprite(false, data.char.sheet, data.char.texture, this.charConfig[potentialChar].pixelArt);
 			}
 			
