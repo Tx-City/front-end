@@ -1520,7 +1520,7 @@ export class Street extends Phaser.Scene {
 			
 			else if (!this?.textures?.list?.characters?.frames?.[potentialChar + "-0.png"]) {
 				//check if texture exists on default sheet
-				console.log("deleted " + data.char, potentialChar + "-0.png");
+				console.log("deleted " + data.char);
 				delete data.char;
 			}
 		}
