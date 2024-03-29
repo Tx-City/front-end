@@ -556,6 +556,27 @@
 					}
 				},
 				{
+					"filename": "up.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 50,
+						"h": 55
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 50,
+						"h": 55
+					},
+					"frame": {
+						"x": 1081,
+						"y": 158,
+						"w": 50,
+						"h": 55
+					}
+				},
+				{
 					"filename": "cashshuffle.png",
 					"rotated": false,
 					"trimmed": false,
@@ -1947,6 +1968,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:cf44fc3cb3ce7d5ed4f6c72c9d349404:ac93b5a741efae7926d91f14e4914f37:9c44ecd7e9a522007eaff2949095bc1d$"
+		"smartupdate": "$TexturePacker:SmartUpdate:1fa342f7fa5c8a43ebcacef7302c6f23:cac80213cbd7cd29ae8404309f4a4fdf:9c44ecd7e9a522007eaff2949095bc1d$"
 	}
 }
