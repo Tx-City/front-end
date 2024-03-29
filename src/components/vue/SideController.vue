@@ -37,10 +37,10 @@
 									</span>
 									<span>{{ street.config.coinName }}</span>
 									<span
-										v-if="street.config.coinName !== 'Bitcoin' && street.config.coinName !== 'Ethereum' && street.config.coinName !== 'Bitcoin Cash' && street.config.coinName !== 'Monero' && street.config.coinName !== 'Litecoin' && street.config.coinName !== 'Lukso'" 
+										v-if="street.config.coinName !== 'Bitcoin' && street.config.coinName !== 'Ethereum' && street.config.coinName !== 'Bitcoin Cash' && street.config.coinName !== 'Monero' && street.config.coinName !== 'Litecoin' && street.config.coinName !== 'LUKSO'" 
 										class="soon">Coming soon</span>
 										<span
-										v-if="street.config.coinName !== 'Bitcoin' && street.config.coinName !== 'Arbitrum' && street.config.coinName !== 'Lukso' && street.config.coinName !== 'Ethereum' && street.config.coinName !== 'Bitcoin Cash' && street.config.coinName !== 'Litecoin'" 
+										v-if="street.config.coinName !== 'Bitcoin' && street.config.coinName !== 'Arbitrum' && street.config.coinName !== 'LUKSO' && street.config.coinName !== 'Ethereum' && street.config.coinName !== 'Bitcoin Cash' && street.config.coinName !== 'Litecoin'" 
 										class="soon">Under Construction</span>
 								</div>
 

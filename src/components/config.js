@@ -795,7 +795,7 @@ export const ETH = {
 
 export const LUKSO = {
 	ticker: "LUKSO",
-	coinName: "Lukso",
+	coinName: "LUKSO",
 	color: "fff1f8",
 	busColor: "fff1f8",
 	busCapacity: 0,
@@ -2029,7 +2029,7 @@ export const charConfig = {
 	},
 	//pudgypenguins
 	pudgypenguins: {
-		scaleAdjust: 1,
+		scaleAdjust: 0.5,
 		defaultFlip: true,
 		pixelArt: false,
 		contract: "0xbd3531da5cf5857e7cfaa92426877b022e612cf8"

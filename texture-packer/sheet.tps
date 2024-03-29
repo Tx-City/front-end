@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>6</int>
         <key>texturePackerVersion</key>
-        <string>7.0.3</string>
+        <string>7.1.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -281,6 +281,21 @@
                 <rect>19,19,37,37</rect>
                 <key>scale9Paddings</key>
                 <rect>19,19,37,37</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../public/static/img/singles/coin_logos/lukso.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,14,25,27</rect>
+                <key>scale9Paddings</key>
+                <rect>13,14,25,27</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -629,6 +644,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../public/static/img/singles/house_logos/ledger.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>11,11,22,21</rect>
+                <key>scale9Paddings</key>
+                <rect>11,11,22,21</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../public/static/img/singles/house_logos/lightning.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -643,7 +673,7 @@
                 <rect>8,15,15,30</rect>
                 <key>scale9FromFile</key>
                 <false/>
-            </struct>                          
+            </struct>
             <key type="filename">../public/static/img/singles/house_logos/maker.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -686,6 +716,21 @@
                 <rect>12,12,25,25</rect>
                 <key>scale9Paddings</key>
                 <rect>12,12,25,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../public/static/img/singles/house_logos/onchain.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>12,12,23,24</rect>
+                <key>scale9Paddings</key>
+                <rect>12,12,23,24</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
