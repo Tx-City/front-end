@@ -850,7 +850,7 @@
 					}
 				},
 				{
-					"filename": "peng.png",
+					"filename": "pudgypenguin.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -2031,6 +2031,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:4b5076cda6dce38d2f00f952256c5d15:6df951950d4a2a6bcbb5ee7f6e82ed70:9c44ecd7e9a522007eaff2949095bc1d$"
+		"smartupdate": "$TexturePacker:SmartUpdate:a7b20237b894e46cc682ae156f5d761e:fabb14b10acafa647cbe3bbb78268524:9c44ecd7e9a522007eaff2949095bc1d$"
 	}
 }
