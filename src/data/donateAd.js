@@ -21,10 +21,6 @@ export const donateData = {
     </li>						
     </ul>									
     </div>								
-    Addresses that donate, will be white listed for future rewards.			
-    <br/>
-    Feel free to give your feed back about what features or services will be good to have.						
-    <br/>
     </div>
     `
 }
