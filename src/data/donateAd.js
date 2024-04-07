@@ -6,24 +6,6 @@ export const donateData = {
     <br />
     Now you can contribute to the development of Txcity, your donations will help to develop features.						
     <br />
-    <div class="contributeInner">
-    Here is a list of next improvements:
-    <br />
-    <ul>
-    <li>
-    - Add Chains : BASE, OPTIMISM
-    </li>
-    <li>
-    - Renting houses to dApps in the city
-    </li>
-    <li>
-    - Heisenberg Wallet
-    </li>				
-    <li>
-    - Meth Coin
-    </li>						
-    </ul>																		
-    </div>
 
     <div class="contributeInner">
     <b>Donation address</b>
@@ -33,9 +15,9 @@ export const donateData = {
     <br/>
     0x93905fd3f9b8732015f2b3Ca6c16Cbcb60ECf895</li>
     <li>
-    <span class="t-yellow">BTC :</span>
+    <span class="t-yellow">Bitcoin Cash (BCH address) :</span>
     <br/> 
-    bc1q8kykxdjv889fufp9muaxewx3ndy3hcf2x3hjgf
+    bitcoincash:qrcxf720hhrfp7ush0lpsusu5309l7z8gc5ytpsplk
     </li>						
     </ul>									
     </div>								
@@ -43,7 +25,6 @@ export const donateData = {
     <br/>
     Feel free to give your feed back about what features or services will be good to have.						
     <br/>
-    <a href="https://n8u0k9wgiua.typeform.com/to/yxcnqZou" target="_blank">Feed back HERE</a>
     </div>
     `
 }
