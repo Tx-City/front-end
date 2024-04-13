@@ -251,50 +251,50 @@ export class Street extends Phaser.Scene {
 		}
 	}
 
-	createLedgerNanoX() {
-		if (this.side == "right") return false;
-		let ledger = this.add.sprite(-200, toRes(500), getSheetKey("ledger1.png"), "ledger1.png");
-		if (userSettings.globalSettings.animations.value) {
-			this.anims.create({
-				key: "ledger_animation",
-				frameRate: 1.25,
-				frames: this.anims.generateFrameNames(getSheetKey("ledger1.png"), {
-					prefix: "ledger",
-					suffix: ".png",
-					frames: [1, 2],
-				}),
-				repeat: -1,
-			});
-			ledger.play("ledger_animation");
-		}
-		ledger.setDepth(this.topDepth + 10);
-		ledger.setInteractive({ useHandCursor: true });
-		ledger.on("pointerup", () => {
-			window.open("https://bit.ly/3sYNWE8");
-			if (userSettings.globalSettings.animations.value) ledger.anims.stop();
-			ledger.destroy();
-			localStorage.setItem("ledgerDone", true);
-		});
-		this.tweens.add(
-			{
-				targets: ledger,
-				x: this.walkingLane,
-				y: toRes(300),
-				scale: {
-					from: toRes(1.5),
-					to: toRes(0.8),
-				},
-				rotation: {
-					from: 0,
-					to: 6.283185,
-				},
-				ease: "Power1",
-				duration: 1000 * window.txStreetPhaser.streetController.fpsTimesFaster,
-				repeat: 0,
-			},
-			this
-		);
-	}
+	// createLedgerNanoX() {
+	// 	if (this.side == "right") return false;
+	// 	let ledger = this.add.sprite(-200, toRes(500), getSheetKey("ledger1.png"), "ledger1.png");
+	// 	if (userSettings.globalSettings.animations.value) {
+	// 		this.anims.create({
+	// 			key: "ledger_animation",
+	// 			frameRate: 1.25,
+	// 			frames: this.anims.generateFrameNames(getSheetKey("ledger1.png"), {
+	// 				prefix: "ledger",
+	// 				suffix: ".png",
+	// 				frames: [1, 2],
+	// 			}),
+	// 			repeat: -1,
+	// 		});
+	// 		ledger.play("ledger_animation");
+	// 	}
+	// 	ledger.setDepth(this.topDepth + 10);
+	// 	ledger.setInteractive({ useHandCursor: true });
+	// 	ledger.on("pointerup", () => {
+	// 		window.open("https://bit.ly/3sYNWE8");
+	// 		if (userSettings.globalSettings.animations.value) ledger.anims.stop();
+	// 		ledger.destroy();
+	// 		localStorage.setItem("ledgerDone", true);
+	// 	});
+	// 	this.tweens.add(
+	// 		{
+	// 			targets: ledger,
+	// 			x: this.walkingLane,
+	// 			y: toRes(300),
+	// 			scale: {
+	// 				from: toRes(1.5),
+	// 				to: toRes(0.8),
+	// 			},
+	// 			rotation: {
+	// 				from: 0,
+	// 				to: 6.283185,
+	// 			},
+	// 			ease: "Power1",
+	// 			duration: 1000 * window.txStreetPhaser.streetController.fpsTimesFaster,
+	// 			repeat: 0,
+	// 		},
+	// 		this
+	// 	);
+	// }
 
 	deleteTxsFromBlock(block) {
 		if (typeof block.txFull === "undefined") return false;
