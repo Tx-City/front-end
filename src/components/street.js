@@ -1148,6 +1148,7 @@ export class Street extends Phaser.Scene {
 			if (gameObject !== previousTouch) return false;
 			let type = gameObject.clickObject;
 			if (type == "house") {
+				console.log("gameObject.name", gameObject.name);
 				this.vue.toggleWindow(gameObject.name);
 			} else if (type == "bus") {
 				let height = gameObject.getData("id");
