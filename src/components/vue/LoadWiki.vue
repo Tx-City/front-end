@@ -41,8 +41,10 @@ export default {
 	methods: {
 		loadUrl() {
 			fetch(this.url, {
+				mode: "no-cors",
 				headers: {
 					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "https://txcity.io",	
 				},
 			})
 				.then((response) => response.text())
