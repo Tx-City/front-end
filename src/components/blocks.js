@@ -40,8 +40,14 @@ class blockFactory extends EventEmitter {
 				blocks.sort((a, b) => b.height - a.height);
 
 				for (let i = blocks.length - 1; i >= 0; i--) {
+					console.log("blocks[i]",blocks[i]);
+					console.log("blocks.length",blocks.length);
 					let block = blocks[i];
+					let block1 = blocks[i];
+					let block2 = blocks[i];
 					this.addBlock(block, false, true, true);
+					this.addBlock(block1, false, true, true);
+					this.addBlock(block2, false, true, true);
 				}				
 			}
 

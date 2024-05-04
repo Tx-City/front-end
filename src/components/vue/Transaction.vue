@@ -203,7 +203,7 @@ export default {
 			this.statusInterval = null;
 			this.status = this.$t("general.not-found");
 			this.lineStatus = false;
-			this.personImageUrl = false;
+			this.personImageUrl = true;
 		},
 		checkBlocks(street) {
 			let block = street.txInBlock(this.txData.tx);
