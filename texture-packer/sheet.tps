@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>6</int>
         <key>texturePackerVersion</key>
-        <string>7.1.0</string>
+        <string>7.3.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -266,6 +266,7 @@
             <key type="filename">../public/static/img/singles/coin_logos/arbi.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/bch.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/btc.png</key>
+            <key type="filename">../public/static/img/singles/coin_logos/celo.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/eth.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/ltc.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/rinkeby.png</key>
@@ -285,6 +286,7 @@
                 <false/>
             </struct>
             <key type="filename">../public/static/img/singles/coin_logos/lukso.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/up.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -524,6 +526,27 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../public/static/img/singles/house_logos/cashtokens.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/coinbase.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/dice2win.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/donation.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/eatbch.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/ismikekomaranskydead.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/pudgypenguins.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,13,25,25</rect>
+                <key>scale9Paddings</key>
+                <rect>13,13,25,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../public/static/img/singles/house_logos/chainlink.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -539,11 +562,37 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../public/static/img/singles/house_logos/coinbase.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/compound.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>11,14,22,28</rect>
+                <key>scale9Paddings</key>
+                <rect>11,14,22,28</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../public/static/img/singles/house_logos/cryptokitties.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,11,25,21</rect>
+                <key>scale9Paddings</key>
+                <rect>13,11,25,21</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../public/static/img/singles/house_logos/curve.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/dice2win.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/donation.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/eatbch.png</key>
             <key type="filename">../public/static/img/singles/house_logos/gnosis.png</key>
             <key type="filename">../public/static/img/singles/house_logos/hop.png</key>
             <key type="filename">../public/static/img/singles/house_logos/idex.png</key>
@@ -569,36 +618,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../public/static/img/singles/house_logos/compound.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>0.75</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>11,14,22,28</rect>
-                <key>scale9Paddings</key>
-                <rect>11,14,22,28</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../public/static/img/singles/house_logos/cryptokitties.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>0.75</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>13,11,25,21</rect>
-                <key>scale9Paddings</key>
-                <rect>13,11,25,21</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">../public/static/img/singles/house_logos/dopex.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -611,6 +630,21 @@
                 <rect>13,13,25,27</rect>
                 <key>scale9Paddings</key>
                 <rect>13,13,25,27</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../public/static/img/singles/house_logos/gaslite.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,11,25,23</rect>
+                <key>scale9Paddings</key>
+                <rect>13,11,25,23</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -679,7 +713,7 @@
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>spriteScale</key>
-                <double>0.75</double>
+                <double>1</double>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
@@ -701,6 +735,21 @@
                 <rect>13,12,26,25</rect>
                 <key>scale9Paddings</key>
                 <rect>13,12,26,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../public/static/img/singles/house_logos/milady.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,16,25,31</rect>
+                <key>scale9Paddings</key>
+                <rect>13,16,25,31</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

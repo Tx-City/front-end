@@ -6,6 +6,7 @@ import BTCStreet from "./streets/bitcoin.js";
 import BCHStreet from "./streets/bitcoin-cash.js";
 import ETHStreet from "./streets/ethereum.js";
 import LUKSOStreet from "./streets/lukso.js";
+import CELOStreet from "./streets/celo.js";
 import ARBIStreet from "./streets/abitrum";
 import XMRStreet from "./streets/monero.js";
 import LTCStreet from "./streets/litecoin.js";
@@ -22,6 +23,7 @@ export const availableStreets = {
 	LTC: LTCStreet,
 	ARBI: ARBIStreet,
 	LUKSO: LUKSOStreet,
+	CELO: CELOStreet,
 };
 
 export const enabledStreets = {};
