@@ -391,8 +391,8 @@ export default class LUKSOStreet extends Street {
 				activeBuses[i].resize(overTarget > 0 ? Math.round(overTarget / 500000) : 0);
 				continue;
 			}
-			activeBuses[i].bye();
-			activeBuses.splice(i, 1);
+			// activeBuses[i].bye();
+			// activeBuses.splice(i, 1);
 		}
 
 		const notDeleted = hashArray.filter(obj => !obj.txData.deleted).length;
