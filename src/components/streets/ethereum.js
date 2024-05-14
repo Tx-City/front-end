@@ -129,7 +129,7 @@ export default class ETHStreet extends Street {
 			this.followAddress(address);
 		});
 		if (state.address) this.followAddress(state.address);
-		// this.createIsabella();
+		this.createIsabella();
 	}
 
 
