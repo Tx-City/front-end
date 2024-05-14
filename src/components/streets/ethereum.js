@@ -158,21 +158,21 @@ export default class ETHStreet extends Street {
 		);
 	}
 
-	// createIsabella() {
-	// 	this.isabella = this.add.image(mirrorX(390, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
-	// 	this.isabella.setDisplaySize(toRes(128), toRes(128));
-	// 	this.isabella.setInteractive({ useHandCursor: true });
-	// 	this.isabella.on("pointerup", () => {
-	// 		this.cycleIsaMessage();
-	// 	});
-	// 	this.isabella.setDepth(this.personDepth);
-	// 	this.isabella.messages = [
-	// 		"Hi Anon! My name is Taha, like to add your L2 here?",
-	// 		"Are you looking to Rent a house on our street?",
-	// 		"Feel free to reach out to me on X @web3dopamine",
-	// 	];
-	// 	this.cycleIsaMessage();
-	// }
+	createIsabella() {
+		this.isabella = this.add.image(mirrorX(390, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
+		this.isabella.setDisplaySize(toRes(128), toRes(128));
+		this.isabella.setInteractive({ useHandCursor: true });
+		this.isabella.on("pointerup", () => {
+			this.cycleIsaMessage();
+		});
+		this.isabella.setDepth(this.personDepth);
+		this.isabella.messages = [
+			"Hi Anon! My name is Taha, like to add your L2 here?",
+			"Are you looking to Rent a house on our street?",
+			"Feel free to reach out to me on X @web3dopamine",
+		];
+		this.cycleIsaMessage();
+	}
 
 
 	crowdCountDisplay() {
