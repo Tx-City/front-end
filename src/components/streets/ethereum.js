@@ -1,6 +1,6 @@
 import { Street } from "../street.js";
 // import { toRes, ethNewTxSetDepending } from "../utils/";
-import { mirrorX, toRes, ethNewTxSetDepending, getSheetKey } from "../utils/";
+import { mirrorX, toRes, ethNewTxSetDepending } from "../utils/";
 import { ETH, ethUnits } from "../config.js";
 import i18n from "../../i18n";
 import eventHub from "../vue/eventHub.js";
