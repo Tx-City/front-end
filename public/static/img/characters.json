@@ -4,11 +4,36 @@
 			"image": "characters.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 1016,
-				"h": 1413
+				"w": 966,
+				"h": 1527
 			},
 			"scale": 1,
 			"frames": [
+				{
+					"filename": "taha-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 192,
+						"h": 192
+					},
+					"spriteSourceSize": {
+						"x": 17,
+						"y": 1,
+						"w": 154,
+						"h": 191
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 154,
+						"h": 191
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
 				{
 					"filename": "bat-1.png",
 					"rotated": false,
@@ -25,7 +50,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 0,
+						"y": 192,
 						"w": 93,
 						"h": 76
 					},
@@ -49,8 +74,8 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 0,
-						"y": 77,
+						"x": 155,
+						"y": 0,
 						"w": 93,
 						"h": 76
 					},
@@ -74,8 +99,8 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 94,
-						"y": 0,
+						"x": 0,
+						"y": 269,
 						"w": 93,
 						"h": 76
 					},
@@ -99,8 +124,8 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 0,
-						"y": 154,
+						"x": 155,
+						"y": 77,
 						"w": 93,
 						"h": 76
 					},
@@ -124,8 +149,8 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 94,
-						"y": 77,
+						"x": 249,
+						"y": 0,
 						"w": 93,
 						"h": 76
 					},
@@ -149,8 +174,8 @@
 						"h": 75
 					},
 					"frame": {
-						"x": 188,
-						"y": 0,
+						"x": 0,
+						"y": 346,
 						"w": 93,
 						"h": 75
 					},
@@ -174,7 +199,7 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 282,
+						"x": 343,
 						"y": 0,
 						"w": 96,
 						"h": 70
@@ -199,7 +224,7 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 379,
+						"x": 440,
 						"y": 0,
 						"w": 96,
 						"h": 70
@@ -224,7 +249,7 @@
 						"h": 69
 					},
 					"frame": {
-						"x": 476,
+						"x": 537,
 						"y": 0,
 						"w": 96,
 						"h": 69
@@ -249,7 +274,7 @@
 						"h": 68
 					},
 					"frame": {
-						"x": 573,
+						"x": 634,
 						"y": 0,
 						"w": 96,
 						"h": 68
@@ -274,7 +299,7 @@
 						"h": 68
 					},
 					"frame": {
-						"x": 670,
+						"x": 731,
 						"y": 0,
 						"w": 96,
 						"h": 68
@@ -299,7 +324,7 @@
 						"h": 68
 					},
 					"frame": {
-						"x": 767,
+						"x": 828,
 						"y": 0,
 						"w": 96,
 						"h": 68
@@ -324,8 +349,8 @@
 						"h": 74
 					},
 					"frame": {
-						"x": 0,
-						"y": 231,
+						"x": 249,
+						"y": 77,
 						"w": 81,
 						"h": 74
 					},
@@ -349,8 +374,8 @@
 						"h": 73
 					},
 					"frame": {
-						"x": 94,
-						"y": 154,
+						"x": 0,
+						"y": 422,
 						"w": 81,
 						"h": 73
 					},
@@ -374,8 +399,8 @@
 						"h": 74
 					},
 					"frame": {
-						"x": 188,
-						"y": 76,
+						"x": 0,
+						"y": 496,
 						"w": 80,
 						"h": 74
 					},
@@ -400,7 +425,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 306,
+						"y": 571,
 						"w": 80,
 						"h": 74
 					},
@@ -425,7 +450,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 381,
+						"y": 646,
 						"w": 80,
 						"h": 74
 					},
@@ -450,7 +475,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 456,
+						"y": 721,
 						"w": 80,
 						"h": 74
 					},
@@ -475,7 +500,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 531,
+						"y": 796,
 						"w": 77,
 						"h": 72
 					},
@@ -500,7 +525,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 604,
+						"y": 869,
 						"w": 77,
 						"h": 72
 					},
@@ -525,59 +550,9 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 677,
+						"y": 942,
 						"w": 77,
 						"h": 72
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mailman-6.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 67
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 82,
-						"h": 67
-					},
-					"frame": {
-						"x": 864,
-						"y": 0,
-						"w": 82,
-						"h": 67
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "unicorn-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 14,
-						"y": 0,
-						"w": 69,
-						"h": 76
-					},
-					"frame": {
-						"x": 947,
-						"y": 0,
-						"w": 69,
-						"h": 76
 					},
 					"anchor": {
 						"x": 0.5,
@@ -600,7 +575,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 750,
+						"y": 1015,
 						"w": 77,
 						"h": 71
 					},
@@ -625,7 +600,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 822,
+						"y": 1087,
 						"w": 77,
 						"h": 71
 					},
@@ -650,9 +625,34 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 894,
+						"y": 1159,
 						"w": 77,
 						"h": 71
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "unicorn-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 14,
+						"y": 0,
+						"w": 69,
+						"h": 76
+					},
+					"frame": {
+						"x": 0,
+						"y": 1231,
+						"w": 69,
+						"h": 76
 					},
 					"anchor": {
 						"x": 0.5,
@@ -675,7 +675,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 966,
+						"y": 1308,
 						"w": 69,
 						"h": 76
 					},
@@ -700,184 +700,9 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 1043,
+						"y": 1385,
 						"w": 68,
 						"h": 76
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "unicorn-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 15,
-						"y": 0,
-						"w": 68,
-						"h": 76
-					},
-					"frame": {
-						"x": 0,
-						"y": 1120,
-						"w": 68,
-						"h": 76
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "unicorn-4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 15,
-						"y": 0,
-						"w": 68,
-						"h": 76
-					},
-					"frame": {
-						"x": 0,
-						"y": 1197,
-						"w": 68,
-						"h": 76
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "unicorn-5.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 15,
-						"y": 0,
-						"w": 68,
-						"h": 76
-					},
-					"frame": {
-						"x": 0,
-						"y": 1274,
-						"w": 68,
-						"h": 76
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-133.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 1,
-						"w": 59,
-						"h": 62
-					},
-					"frame": {
-						"x": 0,
-						"y": 1351,
-						"w": 59,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-134.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 1,
-						"w": 59,
-						"h": 62
-					},
-					"frame": {
-						"x": 60,
-						"y": 1351,
-						"w": 59,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mailman-7.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 67
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 82,
-						"h": 67
-					},
-					"frame": {
-						"x": 864,
-						"y": 68,
-						"w": 82,
-						"h": 67
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "bull-7.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 11,
-						"y": 3,
-						"w": 69,
-						"h": 73
-					},
-					"frame": {
-						"x": 947,
-						"y": 77,
-						"w": 69,
-						"h": 73
 					},
 					"anchor": {
 						"x": 0.5,
@@ -899,35 +724,10 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 269,
-						"y": 76,
+						"x": 94,
+						"y": 192,
 						"w": 64,
 						"h": 76
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mailman-8.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 67
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 82,
-						"h": 67
-					},
-					"frame": {
-						"x": 334,
-						"y": 71,
-						"w": 82,
-						"h": 67
 					},
 					"anchor": {
 						"x": 0.5,
@@ -949,8 +749,33 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 417,
-						"y": 71,
+						"x": 94,
+						"y": 269,
+						"w": 64,
+						"h": 76
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "bat-8.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 0,
+						"w": 64,
+						"h": 76
+					},
+					"frame": {
+						"x": 94,
+						"y": 346,
 						"w": 64,
 						"h": 76
 					},
@@ -974,10 +799,110 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 482,
-						"y": 70,
+						"x": 82,
+						"y": 423,
 						"w": 74,
 						"h": 70
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "helper-0.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 1462,
+						"w": 64,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mailman-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 67
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 82,
+						"h": 67
+					},
+					"frame": {
+						"x": 159,
+						"y": 154,
+						"w": 82,
+						"h": 67
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mailman-7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 67
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 82,
+						"h": 67
+					},
+					"frame": {
+						"x": 159,
+						"y": 222,
+						"w": 82,
+						"h": 67
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mailman-8.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 67
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 82,
+						"h": 67
+					},
+					"frame": {
+						"x": 159,
+						"y": 290,
+						"w": 82,
+						"h": 67
 					},
 					"anchor": {
 						"x": 0.5,
@@ -999,135 +924,10 @@
 						"h": 69
 					},
 					"frame": {
-						"x": 334,
-						"y": 139,
+						"x": 159,
+						"y": 358,
 						"w": 74,
 						"h": 69
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "bear-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 11,
-						"y": 6,
-						"w": 73,
-						"h": 70
-					},
-					"frame": {
-						"x": 409,
-						"y": 148,
-						"w": 73,
-						"h": 70
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "unicorn-6.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 15,
-						"y": 0,
-						"w": 68,
-						"h": 76
-					},
-					"frame": {
-						"x": 483,
-						"y": 141,
-						"w": 68,
-						"h": 76
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "bat-8.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 16,
-						"y": 0,
-						"w": 64,
-						"h": 76
-					},
-					"frame": {
-						"x": 82,
-						"y": 231,
-						"w": 64,
-						"h": 76
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "unicorn-7.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 15,
-						"y": 0,
-						"w": 68,
-						"h": 76
-					},
-					"frame": {
-						"x": 81,
-						"y": 308,
-						"w": 68,
-						"h": 76
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "unicorn-8.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 15,
-						"y": 0,
-						"w": 68,
-						"h": 76
-					},
-					"frame": {
-						"x": 81,
-						"y": 385,
-						"w": 68,
-						"h": 76
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1149,10 +949,35 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 81,
-						"y": 462,
+						"x": 157,
+						"y": 428,
 						"w": 74,
 						"h": 70
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "lizard-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 2,
+						"w": 60,
+						"h": 74
+					},
+					"frame": {
+						"x": 331,
+						"y": 77,
+						"w": 60,
+						"h": 74
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1174,9 +999,34 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 78,
-						"y": 533,
+						"x": 392,
+						"y": 71,
 						"w": 74,
+						"h": 70
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "bear-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 6,
+						"w": 73,
+						"h": 70
+					},
+					"frame": {
+						"x": 467,
+						"y": 71,
+						"w": 73,
 						"h": 70
 					},
 					"anchor": {
@@ -1199,9 +1049,34 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 78,
-						"y": 604,
+						"x": 541,
+						"y": 70,
 						"w": 74,
+						"h": 70
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "bear-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 6,
+						"w": 68,
+						"h": 70
+					},
+					"frame": {
+						"x": 616,
+						"y": 70,
+						"w": 68,
 						"h": 70
 					},
 					"anchor": {
@@ -1224,8 +1099,8 @@
 						"h": 69
 					},
 					"frame": {
-						"x": 78,
-						"y": 675,
+						"x": 685,
+						"y": 69,
 						"w": 73,
 						"h": 69
 					},
@@ -1249,8 +1124,8 @@
 						"h": 69
 					},
 					"frame": {
-						"x": 78,
-						"y": 745,
+						"x": 759,
+						"y": 69,
 						"w": 73,
 						"h": 69
 					},
@@ -1274,8 +1149,8 @@
 						"h": 69
 					},
 					"frame": {
-						"x": 78,
-						"y": 815,
+						"x": 833,
+						"y": 69,
 						"w": 73,
 						"h": 69
 					},
@@ -1285,24 +1160,49 @@
 					}
 				},
 				{
-					"filename": "bull-6.png",
+					"filename": "person-51.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 96,
-						"h": 76
+						"w": 64,
+						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 11,
-						"y": 4,
-						"w": 69,
-						"h": 72
+						"x": 3,
+						"y": 0,
+						"w": 59,
+						"h": 64
 					},
 					"frame": {
-						"x": 78,
-						"y": 885,
-						"w": 69,
-						"h": 72
+						"x": 907,
+						"y": 69,
+						"w": 59,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-63.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 59,
+						"h": 64
+					},
+					"frame": {
+						"x": 907,
+						"y": 134,
+						"w": 59,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1324,8 +1224,8 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 147,
-						"y": 228,
+						"x": 70,
+						"y": 1231,
 						"w": 64,
 						"h": 76
 					},
@@ -1349,10 +1249,60 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 150,
-						"y": 305,
+						"x": 70,
+						"y": 1308,
 						"w": 64,
 						"h": 76
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "unicorn-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 0,
+						"w": 68,
+						"h": 76
+					},
+					"frame": {
+						"x": 69,
+						"y": 1385,
+						"w": 68,
+						"h": 76
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "helper-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 65,
+						"y": 1462,
+						"w": 64,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1374,8 +1324,8 @@
 						"h": 76
 					},
 					"frame": {
-						"x": 150,
-						"y": 382,
+						"x": 242,
+						"y": 154,
 						"w": 64,
 						"h": 76
 					},
@@ -1385,7 +1335,7 @@
 					}
 				},
 				{
-					"filename": "lizard-0.png",
+					"filename": "unicorn-4.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1393,66 +1343,16 @@
 						"h": 76
 					},
 					"spriteSourceSize": {
-						"x": 18,
-						"y": 2,
-						"w": 60,
-						"h": 74
-					},
-					"frame": {
-						"x": 156,
-						"y": 459,
-						"w": 60,
-						"h": 74
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "lizard-5.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 77
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 2,
-						"w": 61,
-						"h": 75
-					},
-					"frame": {
-						"x": 153,
-						"y": 534,
-						"w": 61,
-						"h": 75
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "bear-6.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 13,
-						"y": 6,
+						"x": 15,
+						"y": 0,
 						"w": 68,
-						"h": 70
+						"h": 76
 					},
 					"frame": {
-						"x": 153,
-						"y": 610,
+						"x": 307,
+						"y": 152,
 						"w": 68,
-						"h": 70
+						"h": 76
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1460,7 +1360,7 @@
 					}
 				},
 				{
-					"filename": "bull-8.png",
+					"filename": "unicorn-5.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1468,16 +1368,41 @@
 						"h": 76
 					},
 					"spriteSourceSize": {
-						"x": 11,
-						"y": 4,
-						"w": 69,
-						"h": 72
+						"x": 15,
+						"y": 0,
+						"w": 68,
+						"h": 76
 					},
 					"frame": {
-						"x": 152,
-						"y": 681,
-						"w": 69,
-						"h": 72
+						"x": 242,
+						"y": 231,
+						"w": 68,
+						"h": 76
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "unicorn-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 0,
+						"w": 68,
+						"h": 76
+					},
+					"frame": {
+						"x": 311,
+						"y": 229,
+						"w": 68,
+						"h": 76
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1499,10 +1424,85 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 152,
-						"y": 754,
+						"x": 242,
+						"y": 308,
 						"w": 68,
 						"h": 70
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "bull-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 4,
+						"w": 69,
+						"h": 72
+					},
+					"frame": {
+						"x": 311,
+						"y": 306,
+						"w": 69,
+						"h": 72
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "bull-7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 3,
+						"w": 69,
+						"h": 73
+					},
+					"frame": {
+						"x": 234,
+						"y": 379,
+						"w": 69,
+						"h": 73
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "bull-8.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 4,
+						"w": 69,
+						"h": 72
+					},
+					"frame": {
+						"x": 304,
+						"y": 379,
+						"w": 69,
+						"h": 72
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1524,8 +1524,8 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 152,
-						"y": 825,
+						"x": 232,
+						"y": 453,
 						"w": 68,
 						"h": 70
 					},
@@ -1535,449 +1535,24 @@
 					}
 				},
 				{
-					"filename": "wolf-0.png",
+					"filename": "unicorn-7.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
 						"w": 96,
 						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 14,
-						"y": 8,
-						"w": 68,
-						"h": 68
-					},
-					"frame": {
-						"x": 148,
-						"y": 896,
-						"w": 68,
-						"h": 68
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 3,
-						"w": 61,
-						"h": 73
-					},
-					"frame": {
-						"x": 176,
-						"y": 154,
-						"w": 61,
-						"h": 73
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-6.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 16,
-						"y": 3,
-						"w": 65,
-						"h": 73
-					},
-					"frame": {
-						"x": 238,
-						"y": 153,
-						"w": 65,
-						"h": 73
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "lizard-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 1,
-						"w": 60,
-						"h": 75
-					},
-					"frame": {
-						"x": 212,
-						"y": 228,
-						"w": 60,
-						"h": 75
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "lizard-4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 1,
-						"w": 60,
-						"h": 75
-					},
-					"frame": {
-						"x": 215,
-						"y": 304,
-						"w": 60,
-						"h": 75
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "lizard-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 2,
-						"w": 60,
-						"h": 74
-					},
-					"frame": {
-						"x": 215,
-						"y": 380,
-						"w": 60,
-						"h": 74
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "lizard-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 2,
-						"w": 60,
-						"h": 74
-					},
-					"frame": {
-						"x": 217,
-						"y": 455,
-						"w": 60,
-						"h": 74
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-5.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 77
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 3,
-						"w": 61,
-						"h": 74
-					},
-					"frame": {
-						"x": 273,
-						"y": 227,
-						"w": 61,
-						"h": 74
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 3,
-						"w": 61,
-						"h": 73
-					},
-					"frame": {
-						"x": 276,
-						"y": 302,
-						"w": 61,
-						"h": 73
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 3,
-						"w": 61,
-						"h": 73
-					},
-					"frame": {
-						"x": 276,
-						"y": 376,
-						"w": 61,
-						"h": 73
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 3,
-						"w": 61,
-						"h": 73
-					},
-					"frame": {
-						"x": 278,
-						"y": 450,
-						"w": 61,
-						"h": 73
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-7.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 16,
-						"y": 3,
-						"w": 65,
-						"h": 73
-					},
-					"frame": {
-						"x": 335,
-						"y": 209,
-						"w": 65,
-						"h": 73
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "wolf-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 14,
-						"y": 8,
-						"w": 68,
-						"h": 68
-					},
-					"frame": {
-						"x": 401,
-						"y": 219,
-						"w": 68,
-						"h": 68
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 4,
-						"w": 61,
-						"h": 72
-					},
-					"frame": {
-						"x": 338,
-						"y": 283,
-						"w": 61,
-						"h": 72
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "penguin-8.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 97,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 16,
-						"y": 3,
-						"w": 65,
-						"h": 73
-					},
-					"frame": {
-						"x": 338,
-						"y": 356,
-						"w": 65,
-						"h": 73
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "frog-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 9,
-						"w": 60,
-						"h": 67
-					},
-					"frame": {
-						"x": 400,
-						"y": 288,
-						"w": 60,
-						"h": 67
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "ltc-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 93,
-						"h": 72
-					},
-					"spriteSourceSize": {
-						"x": 17,
-						"y": 0,
-						"w": 58,
-						"h": 72
-					},
-					"frame": {
-						"x": 404,
-						"y": 356,
-						"w": 58,
-						"h": 72
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "ltc-7.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 93,
-						"h": 72
 					},
 					"spriteSourceSize": {
 						"x": 15,
 						"y": 0,
-						"w": 64,
-						"h": 72
+						"w": 68,
+						"h": 76
 					},
 					"frame": {
-						"x": 340,
-						"y": 430,
-						"w": 64,
-						"h": 72
+						"x": 376,
+						"y": 152,
+						"w": 68,
+						"h": 76
 					},
 					"anchor": {
 						"x": 0.5,
@@ -1985,49 +1560,24 @@
 					}
 				},
 				{
-					"filename": "ltc-4.png",
+					"filename": "unicorn-8.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 93,
-						"h": 72
+						"w": 96,
+						"h": 76
 					},
 					"spriteSourceSize": {
-						"x": 18,
+						"x": 15,
 						"y": 0,
-						"w": 58,
-						"h": 72
+						"w": 68,
+						"h": 76
 					},
 					"frame": {
-						"x": 405,
-						"y": 429,
-						"w": 58,
-						"h": 72
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "ltc-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 93,
-						"h": 71
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 0,
-						"w": 58,
-						"h": 71
-					},
-					"frame": {
-						"x": 557,
-						"y": 70,
-						"w": 58,
-						"h": 71
+						"x": 380,
+						"y": 229,
+						"w": 68,
+						"h": 76
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2049,8 +1599,8 @@
 						"h": 72
 					},
 					"frame": {
-						"x": 616,
-						"y": 69,
+						"x": 381,
+						"y": 306,
 						"w": 65,
 						"h": 72
 					},
@@ -2074,10 +1624,185 @@
 						"h": 72
 					},
 					"frame": {
-						"x": 682,
-						"y": 69,
+						"x": 374,
+						"y": 379,
 						"w": 65,
 						"h": 72
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "penguin-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 3,
+						"w": 65,
+						"h": 73
+					},
+					"frame": {
+						"x": 445,
+						"y": 142,
+						"w": 65,
+						"h": 73
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "lizard-5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 77
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 2,
+						"w": 61,
+						"h": 75
+					},
+					"frame": {
+						"x": 449,
+						"y": 216,
+						"w": 61,
+						"h": 75
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "lizard-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 1,
+						"w": 60,
+						"h": 75
+					},
+					"frame": {
+						"x": 511,
+						"y": 142,
+						"w": 60,
+						"h": 75
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "penguin-7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 3,
+						"w": 65,
+						"h": 73
+					},
+					"frame": {
+						"x": 572,
+						"y": 141,
+						"w": 65,
+						"h": 73
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "lizard-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 2,
+						"w": 60,
+						"h": 74
+					},
+					"frame": {
+						"x": 511,
+						"y": 218,
+						"w": 60,
+						"h": 74
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "penguin-8.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 3,
+						"w": 65,
+						"h": 73
+					},
+					"frame": {
+						"x": 572,
+						"y": 215,
+						"w": 65,
+						"h": 73
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "lizard-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 1,
+						"w": 60,
+						"h": 75
+					},
+					"frame": {
+						"x": 638,
+						"y": 141,
+						"w": 60,
+						"h": 75
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2099,8 +1824,8 @@
 						"h": 69
 					},
 					"frame": {
-						"x": 748,
-						"y": 69,
+						"x": 699,
+						"y": 139,
 						"w": 68,
 						"h": 69
 					},
@@ -2124,8 +1849,8 @@
 						"h": 69
 					},
 					"frame": {
-						"x": 552,
-						"y": 142,
+						"x": 768,
+						"y": 139,
 						"w": 68,
 						"h": 69
 					},
@@ -2149,8 +1874,8 @@
 						"h": 69
 					},
 					"frame": {
-						"x": 621,
-						"y": 142,
+						"x": 837,
+						"y": 139,
 						"w": 68,
 						"h": 69
 					},
@@ -2160,7 +1885,32 @@
 					}
 				},
 				{
-					"filename": "ltc-1.png",
+					"filename": "lizard-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 2,
+						"w": 60,
+						"h": 74
+					},
+					"frame": {
+						"x": 906,
+						"y": 199,
+						"w": 60,
+						"h": 74
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ltc-6.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -2168,15 +1918,15 @@
 						"h": 71
 					},
 					"spriteSourceSize": {
-						"x": 18,
+						"x": 15,
 						"y": 0,
-						"w": 58,
+						"w": 64,
 						"h": 71
 					},
 					"frame": {
-						"x": 690,
-						"y": 142,
-						"w": 58,
+						"x": 638,
+						"y": 217,
+						"w": 64,
 						"h": 71
 					},
 					"anchor": {
@@ -2199,8 +1949,8 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 749,
-						"y": 139,
+						"x": 703,
+						"y": 209,
 						"w": 67,
 						"h": 70
 					},
@@ -2224,108 +1974,8 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 817,
-						"y": 136,
-						"w": 67,
-						"h": 70
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "isabella-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 885,
-						"y": 136,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "wolf-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 14,
-						"y": 8,
-						"w": 68,
-						"h": 68
-					},
-					"frame": {
-						"x": 947,
-						"y": 151,
-						"w": 68,
-						"h": 68
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "isabella-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 885,
-						"y": 201,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "wolf-8.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 15,
-						"y": 6,
-						"w": 67,
-						"h": 70
-					},
-					"frame": {
-						"x": 817,
-						"y": 207,
+						"x": 771,
+						"y": 209,
 						"w": 67,
 						"h": 70
 					},
@@ -2349,8 +1999,8 @@
 						"h": 71
 					},
 					"frame": {
-						"x": 947,
-						"y": 220,
+						"x": 839,
+						"y": 209,
 						"w": 65,
 						"h": 71
 					},
@@ -2360,99 +2010,24 @@
 					}
 				},
 				{
-					"filename": "isabella-2.png",
+					"filename": "penguin-5.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 885,
-						"y": 266,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "helper-0.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 947,
-						"y": 292,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "helper-1.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 340,
-						"y": 503,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "frog-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
+						"w": 97,
+						"h": 77
 					},
 					"spriteSourceSize": {
 						"x": 18,
-						"y": 9,
-						"w": 60,
-						"h": 67
+						"y": 3,
+						"w": 61,
+						"h": 74
 					},
 					"frame": {
-						"x": 405,
-						"y": 502,
-						"w": 60,
-						"h": 67
+						"x": 905,
+						"y": 274,
+						"w": 61,
+						"h": 74
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2460,24 +2035,24 @@
 					}
 				},
 				{
-					"filename": "person-21.png",
+					"filename": "ltc-3.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 64,
-						"h": 64
+						"w": 93,
+						"h": 72
 					},
 					"spriteSourceSize": {
-						"x": 1,
+						"x": 17,
 						"y": 0,
-						"w": 61,
-						"h": 64
+						"w": 58,
+						"h": 72
 					},
 					"frame": {
-						"x": 278,
-						"y": 524,
-						"w": 61,
-						"h": 64
+						"x": 440,
+						"y": 379,
+						"w": 58,
+						"h": 72
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2485,24 +2060,49 @@
 					}
 				},
 				{
-					"filename": "frog-2.png",
+					"filename": "ltc-4.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 96,
-						"h": 76
+						"w": 93,
+						"h": 72
 					},
 					"spriteSourceSize": {
 						"x": 18,
-						"y": 9,
-						"w": 60,
-						"h": 67
+						"y": 0,
+						"w": 58,
+						"h": 72
 					},
 					"frame": {
-						"x": 217,
-						"y": 530,
-						"w": 60,
-						"h": 67
+						"x": 447,
+						"y": 306,
+						"w": 58,
+						"h": 72
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ltc-7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 93,
+						"h": 72
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 0,
+						"w": 64,
+						"h": 72
+					},
+					"frame": {
+						"x": 506,
+						"y": 293,
+						"w": 64,
+						"h": 72
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2524,10 +2124,35 @@
 						"h": 72
 					},
 					"frame": {
-						"x": 222,
-						"y": 598,
+						"x": 499,
+						"y": 379,
 						"w": 58,
 						"h": 72
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "wolf-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 14,
+						"y": 8,
+						"w": 68,
+						"h": 68
+					},
+					"frame": {
+						"x": 703,
+						"y": 280,
+						"w": 68,
+						"h": 68
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2549,8 +2174,8 @@
 						"h": 72
 					},
 					"frame": {
-						"x": 222,
-						"y": 671,
+						"x": 772,
+						"y": 280,
 						"w": 64,
 						"h": 72
 					},
@@ -2560,24 +2185,24 @@
 					}
 				},
 				{
-					"filename": "ltc-2.png",
+					"filename": "wolf-8.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 93,
-						"h": 71
+						"w": 96,
+						"h": 76
 					},
 					"spriteSourceSize": {
-						"x": 18,
-						"y": 0,
-						"w": 58,
-						"h": 71
+						"x": 15,
+						"y": 6,
+						"w": 67,
+						"h": 70
 					},
 					"frame": {
-						"x": 281,
-						"y": 589,
-						"w": 58,
-						"h": 71
+						"x": 837,
+						"y": 281,
+						"w": 67,
+						"h": 70
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2585,24 +2210,124 @@
 					}
 				},
 				{
-					"filename": "ltc-6.png",
+					"filename": "penguin-1.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 93,
-						"h": 71
+						"w": 97,
+						"h": 76
 					},
 					"spriteSourceSize": {
-						"x": 15,
-						"y": 0,
-						"w": 64,
-						"h": 71
+						"x": 18,
+						"y": 3,
+						"w": 61,
+						"h": 73
 					},
 					"frame": {
-						"x": 340,
-						"y": 568,
-						"w": 64,
-						"h": 71
+						"x": 905,
+						"y": 349,
+						"w": 61,
+						"h": 73
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "penguin-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 3,
+						"w": 61,
+						"h": 73
+					},
+					"frame": {
+						"x": 78,
+						"y": 796,
+						"w": 61,
+						"h": 73
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "penguin-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 3,
+						"w": 61,
+						"h": 73
+					},
+					"frame": {
+						"x": 78,
+						"y": 870,
+						"w": 61,
+						"h": 73
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "penguin-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 3,
+						"w": 61,
+						"h": 73
+					},
+					"frame": {
+						"x": 78,
+						"y": 944,
+						"w": 61,
+						"h": 73
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "penguin-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 97,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 4,
+						"w": 61,
+						"h": 72
+					},
+					"frame": {
+						"x": 78,
+						"y": 1018,
+						"w": 61,
+						"h": 72
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2624,10 +2349,135 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 405,
-						"y": 570,
+						"x": 78,
+						"y": 1091,
 						"w": 64,
 						"h": 70
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "wolf-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 14,
+						"y": 8,
+						"w": 68,
+						"h": 68
+					},
+					"frame": {
+						"x": 78,
+						"y": 1162,
+						"w": 68,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ltc-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 93,
+						"h": 71
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 0,
+						"w": 58,
+						"h": 71
+					},
+					"frame": {
+						"x": 135,
+						"y": 1231,
+						"w": 58,
+						"h": 71
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ltc-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 93,
+						"h": 71
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 0,
+						"w": 58,
+						"h": 71
+					},
+					"frame": {
+						"x": 135,
+						"y": 1303,
+						"w": 58,
+						"h": 71
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "ltc-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 93,
+						"h": 71
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 0,
+						"w": 58,
+						"h": 71
+					},
+					"frame": {
+						"x": 138,
+						"y": 1375,
+						"w": 58,
+						"h": 71
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "frog-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 9,
+						"w": 60,
+						"h": 67
+					},
+					"frame": {
+						"x": 138,
+						"y": 1447,
+						"w": 60,
+						"h": 67
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2649,8 +2499,8 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 287,
-						"y": 661,
+						"x": 301,
+						"y": 453,
 						"w": 64,
 						"h": 70
 					},
@@ -2660,57 +2510,7 @@
 					}
 				},
 				{
-					"filename": "isabella-5.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 0,
-						"w": 52,
-						"h": 64
-					},
-					"frame": {
-						"x": 352,
-						"y": 640,
-						"w": 52,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "helper-2.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 405,
-						"y": 641,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "frog-5.png",
+					"filename": "wolf-2.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -2718,41 +2518,16 @@
 						"h": 76
 					},
 					"spriteSourceSize": {
-						"x": 18,
+						"x": 14,
 						"y": 8,
-						"w": 60,
+						"w": 68,
 						"h": 68
 					},
 					"frame": {
-						"x": 470,
-						"y": 219,
-						"w": 60,
+						"x": 366,
+						"y": 452,
+						"w": 68,
 						"h": 68
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "frog-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 18,
-						"y": 9,
-						"w": 60,
-						"h": 67
-					},
-					"frame": {
-						"x": 461,
-						"y": 288,
-						"w": 60,
-						"h": 67
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2774,8 +2549,8 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 463,
-						"y": 356,
+						"x": 435,
+						"y": 452,
 						"w": 64,
 						"h": 70
 					},
@@ -2799,8 +2574,8 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 464,
-						"y": 427,
+						"x": 500,
+						"y": 452,
 						"w": 63,
 						"h": 70
 					},
@@ -2824,8 +2599,8 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 466,
-						"y": 498,
+						"x": 571,
+						"y": 293,
 						"w": 63,
 						"h": 70
 					},
@@ -2849,10 +2624,35 @@
 						"h": 70
 					},
 					"frame": {
-						"x": 470,
-						"y": 569,
+						"x": 635,
+						"y": 289,
 						"w": 63,
 						"h": 70
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "helper-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 699,
+						"y": 349,
+						"w": 64,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -2874,8 +2674,8 @@
 						"h": 68
 					},
 					"frame": {
-						"x": 470,
-						"y": 640,
+						"x": 635,
+						"y": 360,
 						"w": 63,
 						"h": 68
 					},
@@ -2899,33 +2699,8 @@
 						"h": 68
 					},
 					"frame": {
-						"x": 531,
-						"y": 218,
-						"w": 63,
-						"h": 68
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "frog-8.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 96,
-						"h": 76
-					},
-					"spriteSourceSize": {
-						"x": 16,
-						"y": 8,
-						"w": 63,
-						"h": 68
-					},
-					"frame": {
-						"x": 595,
-						"y": 212,
+						"x": 571,
+						"y": 364,
 						"w": 63,
 						"h": 68
 					},
@@ -2949,8 +2724,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 659,
-						"y": 214,
+						"x": 764,
+						"y": 353,
 						"w": 64,
 						"h": 64
 					},
@@ -2960,7 +2735,7 @@
 					}
 				},
 				{
-					"filename": "frog-4.png",
+					"filename": "frog-8.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -2968,41 +2743,16 @@
 						"h": 76
 					},
 					"spriteSourceSize": {
-						"x": 18,
-						"y": 9,
-						"w": 60,
-						"h": 67
+						"x": 16,
+						"y": 8,
+						"w": 63,
+						"h": 68
 					},
 					"frame": {
-						"x": 724,
-						"y": 214,
-						"w": 60,
-						"h": 67
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 0,
-						"w": 52,
-						"h": 64
-					},
-					"frame": {
-						"x": 352,
-						"y": 705,
-						"w": 52,
-						"h": 64
+						"x": 564,
+						"y": 433,
+						"w": 63,
+						"h": 68
 					},
 					"anchor": {
 						"x": 0.5,
@@ -3024,8 +2774,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 405,
-						"y": 706,
+						"x": 564,
+						"y": 502,
 						"w": 64,
 						"h": 64
 					},
@@ -3049,8 +2799,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 470,
-						"y": 709,
+						"x": 699,
+						"y": 414,
 						"w": 64,
 						"h": 64
 					},
@@ -3074,608 +2824,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 287,
-						"y": 732,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-37.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 222,
-						"y": 744,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-38.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 221,
-						"y": 809,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-39.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 221,
-						"y": 874,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-40.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 217,
-						"y": 938,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 0,
-						"w": 52,
-						"h": 64
-					},
-					"frame": {
-						"x": 352,
-						"y": 770,
-						"w": 52,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-41.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 405,
-						"y": 771,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-54.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 470,
-						"y": 774,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-55.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 1,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 287,
-						"y": 796,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "snowman-1.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 286,
-						"y": 860,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "snowman-2.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 64
-					},
-					"frame": {
-						"x": 286,
-						"y": 860,
-						"w": 64,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 0,
-						"w": 52,
-						"h": 64
-					},
-					"frame": {
-						"x": 352,
-						"y": 835,
-						"w": 52,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-56.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 1,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 405,
-						"y": 836,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-57.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 470,
-						"y": 838,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-58.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 1,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 351,
-						"y": 900,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "isabella-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 0,
-						"w": 53,
-						"h": 63
-					},
-					"frame": {
-						"x": 416,
-						"y": 900,
-						"w": 53,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-59.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 1,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 470,
-						"y": 902,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-117.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 286,
-						"y": 925,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-118.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 1,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 351,
-						"y": 964,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 0,
-						"w": 52,
-						"h": 63
-					},
-					"frame": {
-						"x": 416,
-						"y": 964,
-						"w": 52,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-119.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 1,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 469,
-						"y": 966,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-120.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 282,
-						"y": 989,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-121.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 1,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 347,
-						"y": 1028,
-						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "moonboy-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 412,
-						"y": 1028,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-122.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 1,
-						"w": 64,
-						"h": 63
-					},
-					"frame": {
-						"x": 469,
-						"y": 1030,
+						"x": 764,
+						"y": 418,
 						"w": 64,
 						"h": 63
 					},
@@ -3699,10 +2849,385 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 522,
-						"y": 288,
+						"x": 635,
+						"y": 429,
 						"w": 63,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "frog-5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 8,
+						"w": 60,
+						"h": 68
+					},
+					"frame": {
+						"x": 629,
+						"y": 494,
+						"w": 60,
+						"h": 68
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-37.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 699,
+						"y": 479,
+						"w": 64,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-38.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 764,
+						"y": 482,
+						"w": 64,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "frog-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 9,
+						"w": 60,
+						"h": 67
+					},
+					"frame": {
+						"x": 829,
+						"y": 353,
+						"w": 60,
+						"h": 67
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "frog-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 9,
+						"w": 60,
+						"h": 67
+					},
+					"frame": {
+						"x": 829,
+						"y": 421,
+						"w": 60,
+						"h": 67
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "frog-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 9,
+						"w": 60,
+						"h": 67
+					},
+					"frame": {
+						"x": 829,
+						"y": 489,
+						"w": 60,
+						"h": 67
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-40.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 890,
+						"y": 423,
+						"w": 64,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-41.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 890,
+						"y": 488,
+						"w": 64,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-39.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 690,
+						"y": 544,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-54.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 755,
+						"y": 547,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "frog-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 96,
+						"h": 76
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 9,
+						"w": 60,
+						"h": 67
+					},
+					"frame": {
+						"x": 629,
+						"y": 563,
+						"w": 60,
+						"h": 67
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-55.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 820,
+						"y": 557,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-56.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 690,
+						"y": 608,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-57.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 755,
+						"y": 611,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-58.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 820,
+						"y": 621,
+						"w": 64,
+						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -3724,8 +3249,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 528,
-						"y": 353,
+						"x": 885,
+						"y": 557,
 						"w": 63,
 						"h": 64
 					},
@@ -3749,9 +3274,184 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 528,
-						"y": 418,
+						"x": 885,
+						"y": 622,
 						"w": 63,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-59.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 366,
+						"y": 521,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-117.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 431,
+						"y": 523,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-118.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 496,
+						"y": 523,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-119.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 561,
+						"y": 567,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-120.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 82,
+						"y": 494,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "snowman-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 81,
+						"y": 558,
+						"w": 64,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "snowman-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 81,
+						"y": 558,
+						"w": 64,
 						"h": 64
 					},
 					"anchor": {
@@ -3774,8 +3474,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 530,
-						"y": 483,
+						"x": 81,
+						"y": 623,
 						"w": 63,
 						"h": 64
 					},
@@ -3799,10 +3499,60 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 534,
-						"y": 548,
+						"x": 81,
+						"y": 688,
 						"w": 63,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-121.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 147,
+						"y": 499,
+						"w": 64,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-122.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 64,
+						"h": 63
+					},
+					"frame": {
+						"x": 146,
+						"y": 563,
+						"w": 64,
+						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -3824,8 +3574,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 534,
-						"y": 613,
+						"x": 145,
+						"y": 627,
 						"w": 63,
 						"h": 64
 					},
@@ -3835,7 +3585,7 @@
 					}
 				},
 				{
-					"filename": "person-22.png",
+					"filename": "person-48.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -3845,189 +3595,14 @@
 					"spriteSourceSize": {
 						"x": 1,
 						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 535,
-						"y": 678,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-23.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 535,
-						"y": 743,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-31.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 535,
-						"y": 808,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-32.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 535,
-						"y": 873,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-30.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 61,
+						"w": 63,
 						"h": 63
 					},
 					"frame": {
-						"x": 535,
-						"y": 938,
-						"w": 61,
+						"x": 145,
+						"y": 692,
+						"w": 63,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-45.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 0,
-						"w": 62,
-						"h": 63
-					},
-					"frame": {
-						"x": 534,
-						"y": 1002,
-						"w": 62,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-46.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 1,
-						"w": 62,
-						"h": 63
-					},
-					"frame": {
-						"x": 534,
-						"y": 1066,
-						"w": 62,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 0,
-						"w": 52,
-						"h": 64
-					},
-					"frame": {
-						"x": 70,
-						"y": 966,
-						"w": 52,
-						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -4049,310 +3624,10 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 123,
-						"y": 965,
+						"x": 212,
+						"y": 524,
 						"w": 64,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-5.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 0,
-						"w": 52,
-						"h": 64
-					},
-					"frame": {
-						"x": 586,
-						"y": 287,
-						"w": 52,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-6.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 54,
-						"h": 64
-					},
-					"frame": {
-						"x": 592,
-						"y": 352,
-						"w": 54,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 592,
-						"y": 417,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 54,
-						"h": 64
-					},
-					"frame": {
-						"x": 594,
-						"y": 482,
-						"w": 54,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-9.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 598,
-						"y": 547,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-10.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 598,
-						"y": 612,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-11.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 639,
-						"y": 281,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-12.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 647,
-						"y": 346,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-13.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 649,
-						"y": 411,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-14.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 649,
-						"y": 476,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-18.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 60,
-						"h": 64
-					},
-					"frame": {
-						"x": 655,
-						"y": 541,
-						"w": 60,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-19.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 60,
-						"h": 64
-					},
-					"frame": {
-						"x": 655,
-						"y": 606,
-						"w": 60,
-						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -4374,159 +3649,9 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 696,
-						"y": 282,
+						"x": 277,
+						"y": 524,
 						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-20.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 60,
-						"h": 64
-					},
-					"frame": {
-						"x": 704,
-						"y": 346,
-						"w": 60,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-28.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 0,
-						"w": 58,
-						"h": 64
-					},
-					"frame": {
-						"x": 706,
-						"y": 411,
-						"w": 58,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-29.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 0,
-						"w": 58,
-						"h": 64
-					},
-					"frame": {
-						"x": 706,
-						"y": 476,
-						"w": 58,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-42.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 58,
-						"h": 64
-					},
-					"frame": {
-						"x": 716,
-						"y": 541,
-						"w": 58,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-51.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 0,
-						"w": 59,
-						"h": 64
-					},
-					"frame": {
-						"x": 716,
-						"y": 606,
-						"w": 59,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "alien-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 1,
-						"w": 55,
-						"h": 63
-					},
-					"frame": {
-						"x": 761,
-						"y": 282,
-						"w": 55,
 						"h": 63
 					},
 					"anchor": {
@@ -4549,110 +3674,10 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 817,
-						"y": 278,
+						"x": 211,
+						"y": 588,
 						"w": 64,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-60.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 57,
-						"h": 64
-					},
-					"frame": {
-						"x": 765,
-						"y": 346,
-						"w": 57,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-63.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 59,
-						"h": 64
-					},
-					"frame": {
-						"x": 765,
-						"y": 411,
-						"w": 59,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-99.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 60,
-						"h": 64
-					},
-					"frame": {
-						"x": 765,
-						"y": 476,
-						"w": 60,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-66.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 0,
-						"w": 58,
-						"h": 64
-					},
-					"frame": {
-						"x": 823,
-						"y": 342,
-						"w": 58,
-						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -4674,35 +3699,10 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 882,
-						"y": 331,
+						"x": 276,
+						"y": 588,
 						"w": 64,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-69.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 825,
-						"y": 407,
-						"w": 56,
-						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -4724,8 +3724,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 882,
-						"y": 395,
+						"x": 209,
+						"y": 652,
 						"w": 64,
 						"h": 63
 					},
@@ -4749,109 +3749,9 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 947,
-						"y": 357,
+						"x": 274,
+						"y": 652,
 						"w": 64,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-78.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 57,
-						"h": 64
-					},
-					"frame": {
-						"x": 775,
-						"y": 541,
-						"w": 57,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-82.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 776,
-						"y": 606,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-83.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 826,
-						"y": 472,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-48.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 0,
-						"w": 63,
-						"h": 63
-					},
-					"frame": {
-						"x": 883,
-						"y": 459,
-						"w": 63,
 						"h": 63
 					},
 					"anchor": {
@@ -4874,310 +3774,10 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 947,
-						"y": 421,
+						"x": 209,
+						"y": 716,
 						"w": 63,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-85.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 833,
-						"y": 537,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-86.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 833,
-						"y": 602,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-87.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 57,
-						"h": 64
-					},
-					"frame": {
-						"x": 890,
-						"y": 523,
-						"w": 57,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-102.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 890,
-						"y": 588,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-47.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 1,
-						"w": 62,
-						"h": 63
-					},
-					"frame": {
-						"x": 948,
-						"y": 485,
-						"w": 62,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-108.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 0,
-						"w": 58,
-						"h": 64
-					},
-					"frame": {
-						"x": 952,
-						"y": 549,
-						"w": 58,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-27.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 0,
-						"w": 58,
-						"h": 63
-					},
-					"frame": {
-						"x": 952,
-						"y": 614,
-						"w": 58,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-103.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 1,
-						"w": 61,
-						"h": 63
-					},
-					"frame": {
-						"x": 890,
-						"y": 653,
-						"w": 61,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "moonboy-4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 2,
-						"w": 56,
-						"h": 62
-					},
-					"frame": {
-						"x": 833,
-						"y": 667,
-						"w": 56,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-33.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 58,
-						"h": 63
-					},
-					"frame": {
-						"x": 952,
-						"y": 678,
-						"w": 58,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-104.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 1,
-						"y": 1,
-						"w": 61,
-						"h": 63
-					},
-					"frame": {
-						"x": 890,
-						"y": 717,
-						"w": 61,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-34.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 58,
-						"h": 62
-					},
-					"frame": {
-						"x": 952,
-						"y": 742,
-						"w": 58,
-						"h": 62
 					},
 					"anchor": {
 						"x": 0.5,
@@ -5199,10 +3799,35 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 655,
-						"y": 671,
+						"x": 273,
+						"y": 716,
 						"w": 63,
 						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "isabella-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 147,
+						"y": 756,
+						"w": 61,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -5224,209 +3849,9 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 719,
-						"y": 671,
+						"x": 140,
+						"y": 821,
 						"w": 63,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-15.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 57,
-						"h": 63
-					},
-					"frame": {
-						"x": 597,
-						"y": 678,
-						"w": 57,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-111.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 597,
-						"y": 742,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "santa-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 597,
-						"y": 807,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "santa-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 597,
-						"y": 872,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "santa-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 597,
-						"y": 937,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "snowman-4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 597,
-						"y": 1002,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "snowman-5.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 0,
-						"w": 61,
-						"h": 64
-					},
-					"frame": {
-						"x": 597,
-						"y": 1002,
-						"w": 61,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-112.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 1,
-						"w": 61,
-						"h": 63
-					},
-					"frame": {
-						"x": 597,
-						"y": 1067,
-						"w": 61,
 						"h": 63
 					},
 					"anchor": {
@@ -5449,8 +3874,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 659,
-						"y": 735,
+						"x": 140,
+						"y": 885,
 						"w": 63,
 						"h": 63
 					},
@@ -5474,9 +3899,384 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 659,
-						"y": 799,
+						"x": 140,
+						"y": 949,
 						"w": 63,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "isabella-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 140,
+						"y": 1013,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "isabella-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 143,
+						"y": 1078,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-18.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 60,
+						"h": 64
+					},
+					"frame": {
+						"x": 147,
+						"y": 1143,
+						"w": 60,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-45.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 62,
+						"h": 63
+					},
+					"frame": {
+						"x": 209,
+						"y": 780,
+						"w": 62,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-46.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 62,
+						"h": 63
+					},
+					"frame": {
+						"x": 272,
+						"y": 780,
+						"w": 62,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-21.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 204,
+						"y": 844,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-22.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 204,
+						"y": 909,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-23.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 266,
+						"y": 844,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-31.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 266,
+						"y": 909,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-47.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 62,
+						"h": 63
+					},
+					"frame": {
+						"x": 204,
+						"y": 974,
+						"w": 62,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-19.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 60,
+						"h": 64
+					},
+					"frame": {
+						"x": 267,
+						"y": 974,
+						"w": 60,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-32.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 205,
+						"y": 1038,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-20.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 60,
+						"h": 64
+					},
+					"frame": {
+						"x": 267,
+						"y": 1039,
+						"w": 60,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-28.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 0,
+						"w": 58,
+						"h": 64
+					},
+					"frame": {
+						"x": 208,
+						"y": 1103,
+						"w": 58,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-30.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 61,
+						"h": 63
+					},
+					"frame": {
+						"x": 267,
+						"y": 1104,
+						"w": 61,
 						"h": 63
 					},
 					"anchor": {
@@ -5499,10 +4299,85 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 659,
-						"y": 863,
+						"x": 208,
+						"y": 1168,
 						"w": 62,
 						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-15.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 57,
+						"h": 63
+					},
+					"frame": {
+						"x": 271,
+						"y": 1168,
+						"w": 57,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-102.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 194,
+						"y": 1232,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-111.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 194,
+						"y": 1297,
+						"w": 61,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -5524,8 +4399,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 659,
-						"y": 927,
+						"x": 256,
+						"y": 1232,
 						"w": 62,
 						"h": 63
 					},
@@ -5549,10 +4424,635 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 659,
-						"y": 991,
+						"x": 256,
+						"y": 1296,
 						"w": 62,
 						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-29.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 0,
+						"w": 58,
+						"h": 64
+					},
+					"frame": {
+						"x": 197,
+						"y": 1362,
+						"w": 58,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "santa-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 256,
+						"y": 1360,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 199,
+						"y": 1427,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "santa-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 256,
+						"y": 1425,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "isabella-5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 52,
+						"h": 64
+					},
+					"frame": {
+						"x": 319,
+						"y": 1232,
+						"w": 52,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 55,
+						"h": 63
+					},
+					"frame": {
+						"x": 319,
+						"y": 1297,
+						"w": 55,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-9.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 318,
+						"y": 1361,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "moonboy-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 318,
+						"y": 1426,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mib-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 52,
+						"h": 64
+					},
+					"frame": {
+						"x": 328,
+						"y": 844,
+						"w": 52,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mib-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 52,
+						"h": 64
+					},
+					"frame": {
+						"x": 328,
+						"y": 909,
+						"w": 52,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mib-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 52,
+						"h": 64
+					},
+					"frame": {
+						"x": 328,
+						"y": 974,
+						"w": 52,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mib-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 52,
+						"h": 64
+					},
+					"frame": {
+						"x": 328,
+						"y": 1039,
+						"w": 52,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mib-5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 52,
+						"h": 64
+					},
+					"frame": {
+						"x": 329,
+						"y": 1104,
+						"w": 52,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 2,
+						"w": 55,
+						"h": 62
+					},
+					"frame": {
+						"x": 329,
+						"y": 1169,
+						"w": 55,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "isabella-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 53,
+						"h": 63
+					},
+					"frame": {
+						"x": 335,
+						"y": 780,
+						"w": 53,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "isabella-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 1,
+						"w": 55,
+						"h": 63
+					},
+					"frame": {
+						"x": 337,
+						"y": 716,
+						"w": 55,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mib-7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 339,
+						"y": 652,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mib-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 0,
+						"w": 52,
+						"h": 63
+					},
+					"frame": {
+						"x": 341,
+						"y": 588,
+						"w": 52,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "santa-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 394,
+						"y": 587,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "snowman-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 456,
+						"y": 587,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "snowman-5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 61,
+						"h": 64
+					},
+					"frame": {
+						"x": 456,
+						"y": 587,
+						"w": 61,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-103.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 61,
+						"h": 63
+					},
+					"frame": {
+						"x": 394,
+						"y": 652,
+						"w": 61,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-104.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 61,
+						"h": 63
+					},
+					"frame": {
+						"x": 393,
+						"y": 716,
+						"w": 61,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-112.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 61,
+						"h": 63
+					},
+					"frame": {
+						"x": 389,
+						"y": 780,
+						"w": 61,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-99.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 60,
+						"h": 64
+					},
+					"frame": {
+						"x": 381,
+						"y": 844,
+						"w": 60,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -5574,59 +5074,9 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 659,
-						"y": 1055,
+						"x": 456,
+						"y": 652,
 						"w": 61,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "santa-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 59,
-						"h": 64
-					},
-					"frame": {
-						"x": 723,
-						"y": 735,
-						"w": 59,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-52.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 1,
-						"w": 59,
-						"h": 63
-					},
-					"frame": {
-						"x": 723,
-						"y": 800,
-						"w": 59,
 						"h": 63
 					},
 					"anchor": {
@@ -5649,8 +5099,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 722,
-						"y": 864,
+						"x": 381,
+						"y": 909,
 						"w": 60,
 						"h": 64
 					},
@@ -5674,9 +5124,59 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 722,
-						"y": 929,
+						"x": 381,
+						"y": 974,
 						"w": 60,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "santa-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 59,
+						"h": 64
+					},
+					"frame": {
+						"x": 381,
+						"y": 1039,
+						"w": 59,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-42.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 0,
+						"w": 58,
+						"h": 64
+					},
+					"frame": {
+						"x": 382,
+						"y": 1104,
+						"w": 58,
 						"h": 64
 					},
 					"anchor": {
@@ -5699,8 +5199,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 722,
-						"y": 994,
+						"x": 455,
+						"y": 716,
 						"w": 60,
 						"h": 63
 					},
@@ -5724,8 +5224,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 721,
-						"y": 1058,
+						"x": 451,
+						"y": 780,
 						"w": 60,
 						"h": 63
 					},
@@ -5749,8 +5249,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 783,
-						"y": 730,
+						"x": 442,
+						"y": 844,
 						"w": 59,
 						"h": 64
 					},
@@ -5774,8 +5274,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 783,
-						"y": 795,
+						"x": 442,
+						"y": 909,
 						"w": 59,
 						"h": 64
 					},
@@ -5799,8 +5299,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 783,
-						"y": 860,
+						"x": 442,
+						"y": 974,
 						"w": 59,
 						"h": 64
 					},
@@ -5824,8 +5324,8 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 783,
-						"y": 925,
+						"x": 441,
+						"y": 1039,
 						"w": 59,
 						"h": 64
 					},
@@ -5849,10 +5349,60 @@
 						"h": 64
 					},
 					"frame": {
-						"x": 783,
-						"y": 990,
+						"x": 441,
+						"y": 1104,
 						"w": 59,
 						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-52.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 1,
+						"w": 59,
+						"h": 63
+					},
+					"frame": {
+						"x": 385,
+						"y": 1169,
+						"w": 59,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 1,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 445,
+						"y": 1169,
+						"w": 56,
+						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -5874,8 +5424,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 843,
-						"y": 781,
+						"x": 372,
+						"y": 1233,
 						"w": 59,
 						"h": 63
 					},
@@ -5899,8 +5449,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 843,
-						"y": 845,
+						"x": 432,
+						"y": 1233,
 						"w": 59,
 						"h": 63
 					},
@@ -5924,10 +5474,160 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 843,
-						"y": 909,
+						"x": 375,
+						"y": 1297,
 						"w": 59,
 						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-66.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 0,
+						"w": 58,
+						"h": 64
+					},
+					"frame": {
+						"x": 375,
+						"y": 1361,
+						"w": 58,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-27.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 0,
+						"w": 58,
+						"h": 63
+					},
+					"frame": {
+						"x": 375,
+						"y": 1426,
+						"w": 58,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 1,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 435,
+						"y": 1297,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-60.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 57,
+						"h": 64
+					},
+					"frame": {
+						"x": 434,
+						"y": 1361,
+						"w": 57,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-33.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 58,
+						"h": 63
+					},
+					"frame": {
+						"x": 434,
+						"y": 1426,
+						"w": 58,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-108.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 0,
+						"w": 58,
+						"h": 64
+					},
+					"frame": {
+						"x": 518,
+						"y": 631,
+						"w": 58,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -5949,10 +5649,110 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 843,
-						"y": 973,
+						"x": 577,
+						"y": 631,
 						"w": 59,
 						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 2,
+						"w": 51,
+						"h": 62
+					},
+					"frame": {
+						"x": 637,
+						"y": 631,
+						"w": 51,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-133.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 1,
+						"w": 59,
+						"h": 62
+					},
+					"frame": {
+						"x": 689,
+						"y": 672,
+						"w": 59,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-134.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 1,
+						"w": 59,
+						"h": 62
+					},
+					"frame": {
+						"x": 749,
+						"y": 675,
+						"w": 59,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-34.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 58,
+						"h": 62
+					},
+					"frame": {
+						"x": 809,
+						"y": 685,
+						"w": 58,
+						"h": 62
 					},
 					"anchor": {
 						"x": 0.5,
@@ -5974,10 +5774,35 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 843,
-						"y": 1037,
+						"x": 868,
+						"y": 687,
 						"w": 58,
 						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien-7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 3,
+						"w": 51,
+						"h": 61
+					},
+					"frame": {
+						"x": 637,
+						"y": 694,
+						"w": 51,
+						"h": 61
 					},
 					"anchor": {
 						"x": 0.5,
@@ -5999,35 +5824,10 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 903,
-						"y": 805,
+						"x": 689,
+						"y": 735,
 						"w": 58,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-94.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 54,
-						"h": 64
-					},
-					"frame": {
-						"x": 962,
-						"y": 805,
-						"w": 54,
-						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6049,35 +5849,10 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 903,
-						"y": 869,
+						"x": 748,
+						"y": 738,
 						"w": 58,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-95.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 54,
-						"h": 64
-					},
-					"frame": {
-						"x": 962,
-						"y": 870,
-						"w": 54,
-						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6099,35 +5874,10 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 903,
-						"y": 933,
+						"x": 807,
+						"y": 748,
 						"w": 58,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-96.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 0,
-						"w": 54,
-						"h": 64
-					},
-					"frame": {
-						"x": 962,
-						"y": 935,
-						"w": 54,
-						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6149,34 +5899,9 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 903,
-						"y": 997,
+						"x": 866,
+						"y": 750,
 						"w": 58,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-7.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 54,
-						"h": 63
-					},
-					"frame": {
-						"x": 962,
-						"y": 1000,
-						"w": 54,
 						"h": 63
 					},
 					"anchor": {
@@ -6199,8 +5924,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 902,
-						"y": 1061,
+						"x": 518,
+						"y": 696,
 						"w": 58,
 						"h": 63
 					},
@@ -6210,7 +5935,7 @@
 					}
 				},
 				{
-					"filename": "person-105.png",
+					"filename": "person-78.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6218,15 +5943,15 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 5,
+						"x": 4,
 						"y": 0,
-						"w": 55,
+						"w": 57,
 						"h": 64
 					},
 					"frame": {
-						"x": 961,
-						"y": 1064,
-						"w": 55,
+						"x": 577,
+						"y": 695,
+						"w": 57,
 						"h": 64
 					},
 					"anchor": {
@@ -6249,8 +5974,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 659,
-						"y": 1119,
+						"x": 516,
+						"y": 760,
 						"w": 58,
 						"h": 63
 					},
@@ -6274,8 +5999,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 718,
-						"y": 1122,
+						"x": 575,
+						"y": 760,
 						"w": 58,
 						"h": 63
 					},
@@ -6285,32 +6010,7 @@
 					}
 				},
 				{
-					"filename": "isabella-4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 6,
-						"y": 1,
-						"w": 55,
-						"h": 63
-					},
-					"frame": {
-						"x": 777,
-						"y": 1122,
-						"w": 55,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "mib-8.png",
+					"filename": "mib-6.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6319,15 +6019,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 5,
-						"y": 1,
+						"y": 0,
 						"w": 54,
-						"h": 63
+						"h": 64
 					},
 					"frame": {
-						"x": 782,
-						"y": 1058,
+						"x": 634,
+						"y": 760,
 						"w": 54,
-						"h": 63
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6349,8 +6049,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 837,
-						"y": 1100,
+						"x": 689,
+						"y": 799,
 						"w": 58,
 						"h": 62
 					},
@@ -6374,8 +6074,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 896,
-						"y": 1125,
+						"x": 748,
+						"y": 802,
 						"w": 58,
 						"h": 62
 					},
@@ -6399,8 +6099,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 955,
-						"y": 1129,
+						"x": 807,
+						"y": 812,
 						"w": 58,
 						"h": 63
 					},
@@ -6424,8 +6124,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 833,
-						"y": 1163,
+						"x": 866,
+						"y": 814,
 						"w": 58,
 						"h": 62
 					},
@@ -6435,7 +6135,7 @@
 					}
 				},
 				{
-					"filename": "person-125.png",
+					"filename": "person-3.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6443,16 +6143,16 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 2,
-						"y": 1,
-						"w": 58,
-						"h": 62
+						"x": 5,
+						"y": 0,
+						"w": 54,
+						"h": 64
 					},
 					"frame": {
-						"x": 892,
-						"y": 1188,
-						"w": 58,
-						"h": 62
+						"x": 492,
+						"y": 1233,
+						"w": 54,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6460,7 +6160,7 @@
 					}
 				},
 				{
-					"filename": "person-16.png",
+					"filename": "person-10.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6469,39 +6169,164 @@
 					},
 					"spriteSourceSize": {
 						"x": 4,
-						"y": 1,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 492,
+						"y": 1298,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "moonboy-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 2,
+						"w": 56,
+						"h": 62
+					},
+					"frame": {
+						"x": 492,
+						"y": 1363,
+						"w": 56,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-11.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 493,
+						"y": 1426,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-12.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 502,
+						"y": 844,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-13.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 502,
+						"y": 909,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-14.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 502,
+						"y": 974,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-87.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
 						"w": 57,
-						"h": 62
+						"h": 64
 					},
 					"frame": {
-						"x": 951,
-						"y": 1193,
+						"x": 501,
+						"y": 1039,
 						"w": 57,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-91.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 69,
-						"y": 1043,
-						"w": 56,
 						"h": 64
 					},
 					"anchor": {
@@ -6510,7 +6335,7 @@
 					}
 				},
 				{
-					"filename": "person-92.png",
+					"filename": "person-69.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6518,14 +6343,14 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 3,
+						"x": 5,
 						"y": 0,
 						"w": 56,
 						"h": 64
 					},
 					"frame": {
-						"x": 69,
-						"y": 1108,
+						"x": 501,
+						"y": 1104,
 						"w": 56,
 						"h": 64
 					},
@@ -6535,7 +6360,7 @@
 					}
 				},
 				{
-					"filename": "snowman-6.png",
+					"filename": "person-24.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6543,66 +6368,16 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 4,
+						"x": 5,
 						"y": 0,
-						"w": 56,
-						"h": 64
+						"w": 55,
+						"h": 63
 					},
 					"frame": {
-						"x": 69,
-						"y": 1173,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "snowman-7.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 69,
-						"y": 1238,
-						"w": 56,
-						"h": 64
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "snowman-8.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 64
-					},
-					"frame": {
-						"x": 69,
-						"y": 1238,
-						"w": 56,
-						"h": 64
+						"x": 502,
+						"y": 1169,
+						"w": 55,
+						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6624,8 +6399,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 126,
-						"y": 1029,
+						"x": 559,
+						"y": 824,
 						"w": 57,
 						"h": 63
 					},
@@ -6649,8 +6424,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 126,
-						"y": 1093,
+						"x": 559,
+						"y": 888,
 						"w": 57,
 						"h": 63
 					},
@@ -6674,8 +6449,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 126,
-						"y": 1157,
+						"x": 559,
+						"y": 952,
 						"w": 57,
 						"h": 63
 					},
@@ -6699,8 +6474,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 126,
-						"y": 1221,
+						"x": 559,
+						"y": 1016,
 						"w": 57,
 						"h": 63
 					},
@@ -6710,7 +6485,7 @@
 					}
 				},
 				{
-					"filename": "person-17.png",
+					"filename": "person-82.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6719,15 +6494,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 4,
-						"y": 1,
-						"w": 57,
-						"h": 62
+						"y": 0,
+						"w": 56,
+						"h": 64
 					},
 					"frame": {
-						"x": 126,
-						"y": 1285,
-						"w": 57,
-						"h": 62
+						"x": 617,
+						"y": 825,
+						"w": 56,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6735,7 +6510,7 @@
 					}
 				},
 				{
-					"filename": "person-88.png",
+					"filename": "person-83.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6744,40 +6519,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 4,
-						"y": 1,
-						"w": 57,
-						"h": 63
-					},
-					"frame": {
-						"x": 120,
-						"y": 1348,
-						"w": 57,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "moonboy-0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
+						"y": 0,
+						"w": 56,
 						"h": 64
 					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 54,
-						"h": 63
-					},
 					"frame": {
-						"x": 178,
-						"y": 1348,
-						"w": 54,
-						"h": 63
+						"x": 617,
+						"y": 890,
+						"w": 56,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6785,7 +6535,7 @@
 					}
 				},
 				{
-					"filename": "moonboy-6.png",
+					"filename": "person-85.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6794,90 +6544,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 4,
-						"y": 1,
-						"w": 54,
-						"h": 63
-					},
-					"frame": {
-						"x": 184,
-						"y": 1029,
-						"w": 54,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
+						"y": 0,
+						"w": 56,
 						"h": 64
 					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 1,
-						"w": 56,
-						"h": 63
-					},
 					"frame": {
-						"x": 184,
-						"y": 1093,
+						"x": 617,
+						"y": 955,
 						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
 						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 3,
-						"y": 1,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 184,
-						"y": 1157,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-70.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 184,
-						"y": 1221,
-						"w": 56,
-						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6899,8 +6574,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 184,
-						"y": 1285,
+						"x": 617,
+						"y": 1020,
 						"w": 56,
 						"h": 62
 					},
@@ -6910,7 +6585,7 @@
 					}
 				},
 				{
-					"filename": "person-4.png",
+					"filename": "person-86.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6918,66 +6593,16 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 54,
-						"h": 63
-					},
-					"frame": {
-						"x": 233,
-						"y": 1348,
-						"w": 54,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-5.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 54,
-						"h": 63
-					},
-					"frame": {
-						"x": 241,
-						"y": 1094,
-						"w": 54,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-6.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
+						"x": 4,
 						"y": 0,
-						"w": 54,
-						"h": 63
+						"w": 56,
+						"h": 64
 					},
 					"frame": {
-						"x": 241,
-						"y": 1158,
-						"w": 54,
-						"h": 63
+						"x": 674,
+						"y": 862,
+						"w": 56,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -6985,7 +6610,7 @@
 					}
 				},
 				{
-					"filename": "person-24.png",
+					"filename": "person-91.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -6993,16 +6618,16 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 5,
+						"x": 3,
 						"y": 0,
-						"w": 55,
-						"h": 63
+						"w": 56,
+						"h": 64
 					},
 					"frame": {
-						"x": 241,
-						"y": 1222,
-						"w": 55,
-						"h": 63
+						"x": 674,
+						"y": 927,
+						"w": 56,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7010,7 +6635,7 @@
 					}
 				},
 				{
-					"filename": "alien-7.png",
+					"filename": "person-92.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -7018,16 +6643,16 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 7,
-						"y": 3,
-						"w": 51,
-						"h": 61
+						"x": 3,
+						"y": 0,
+						"w": 56,
+						"h": 64
 					},
 					"frame": {
-						"x": 241,
-						"y": 1286,
-						"w": 51,
-						"h": 61
+						"x": 674,
+						"y": 992,
+						"w": 56,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7035,7 +6660,7 @@
 					}
 				},
 				{
-					"filename": "person-71.png",
+					"filename": "person-88.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -7043,41 +6668,16 @@
 						"h": 64
 					},
 					"spriteSourceSize": {
-						"x": 5,
+						"x": 4,
 						"y": 1,
-						"w": 56,
+						"w": 57,
 						"h": 63
 					},
 					"frame": {
-						"x": 288,
-						"y": 1348,
-						"w": 56,
+						"x": 731,
+						"y": 865,
+						"w": 57,
 						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "alien-8.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 7,
-						"y": 3,
-						"w": 51,
-						"h": 61
-					},
-					"frame": {
-						"x": 293,
-						"y": 1286,
-						"w": 51,
-						"h": 61
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7099,8 +6699,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 296,
-						"y": 1092,
+						"x": 731,
+						"y": 929,
 						"w": 57,
 						"h": 63
 					},
@@ -7124,9 +6724,259 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 296,
-						"y": 1156,
+						"x": 731,
+						"y": 993,
 						"w": 57,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-125.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 58,
+						"h": 62
+					},
+					"frame": {
+						"x": 789,
+						"y": 876,
+						"w": 58,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "snowman-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 789,
+						"y": 939,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-16.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 57,
+						"h": 62
+					},
+					"frame": {
+						"x": 789,
+						"y": 1004,
+						"w": 57,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-17.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 57,
+						"h": 62
+					},
+					"frame": {
+						"x": 848,
+						"y": 877,
+						"w": 57,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-70.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 846,
+						"y": 940,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien-2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 2,
+						"w": 55,
+						"h": 62
+					},
+					"frame": {
+						"x": 847,
+						"y": 1004,
+						"w": 55,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-142.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 57,
+						"h": 62
+					},
+					"frame": {
+						"x": 559,
+						"y": 1080,
+						"w": 57,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "snowman-7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 558,
+						"y": 1143,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "snowman-8.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 64
+					},
+					"frame": {
+						"x": 558,
+						"y": 1143,
+						"w": 56,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-71.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 617,
+						"y": 1083,
+						"w": 56,
 						"h": 63
 					},
 					"anchor": {
@@ -7149,208 +6999,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 354,
-						"y": 1092,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-142.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 57,
-						"h": 62
-					},
-					"frame": {
-						"x": 411,
-						"y": 1092,
-						"w": 57,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-73.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 1,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 354,
-						"y": 1156,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-74.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 1,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 411,
-						"y": 1155,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-75.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 297,
-						"y": 1220,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-76.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 1,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 354,
-						"y": 1220,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-77.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 1,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 411,
-						"y": 1219,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-81.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 345,
-						"y": 1284,
-						"w": 56,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-84.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 0,
-						"w": 56,
-						"h": 63
-					},
-					"frame": {
-						"x": 345,
-						"y": 1348,
+						"x": 674,
+						"y": 1057,
 						"w": 56,
 						"h": 63
 					},
@@ -7374,10 +7024,185 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 469,
-						"y": 1094,
+						"x": 731,
+						"y": 1057,
 						"w": 57,
 						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-73.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 615,
+						"y": 1147,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-74.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 789,
+						"y": 1067,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-75.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 846,
+						"y": 1067,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-76.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 558,
+						"y": 1208,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-77.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 615,
+						"y": 1211,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-81.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 549,
+						"y": 1272,
+						"w": 56,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-84.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 0,
+						"w": 56,
+						"h": 63
+					},
+					"frame": {
+						"x": 549,
+						"y": 1336,
+						"w": 56,
+						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7399,8 +7224,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 468,
-						"y": 1157,
+						"x": 606,
+						"y": 1275,
 						"w": 56,
 						"h": 63
 					},
@@ -7424,10 +7249,60 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 468,
-						"y": 1221,
+						"x": 606,
+						"y": 1339,
 						"w": 56,
 						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-105.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 55,
+						"h": 64
+					},
+					"frame": {
+						"x": 550,
+						"y": 1400,
+						"w": 55,
+						"h": 64
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien-3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 55,
+						"h": 62
+					},
+					"frame": {
+						"x": 550,
+						"y": 1465,
+						"w": 55,
+						"h": 62
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7449,8 +7324,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 527,
-						"y": 1130,
+						"x": 606,
+						"y": 1403,
 						"w": 56,
 						"h": 63
 					},
@@ -7474,8 +7349,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 525,
-						"y": 1194,
+						"x": 674,
+						"y": 1121,
 						"w": 56,
 						"h": 63
 					},
@@ -7485,107 +7360,7 @@
 					}
 				},
 				{
-					"filename": "alien-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 2,
-						"w": 55,
-						"h": 62
-					},
-					"frame": {
-						"x": 584,
-						"y": 1131,
-						"w": 55,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-106.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 55,
-						"h": 63
-					},
-					"frame": {
-						"x": 582,
-						"y": 1194,
-						"w": 55,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "alien-2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 2,
-						"w": 55,
-						"h": 62
-					},
-					"frame": {
-						"x": 525,
-						"y": 1258,
-						"w": 55,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "alien-3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 1,
-						"w": 55,
-						"h": 62
-					},
-					"frame": {
-						"x": 581,
-						"y": 1258,
-						"w": 55,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-93.png",
+					"filename": "person-94.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -7596,13 +7371,13 @@
 						"x": 5,
 						"y": 0,
 						"w": 54,
-						"h": 63
+						"h": 64
 					},
 					"frame": {
-						"x": 402,
-						"y": 1284,
+						"x": 731,
+						"y": 1120,
 						"w": 54,
-						"h": 63
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7610,7 +7385,7 @@
 					}
 				},
 				{
-					"filename": "person-97.png",
+					"filename": "person-95.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -7619,15 +7394,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 5,
-						"y": 1,
+						"y": 0,
 						"w": 54,
-						"h": 63
+						"h": 64
 					},
 					"frame": {
-						"x": 402,
-						"y": 1348,
+						"x": 672,
+						"y": 1185,
 						"w": 54,
-						"h": 63
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7635,7 +7410,7 @@
 					}
 				},
 				{
-					"filename": "person-107.png",
+					"filename": "person-96.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -7644,15 +7419,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 5,
-						"y": 1,
-						"w": 55,
-						"h": 63
+						"y": 0,
+						"w": 54,
+						"h": 64
 					},
 					"frame": {
-						"x": 457,
-						"y": 1285,
-						"w": 55,
-						"h": 63
+						"x": 727,
+						"y": 1185,
+						"w": 54,
+						"h": 64
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7674,8 +7449,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 457,
-						"y": 1349,
+						"x": 786,
+						"y": 1131,
 						"w": 55,
 						"h": 62
 					},
@@ -7699,8 +7474,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 513,
-						"y": 1321,
+						"x": 842,
+						"y": 1131,
 						"w": 55,
 						"h": 62
 					},
@@ -7724,85 +7499,10 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 569,
-						"y": 1321,
+						"x": 782,
+						"y": 1194,
 						"w": 55,
 						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "alien-6.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 7,
-						"y": 2,
-						"w": 51,
-						"h": 62
-					},
-					"frame": {
-						"x": 625,
-						"y": 1321,
-						"w": 51,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "moonboy-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 2,
-						"w": 54,
-						"h": 62
-					},
-					"frame": {
-						"x": 637,
-						"y": 1258,
-						"w": 54,
-						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-98.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 54,
-						"h": 63
-					},
-					"frame": {
-						"x": 638,
-						"y": 1194,
-						"w": 54,
-						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7824,9 +7524,134 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 693,
-						"y": 1186,
+						"x": 838,
+						"y": 1194,
 						"w": 55,
+						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "mib-8.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 906,
+						"y": 877,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-106.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 55,
+						"h": 63
+					},
+					"frame": {
+						"x": 903,
+						"y": 941,
+						"w": 55,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-107.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 55,
+						"h": 63
+					},
+					"frame": {
+						"x": 903,
+						"y": 1005,
+						"w": 55,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "moonboy-0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 903,
+						"y": 1069,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "moonboy-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 2,
+						"w": 54,
+						"h": 62
+					},
+					"frame": {
+						"x": 898,
+						"y": 1133,
+						"w": 54,
 						"h": 62
 					},
 					"anchor": {
@@ -7849,10 +7674,60 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 749,
-						"y": 1186,
+						"x": 894,
+						"y": 1196,
 						"w": 54,
 						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "moonboy-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 672,
+						"y": 1250,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 727,
+						"y": 1250,
+						"w": 54,
+						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7874,8 +7749,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 677,
-						"y": 1321,
+						"x": 782,
+						"y": 1257,
 						"w": 54,
 						"h": 62
 					},
@@ -7899,10 +7774,135 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 692,
-						"y": 1258,
+						"x": 837,
+						"y": 1257,
 						"w": 54,
 						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 892,
+						"y": 1259,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 663,
+						"y": 1314,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-93.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 0,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 718,
+						"y": 1314,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-97.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 663,
+						"y": 1378,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-98.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 718,
+						"y": 1378,
+						"w": 54,
+						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -7924,8 +7924,33 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 747,
-						"y": 1249,
+						"x": 773,
+						"y": 1320,
+						"w": 54,
+						"h": 63
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-148.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 828,
+						"y": 1320,
 						"w": 54,
 						"h": 63
 					},
@@ -7949,60 +7974,10 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 732,
-						"y": 1321,
+						"x": 773,
+						"y": 1384,
 						"w": 54,
 						"h": 62
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-148.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 54,
-						"h": 63
-					},
-					"frame": {
-						"x": 787,
-						"y": 1313,
-						"w": 54,
-						"h": 63
-					},
-					"anchor": {
-						"x": 0.5,
-						"y": 0.5
-					}
-				},
-				{
-					"filename": "person-149.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 5,
-						"y": 1,
-						"w": 54,
-						"h": 63
-					},
-					"frame": {
-						"x": 802,
-						"y": 1249,
-						"w": 54,
-						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -8024,10 +7999,35 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 857,
-						"y": 1251,
+						"x": 828,
+						"y": 1384,
 						"w": 54,
 						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "person-149.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 5,
+						"y": 1,
+						"w": 54,
+						"h": 63
+					},
+					"frame": {
+						"x": 883,
+						"y": 1323,
+						"w": 54,
+						"h": 63
 					},
 					"anchor": {
 						"x": 0.5,
@@ -8049,8 +8049,8 @@
 						"h": 63
 					},
 					"frame": {
-						"x": 842,
-						"y": 1314,
+						"x": 883,
+						"y": 1387,
 						"w": 54,
 						"h": 63
 					},
@@ -8074,8 +8074,8 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 897,
-						"y": 1314,
+						"x": 663,
+						"y": 1442,
 						"w": 54,
 						"h": 62
 					},
@@ -8099,10 +8099,35 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 952,
-						"y": 1256,
+						"x": 718,
+						"y": 1442,
 						"w": 54,
 						"h": 62
+					},
+					"anchor": {
+						"x": 0.5,
+						"y": 0.5
+					}
+				},
+				{
+					"filename": "alien-8.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 3,
+						"w": 51,
+						"h": 61
+					},
+					"frame": {
+						"x": 773,
+						"y": 1447,
+						"w": 51,
+						"h": 61
 					},
 					"anchor": {
 						"x": 0.5,
@@ -8115,6 +8140,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:e509abe7c4f2abd4b2673aea594cd20a:b79c4d362e6810461d009598ea34e534:a5fe7db4b869eb0f3e0b2940b9577ea8$"
+		"smartupdate": "$TexturePacker:SmartUpdate:27f48d387838f9b0a70a654b3d7f6521:8b295753dad359ce4c5d872281e1fd54:a5fe7db4b869eb0f3e0b2940b9577ea8$"
 	}
 }
