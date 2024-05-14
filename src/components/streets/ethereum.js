@@ -1,11 +1,10 @@
 import { Street } from "../street.js";
 // import { toRes, ethNewTxSetDepending } from "../utils/";
-import { mirrorX, toRes, ethNewTxSetDepending, getSheetKey } from "../utils/";
+import { toRes, ethNewTxSetDepending } from "../utils/";
 import { ETH, ethUnits } from "../config.js";
 import i18n from "../../i18n";
 import eventHub from "../vue/eventHub.js";
 import state from "../../wallet";
-import Popup from "../game-objects/popup";
 
 export default class ETHStreet extends Street {
 	constructor(side) {
@@ -134,45 +133,45 @@ export default class ETHStreet extends Street {
 
 
 
-	cycleIsaMessage() {
-		if (!this.isabella.isaChange) {
-			this.isabella.currentMessage = 0;
-			this.isabella.isaChange = setInterval(() => {
-				this.cycleIsaMessage();
-			}, 30000);
-		}
+	// cycleIsaMessage() {
+	// 	if (!this.isabella.isaChange) {
+	// 		this.isabella.currentMessage = 0;
+	// 		this.isabella.isaChange = setInterval(() => {
+	// 			this.cycleIsaMessage();
+	// 		}, 30000);
+	// 	}
 
-		if (this.isapop) this.isapop.destroy();
-		if (!this.isabella.messages[this.isabella.currentMessage]) {
-			clearInterval(this.isabella.isaChange);
-			delete this.isabella.isaChange;
-			return;
-		}
-		this.isapop = new Popup(
-			this,
-			mirrorX(390, this.side),
-			toRes(170),
-			false,
-			"bubble",
-			this.isabella.messages[this.isabella.currentMessage++]
-		);
-	}
+	// 	if (this.isapop) this.isapop.destroy();
+	// 	if (!this.isabella.messages[this.isabella.currentMessage]) {
+	// 		clearInterval(this.isabella.isaChange);
+	// 		delete this.isabella.isaChange;
+	// 		return;
+	// 	}
+	// 	this.isapop = new Popup(
+	// 		this,
+	// 		mirrorX(390, this.side),
+	// 		toRes(170),
+	// 		false,
+	// 		"bubble",
+	// 		this.isabella.messages[this.isabella.currentMessage++]
+	// 	);
+	// }
 
-	createIsabella() {
-		this.isabella = this.add.image(mirrorX(390, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
-		this.isabella.setDisplaySize(toRes(128), toRes(128));
-		this.isabella.setInteractive({ useHandCursor: true });
-		this.isabella.on("pointerup", () => {
-			this.cycleIsaMessage();
-		});
-		this.isabella.setDepth(this.personDepth);
-		this.isabella.messages = [
-			"Hi Anon! My name is Taha, like to add your L2 here?",
-			"Are you looking to Rent a house on our street?",
-			"Feel free to reach out to me on X @web3dopamine",
-		];
-		this.cycleIsaMessage();
-	}
+	// createIsabella() {
+	// 	this.isabella = this.add.image(mirrorX(390, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
+	// 	this.isabella.setDisplaySize(toRes(128), toRes(128));
+	// 	this.isabella.setInteractive({ useHandCursor: true });
+	// 	this.isabella.on("pointerup", () => {
+	// 		this.cycleIsaMessage();
+	// 	});
+	// 	this.isabella.setDepth(this.personDepth);
+	// 	this.isabella.messages = [
+	// 		"Hi Anon! My name is Taha, like to add your L2 here?",
+	// 		"Are you looking to Rent a house on our street?",
+	// 		"Feel free to reach out to me on X @web3dopamine",
+	// 	];
+	// 	this.cycleIsaMessage();
+	// }
 
 
 	crowdCountDisplay() {
