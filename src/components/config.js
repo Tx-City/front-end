@@ -1295,7 +1295,7 @@ export const CELO = {
 		},
 		"supply-circulating": {
 			title: () => {
-				return i18n.t("lukso.supply-circulating");
+				return i18n.t("celo.supply-circulating");
 			},
 			decimals: 0,
 			socket: true,
@@ -1303,7 +1303,7 @@ export const CELO = {
 		},
 		"fiatPrice-usd": {
 			title: () => {
-				return i18n.t("lukso.fiatPrice-usd");
+				return i18n.t("celo.fiatPrice-usd");
 			},
 			decimals: 2,
 			before: "$",
@@ -1386,7 +1386,7 @@ export const CELO = {
 		blockHeight: { hidden: true, value: false },
 		"marketCap-usd": {
 			title: () => {
-				return i18n.t("lukso.marketCap-usd");
+				return i18n.t("celo.marketCap-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -1395,7 +1395,7 @@ export const CELO = {
 		},
 		"volume-usd": {
 			title: () => {
-				return i18n.t("lukso.volume-usd");
+				return i18n.t("celo.volume-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -2279,7 +2279,7 @@ export const config = {
 };
 
 export const zoomerNames = ["bat", "bear", "bull", "frog", "lion", "lizard", "monkey", "penguin", "unicorn", "wolf"];
-export const genesisNames = ["helper", "santa", "snowman", "isabella", "alien", "mib", "moonboy", "mailman", "ltc", "taha"];
+export const genesisNames = ["helper", "santa", "snowman", "isabella", "alien", "mib", "moonboy", "mailman", "ltc"];
 export const moonheadNames = zoomerNames.concat(genesisNames);
 
 export const charConfig = {
