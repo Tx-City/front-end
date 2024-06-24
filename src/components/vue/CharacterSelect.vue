@@ -4,7 +4,7 @@
 			<connect />
 		</div>
 		<p class="block">
-			Connect your wallet and choose an NFT that will be displayed for all of your transactions. This will also be visible to anyone else watching TxStreet.
+			Connect your wallet and choose an NFT that will be displayed for all of your transactions. This will also be visible to anyone else watching TxCity.
 		</p>
 		<div class="section has-text-centered" v-if="state.address">
 			<div v-if="!loaded">

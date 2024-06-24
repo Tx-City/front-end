@@ -189,7 +189,7 @@ export default {
 				return false;
 			}
 			if (onlyName) return title;
-			title += " Transaction Visualizer - TxStreet.com";
+			title += " Transaction Visualizer - TxCity.io";
 			return title;
 		},
 		getVizTitleFromStreets(changeHomeUrl = true, pushState = false) {
@@ -210,7 +210,7 @@ export default {
 				title += possible.config.coinName + " & ";
 			}
 			title = title.slice(0, -3);
-			title += " Transaction Visualizer - TxStreet.com";
+			title += " Transaction Visualizer - TxCity.io";
 			if (changeHomeUrl) this.changeHomeUrl(endingString, title, true, pushState);
 			return title;
 		},

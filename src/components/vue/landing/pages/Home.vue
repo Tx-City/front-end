@@ -14,7 +14,7 @@
 					<p class="title">See the Blockchain. Live.</p>
 					<p class="subtitle">Technically the mempool.</p>
 					<p>
-						TxStreet is a live transaction and mempool visualizer featuring Bitcoin, Ethereum, Bitcoin Cash,
+						TxCity is a live transaction and mempool visualizer featuring Bitcoin, Ethereum, Bitcoin Cash,
 						Monero and Litecoin. When a new transaction is broadcasted to a cryptocurrency network, a person
 						appears and attempts to board a bus in real time. If the transaction has a high enough fee, they
 						will board the first bus and be ready to be included in the next mined block. If there are too

@@ -187,7 +187,7 @@
         "monitoring-not-reliable": "Überwachen von Transaktionen nach Adresse ist für {ticker} nicht zuverlässig.",
         "new-block": "Neuer Block {ticker}",
         "no-recent": "Keine kürzlichen Transaktionen gefunden.",
-        "not-tracked": "{title} Transaktionen werden noch nicht auf TxStreet verfolgt.",
+        "not-tracked": "{title} Transaktionen werden noch nicht auf TxCity verfolgt.",
         "not-updating": "Wird nicht aktualisiert, wenn schweben",
         "nothing-found": "Nichts gefunden in {address}",
         "offline-try": "Offline. Versuchen Sie es später erneut.",
