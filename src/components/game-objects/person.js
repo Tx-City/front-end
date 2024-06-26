@@ -17,6 +17,50 @@ const Person = new Phaser.Class({
 	},
 });
 
+Person.prototype.createPath = function(points){
+	this.points = points;
+	this.curve = new Phaser.Curves.Spline(this.points);
+	this.x = this.curve.getPoint(0).x;
+	this.y = this.curve.getPoint(0).y;
+}
+
+Person.prototype.goAlongPath = function(){
+
+
+	const tweenPath = {
+		t:0,
+		mycurve:this.curve,
+		mySprite:this,
+		getT:function(){
+			return this.t;
+		},
+		setT:function(v){
+			this.t = v;
+			const point = this.mycurve.getPoint(this.t);
+			this.x = point.x;
+			this.y = point.y;
+		}
+
+	}
+
+       this.scene.tweens.add({
+		targets:tweenPath,
+		t:1,
+		duration:3000,
+		ease:'Linear',
+		repeat:0,
+		yoyo:false,
+		onUpdate:()=>{
+		const point = this.curve.getPoint(tweenPath.t);
+		this.x = point.x;
+		this.y = point.y;
+		},  
+		onComplete:()=>{}
+
+	})
+
+}
+
 Person.prototype.customResetData = function (char = "mailman") {
 	if (userSettings.globalSettings.animations.value) this.animsEnabled = true;
 	this.resetMoveList();

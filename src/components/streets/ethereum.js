@@ -1,10 +1,12 @@
 import { Street } from "../street.js";
 // import { toRes, ethNewTxSetDepending } from "../utils/";
-import { toRes, ethNewTxSetDepending } from "../utils/";
+import { toRes, ethNewTxSetDepending,getSheetKey } from "../utils/";
 import { ETH, ethUnits } from "../config.js";
 import i18n from "../../i18n";
 import eventHub from "../vue/eventHub.js";
 import state from "../../wallet";
+import Bus from "../game-objects/bus.js";
+import Person from "../game-objects/person.js";
 
 export default class ETHStreet extends Street {
 	constructor(side) {
@@ -13,7 +15,7 @@ export default class ETHStreet extends Street {
 
 	init() {
 		this.foundBoarding = false;
-		this.busStop = toRes(200);
+		this.busStop = toRes(1500);
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.decelerationArea = 500;
@@ -89,6 +91,47 @@ export default class ETHStreet extends Street {
 	async create() {
 		super.create();
 		this.addressNonces = this.config.addressNonces;
+
+		this.mybus = new Bus(this);
+		this.mybus.y = 200;
+		this.mybus.text1.setText("#20975174");
+		this.mybus.text2.setText("2Gwei");
+		this.mybus.text3.setText("+0Wei");
+        this.mybus.logo.setScale(0.3);
+		this.mybus.createInside();
+
+		this.mySecondBus = new Bus(this);
+		this.mySecondBus.y =400;
+		this.mySecondBus.text1.setText("#20175274");
+		this.mySecondBus.text2.setText("4Gwei");
+		this.mySecondBus.text3.setText("+0Wei");
+        this.mySecondBus.logo.setScale(0.3);
+
+		this.myThirdBus = new Bus(this);
+		this.myThirdBus.y = 600;
+		this.myThirdBus.text1.setText("#20188174");
+		this.myThirdBus.text2.setText("3Gwei");
+		this.myThirdBus.text3.setText("+0Wei");
+        this.myThirdBus.logo.setScale(0.3);
+		this.time.delayedCall(2000, () => {
+			
+		console.log("tumeanzia hapa")
+		this.myPerson = new Person(this);
+		this.myPerson.setTexture(getSheetKey("person-"),"mailman-0.png");
+	
+		this.myPerson.active = true;
+		this.myPerson.visible = true;
+		this.myPerson.setDepth(10);
+		this.myPerson.setPosition(this.mybus.x,this.mybus.y);
+		this.myPerson.setInteractive({ useHandCursor: true });
+		this.myPerson.createHitArea();
+
+		this.myPerson.createPath([this.mybus.x-50,this.mybus.y,
+		this.mybus.x-200,this.mybus.y,
+		this.mybus.x-200,this.myThirdBus.y,
+		this.mybus.x-300,this.myThirdBus.y])
+		this.myPerson.goAlongPath();
+        }, [], this);
 
 		this.streetCreate();
 		
