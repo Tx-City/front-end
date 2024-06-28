@@ -55,7 +55,9 @@ Person.prototype.goAlongPath = function(){
 		this.x = point.x;
 		this.y = point.y;
 		},  
-		onComplete:()=>{}
+		onComplete:()=>{	
+			
+		}
 
 	})
 

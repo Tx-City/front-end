@@ -6,7 +6,7 @@ import i18n from "../../i18n";
 import eventHub from "../vue/eventHub.js";
 import state from "../../wallet";
 import Bus from "../game-objects/bus.js";
-import Person from "../game-objects/person.js";
+
 
 export default class ETHStreet extends Street {
 	constructor(side) {
@@ -14,6 +14,7 @@ export default class ETHStreet extends Street {
 	}
 
 	init() {
+		this.myDummyData;
 		this.foundBoarding = false;
 		this.busStop = toRes(1500);
 		this.busDoorFromTop = toRes(42);
@@ -86,9 +87,11 @@ export default class ETHStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 
-	preload() { }
+	preload() {}
 
+	
 	async create() {
+		this.load.image("myPeopleInBus", "https://cdn.discordapp.com/attachments/1181098369989496865/1256289913737838612/busback-02.png?ex=66803aa8&is=667ee928&hm=16ae52fbe5079bd25cc836dd53a32204ce39a165b7779108e31d6119a39b3ec1&");
 		super.create();
 		this.addressNonces = this.config.addressNonces;
 
@@ -99,6 +102,18 @@ export default class ETHStreet extends Street {
 		this.mybus.text3.setText("+0Wei");
         this.mybus.logo.setScale(0.3);
 		this.mybus.createInside();
+		//this.busInsideSingle(this.mybus);
+		this.mybus.txsOverride = true;
+		//this.mybus.tx.length = 4;
+		this.mybus.loaded = 4 ;
+		this.mymailman = this.add.image(this.mybus.x,this.mybus.y-50,getSheetKey("person-"),"mailman-0.png").setDepth(100).setScale(0.5);
+		this.mypersonman = this.add.image(this.mybus.x-20,this.mybus.y-50,getSheetKey("person-"),"person-59.png").setDepth(100).setScale(0.5);
+		this.mysecondpersonman = this.add.image(this.mybus.x+40,this.mybus.y-50,getSheetKey("person-"),"bear-0.png").setDepth(100).setScale(0.5);
+
+		this.mymailman1 = this.add.image(this.mybus.x,this.mybus.y-28,getSheetKey("person-"),"lizard-0.png").setDepth(100).setScale(0.5);
+		this.mypersonman1 = this.add.image(this.mybus.x-30,this.mybus.y-28,getSheetKey("person-"),"person-59.png").setDepth(100).setScale(0.5);
+		this.mysecondpersonman1 = this.add.image(this.mybus.x+20,this.mybus.y-28,getSheetKey("person-"),"bear-0.png").setDepth(100).setScale(0.5);
+		//this.myPeopleInBus = this.scene.add.image(this.mybus.x,this.mybus.y, "myPeopleInBus").setOrigin(0, 0).setDepth(11);
 
 		this.mySecondBus = new Bus(this);
 		this.mySecondBus.y =400;
@@ -116,7 +131,7 @@ export default class ETHStreet extends Street {
 		this.time.delayedCall(2000, () => {
 			
 		console.log("tumeanzia hapa")
-		this.myPerson = new Person(this);
+		this.myPerson =this.newPerson(this.myDummyData);
 		this.myPerson.setTexture(getSheetKey("person-"),"mailman-0.png");
 	
 		this.myPerson.active = true;
@@ -125,6 +140,12 @@ export default class ETHStreet extends Street {
 		this.myPerson.setPosition(this.mybus.x,this.mybus.y);
 		this.myPerson.setInteractive({ useHandCursor: true });
 		this.myPerson.createHitArea();
+		this.myPerson.setLineData("status", null);
+		this.myPerson.setScale(1)
+		//this.myPerson.resetData();
+
+		
+		
 
 		this.myPerson.createPath([this.mybus.x-50,this.mybus.y,
 		this.mybus.x-200,this.mybus.y,
@@ -391,6 +412,7 @@ export default class ETHStreet extends Street {
 
 	//go through list
 	sortBuses(instant = false, hashArray = false) {
+		console.log("sfjslkjf;lkasjfklja")
 		if (!hashArray) hashArray = this.sortedLineHashes(false);
 		for (let i = 0; i < hashArray.length; i++) {
 			hashArray[i].txData.dependingOn = false;
@@ -456,6 +478,7 @@ export default class ETHStreet extends Street {
 				this.lineManager[entry.txData.tx].status = "waiting";
 				//add to line as person
 				this.newPerson(this.lineManager[entry.txData.tx]);
+				this.myDummyData = this.lineManager[entry.txData.tx];
 			}
 		}
 
