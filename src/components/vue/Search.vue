@@ -9,6 +9,7 @@
 
 <script>
 // @ts-nocheck 
+import eventHub from './eventHub';
 export default {
     data: function (){
         return {
@@ -32,6 +33,12 @@ export default {
                     //nothing to search
                     this.icon = "exclamation-circle"
                 }
+                this.$nextTick(() => {
+            //this.dropdownActive = false; 
+            this.$emit("toggleWindowAfterSearch");
+            eventHub.$emit("createMyStaticSearch");
+
+        });
             }, 1);
         },
         searchTransaction(query, icon=true){

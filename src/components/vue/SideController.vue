@@ -18,7 +18,7 @@
 
 			<div v-if="dropdownActive" class="coin-dropdown-container">
 				<div class="coin-dropdown box">
-					<search key="search" ref="search"></search>
+					<search key="search" ref="search"  @toggleWindowAfterSearch="toggleWindow(window)"></search>
 					<div class="coin-dropdown-section section">
 						<div class="subtitle is-4 has-text-centered">Change Street</div>
 						<div class="columns is-multiline">
