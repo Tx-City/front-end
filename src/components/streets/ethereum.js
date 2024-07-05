@@ -95,7 +95,7 @@ export default class ETHStreet extends Street {
 		super.create();
 		this.addressNonces = this.config.addressNonces;
 		this.streetCreate();
-		this.cameras.main.scrollY =this.myMainCameraPosition;
+		//this.cameras.main.scrollY =this.myMainCameraPosition;
 		this.vue.navigation.unshift({
 			key: "characters",
 			html: "<span class='fas fa-user-astronaut'></span>",
@@ -134,6 +134,7 @@ export default class ETHStreet extends Street {
 		eventHub.$on("createMyStaticSearch",()=>{this.createStaticSearch()});
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
+	
 	}
 
 	createStaticSearch(){

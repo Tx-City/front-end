@@ -22,6 +22,7 @@ import sideCtor from "./vue/SideController.vue";
 import { fds, default as i18n } from "../i18n";
 import Notification from "./vue/toasts/Notification";
 import AppleTest from './utils/apple_test.js';
+import eventHub from "./vue/eventHub.js";
 
 
 //Main street class which all streets inherit from (e.g. btc, eth, etc)
@@ -1744,6 +1745,7 @@ export class Street extends Phaser.Scene {
 		this.cameras.main.setScroll(xPos, yPos);
 		if (Math.abs(amount) > 4) this.checkView();
 		this.events.emit("scrollY", { amount: amount, reset: reset });
+		eventHub.$emit("myScrollData",{ cameraY: yPos, bottom: yPos + newHeight });
 	}
 
 	scrollTileSprites(amount, reset) {

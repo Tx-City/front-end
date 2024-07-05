@@ -11,7 +11,7 @@ export default class BTCStreet extends Street {
 
 	init() {
 		this.foundBoarding = false;
-		this.busStop = toRes(200);
+		this.busStop = toRes(1500);
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 3;
 		this.decelerationArea = toRes(500);

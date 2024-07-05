@@ -14,6 +14,7 @@ import rca from "rainbow-colors-array";
 import Tutorial from "./vue/toasts/Tutorial";
 import Vue from "vue";
 import AppleTest from './utils/apple_test.js';
+import bridge from "./streets/bridge.js";
 
 export const availableStreets = {
 	BTC: BTCStreet,
@@ -50,6 +51,7 @@ export class StreetController extends Phaser.Scene {
 
 	preload() {
 		this.load.setPath(config.baseUrl + "static/img/");
+		this.load.image("BRIDGE", "BRIDGE.png?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("sheet", "sheet.json?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("characters", "characters.json?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("mall", "mall.json?v=" + process.env.VUE_APP_VERSION);
@@ -89,10 +91,11 @@ export class StreetController extends Phaser.Scene {
 		if (streetsToLoad.length > 1) {
 			this.createStreet("left", streetsToLoad[0].street);
 			this.createStreet("right", streetsToLoad[1].street);
+			this.createBridge();
 		} else {
 			this.createStreet("full", streetsToLoad[0].street);
 		}
-
+      
 		this.checkLoaded();
 		this.positionHouses(true);
 
@@ -234,6 +237,13 @@ export class StreetController extends Phaser.Scene {
 				}
 			}
 		});
+	}
+
+	createBridge() {
+
+    var mybridge = new bridge("full");
+	this.scene.add("full", mybridge, true);
+
 	}
 
 	wakeStreet(side, coin) {
@@ -398,7 +408,7 @@ export class StreetController extends Phaser.Scene {
 		let scenes = this.game.scene.getScenes(true);
 		let housesLoaded = true;
 		let activeStreets = [];
-		for (let i = 0; i < scenes.length; i++) {
+		for (let i = 0; i < scenes.length-1; i++) {
 			let scene = scenes[i];
 			if (scene == this || this.game.scene.isSleeping(scene)) continue;
 			activeStreets.push(scene);
