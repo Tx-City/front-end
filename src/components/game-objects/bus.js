@@ -118,6 +118,71 @@ const Bus = new Phaser.Class({
 	},
 });
 
+Bus.prototype.createBridgePath=function(points){
+	this.points = points;
+	this.curve = new Phaser.Curves.Spline(this.points);
+	this.x = this.curve.getPoint(0).x;
+	this.y = this.curve.getPoint(0).y;
+
+	this.myGraphics = this.scene.add.graphics();
+	this.myGraphics.lineStyle(0,0xffffff,0.5);
+
+	this.curve.draw(this.myGraphics,20);
+
+
+
+}
+
+
+Bus.prototype.followBridgePath = function () {
+
+
+	const tweenPath = {
+		t:0,
+		mycurve:this.curve,
+		mySprite:this,
+		getT:function(){
+			return this.t;
+		},
+		setT:function(v){
+			this.t = v;
+			const point = this.mycurve.getPoint(this.t);
+			this.x = point.x;
+			this.y = point.y;
+		}
+
+	}
+
+       this.scene.tweens.add({
+		targets:tweenPath,
+		t:1,
+		duration:10000,
+		ease:'Linear',
+		repeat:0,
+		yoyo:false,
+		onUpdate:()=>{
+		const point = this.curve.getPoint(tweenPath.t);
+		this.x = point.x;
+		this.y = point.y;
+
+		var vec = this.curve.getPoint(tweenPath.t);
+
+		this.setPosition(vec.x, vec.y);
+
+		var r = this.curve.getTangent(tweenPath.t);
+
+		this.rotation = Math.atan(r.y / r.x)-4.712389;
+
+    if (r.x < 0) {
+		this.rotation += Math.PI;}
+		},  
+		onComplete:()=>{	
+			
+		}
+
+	})
+
+}
 Bus.prototype.newBus = function (atStop = true) {
 	this.loaded = 0;
 	this.loadedAlt = 0;
