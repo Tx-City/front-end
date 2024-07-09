@@ -492,6 +492,7 @@ export default class ETHStreet extends Street {
 				//add to line as person
 				this.newPerson(this.lineManager[entry.txData.tx]);
 				this.myDummyData = this.lineManager[entry.txData.tx];
+				//eventHub.$emit("myTestPersonData",{myPersonData:this.myDummyData});
 			}
 		}
 

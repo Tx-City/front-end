@@ -22,6 +22,12 @@ Person.prototype.createPath = function(points){
 	this.curve = new Phaser.Curves.Spline(this.points);
 	this.x = this.curve.getPoint(0).x;
 	this.y = this.curve.getPoint(0).y;
+
+	this.myGraphics = this.scene.add.graphics();
+	this.myGraphics.lineStyle(0,0xffffff,0.5);
+
+	this.curve.draw(this.myGraphics,20);
+
 }
 
 Person.prototype.goAlongPath = function(){
