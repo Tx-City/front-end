@@ -30,7 +30,7 @@ Person.prototype.createPath = function(points){
 
 }
 
-Person.prototype.goAlongPath = function(){
+Person.prototype.goAlongPath = function(mySkin){
 
 
 	const tweenPath = {
@@ -52,17 +52,29 @@ Person.prototype.goAlongPath = function(){
        this.scene.tweens.add({
 		targets:tweenPath,
 		t:1,
-		duration:3000,
+		duration:4000,
 		ease:'Linear',
 		repeat:0,
 		yoyo:false,
 		onUpdate:()=>{
 		const point = this.curve.getPoint(tweenPath.t);
-		this.x = point.x;
-		this.y = point.y;
+	
+
+	//  let myAngle = this.curve.getTangent(tweenPath.t);
+	//  let myPersonRotation = Math.atan(myAngle.y / myAngle.x) - 4.712389;
+         
+		// if (myAngle.x < 0) {
+		// 	myPersonRotation += Math.PI;}
+			let myBridgedirection = this.getDirection(this.x, this.y, point.x, point.y);
+			if (myBridgedirection == "left") {this.play("walk_side_"+ mySkin.toString());}
+			if (myBridgedirection == "right") {this.play("walk_side_"+ mySkin.toString()); this.setFlipX(true);}
+			if (myBridgedirection == "up") {this.play("walk_up_"+ mySkin.toString());}
+			if (myBridgedirection == "down") {this.play("walk_down_"+ mySkin.toString());}
+			this.x = point.x;
+			this.y = point.y;
 		},  
 		onComplete:()=>{	
-			
+			this.setFlipX(false);
 		}
 
 	})
