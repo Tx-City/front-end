@@ -455,6 +455,8 @@ export default class ETHStreet extends Street {
 			}
 			bus.baseFee = this.calcBusBaseFee(activeBuses, i);
 			bus.feeText = ethUnits(bus.baseFee, true, true);
+			// to enable visualistion of bridge transaction currently a test and should be more dyanmic if block has bridge transaction
+			bus.hasBridgeTransaction = true;
 			this.addBusTxs(bus, hashArray, skipTxs, instant, increasingNonces, toMove);
 		}
 
@@ -512,8 +514,8 @@ export default class ETHStreet extends Street {
 				activeBuses[i].resize(overTarget > 0 ? Math.round(overTarget / 500000) : 0);
 				continue;
 			}
-			activeBuses[i].bye();
-			activeBuses.splice(i, 1);
+			//activeBuses[i].bye();
+			//activeBuses.splice(i, 1);
 		}
 
 		const notDeleted = hashArray.filter(obj => !obj.txData.deleted).length;

@@ -64,16 +64,20 @@ export default class bridge extends Phaser.Scene {
       console.log("changed");
     });
     
-
+    eventHub.$on("AlightBridge",(mypos)=>{
+        let myX = mypos.myStartX;
+       let  myY = mypos.myStartY;
+        this.createPersonOnBridge(this.myPersonData,myX,myY);
+     });
     //will change the calling of the function to be triggered by bridgeTransaction
-       setTimeout(() => {
-        console.log(this.myPersonData)
+    //    setTimeout(() => {
+    //     console.log(this.myPersonData)
         
-        setInterval(() => {
-            this.createPersonOnBridge(this.myPersonData);
-           }, 5000);
-       }, 3000);
-
+    //     setInterval(() => {
+    //         this.createPersonOnBridge(this.myPersonData);
+    //        }, 5000);
+    //    }, 3000);
+ 
     
 
 
@@ -100,7 +104,7 @@ export default class bridge extends Phaser.Scene {
 
 
 
-    createPersonOnBridge(data) {
+    createPersonOnBridge(data,startx,starty) {
 
         console.log(data);
         console.log(data.txData);
@@ -122,7 +126,7 @@ export default class bridge extends Phaser.Scene {
       
         //this.myPerson.setLineData("status", null);
 
-        this.myPerson.createPath([this.myBridge.x-350,this.myBridge.y+1400,
+        this.myPerson.createPath([startx-40,starty-50,
             this.myBridge.x-350,this.myBridge.y+200,this.myBridge.x-350,this.myBridge.y-150,
             this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x+380,this.myBridge.y-150,
             this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y+1400,
