@@ -38,7 +38,7 @@ $dark-striped-color: #e7e7e7;
 
 $column-gap: 0.45rem;
 
-$opensea: #2081E2;
+$opensea: #2081e2;
 $opensea-invert: findColorInvert($opensea);
 $twitter: #55acee;
 $twitter-invert: findColorInvert($twitter);
@@ -46,13 +46,16 @@ $discord: #5865f2;
 $discord-invert: findColorInvert($discord);
 @import "~bulma/sass/utilities/derived-variables";
 $addColors: (
-	"twitter": ($twitter,
+	"twitter": (
+		$twitter,
 		$twitter-invert,
 	),
-	"discord": ($discord,
+	"discord": (
+		$discord,
 		$discord-invert,
 	),
-	"opensea": ($opensea,
+	"opensea": (
+		$opensea,
 		$opensea-invert,
 	),
 );
@@ -103,7 +106,7 @@ a.navbar-item.is-active,
 	right: -15px;
 }
 
-@import "~bulma/bulma.sass";
+// @import "~bulma/bulma.sass";
 @import "~bulma-extensions/bulma-switch/src/sass/index.sass";
 @import "~bulma-extensions/bulma-divider/src/sass/index.sass";
 @import "~bulma-extensions/bulma-tooltip/src/sass/index.sass";

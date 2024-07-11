@@ -1,8 +1,6 @@
 const CircularDependencyPlugin = require("circular-dependency-plugin");
-const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
-
+const ReplaceInFileWebpackPlugin = require("replace-in-file-webpack-plugin");
 const webpack = require("webpack");
-
 
 const supportedLocales = require("./src/locales");
 let codes = [];
@@ -10,23 +8,42 @@ for (const code in supportedLocales) {
 	const locale = supportedLocales[code];
 	codes.push(locale.fns.code);
 }
-process.env.VUE_APP_VERSION = require('./package.json').version
+process.env.VUE_APP_VERSION = require("./package.json").version;
 
 module.exports = {
-	chainWebpack: config => {
-		config.optimization.minimizer("terser").tap(args => {
+	chainWebpack: (config) => {
+		config.optimization.minimizer("terser").tap((args) => {
 			args[0].terserOptions.output = {
 				...args[0].terserOptions.output,
 				comments: false, // exclude all comments from output
-				ascii_only: true
+				ascii_only: true,
 			};
 			return args;
 		});
+		config.stats({
+			children: true,
+		});
+		if (config.module.rules.has("eslint")) {
+			config.module
+				.rule("eslint")
+				.use("eslint-loader")
+				.tap((options) => {
+					if (options) {
+						delete options.extensions;
+						return {
+							...options,
+							emitWarning: true,
+							emitError: true,
+							failOnError: true,
+						};
+					}
+					return options;
+				});
+		}
 	},
 	pluginOptions: {
 		webpackBundleAnalyzer: {
 			analyzerMode: process.env.VUE_APP_MODE === "production" ? "disabled" : "static",
-			// openAnalyzer: process.env.VUE_APP_MODE === "production" ? false : true,
 			openAnalyzer: false,
 		},
 		i18n: {
@@ -48,28 +65,41 @@ module.exports = {
 				allowAsyncCycles: false,
 				cwd: process.cwd(),
 			}),
-			new ReplaceInFileWebpackPlugin([{
-				dir: 'dist/static/img',
-				files: ['sheet.json', 'sheet_holiday.json'],
-				rules: [
+			new ReplaceInFileWebpackPlugin([
 				{
-					search: '"image": "sheet.png"',
-					replace: '"image": "sheet.png?v=' + process.env.VUE_APP_VERSION + '"'
+					dir: "dist/static/img",
+					files: ["sheet.json", "sheet_holiday.json"],
+					rules: [
+						{
+							search: '"image": "sheet.png"',
+							replace: '"image": "sheet.png?v=' + process.env.VUE_APP_VERSION + '"',
+						},
+						{
+							search: '"image": "characters.png"',
+							replace: '"image": "characters.png?v=' + process.env.VUE_APP_VERSION + '"',
+						},
+						{
+							search: '"image": "mall.png"',
+							replace: '"image": "mall.png?v=' + process.env.VUE_APP_VERSION + '"',
+						},
+						{
+							search: '"image": "sheet_holiday.png"',
+							replace: '"image": "sheet_holiday.png?v=' + process.env.VUE_APP_VERSION + '"',
+						},
+					],
 				},
-				{
-					search: '"image": "characters.png"',
-					replace: '"image": "characters.png?v=' + process.env.VUE_APP_VERSION + '"'
-				},
-				{
-					search: '"image": "mall.png"',
-					replace: '"image": "mall.png?v=' + process.env.VUE_APP_VERSION + '"'
-				},
-				{
-					search: '"image": "sheet_holiday.png"',
-					replace: '"image": "sheet_holiday.png?v=' + process.env.VUE_APP_VERSION + '"'
-				}]
-			}])
+			]),
 		],
+		resolve: {
+			fallback: {
+				url: false,
+				stream: false,
+				assert: false,
+				http: false,
+				https: false,
+				os: false,
+			},
+		},
 	},
 	publicPath: "/",
 	outputDir: "dist",
