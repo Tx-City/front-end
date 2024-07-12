@@ -13,6 +13,8 @@ const Bus = new Phaser.Class({
 		this.setDepth(this.scene.topDepth);
 		this.x = this.scene.busLane;
 		this.hasBridgeTransaction = false;
+		this.onSide = "";
+		this.busRightBridgeStartPoint = this.scene.scale.width;
         this.myBridgeStop = 800;
 		this.myOutofScreenStop = -500 - this.busHeight;
 		this.drawers = {};
@@ -466,7 +468,7 @@ Bus.prototype.leaveTween = function () {
 				this.hasBridgeTransaction = false;
 				this.brake();
 				this.doorOpen();
-				eventHub.$emit("AlightBridge",{myStartX:this.x,myStartY:this.y});
+				eventHub.$emit("AlightBridge",{myStartX:this.x,myStartY:this.y,mySide:this.onSide,myRightPoint:this.busRightBridgeStartPoint});
 				setTimeout(() => {
 					this.unbrake();
 					this.leaveTween();

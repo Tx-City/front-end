@@ -11,9 +11,11 @@ import Bus from "../game-objects/bus.js";
 export default class ETHStreet extends Street {
 	constructor(side) {
 		super(ETH, side);
+		this.mySide = side
 	}
 
 	init() {
+		
 		this.myDummyData;
 		this.foundBoarding = false;
 		this.busStop = toRes(1500);
@@ -126,7 +128,8 @@ export default class ETHStreet extends Street {
 			(this.vue.sizeTitle = () => {
 				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
 			}),
-			this.ethBuses();
+        this.checkSideAddSign(this.mySide);
+		this.ethBuses();
 		this.createPeople();
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
@@ -135,6 +138,15 @@ export default class ETHStreet extends Street {
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
 	
+	}
+
+	checkSideAddSign(side){
+
+		if(side == "left"){
+			this.add.image(865, 800, "BRIDGESIGN");
+		}else{
+			this.add.image(97, 800, "BRIDGESIGN");
+		}
 	}
 
 	createStaticSearch(){
@@ -457,6 +469,7 @@ export default class ETHStreet extends Street {
 			bus.feeText = ethUnits(bus.baseFee, true, true);
 			// to enable visualistion of bridge transaction currently a test and should be more dyanmic if block has bridge transaction
 			bus.hasBridgeTransaction = true;
+			bus.onSide = this.mySide;
 			this.addBusTxs(bus, hashArray, skipTxs, instant, increasingNonces, toMove);
 		}
 

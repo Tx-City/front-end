@@ -52,6 +52,7 @@ export class StreetController extends Phaser.Scene {
 	preload() {
 		this.load.setPath(config.baseUrl + "static/img/");
 		this.load.image("BRIDGE", "BRIDGE.png?v=" + process.env.VUE_APP_VERSION);
+		this.load.image("BRIDGESIGN", "BRIDGESTOP.png?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("sheet", "sheet.json?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("characters", "characters.json?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("mall", "mall.json?v=" + process.env.VUE_APP_VERSION);
@@ -438,7 +439,7 @@ export class StreetController extends Phaser.Scene {
 			let skip1Side = [];
 			for (let i = 0; i < houses.length; i++) {
 				let house = houses[i];
-				let y = houseY[house.side];
+				let y = houseY[house.side]+1500;
 				if (house.type === "mall") {
 					skip1Side.push(y);
 				}

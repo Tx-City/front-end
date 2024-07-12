@@ -67,7 +67,9 @@ export default class bridge extends Phaser.Scene {
     eventHub.$on("AlightBridge",(mypos)=>{
         let myX = mypos.myStartX;
        let  myY = mypos.myStartY;
-        this.createPersonOnBridge(this.myPersonData,myX,myY);
+       let mySide = mypos.mySide;
+       let myRightStartPoint = mypos.myRightPoint;
+        this.createPersonOnBridge(this.myPersonData,myX,myY,mySide,myRightStartPoint);
      });
     //will change the calling of the function to be triggered by bridgeTransaction
     //    setTimeout(() => {
@@ -104,7 +106,7 @@ export default class bridge extends Phaser.Scene {
 
 
 
-    createPersonOnBridge(data,startx,starty) {
+    createPersonOnBridge(data,startx,starty,side,rightStartPoint) {
 
         console.log(data);
         console.log(data.txData);
@@ -126,15 +128,24 @@ export default class bridge extends Phaser.Scene {
       
         //this.myPerson.setLineData("status", null);
 
-        this.myPerson.createPath([startx-40,starty-50,
-            this.myBridge.x-350,this.myBridge.y+200,this.myBridge.x-350,this.myBridge.y-150,
-            this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x+380,this.myBridge.y-150,
-            this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y+1400,
+        if (side === "left") {
+            this.myPerson.createPath([startx-40,starty-50,
+                this.myBridge.x-350,this.myBridge.y+200,this.myBridge.x-350,this.myBridge.y-150,
+                this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x+380,this.myBridge.y-150,
+                this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y+1400,
+            ])
+        }else{
 
-        
-        ])
+            this.myPerson.createPath([startx+40+rightStartPoint/2,starty-50,
+                this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y-150,
+                this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x-350,this.myBridge.y-150,
+                this.myBridge.x-350,this.myBridge.y+200 ,this.myBridge.x-350,this.myBridge.y+1400,
+            ])
+        }
 
-        this.myPerson.goAlongPath(mySkinSpriteNo);
+     
+
+        this.myPerson.goAlongPath(mySkinSpriteNo,side);
        
         this.myPerson.setDepth(1000);
 

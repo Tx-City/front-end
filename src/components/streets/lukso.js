@@ -11,11 +11,12 @@ import state from "../../wallet";
 export default class LUKSOStreet extends Street {
 	constructor(side) {
 		super(LUKSO, side);
+		this.mySide = side;
 	}
 
 	init() {
 		this.foundBoarding = false;
-		this.busStop = toRes(200);
+		this.busStop = toRes(1500);
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.decelerationArea = 500;
@@ -93,6 +94,7 @@ export default class LUKSOStreet extends Street {
 		this.addressNonces = this.config.addressNonces;
 
 		this.streetCreate();
+		this.checkSideAddSign(this.mySide);
 		// await console.log("this.streetCreate()", this.streetCreate());
 		this.vue.navigation.unshift({
 			key: "characters",
@@ -131,6 +133,15 @@ export default class LUKSOStreet extends Street {
 		});
 		if (state.address) this.followAddress(state.address);
 
+	}
+
+	checkSideAddSign(side){
+
+		if(side == "left"){
+			this.add.image(865, 800, "BRIDGESIGN");
+		}else{
+			this.add.image(97, 800, "BRIDGESIGN");
+		}
 	}
 
 	crowdCountDisplay() {
@@ -336,6 +347,9 @@ export default class LUKSOStreet extends Street {
 			}
 			bus.baseFee = this.calcBusBaseFee(activeBuses, i);
 			bus.feeText = ethUnits(bus.baseFee, true, true);
+			// to enable visualistion of bridge transaction currently a test and should be more dyanmic if block has bridge transaction
+			bus.hasBridgeTransaction = true;
+			bus.onSide = this.mySide;
 			this.addBusTxs(bus, hashArray, skipTxs, instant, increasingNonces, toMove);
 		}
 

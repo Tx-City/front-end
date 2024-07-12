@@ -64,6 +64,7 @@ export default class BTCStreet extends Street {
 		super.create();
 		this.createPeople();
 		this.streetCreate();
+		this.add.image(97, 800, "BRIDGESIGN");
 		this.vue.busFeeTitle = "Sat/vB";
 		(this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
