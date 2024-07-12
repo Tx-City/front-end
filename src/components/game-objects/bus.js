@@ -385,7 +385,7 @@ Bus.prototype.leaveTween = function () {
 
 	this.movingTween = this.scene.add.tween({
 		targets: [this],
-		y: toRes(-500 - this.busHeight),
+		y: toRes(800),
 		ease: "Cubic.easeIn",
 		duration: duration,
 		onStart: () => {
@@ -393,7 +393,7 @@ Bus.prototype.leaveTween = function () {
 		},
 		onComplete: () => {
 			this.movingTween = null;
-			this.bye();
+			//this.bye();
 			if (!this.scene.buses.countActive()) {
 				let newBus = this.scene.addBus(false);
 				newBus.moveToStop();

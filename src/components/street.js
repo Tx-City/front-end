@@ -65,6 +65,9 @@ export class Street extends Phaser.Scene {
 
 	}
 
+	preload() {
+}
+
 	//Phaser scene function
 	async create() {
 		this.createBuses();
@@ -1138,6 +1141,7 @@ export class Street extends Phaser.Scene {
 			if (type == "person") {
 				let txData = gameObject.getLineData("txData");
 				this.vue.txWindow(txData);
+				console.log("txData", txData);
 			}
 		});
 		this.input.on("gameobjectup", (pointer, gameObject) => {
@@ -1201,6 +1205,7 @@ export class Street extends Phaser.Scene {
 				if (gameObject.person) {
 					let txData = gameObject.person.getLineData("txData");
 					this.vue.txWindow(txData);
+					console.log("txData", txData);
 				}
 				gameObject.bye();
 			}
