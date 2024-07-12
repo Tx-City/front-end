@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueI18n from "vue-i18n";
 import supportedLocales from "./locales";
 export { supportedLocales };
-import { formatDistanceStrict } from 'date-fns'
+import dayjs from "dayjs";
 
 Vue.use(VueI18n);
 
@@ -34,19 +34,17 @@ export function getStartingLocale() {
 	}
 }
 
+dayjs.locale(getStartingLocale()); // Set the locale based on the starting locale function
+
+export function fds(date1, date2, options) {
+	const locale = supportedLocales[instance.locale].fns;
+	return dayjs(date1).locale(locale).to(date2);
+}
+
 const instance = new VueI18n({
 	locale: getStartingLocale(),
 	fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
 	messages: loadLocaleMessages(),
 });
-
-export function fds(date1, date2, options) {
-    return formatDistanceStrict(date1, date2, {
-        ...options,
-        ...{
-            locale: supportedLocales[instance.locale].fns
-        }
-    });
-}
 
 export default instance;

@@ -2,7 +2,7 @@ import { Street } from "../street.js";
 import { mirrorX, toRes, getSheetKey } from "../utils/";
 import { LTC } from "../config.js";
 import { fds, default as i18n } from "../../i18n";
-import { add } from "date-fns";
+import dayjs from "dayjs";
 import Popup from "../game-objects/popup";
 
 export default class LTCStreet extends Street {
@@ -52,11 +52,11 @@ export default class LTCStreet extends Street {
 					return i18n.t(this.ticker.toLowerCase() + ".tot");
 				},
 				format: (val, tx) => {
-					if(tx?.e?.mwebpegout){
+					if (tx?.e?.mwebpegout) {
 						return tx.e.mwebpegout + " " + this.ticker;
-					}else if(tx?.e?.mwebpegin){
+					} else if (tx?.e?.mwebpegin) {
 						return tx.e.mwebpegin + " " + this.ticker;
-					} else if(tx?.e?.mweb){
+					} else if (tx?.e?.mweb) {
 						return "Confidential";
 					} else {
 						return val + " " + this.ticker;
@@ -68,8 +68,7 @@ export default class LTCStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 
-	preload() {
-	}
+	preload() {}
 
 	create() {
 		super.create();
@@ -87,7 +86,7 @@ export default class LTCStreet extends Street {
 			}),
 			this.createBuses();
 
-		this.vue.$watch("blockchainLength", val => {
+		this.vue.$watch("blockchainLength", (val) => {
 			this.calcHalving(val);
 		});
 		this.calcHalving(this.blockchain.length);
@@ -154,7 +153,7 @@ export default class LTCStreet extends Street {
 		}
 		let blocksUntilHalving = halvingHeight - height;
 		let secondsUntilHalving = blocksUntilHalving * (600 / 4);
-		this.vue.stats["halving"].value = fds(add(new Date(), { seconds: secondsUntilHalving }), new Date(), {
+		this.vue.stats["halving"].value = fds(dayjs().add(secondsUntilHalving, "second").toDate(), new Date(), {
 			roundingMethod: "floor",
 			addSuffix: true,
 		});
@@ -167,8 +166,10 @@ export default class LTCStreet extends Street {
 		for (let i = 0; i < buses.length; i++) {
 			const bus = buses[i];
 			const mwebFloor = bus.mwebBusFloor;
-			mwebFloor.setPosition(this.side === "right" ? bus.x + toRes(46) : bus.x - toRes(53),
-			bus.y + toRes(bus.mweb.y) - toRes(25));
+			mwebFloor.setPosition(
+				this.side === "right" ? bus.x + toRes(46) : bus.x - toRes(53),
+				bus.y + toRes(bus.mweb.y) - toRes(25)
+			);
 			bus.mweb.setFlipX(this.side === "right");
 		}
 	}
@@ -178,7 +179,7 @@ export default class LTCStreet extends Street {
 		if (txData?.e?.mweb) {
 			return this.boarding.y + 374;
 		}
-		return this.boarding.y
+		return this.boarding.y;
 	}
 
 	afterNewBus(bus) {
@@ -223,8 +224,7 @@ export default class LTCStreet extends Street {
 		bus.mweb.setInteractive({ cursor: "help" });
 
 		bus.mwebLogo = this.add.sprite(0, 292, getSheetKey("mweb.png"), "mweb.png");
-		bus.mweb.setInteractive({ cursor: "help" });
-
+		bus.mwebLogo.setInteractive({ cursor: "help" });
 		bus.mwebLogo.setScale(0.9);
 		bus.mwebLight = this.add.sprite(0, 352, getSheetKey("lights.png"), "lights.png").setScale(0.88);
 		bus.lightsSprite.push(bus.mwebLight);
@@ -283,7 +283,7 @@ export default class LTCStreet extends Street {
 
 		this.add.tween({
 			targets: [bus.trailer, bus.mweb, bus.mwebLogo, bus.segwitInside, bus.segwitColor, bus.segwitOutside],
-			y: target => {
+			y: (target) => {
 				return target.y - difference;
 			},
 			ease: "Power1",
@@ -292,8 +292,7 @@ export default class LTCStreet extends Street {
 	}
 
 	beforeNewTx(tx) {
-		if (tx?.e?.mweb || tx?.e?.mwebpegin || tx?.e?.mwebpegout || tx?.e?.mwebhogex)
-			tx.char = "ltc";
+		if (tx?.e?.mweb || tx?.e?.mwebpegin || tx?.e?.mwebpegout || tx?.e?.mwebhogex) tx.char = "ltc";
 	}
 
 	beforeProcessBlock() {
@@ -307,11 +306,10 @@ export default class LTCStreet extends Street {
 		}
 	}
 
-	afterResume() { }
+	afterResume() {}
 
 	customSortBusTxs(hashArray, activeBuses, instant) {
 		//load all mweb transactions into trailers
-
 
 		//new bus variables: mwebFeeArray, mwebTx, mwebLoaded
 		let firstBus = activeBuses[0];
@@ -335,15 +333,13 @@ export default class LTCStreet extends Street {
 			this.lineManager[entry.txData.tx].destination = busId;
 			this.lineManager[entry.txData.tx].spot = "bus";
 		}
-
 	}
 
 	afterSortBusesLoadTx(array) {
 		let entry = array[0];
 		let bus = array[1];
 
-		if (!entry.txData?.e?.mweb)
-			bus.loadedAlt += entry.txData.rs;
+		if (!entry.txData?.e?.mweb) bus.loadedAlt += entry.txData.rs;
 	}
 }
 

@@ -1,17 +1,17 @@
-const enUS = require('date-fns/locale/en-US/index');
-const de = require('date-fns/locale/de/index');
+const dayjs = require("dayjs");
+require("dayjs/locale/de");
 
 const supportedLocales = {
-	"en": {
-        title: "English",
-        fns: enUS,
-        messages: require("./en.json")
-    },
-    de:{
-        title: "Deutsche",
-        fns: de,
-        messages: require("./de.json")
-    },
+	en: {
+		title: "English",
+		fns: dayjs,
+		messages: require("./en.json"),
+	},
+	de: {
+		title: "Deutsche",
+		fns: dayjs,
+		messages: require("./de.json"),
+	},
 };
 
 module.exports = supportedLocales;

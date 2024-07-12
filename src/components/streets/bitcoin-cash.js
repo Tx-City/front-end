@@ -2,8 +2,8 @@ import { Street } from "../street.js";
 import { toRes } from "../utils/";
 import { BCH } from "../config.js";
 import bchaddr from "bchaddrjs";
-import { fds, default as i18n } from "../../i18n";
-import { add } from "date-fns";
+import dayjs from "dayjs";
+import { default as i18n } from "../../i18n";
 
 export default class BCHStreet extends Street {
 	constructor(side) {
@@ -52,7 +52,7 @@ export default class BCHStreet extends Street {
 	}
 
 	preload() {
-
+		// Any preload logic if needed
 	}
 
 	create() {
@@ -60,15 +60,15 @@ export default class BCHStreet extends Street {
 		this.createPeople();
 		this.streetCreate();
 		this.vue.busFeeTitle = "Sat/B";
-		(this.vue.busFeeTitleLong = () => {
+		this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
-		}),
-			(this.vue.sizeTitle = () => {
-				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
-			}),
-			this.createBuses();
+		};
+		this.vue.sizeTitle = () => {
+			return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
+		};
+		this.createBuses();
 
-		this.vue.$watch("blockchainLength", val => {
+		this.vue.$watch("blockchainLength", (val) => {
 			this.calcHalving(val);
 		});
 		this.calcHalving(this.blockchain.length);
@@ -84,10 +84,7 @@ export default class BCHStreet extends Street {
 		}
 		let blocksUntilHalving = halvingHeight - height;
 		let secondsUntilHalving = blocksUntilHalving * 600;
-		this.vue.stats["halving"].value = fds(add(new Date(), { seconds: secondsUntilHalving }), new Date(), {
-			roundingMethod: "floor",
-			addSuffix: true,
-		});
+		this.vue.stats["halving"].value = dayjs().add(secondsUntilHalving, "second").fromNow();
 	}
 
 	formatAddr(address) {
@@ -98,7 +95,9 @@ export default class BCHStreet extends Street {
 		this.streetUpdate();
 	}
 
-	afterResume() { }
+	afterResume() {
+		// Any logic after resuming if needed
+	}
 }
 
 BCHStreet.config = BCH;

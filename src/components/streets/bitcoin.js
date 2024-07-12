@@ -1,8 +1,9 @@
 import { Street } from "../street.js";
 import { toRes, getSheetKey } from "../utils/";
 import { BTC } from "../config.js";
-import { fds, default as i18n } from "../../i18n";
-import { add } from "date-fns";
+import dayjs from "dayjs";
+
+import { default as i18n } from "../../i18n";
 
 export default class BTCStreet extends Street {
 	constructor(side) {
@@ -58,6 +59,7 @@ export default class BTCStreet extends Street {
 	}
 
 	preload() {
+		// Any preload logic if needed
 	}
 
 	create() {
@@ -65,25 +67,25 @@ export default class BTCStreet extends Street {
 		this.createPeople();
 		this.streetCreate();
 		this.vue.busFeeTitle = "Sat/vB";
-		(this.vue.busFeeTitleLong = () => {
+		this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
-		}),
-			(this.vue.sizeTitle = () => {
-				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
-			}),
-			(this.vue.sizeAltTitle = () => {
-				return i18n.t(this.ticker.toLowerCase() + ".sizeAltTitle");
-			}),
-			this.createBuses();
+		};
+		this.vue.sizeTitle = () => {
+			return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
+		};
+		this.vue.sizeAltTitle = () => {
+			return i18n.t(this.ticker.toLowerCase() + ".sizeAltTitle");
+		};
+		this.createBuses();
 
-		this.vue.$watch("blockchainLength", val => {
+		this.vue.$watch("blockchainLength", (val) => {
 			this.calcHalving(val);
 		});
 		this.calcHalving(this.blockchain.length);
 	}
 
-	calcHalving(val){
-		if(!this.blockchain.length) return;
+	calcHalving(val) {
+		if (!this.blockchain.length) return;
 		let recentBlock = this.blockchain[val - 1];
 		let height = recentBlock.height;
 		let halvingHeight = 0;
@@ -92,10 +94,7 @@ export default class BTCStreet extends Street {
 		}
 		let blocksUntilHalving = halvingHeight - height;
 		let secondsUntilHalving = blocksUntilHalving * 600;
-		this.vue.stats["halving"].value = fds(add(new Date(), { seconds: secondsUntilHalving }), new Date(), {
-			roundingMethod: "floor",
-			addSuffix: true,
-		});
+		this.vue.stats["halving"].value = dayjs().add(secondsUntilHalving, "second").fromNow();
 	}
 
 	update() {
@@ -163,7 +162,7 @@ export default class BTCStreet extends Street {
 
 		this.add.tween({
 			targets: [bus.trailer, bus.segwitInside, bus.segwitColor, bus.segwitOutside],
-			y: target => {
+			y: (target) => {
 				return target.y - difference;
 			},
 			ease: "Power1",
@@ -171,7 +170,9 @@ export default class BTCStreet extends Street {
 		});
 	}
 
-	afterResume() {}
+	afterResume() {
+		// Any logic after resuming if needed
+	}
 
 	afterSortBusesLoadTx(array) {
 		let entry = array[0];
