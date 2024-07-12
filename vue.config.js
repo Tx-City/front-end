@@ -1,24 +1,28 @@
 const CircularDependencyPlugin = require("circular-dependency-plugin");
-const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
-
+const ReplaceInFileWebpackPlugin = require("replace-in-file-webpack-plugin");
 const webpack = require("webpack");
-
-
 const supportedLocales = require("./src/locales");
 let codes = [];
 for (const code in supportedLocales) {
 	const locale = supportedLocales[code];
 	codes.push(locale.fns.code);
 }
-process.env.VUE_APP_VERSION = require('./package.json').version
+process.env.VUE_APP_VERSION = require("./package.json").version;
 
 module.exports = {
-	chainWebpack: config => {
-		config.optimization.minimizer("terser").tap(args => {
+	chainWebpack: (config) => {
+		config.module
+			.rule("i18n")
+			.resourceQuery(/blockType=i18n/)
+			.type("javascript/auto")
+			.use("vue-i18n-loader")
+			.loader("@intlify/vue-i18n-loader")
+			.end();
+		config.optimization.minimizer("terser").tap((args) => {
 			args[0].terserOptions.output = {
 				...args[0].terserOptions.output,
-				comments: false, // exclude all comments from output
-				ascii_only: true
+				comments: false,
+				ascii_only: true,
 			};
 			return args;
 		});
@@ -26,7 +30,6 @@ module.exports = {
 	pluginOptions: {
 		webpackBundleAnalyzer: {
 			analyzerMode: process.env.VUE_APP_MODE === "production" ? "disabled" : "static",
-			// openAnalyzer: process.env.VUE_APP_MODE === "production" ? false : true,
 			openAnalyzer: false,
 		},
 		i18n: {
@@ -37,7 +40,20 @@ module.exports = {
 		},
 	},
 	configureWebpack: {
+		resolve: {
+			fallback: {
+				stream: require.resolve("stream-browserify"),
+				http: require.resolve("stream-http"),
+				https: require.resolve("https-browserify"),
+				os: require.resolve("os-browserify/browser"),
+				url: require.resolve("url/"),
+			},
+		},
 		plugins: [
+			new webpack.ProvidePlugin({
+				process: "process/browser",
+				Buffer: ["buffer", "Buffer"],
+			}),
 			new webpack.ContextReplacementPlugin(
 				/date\-fns[\/\\]/,
 				new RegExp(`[/\\\\\](${codes.join("|")})[/\\\\\]index\.js$`)
@@ -48,27 +64,30 @@ module.exports = {
 				allowAsyncCycles: false,
 				cwd: process.cwd(),
 			}),
-			new ReplaceInFileWebpackPlugin([{
-				dir: 'dist/static/img',
-				files: ['sheet.json', 'sheet_holiday.json'],
-				rules: [
+			new ReplaceInFileWebpackPlugin([
 				{
-					search: '"image": "sheet.png"',
-					replace: '"image": "sheet.png?v=' + process.env.VUE_APP_VERSION + '"'
+					dir: "dist/static/img",
+					files: ["sheet.json", "sheet_holiday.json"],
+					rules: [
+						{
+							search: '"image": "sheet.png"',
+							replace: '"image": "sheet.png?v=' + process.env.VUE_APP_VERSION + '"',
+						},
+						{
+							search: '"image": "characters.png"',
+							replace: '"image": "characters.png?v=' + process.env.VUE_APP_VERSION + '"',
+						},
+						{
+							search: '"image": "mall.png"',
+							replace: '"image": "mall.png?v=' + process.env.VUE_APP_VERSION + '"',
+						},
+						{
+							search: '"image": "sheet_holiday.png"',
+							replace: '"image": "sheet_holiday.png?v=' + process.env.VUE_APP_VERSION + '"',
+						},
+					],
 				},
-				{
-					search: '"image": "characters.png"',
-					replace: '"image": "characters.png?v=' + process.env.VUE_APP_VERSION + '"'
-				},
-				{
-					search: '"image": "mall.png"',
-					replace: '"image": "mall.png?v=' + process.env.VUE_APP_VERSION + '"'
-				},
-				{
-					search: '"image": "sheet_holiday.png"',
-					replace: '"image": "sheet_holiday.png?v=' + process.env.VUE_APP_VERSION + '"'
-				}]
-			}])
+			]),
 		],
 	},
 	publicPath: "/",
