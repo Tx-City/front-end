@@ -20,8 +20,9 @@ const Person = new Phaser.Class({
 Person.prototype.createPath = function(points){
 	this.points = points;
 	this.curve = new Phaser.Curves.Spline(this.points);
-	this.x = this.curve.getPoint(0).x;
-	this.y = this.curve.getPoint(0).y;
+	let sp= this.curve.getPoint(0);
+    this.x =  sp.x;
+    this.y = sp.y
 }
 
 Person.prototype.goAlongPath = function(){

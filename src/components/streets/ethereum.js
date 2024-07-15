@@ -145,39 +145,21 @@ export default class ETHStreet extends Street {
 		this.cameras.main.scrollY = this.myMainCameraPosition;
 	}}, 20);
 
-		this.mybus = new Bus(this);
-		this.mybus.y = 200;
-		this.mybus.text1.setText("#20975174");
-		this.mybus.text2.setText("2Gwei");
-		this.mybus.text3.setText("+0Wei");
-        this.mybus.logo.setScale(0.3);
-		this.mybus.createInside();
-		//this.busInsideSingle(this.mybus);
-		this.mybus.txsOverride = true;
-		//this.mybus.tx.length = 4;
-		this.mybus.loaded = 4 ;
-		this.mymailman = this.add.image(this.mybus.x,this.mybus.y-50,getSheetKey("person-"),"mailman-0.png").setDepth(100).setScale(0.5);
-		this.mypersonman = this.add.image(this.mybus.x-20,this.mybus.y-50,getSheetKey("person-"),"person-59.png").setDepth(100).setScale(0.5);
-		this.mysecondpersonman = this.add.image(this.mybus.x+40,this.mybus.y-50,getSheetKey("person-"),"bear-0.png").setDepth(100).setScale(0.5);
 
-		this.mymailman1 = this.add.image(this.mybus.x,this.mybus.y-28,getSheetKey("person-"),"lizard-0.png").setDepth(100).setScale(0.5);
-		this.mypersonman1 = this.add.image(this.mybus.x-30,this.mybus.y-28,getSheetKey("person-"),"person-59.png").setDepth(100).setScale(0.5);
-		this.mysecondpersonman1 = this.add.image(this.mybus.x+20,this.mybus.y-28,getSheetKey("person-"),"bear-0.png").setDepth(100).setScale(0.5);
-		//this.myPeopleInBus = this.scene.add.image(this.mybus.x,this.mybus.y, "myPeopleInBus").setOrigin(0, 0).setDepth(11);
+		this.mybus = this.createStaticBus(200,"#20975174","2Gwei","+0Wei",0.3,true);
 
-		this.mySecondBus = new Bus(this);
-		this.mySecondBus.y =400;
-		this.mySecondBus.text1.setText("#20175274");
-		this.mySecondBus.text2.setText("4Gwei");
-		this.mySecondBus.text3.setText("+0Wei");
-        this.mySecondBus.logo.setScale(0.3);
+		this.mySecondBus = this.createStaticBus(400,"#20175274","4Gwei","+0Wei",0.3,false);
 
-		this.myThirdBus = new Bus(this);
-		this.myThirdBus.y = 600;
-		this.myThirdBus.text1.setText("#20188174");
-		this.myThirdBus.text2.setText("3Gwei");
-		this.myThirdBus.text3.setText("+0Wei");
-        this.myThirdBus.logo.setScale(0.3);
+		this.myThirdBus = this.createStaticBus(600,"#20188174","3Gwei","+0Wei",0.3,false);
+
+		this.createStaticPersonInBus(this.mybus.x,this.mybus.y-50,"mailman-0.png");
+        this.createStaticPersonInBus(this.mybus.x-20,this.mybus.y-50,"person-59.png");
+		this.createStaticPersonInBus(this.mybus.x+40,this.mybus.y-50,"bear-0.png");
+
+		this.createStaticPersonInBus(this.mybus.x,this.mybus.y-28,"lizard-0.png");
+        this.createStaticPersonInBus(this.mybus.x-30,this.mybus.y-28,"person-59.png");
+		this.createStaticPersonInBus(this.mybus.x+20,this.mybus.y-28,"bear-0.png");
+		
 		this.time.delayedCall(3500, () => {
 			
 		console.log("tumeanzia hapa")
@@ -192,11 +174,7 @@ export default class ETHStreet extends Street {
 		this.myPerson.createHitArea();
 		this.myPerson.setLineData("status", null);
 		this.myPerson.setScale(1)
-		//this.myPerson.resetData();
-
-		
-		
-
+	
 		this.myPerson.createPath([this.mybus.x-50,this.mybus.y,
 		this.mybus.x-200,this.mybus.y,
 		this.mybus.x-200,this.myThirdBus.y,
@@ -204,10 +182,25 @@ export default class ETHStreet extends Street {
 		this.myPerson.goAlongPath();
         }, [], this);
 
-
 	}
 
-
+	createStaticPersonInBus(xPos,yPos,personKey){
+		let person = this.add.image(xPos,yPos,getSheetKey("person-"),personKey).setDepth(100).setScale(0.5);
+		return person;
+	
+	}
+	createStaticBus(yPos,text1,text2,text3,scale,createInside){
+		let bus = new Bus(this);
+		bus.y = yPos;
+		bus.text1.setText(text1);
+		bus.text2.setText(text2);
+		bus.text3.setText(text3);
+		bus.logo.setScale(scale);
+		if(createInside){
+			bus.createInside();
+		}
+		return bus;
+	}
 
 	// cycleIsaMessage() {
 	// 	if (!this.isabella.isaChange) {
