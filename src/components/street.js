@@ -1939,7 +1939,12 @@ export class Street extends Phaser.Scene {
 	}
 
 	getBoardingY() {
-		return this.boarding.y;
+		if(this.ticker === "ETH") {
+			return this.boarding.y + 100;
+		}else{
+			return this.boarding.y;
+		}
+		
 	}
 
 	resetInLineCount() {

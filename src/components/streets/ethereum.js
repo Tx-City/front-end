@@ -91,6 +91,7 @@ export default class ETHStreet extends Street {
 		this.addressNonces = this.config.addressNonces;
 
 		this.streetCreate();
+		this.createEtherPeopleAnims();
 		
 		this.vue.navigation.unshift({
 			key: "characters",
@@ -131,7 +132,51 @@ export default class ETHStreet extends Street {
 		this.createIsabella();
 	}
 
+     createEtherPeopleAnims() {
 
+		this.anims.create({
+            key: "walk_up_2002",
+            frames: this.anims.generateFrameNumbers("etherPeopleBack"),
+            frameRate: 6,
+            repeat: -1,
+            repeatDelay: 0,
+            callbackScope: this,
+            onComplete: function () {}
+        });
+
+		
+		this.anims.create({
+            key: "walk_down_2002",
+            frames: this.anims.generateFrameNumbers("etherPeopleFront"),
+            frameRate: 6,
+            repeat: -1,
+            repeatDelay: 0,
+            callbackScope: this,
+            onComplete: function () {}
+        });
+
+		this.anims.create({
+            key: "walk_side_2002",
+            frames: this.anims.generateFrameNumbers("etherPeopleSide"),
+            frameRate: 6,
+            repeat: -1,
+            repeatDelay: 0,
+            callbackScope: this,
+            onComplete: function () {}
+        });
+
+		
+		this.anims.create({
+            key: "stand_2002",
+            frames: this.anims.generateFrameNumbers("etherPeopleFront"),
+            frameRate: 0,
+            repeat: 0,
+            repeatDelay: 0,
+            callbackScope: this,
+            onComplete: function () {}
+        });
+
+	}
 
 	// cycleIsaMessage() {
 	// 	if (!this.isabella.isaChange) {
@@ -413,6 +458,8 @@ export default class ETHStreet extends Street {
 				this.lineManager[entry.txData.tx].status = "waiting";
 				//add to line as person
 				this.newPerson(this.lineManager[entry.txData.tx]);
+
+				console.log(this.lineManager[entry.txData.tx]);
 			}
 		}
 
