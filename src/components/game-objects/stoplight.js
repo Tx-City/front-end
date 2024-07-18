@@ -9,7 +9,8 @@ export default class Stoplight extends Phaser.GameObjects.Container {
 		scene.add.existing(this);
 
 		this.x = (this.scene.side == "right" ? toRes(62) : toRes(898));
-		this.y = this.scene.busStop - toRes(100);
+		if(this.scene.config.ticker == "ETH"){this.y = this.scene.busStop - toRes(130);}else{this.y = this.scene.busStop - toRes(100);}
+		
 
 		this.offAlpha = 0.2;
 		this.lightSize = 9;
