@@ -359,6 +359,31 @@ Bus.prototype.switchSide = function (newSide) {
 		this.entryArc.destroy();
 		delete this.entryArc;
 	}
+	
+	if (newSide !== "right") {
+			
+		if(this.scene.config.ticker == "ETH"){
+			this.busTopSprite.setFlipX(true);
+			this.busTopSprite.x = -3;
+			this.busBottomSprite.setFlipX(true);
+			this.busBottomSprite.x = 1;
+			this.doorSprite.setFlipX(true);
+			this.backDoorSprite.setFlipX(true);
+			this.doorSprite.x = -50;
+			this.backDoorSprite.x =-50;
+
+		}
+		
+	}else{
+		if(this.scene.config.ticker == "ETH"){
+		this.busTopSprite.setFlipX(false);
+		this.busTopSprite.x = 5;
+		this.busBottomSprite.setFlipX(false);
+		this.doorSprite.setFlipX(false);
+		this.backDoorSprite.setFlipX(false);
+		this.doorSprite.x = 52;
+		this.backDoorSprite.x = 52;}
+	}
 };
 
 Bus.prototype.getIndex = function (group = "buses") {
