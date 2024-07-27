@@ -10,7 +10,7 @@ export default class Sign extends Phaser.GameObjects.Container {
 		scene.add.existing(this);
 
 		this.setDepth(this.scene.personDepth - 1);
-		this.y = this.scene.busStop - toRes(105);
+		if(this.scene.config.ticker == "ETH"){this.y = this.scene.busStop - toRes(135);}else{this.y = this.scene.busStop - toRes(105);}
 		this.signWidth = toRes(430);
 		this.adBanner = process.env.VUE_APP_SIGN_ADS === "true" ? true : false;
 		this.resetAd();
