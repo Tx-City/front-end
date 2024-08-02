@@ -92,7 +92,7 @@ export default class ETHStreet extends Street {
 
 		this.streetCreate();
 		this.createEtherPeopleAnims();
-		
+		this.createAvatar();
 		this.vue.navigation.unshift({
 			key: "characters",
 			html: "<span class='fas fa-user-astronaut'></span>",

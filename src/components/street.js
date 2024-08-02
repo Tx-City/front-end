@@ -15,6 +15,7 @@ import {
 } from "./utils/";
 import median from "./utils/median";
 import Person from "./game-objects/person.js";
+import Avatar from "./game-objects/avatar.js"
 import Bus from "./game-objects/bus.js";
 import Sign from "./game-objects/sign.js";
 import Stoplight from "./game-objects/stoplight.js";
@@ -81,6 +82,13 @@ export class Street extends Phaser.Scene {
 		this.resetInLineCount();
 		this._isABadApple();
 		this.postFxPlugin = this._getRightFxPlugin();
+	}
+
+	createAvatar(){
+		console.log("##########notcreatedAvatar")
+		this.Avatar = new Avatar(this,this.side,250,300,"person-19.png");
+		this.Avatar.setupControls(this);
+		console.log("##########createdAvatar")
 	}
 
 	_getRightFxPlugin() {
