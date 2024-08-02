@@ -92,7 +92,7 @@ export default class ETHStreet extends Street {
 
 		this.streetCreate();
 		this.createEtherPeopleAnims();
-		this.createAvatar();
+		
 		this.vue.navigation.unshift({
 			key: "characters",
 			html: "<span class='fas fa-user-astronaut'></span>",
@@ -127,6 +127,7 @@ export default class ETHStreet extends Street {
 		this.createPeople();
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
+			this.createAvatar();
 		});
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
