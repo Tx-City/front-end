@@ -188,9 +188,9 @@ export default class Sign extends Phaser.GameObjects.Container {
 				if (e.downElement.nodeName.toLowerCase() !== "canvas") return;
 				this.scene.ticker === "ETH" ?
 					this.scene.vue.htmlWindow(
-						"ad-info",
-						"Your Ad Here",
-						`The community places ads here. You can too! <a href="https://n8u0k9wgiua.typeform.com/to/xT00e4FR" target="_blank">Click here</a> for more information.`
+						donateData.key,
+						donateData.title,
+						donateData.html,					
 					) :
 					this.scene.vue.htmlWindow(
 						donateData.key,
