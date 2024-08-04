@@ -144,9 +144,12 @@ export const getHouseArray = async config => {
 			houses = houses.filter(function (obj) {
 				return obj.name !== 'donation';
 			});
+			console.log("houses===",houses);
+			
 			houses = houses.sort((a, b) => b.priority - a.priority);
 
 			config.houseArray = houses;
+			console.log("config.houseArray===",config.houseArray);	
 			return houses;
 		}
 	} catch (e) {
