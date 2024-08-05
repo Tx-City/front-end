@@ -151,7 +151,7 @@ const Bus = new Phaser.Class({
 				this.y - toRes(100),
 				15,
 				toRes(this.busHeight + 90),
-				this.floorColor.color,
+				'0x06619a',
 				1
 			);
 			this.busFloor.setVisible(true);
@@ -371,6 +371,7 @@ Bus.prototype.switchSide = function (newSide) {
 			this.backDoorSprite.setFlipX(true);
 			this.doorSprite.x = -50;
 			this.backDoorSprite.x =-50;
+			
 
 		}
 		
@@ -383,6 +384,7 @@ Bus.prototype.switchSide = function (newSide) {
 		this.backDoorSprite.setFlipX(false);
 		this.doorSprite.x = 52;
 		this.backDoorSprite.x = 52;}
+		this.busFloor.x =  this.x + toRes(48) 
 	}
 };
 
