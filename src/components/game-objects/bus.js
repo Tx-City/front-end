@@ -147,14 +147,14 @@ const Bus = new Phaser.Class({
 		this.fillObjects = [this.busMiddle];
 		if(this.scene.config.ticker == "ETH"){
 			this.busFloor = this.scene.add.rectangle(
-				this.scene.side === "right" ? this.x + toRes(53) : this.x - toRes(60),
+				this.scene.side === "right" ? this.x + toRes(48) : this.x - toRes(60),
 				this.y - toRes(100),
-				7,
+				15,
 				toRes(this.busHeight + 90),
 				this.floorColor.color,
 				1
 			);
-			this.busFloor.setVisible(false);
+			this.busFloor.setVisible(true);
 		}else{
 			this.busFloor = this.scene.add.rectangle(
 				this.scene.side === "right" ? this.x + toRes(53) : this.x - toRes(60),
