@@ -10,7 +10,6 @@ export default class Sign extends Phaser.GameObjects.Container {
 		scene.add.existing(this);
 
 		this.setDepth(this.scene.personDepth - 1);
-		console.log("Ticker =>", this.scene.ticker);
 
 		if (this.scene.config.ticker == "ETH") {
 			this.y = this.scene.busStop - toRes(135);
@@ -224,15 +223,15 @@ export default class Sign extends Phaser.GameObjects.Container {
 				if (e.downElement.nodeName.toLowerCase() !== "canvas") return;
 				this.adClick();
 			});
-			if (this.scene.ticker !== "ETH") {
-				this.bannerText.setInteractive({ useHandCursor: true });
-				this.bannerText.on("pointerup", (e) => {
-					if (e.downElement.nodeName.toLowerCase() !== "canvas") return;
-					const donateInfo = donateData(this.scene.ticker);
+			// if (this.scene.ticker !== "ETH") {
+			this.bannerText.setInteractive({ useHandCursor: true });
+			this.bannerText.on("pointerup", (e) => {
+				if (e.downElement.nodeName.toLowerCase() !== "canvas") return;
+				const donateInfo = donateData(this.scene.ticker);
 
-					this.scene.vue.htmlWindow(donateInfo.key, donateInfo.title, donateInfo.html);
-				});
-			}
+				this.scene.vue.htmlWindow(donateInfo.key, donateInfo.title, donateInfo.html);
+			});
+			// }
 			this.add(this.bannerText);
 			this.getAd();
 			//simple solution to check again for the ad variable if it failed loading from api the first time
