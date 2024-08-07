@@ -25,13 +25,12 @@ export const ethUnits = (wei, readable = true, round = false) => {
 };
 
 export const generalCalcBlockFeeArray = (data, ticker) => {
-
 	if (!data.feeArray && data.txFull) {
 		data.lowFee = Math.pow(10, 36);
 		data.highFee = 0;
 		data.feeArray = [];
 
-		Object.values(data.txFull).forEach(tx => {
+		Object.values(data.txFull).forEach((tx) => {
 			const fee = Number(enabledConfig[ticker].getAndApplyFee(tx));
 			if (fee < data.lowFee) data.lowFee = fee;
 			if (fee > data.highFee) data.highFee = fee;
@@ -40,7 +39,7 @@ export const generalCalcBlockFeeArray = (data, ticker) => {
 
 		data.medianFee = Math.round(median(data.feeArray));
 	}
-}
+};
 
 export const BTC = {
 	ticker: "BTC",
@@ -511,7 +510,7 @@ export const ETH = {
 			icon: "fas fa-oil-can",
 			key: "gu",
 			color: "D6CDEA",
-			format: val => {
+			format: (val) => {
 				return val.toLocaleString(i18n.locale);
 			},
 		},
@@ -522,7 +521,7 @@ export const ETH = {
 			key: "baseFee",
 			color: "F9D8D6",
 			icon: "fas fa-ticket-alt",
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 		},
@@ -533,7 +532,7 @@ export const ETH = {
 		data.highFee = 0;
 		data.feeArray = [];
 
-		Object.values(data.txFull).forEach(tx => {
+		Object.values(data.txFull).forEach((tx) => {
 			const gp = this.getFee(tx);
 			let fee = gp - (data.baseFee || 0);
 			if (tx.mpfpg && fee > Number(tx.mpfpg)) {
@@ -560,7 +559,6 @@ export const ETH = {
 		}
 	},
 	getAndApplyFee: function (txData) {
-
 		if (txData.feeVal) return txData.feeVal;
 		txData.feeVal = this.getFee(txData);
 
@@ -631,7 +629,7 @@ export const ETH = {
 			signTitle: "Base Fee",
 			value: 0,
 			socket: true,
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 			wiki: ["ETH/stats/baseFee"],
@@ -676,7 +674,7 @@ export const ETH = {
 			},
 			value: false,
 			socket: true,
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 			wiki: ["ETH/stats/medianGasPrice"],
@@ -817,7 +815,7 @@ export const LUKSO = {
 			icon: "fas fa-oil-can",
 			key: "gu",
 			color: "D6CDEA",
-			format: val => {
+			format: (val) => {
 				return val.toLocaleString(i18n.locale);
 			},
 		},
@@ -828,7 +826,7 @@ export const LUKSO = {
 			key: "baseFee",
 			color: "F9D8D6",
 			icon: "fas fa-ticket-alt",
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 		},
@@ -839,7 +837,7 @@ export const LUKSO = {
 		data.highFee = 0;
 		data.feeArray = [];
 
-		Object.values(data.txFull).forEach(tx => {
+		Object.values(data.txFull).forEach((tx) => {
 			const gp = this.getFee(tx);
 			let fee = gp - (data.baseFee || 0);
 			if (tx.mpfpg && fee > Number(tx.mpfpg)) {
@@ -866,7 +864,6 @@ export const LUKSO = {
 		}
 	},
 	getAndApplyFee: function (txData) {
-
 		if (txData.feeVal) return txData.feeVal;
 		txData.feeVal = this.getFee(txData);
 
@@ -937,7 +934,7 @@ export const LUKSO = {
 			signTitle: "Base Fee",
 			value: 0,
 			socket: true,
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 			wiki: ["ETH/stats/baseFee"],
@@ -982,7 +979,7 @@ export const LUKSO = {
 			},
 			value: false,
 			socket: true,
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 			wiki: ["ETH/stats/medianGasPrice"],
@@ -1123,7 +1120,7 @@ export const CELO = {
 			icon: "fas fa-oil-can",
 			key: "gu",
 			color: "D6CDEA",
-			format: val => {
+			format: (val) => {
 				return val.toLocaleString(i18n.locale);
 			},
 		},
@@ -1134,7 +1131,7 @@ export const CELO = {
 			key: "baseFee",
 			color: "F9D8D6",
 			icon: "fas fa-ticket-alt",
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 		},
@@ -1145,7 +1142,7 @@ export const CELO = {
 		data.highFee = 0;
 		data.feeArray = [];
 
-		Object.values(data.txFull).forEach(tx => {
+		Object.values(data.txFull).forEach((tx) => {
 			const gp = this.getFee(tx);
 			let fee = gp - (data.baseFee || 0);
 			if (tx.mpfpg && fee > Number(tx.mpfpg)) {
@@ -1172,7 +1169,6 @@ export const CELO = {
 		}
 	},
 	getAndApplyFee: function (txData) {
-
 		if (txData.feeVal) return txData.feeVal;
 		txData.feeVal = this.getFee(txData);
 
@@ -1243,7 +1239,7 @@ export const CELO = {
 			signTitle: "Base Fee",
 			value: 0,
 			socket: true,
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 			wiki: ["ETH/stats/baseFee"],
@@ -1288,7 +1284,7 @@ export const CELO = {
 			},
 			value: false,
 			socket: true,
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 			wiki: ["ETH/stats/medianGasPrice"],
@@ -1508,7 +1504,7 @@ export const ARBI = {
 			},
 			value: false,
 			socket: true,
-			format: val => {
+			format: (val) => {
 				return ethUnits(val);
 			},
 			wiki: ["ETH/stats/medianGasPrice"],
@@ -1525,7 +1521,7 @@ export const ARBI = {
 			decimals: 0,
 			default: 0,
 			socket: true,
-			hidden: true
+			hidden: true,
 		},
 		pendingBatchCountLive: {
 			title: "Pending Batch Count",
@@ -1591,9 +1587,8 @@ export const ARBI = {
 			wiki: ["common/stats/medianBlockTime", "common/block-time"],
 		},
 		blockHeight: { hidden: true, value: false },
-	})
+	}),
 };
-
 
 export const BCH = {
 	ticker: "BCH",
@@ -2048,7 +2043,7 @@ export const XMR = {
 
 export const commonTitleOverrides = {
 	medianFeeSat: "Median Fee Per Byte",
-	bps: "Bytes Per Second"
+	bps: "Bytes Per Second",
 };
 
 export const enabledConfig = {
@@ -2066,10 +2061,16 @@ export const additionalSheets = {
 	mall: {
 		key: "mall",
 		frames: [
-			"mall.png", "eth_post.png", "walkway.png", "eth_post_desk.png", "rollup_sign.png", "rollup_sign_right.png", "envelope.png"
-		]
-	}
-}
+			"mall.png",
+			"eth_post.png",
+			"walkway.png",
+			"eth_post_desk.png",
+			"rollup_sign.png",
+			"rollup_sign_right.png",
+			"envelope.png",
+		],
+	},
+};
 
 export const themes = {
 	default: {
@@ -2092,7 +2093,18 @@ export const themes = {
 		title: () => {
 			return i18n.t("general.holiday");
 		},
-		frames: ["snow.png", "bushes.png", "curb.png", "door.png", "house_overlay.png", "lane.png", "road.png", "sign_pole.png", "stoplight.png", "stoplight_sign.png"],
+		frames: [
+			"snow.png",
+			"bushes.png",
+			"curb.png",
+			"door.png",
+			"house_overlay.png",
+			"lane.png",
+			"road.png",
+			"sign_pole.png",
+			"stoplight.png",
+			"stoplight_sign.png",
+		],
 		backgroundColor: "#eff0ef",
 		houseOverlay: true,
 		scrollLane: true,
@@ -2213,7 +2225,7 @@ export const userSettings = {
 //add street settings to userSettings object
 for (const ticker in enabledConfig) {
 	enabledConfig[ticker].apiUrl = process.env.VUE_APP_REST_API;
-	enabledConfig[ticker].coinSlug = enabledConfig[ticker].coinName.replace(/\s/g, '');
+	enabledConfig[ticker].coinSlug = enabledConfig[ticker].coinName.replace(/\s/g, "");
 	enabledConfig[ticker].coinSlug.charAt(0).toUpperCase() + enabledConfig[ticker].coinSlug.slice(1);
 	userSettings[enabledConfig[ticker].ticker + "Settings"] = enabledConfig[ticker].userSettings;
 	if (typeof enabledConfig[ticker].getAndApplyFee === "undefined")
@@ -2223,9 +2235,8 @@ for (const ticker in enabledConfig) {
 		};
 	if (typeof enabledConfig[ticker].calcBlockFeeArray === "undefined")
 		enabledConfig[ticker].calcBlockFeeArray = function (data) {
-
 			let dataFee = generalCalcBlockFeeArray(data, ticker);
-			return dataFee
+			return dataFee;
 		};
 }
 for (const theme in themes) {
@@ -2249,7 +2260,7 @@ export const applySavedSettings = () => {
 			userSettings[settingsKey][settingKey].newValue = userSettings[settingsKey][settingKey].value;
 		}
 	}
-}
+};
 applySavedSettings();
 
 export const config = {
@@ -2279,79 +2290,90 @@ export const config = {
 };
 
 export const zoomerNames = ["bat", "bear", "bull", "frog", "lion", "lizard", "monkey", "penguin", "unicorn", "wolf"];
-export const genesisNames = ["helper", "santa", "snowman", "isabella", "alien", "mib", "moonboy", "mailman", "ltc", "taha"];
+export const genesisNames = [
+	"helper",
+	"santa",
+	"snowman",
+	"isabella",
+	"alien",
+	"mib",
+	"moonboy",
+	"mailman",
+	"ltc",
+	"taha",
+];
 export const moonheadNames = zoomerNames.concat(genesisNames);
 
 export const charConfig = {
 	default: {
 		scaleAdjust: 1,
 		defaultFlip: false,
-		contract: "0x76ad70096b373dce5c2bf44eb9a9f8ecbb1c0b93"
+		contract: "0x76ad70096b373dce5c2bf44eb9a9f8ecbb1c0b93",
 	},
 	"moonheads-zoomers": {
 		scaleAdjust: 1,
 		defaultFlip: false,
-		contract: "0x1542b05412dfecd80e734929f9087f8766934275"
+		contract: "0x1542b05412dfecd80e734929f9087f8766934275",
 	},
 	cryptopunks: {
 		scaleAdjust: 4,
 		defaultFlip: true,
 		pixelArt: true,
-		contract: "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb"
+		contract: "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
 	},
 	evmavericks: {
 		scaleAdjust: 1.3,
 		defaultFlip: true,
-		contract: "0x7ddaa898d33d7ab252ea5f89f96717c47b2fee6es"
+		contract: "0x7ddaa898d33d7ab252ea5f89f96717c47b2fee6es",
 	},
-	'proof-moonbirds': {
+	"proof-moonbirds": {
 		scaleAdjust: 2,
 		defaultFlip: true,
 		pixelArt: true,
-		contract: "0x23581767a106ae21c074b2276d25e5c3e136a68b"
+		contract: "0x23581767a106ae21c074b2276d25e5c3e136a68b",
 	},
-	'larvachads': {
+	larvachads: {
 		scaleAdjust: 2.5,
 		defaultFlip: true,
 		pixelArt: true,
-		contract: "0x8fa600364b93c53e0c71c7a33d2ade21f4351da3"
+		contract: "0x8fa600364b93c53e0c71c7a33d2ade21f4351da3",
 	},
 	"geviennaratives-by-cryptowiener": {
 		scaleAdjust: 4,
 		defaultFlip: true,
 		pixelArt: true,
-		contract: "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270"
+		contract: "0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270",
 	},
 	boredapeyachtclub: {
 		scaleAdjust: 1,
 		defaultFlip: true,
 		pixelArt: false,
-		contract: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"
+		contract: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
 	},
 	milady: {
 		scaleAdjust: 0.5,
 		defaultFlip: true,
 		pixelArt: false,
-		contract: "0x5af0d9827e0c53e4799bb226655a1de152a425a5"
+		contract: "0x5af0d9827e0c53e4799bb226655a1de152a425a5",
 	},
 	//pudgypenguins
 	pudgypenguins: {
 		scaleAdjust: 0.5,
 		defaultFlip: true,
 		pixelArt: false,
-		contract: "0xbd3531da5cf5857e7cfaa92426877b022e612cf8"
+		contract: "0xbd3531da5cf5857e7cfaa92426877b022e612cf8",
 	},
 	doodles: {
 		scaleAdjust: 1,
 		defaultFlip: true,
 		pixelArt: false,
-		contract: "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e"
+		contract: "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e",
 	},
 	beanz: {
 		scaleAdjust: 1,
 		defaultFlip: false,
 		pixelArt: false,
-		contract: "0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949"
-	}
-}
+		contract: "0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949",
+	},
+};
 charConfig.moonheads = charConfig.default;
