@@ -1,6 +1,4 @@
 export const donateData = (ticker) => {
-	console.log("ticker", ticker);
-
 	let walletAddress;
 	switch (ticker) {
 		case "ETH":
