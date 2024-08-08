@@ -225,7 +225,7 @@ export function leaveStaleRooms() {
 	}
 }
 
-export function resetNeededRooms(type, arr) {
+export function resetNeededRooms(type, arr, wsServerUrl = process.env.VUE_APP_WS_SERVER) {
 	for (const ticker in window.txStreetSockets) {
 		const socket = window.txStreetSockets[ticker];
 		socket.neededRoomsDiv[type] = [];
@@ -235,14 +235,14 @@ export function resetNeededRooms(type, arr) {
 		const split = needed.split("-");
 		const rTicker = split[0];
 		const room = split.slice(1).join("-");
-		const socket = getSocket(rTicker);
+		const socket = getSocket(rTicker, wsServerUrl);
 		socket.neededRoomsDiv[type] = socket.neededRoomsDiv[type] || [];
 		socket.neededRoomsDiv[type].push(room);
 	}
 	applySocketsNeededRooms();
 }
 
-export function getSocket(coinConfigOrTicker = false) {
+export function getSocket(coinConfigOrTicker = false, wsServerUrl = process.env.VUE_APP_WS_SERVER) {
 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
 	if (!window.txStreetSockets) window.txStreetSockets = {};
 	if (!window.txStreetSockets[socketTicker])
@@ -250,10 +250,9 @@ export function getSocket(coinConfigOrTicker = false) {
 	if (window.txStreetSockets[socketTicker].socket !== null) {
 		return window.txStreetSockets[socketTicker];
 	}
-	window.txStreetSockets[socketTicker].socket = io(process.env.VUE_APP_WS_SERVER, {
+	window.txStreetSockets[socketTicker].socket = io(wsServerUrl, {
 		upgrade: true,
 		transports: ["websocket"],
-		//transports: ["websocket", "polling"],
 		reconnectionDelay: 5000,
 		reconnectionDelayMax: 10000,
 		reconnectionAttempts: 1000,
@@ -263,45 +262,45 @@ export function getSocket(coinConfigOrTicker = false) {
 	});
 	window.txStreetSockets[socketTicker].socket.on("connect", () => {
 		if (window.txStreetSockets[socketTicker].socket.wasConnected) {
-			joinNeededRooms(socketTicker);
+			joinNeededRooms(socketTicker, wsServerUrl);
 		}
 	});
 	return window.txStreetSockets[socketTicker];
 }
 
-export function leaveRoom(coinConfigOrTicker, room, force = false) {
+export function leaveRoom(coinConfigOrTicker, room, force = false, wsServerUrl = process.env.VUE_APP_WS_SERVER) {
 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
-	let socket = getSocket(socketTicker);
+	let socket = getSocket(socketTicker, wsServerUrl);
 	if (socket.neededRooms.includes(room) && !force) return socket.socket;
 	if (room !== "blocks") {
-		//TEMP DONT ALLOW LEAVING BLOCKS
+		// TEMP DONT ALLOW LEAVING BLOCKS
 		socket.socket.emit("leave-room", socketTicker + "-" + room);
 		socket.rooms = socket.rooms.filter(e => e !== room);
 	}
 	return socket.socket;
 }
 
-export function joinNeededRooms(coinConfigOrTicker) {
+export function joinNeededRooms(coinConfigOrTicker, wsServerUrl = process.env.VUE_APP_WS_SERVER) {
 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
-	let socket = getSocket(socketTicker);
+	let socket = getSocket(socketTicker, wsServerUrl);
 	for (let i = 0; i < socket.neededRooms.length; i++) {
 		const room = socket.neededRooms[i];
-		joinRoom(socketTicker, room, true);
+		joinRoom(socketTicker, room, true, wsServerUrl);
 	}
 }
 
-export function joinRoom(coinConfigOrTicker, room, force = false) {
+export function joinRoom(coinConfigOrTicker, room, force = false, wsServerUrl = process.env.VUE_APP_WS_SERVER) {
 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
-	let socket = getSocket(socketTicker);
+	let socket = getSocket(socketTicker, wsServerUrl);
 	if (socket.rooms.includes(room) && !force) return socket.socket;
 	socket.socket.emit("join-room", socketTicker + "-" + room);
 	if (!socket.rooms.includes(room)) socket.rooms.push(room);
 	return socket.socket;
 }
 
-export function joinStatRoom(coinConfigOrTicker, key, force = false) {
+export function joinStatRoom(coinConfigOrTicker, key, force = false, wsServerUrl = process.env.VUE_APP_WS_SERVER) {
 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
-	let socket = getSocket(socketTicker);
+	let socket = getSocket(socketTicker, wsServerUrl);
 	const room = "stat-" + key;
 	if (socket.rooms.includes(room) && !force) return socket.socket;
 	socket.socket.emit("fetch-stat", socketTicker, null, {
@@ -313,6 +312,79 @@ export function joinStatRoom(coinConfigOrTicker, key, force = false) {
 	if (!socket.rooms.includes(room)) socket.rooms.push(room);
 	return socket.socket;
 }
+
+
+// export function getSocket(coinConfigOrTicker = false) {
+// 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
+// 	if (!window.txStreetSockets) window.txStreetSockets = {};
+// 	if (!window.txStreetSockets[socketTicker])
+// 		window.txStreetSockets[socketTicker] = { rooms: [], neededRooms: [], neededRoomsDiv: {}, socket: null };
+// 	if (window.txStreetSockets[socketTicker].socket !== null) {
+// 		return window.txStreetSockets[socketTicker];
+// 	}
+// 	window.txStreetSockets[socketTicker].socket = io(process.env.VUE_APP_WS_SERVER, {
+// 		upgrade: true,
+// 		transports: ["websocket"],
+// 		//transports: ["websocket", "polling"],
+// 		reconnectionDelay: 5000,
+// 		reconnectionDelayMax: 10000,
+// 		reconnectionAttempts: 1000,
+// 	});
+// 	window.txStreetSockets[socketTicker].socket.on("disconnect", () => {
+// 		window.txStreetSockets[socketTicker].socket.wasConnected = true;
+// 	});
+// 	window.txStreetSockets[socketTicker].socket.on("connect", () => {
+// 		if (window.txStreetSockets[socketTicker].socket.wasConnected) {
+// 			joinNeededRooms(socketTicker);
+// 		}
+// 	});
+// 	return window.txStreetSockets[socketTicker];
+// }
+
+// export function leaveRoom(coinConfigOrTicker, room, force = false) {
+// 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
+// 	let socket = getSocket(socketTicker);
+// 	if (socket.neededRooms.includes(room) && !force) return socket.socket;
+// 	if (room !== "blocks") {
+// 		//TEMP DONT ALLOW LEAVING BLOCKS
+// 		socket.socket.emit("leave-room", socketTicker + "-" + room);
+// 		socket.rooms = socket.rooms.filter(e => e !== room);
+// 	}
+// 	return socket.socket;
+// }
+
+// export function joinNeededRooms(coinConfigOrTicker) {
+// 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
+// 	let socket = getSocket(socketTicker);
+// 	for (let i = 0; i < socket.neededRooms.length; i++) {
+// 		const room = socket.neededRooms[i];
+// 		joinRoom(socketTicker, room, true);
+// 	}
+// }
+
+// export function joinRoom(coinConfigOrTicker, room, force = false) {
+// 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
+// 	let socket = getSocket(socketTicker);
+// 	if (socket.rooms.includes(room) && !force) return socket.socket;
+// 	socket.socket.emit("join-room", socketTicker + "-" + room);
+// 	if (!socket.rooms.includes(room)) socket.rooms.push(room);
+// 	return socket.socket;
+// }
+
+// export function joinStatRoom(coinConfigOrTicker, key, force = false) {
+// 	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
+// 	let socket = getSocket(socketTicker);
+// 	const room = "stat-" + key;
+// 	if (socket.rooms.includes(room) && !force) return socket.socket;
+// 	socket.socket.emit("fetch-stat", socketTicker, null, {
+// 		key: key,
+// 		history: false,
+// 		subscribe: true,
+// 		returnValue: true,
+// 	});
+// 	if (!socket.rooms.includes(room)) socket.rooms.push(room);
+// 	return socket.socket;
+// }
 
 export function shortHash(hash, chars = 3, dots = false) {
 	if (!hash) return "";

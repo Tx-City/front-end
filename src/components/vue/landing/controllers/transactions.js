@@ -1,5 +1,5 @@
 import { enabledConfig } from "../../../config";
-import { joinRoom, ethNewTxSetDepending } from "../../../utils/";
+import { joinRoom, ethNewTxSetDepending, getSocket } from "../../../utils/";
 import eventHub from "../../eventHub";
 
 const listeners = {};
@@ -37,6 +37,22 @@ class Transactions {
     constructor(ticker) {
         this.ticker = ticker;
         this.connectSocket();
+        this.bridge = {
+            liveTxs: [],
+            addTx: (tx) => {
+                this.bridge.liveTxs.push(tx);
+                if (this.bridge.liveTxs.length > 10000) {
+                    this.bridge.liveTxs.splice(0, 1000);
+                }
+            },
+            removeTx: (tx) => {
+                const index = this.bridge.liveTxs.indexOf(tx);
+                if (index !== -1) this.bridge.liveTxs.splice(index, 1);
+            },
+            clearTxs: () => {
+                this.bridge.liveTxs = [];
+            },
+        };
     }
 
     connectSocket() {
@@ -62,6 +78,47 @@ class Transactions {
         else {
             this.listener = listeners[listenerKey];
         }
+
+        // connect to bridge tx socket
+        // const bridgeSocketServerUrl = process.env.VUE_APP_BRIDGE_TX_SOCKET_SERVER_URL;
+        const bridgeSocketServerUrl = 'http://localhost:3000';
+        let bridgeSocket = getSocket(false, bridgeSocketServerUrl);
+        bridgeSocket.on("newTransaction", data => {
+            this.bridge.addTx(data);
+        });
+
+        /* Sample data
+
+            [
+                {
+                    "_id": "66b48e2dad0ed40d04be5ece",
+                    "address": "0x185d0F59324ADaF8a24D11Fd1a90c44d09053464",
+                    "amount": "676194608925157200000",
+                    "type": "BurnFor",
+                    "direction": "wLYX->LYX",
+                    "completionTime": 144,
+                    "transactionHash": "0x7cc40708cce9b05e5232fac5b9f597f7dbfdc45f349ac379b69de150f5d7dad7",
+                    "chain": "ETH",
+                    "createdAt": "2024-08-08T09:21:49.094Z",
+                    "updatedAt": "2024-08-08T09:21:49.094Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "66b48e2dad0ed40d04be5ecb",
+                    "address": "0x5405ec3511fe518dbCF18c638011e3c07c2788fa",
+                    "amount": "2310000000000000000000",
+                    "type": "BurnFor",
+                    "direction": "wLYX->LYX",
+                    "completionTime": 144,
+                    "transactionHash": "0x37a0b5f25ea7f3061fa18ef72c43f3d3b3a4e300c9c13996033584993f76c0f5",
+                    "chain": "ETH",
+                    "createdAt": "2024-08-08T09:21:49.091Z",
+                    "updatedAt": "2024-08-08T09:21:49.091Z",
+                    "__v": 0
+                },
+            ]
+        
+        */
     }
 
     stop() {
