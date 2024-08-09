@@ -128,6 +128,7 @@ export default class ETHStreet extends Street {
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
 			this.createAvatar();
+			this.vue.toggleWindow("characters");
 		});
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
