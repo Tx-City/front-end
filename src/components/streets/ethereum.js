@@ -17,6 +17,7 @@ export default class ETHStreet extends Street {
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.decelerationArea = 500;
+		this.avatarCreated = false;
 		this.sceneHeight = toRes(10000);
 		let walkingLaneOffset = 10 * this.tileSize;
 		this.walkingLane = this.side == "right" ? toRes(960) - walkingLaneOffset : walkingLaneOffset;
@@ -127,7 +128,10 @@ export default class ETHStreet extends Street {
 		this.createPeople();
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
-			this.createAvatar();
+			if(!this.avatarCreated){
+				this.createAvatar();
+				this.avatarCreated = true;
+			}
 			this.vue.toggleWindow("characters");
 		});
 		if (state.address) this.followAddress(state.address);
