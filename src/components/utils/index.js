@@ -243,7 +243,15 @@ export function resetNeededRooms(type, arr, wsServerUrl = process.env.VUE_APP_WS
 }
 
 export function getSocket(coinConfigOrTicker = false, wsServerUrl = process.env.VUE_APP_WS_SERVER) {
-	const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
+	// const socketTicker = typeof coinConfigOrTicker === "string" ? coinConfigOrTicker : coinConfigOrTicker.ticker;
+	let socketTicker;
+	if (typeof coinConfigOrTicker === "string") {
+		socketTicker = coinConfigOrTicker;
+	} else if (coinConfigOrTicker) {
+		socketTicker = coinConfigOrTicker.ticker;
+	} else {
+		socketTicker = "default";
+	}
 	if (!window.txStreetSockets) window.txStreetSockets = {};
 	if (!window.txStreetSockets[socketTicker])
 		window.txStreetSockets[socketTicker] = { rooms: [], neededRooms: [], neededRoomsDiv: {}, socket: null };

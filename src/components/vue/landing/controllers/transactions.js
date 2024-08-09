@@ -80,10 +80,10 @@ class Transactions {
         }
 
         // connect to bridge tx socket
-        // const bridgeSocketServerUrl = process.env.VUE_APP_BRIDGE_TX_SOCKET_SERVER_URL;
-        const bridgeSocketServerUrl = 'http://localhost:3000';
+        const bridgeSocketServerUrl = process.env.VUE_APP_BRIDGE_TX_SOCKET_SERVER_URL;
         let bridgeSocket = getSocket(false, bridgeSocketServerUrl);
-        bridgeSocket.on("newTransaction", data => {
+        bridgeSocket.socket.on("newTransaction", data => {
+            console.log('newTransaction emitted', data);
             this.bridge.addTx(data);
         });
 
