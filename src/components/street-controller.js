@@ -8,12 +8,13 @@ import ETHStreet from "./streets/ethereum.js";
 import LUKSOStreet from "./streets/lukso.js";
 import CELOStreet from "./streets/celo.js";
 import ARBIStreet from "./streets/abitrum";
+import MANTAStreet from "./streets/manta";
 import XMRStreet from "./streets/monero.js";
 import LTCStreet from "./streets/litecoin.js";
 import rca from "rainbow-colors-array";
 import Tutorial from "./vue/toasts/Tutorial";
 import Vue from "vue";
-import AppleTest from './utils/apple_test.js';
+import AppleTest from "./utils/apple_test.js";
 
 export const availableStreets = {
 	BTC: BTCStreet,
@@ -22,6 +23,7 @@ export const availableStreets = {
 	XMR: XMRStreet,
 	LTC: LTCStreet,
 	ARBI: ARBIStreet,
+	MANTA: MANTAStreet,
 	LUKSO: LUKSOStreet,
 	CELO: CELOStreet,
 };
@@ -53,19 +55,40 @@ export class StreetController extends Phaser.Scene {
 		this.load.multiatlas("sheet", "sheet.json?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("characters", "characters.json?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("mall", "mall.json?v=" + process.env.VUE_APP_VERSION);
-		this.load.spritesheet("etherPeopleFront", "etherCharacterFront.png?v=" + process.env.VUE_APP_VERSION, { frameWidth: 100, frameHeight: 150, endFrame: 2 });
-		this.load.spritesheet("etherPeopleBack", "etherCharacterBack.png?v=" + process.env.VUE_APP_VERSION, { frameWidth: 100, frameHeight: 150, endFrame: 2 });
-		this.load.spritesheet("etherPeopleSide", "etherCharacterSide.png?v=" + process.env.VUE_APP_VERSION, { frameWidth: 100, frameHeight: 150, endFrame: 2 });
+		this.load.spritesheet("etherPeopleFront", "etherCharacterFront.png?v=" + process.env.VUE_APP_VERSION, {
+			frameWidth: 100,
+			frameHeight: 150,
+			endFrame: 2,
+		});
+		this.load.spritesheet("etherPeopleBack", "etherCharacterBack.png?v=" + process.env.VUE_APP_VERSION, {
+			frameWidth: 100,
+			frameHeight: 150,
+			endFrame: 2,
+		});
+		this.load.spritesheet("etherPeopleSide", "etherCharacterSide.png?v=" + process.env.VUE_APP_VERSION, {
+			frameWidth: 100,
+			frameHeight: 150,
+			endFrame: 2,
+		});
 		this.load.image("btop", "btop.png?v=" + process.env.VUE_APP_VERSION);
 		this.load.image("bbottom", "bbottom.png?v=" + process.env.VUE_APP_VERSION);
 		this.load.image("ethdoorback", "ethdoorback.png?v=" + process.env.VUE_APP_VERSION);
 		this.load.image("ethdoorTop", "ethdoorTop.png?v=" + process.env.VUE_APP_VERSION);
 		this.load.image("ethincover", "ethincover.png?v=" + process.env.VUE_APP_VERSION);
 		this.load.image("ethroof", "ethroof.png?v=" + process.env.VUE_APP_VERSION);
-		if (config.theme.key === "holiday") this.load.multiatlas("holiday", "sheet_holiday.json?v=" + process.env.VUE_APP_VERSION);
+		if (config.theme.key === "holiday")
+			this.load.multiatlas("holiday", "sheet_holiday.json?v=" + process.env.VUE_APP_VERSION);
 
-		this.load.bitmapFont("roboto", "roboto.png?v=" + process.env.VUE_APP_VERSION, "roboto.xml?v=" + process.env.VUE_APP_VERSION);
-		this.load.bitmapFont("highway", "highway.png?v=" + process.env.VUE_APP_VERSION, "highway.xml?v=" + process.env.VUE_APP_VERSION);
+		this.load.bitmapFont(
+			"roboto",
+			"roboto.png?v=" + process.env.VUE_APP_VERSION,
+			"roboto.xml?v=" + process.env.VUE_APP_VERSION
+		);
+		this.load.bitmapFont(
+			"highway",
+			"highway.png?v=" + process.env.VUE_APP_VERSION,
+			"highway.xml?v=" + process.env.VUE_APP_VERSION
+		);
 		this.load.svg("cloudCircle", "circle.svg?v=" + process.env.VUE_APP_VERSION);
 		window.mainVue.loading = true;
 	}
@@ -184,7 +207,8 @@ export class StreetController extends Phaser.Scene {
 				delay: 20000,
 				callback: () => {
 					let leftStreet = this.getLeftStreet();
-					if (leftStreet && typeof leftStreet.createLedgerNanoX === "function") leftStreet.createLedgerNanoX();
+					if (leftStreet && typeof leftStreet.createLedgerNanoX === "function")
+						leftStreet.createLedgerNanoX();
 				},
 			});
 		}
@@ -233,7 +257,7 @@ export class StreetController extends Phaser.Scene {
 		var street = new coin(side);
 		this[side + "Street"] = coin;
 		this.scene.add(side, street, true);
-		street.vue.$on("changedSetting", key => {
+		street.vue.$on("changedSetting", (key) => {
 			if (key === "openRoofs") {
 				for (let i = 0; i < this.game.scene.scenes.length; i++) {
 					let scene = this.game.scene.scenes[i];
@@ -382,7 +406,6 @@ export class StreetController extends Phaser.Scene {
 				let toPush = leftStreet.housePlans[name];
 				toPush.xOffset = -6;
 				appended.left.push(toPush);
-
 			}
 		}
 		if (activeStreets.length < 2) {
@@ -523,7 +546,7 @@ export class StreetController extends Phaser.Scene {
 		});
 	}
 
-	resize() { }
+	resize() {}
 
 	unpause() {
 		for (let i = 0; i < this.scene.manager.scenes.length; i++) {
@@ -596,7 +619,6 @@ export class StreetController extends Phaser.Scene {
 					} else {
 						instance[0].setOutlineColor(parseInt(this.hexRainbow[this.rainbowIndex].hex, 16));
 					}
-
 				}
 				this.rainbowIndex++;
 				if (this.rainbowIndex >= this.hexRainbow.length) this.rainbowIndex = 0;
