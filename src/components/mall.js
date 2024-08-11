@@ -10,7 +10,7 @@ import {
 	joinStatRoom,
 	getHouseArray,
 	resetNeededRooms,
-	getSheetKey
+	getSheetKey,
 } from "./utils/";
 import Person from "./game-objects/person.js";
 import Sign from "./game-objects/sign.js";
@@ -55,7 +55,6 @@ export class Street extends Phaser.Scene {
 	}
 
 	async create() {
-
 		let houses = await getHouseArray(this.config);
 		if (!houses) houses = [];
 		this.createHouses(houses);
@@ -199,13 +198,13 @@ export class Street extends Phaser.Scene {
 		this.pathSprite.setOrigin(0, 0);
 		this.pathSprite.setScale(config.resolution);
 
-		let grassPatchGraphics = this.add.graphics({ fillStyle: { color: 0xAA6714 } });
+		let grassPatchGraphics = this.add.graphics({ fillStyle: { color: 0xaa6714 } });
 		grassPatchGraphics.fillRoundedRect(0, 0, toRes(191), toRes(298), toRes(32));
-		grassPatchGraphics.fillStyle(0xF39A2C);
+		grassPatchGraphics.fillStyle(0xf39a2c);
 		grassPatchGraphics.fillRoundedRect(0, 0, toRes(190), toRes(290), toRes(32));
 		grassPatchGraphics.fillStyle(0x558259);
 		grassPatchGraphics.fillRoundedRect(0, 0, toRes(170), toRes(270), toRes(20));
-		grassPatchGraphics.fillStyle(0xAA6714);
+		grassPatchGraphics.fillStyle(0xaa6714);
 		grassPatchGraphics.fillRect(toRes(170), toRes(90), toRes(20), toRes(70));
 
 		grassPatchGraphics.generateTexture("grassPatch", toRes(231), toRes(338));
@@ -215,9 +214,9 @@ export class Street extends Phaser.Scene {
 
 		let underWalkWaySprite = this.add.graphics({ fillStyle: { color: 0x6f6c68 } });
 		underWalkWaySprite.fillRoundedRect(0, 0, toRes(152), toRes(60), toRes(5));
-		underWalkWaySprite.fillStyle(0x5e5c59)
+		underWalkWaySprite.fillStyle(0x5e5c59);
 		underWalkWaySprite.fillRect(0, 0, toRes(152), toRes(30));
-		underWalkWaySprite.fillStyle(0x090E11)
+		underWalkWaySprite.fillStyle(0x090e11);
 		underWalkWaySprite.fillRoundedRect(toRes(142), toRes(-10), toRes(10), toRes(25), toRes(3));
 		underWalkWaySprite.fillRoundedRect(0, toRes(-10), toRes(10), toRes(25), toRes(3));
 		underWalkWaySprite.generateTexture("underWalkWaySprite", toRes(152), toRes(60));
@@ -227,20 +226,13 @@ export class Street extends Phaser.Scene {
 
 		underWalkWaySprite.destroy();
 
-		this.walkwaySprite = this.add.tileSprite(
-			this.busLane,
-			0,
-			152,
-			400,
-			getSheetKey("walkway.png"),
-			"walkway.png"
-		);
+		this.walkwaySprite = this.add.tileSprite(this.busLane, 0, 152, 400, getSheetKey("walkway.png"), "walkway.png");
 		this.walkwaySprite.setOrigin(0.5, 0);
 		this.walkwaySprite.setScale(config.resolution);
 
-		let wall = this.add.graphics({ fillStyle: { color: 0xAA6714 } });
+		let wall = this.add.graphics({ fillStyle: { color: 0xaa6714 } });
 		wall.fillRect(0, 0, toRes(30), window.innerHeight * 2);
-		wall.fillStyle(0xF39A2C);
+		wall.fillStyle(0xf39a2c);
 		wall.fillRect(toRes(1), 0, toRes(30), window.innerHeight * 2);
 
 		wall.generateTexture("mallWall", toRes(30), window.innerHeight * 2);
@@ -252,13 +244,17 @@ export class Street extends Phaser.Scene {
 
 		wall.destroy();
 
-		this.desk = this.add.image(mirrorX(532, this.side), toRes(350), getSheetKey("eth_post_desk.png"), "eth_post_desk.png");
+		this.desk = this.add.image(
+			mirrorX(532, this.side),
+			toRes(350),
+			getSheetKey("eth_post_desk.png"),
+			"eth_post_desk.png"
+		);
 		this.desk.setScale(config.resolution);
 		this.sign = new Sign(this);
 		this.sign.setDepth(this.personDepth + 5);
 		this.sign.alternateStats();
 	}
-
 
 	streetCreate() {
 		this.drawStreet();
@@ -275,7 +271,11 @@ export class Street extends Phaser.Scene {
 			this.blockFactory.socket.on("arbiRollup", () => {
 				if (window.txStreetPhaser.streetController.hidden || this.game.scene.isSleeping(this)) return;
 				this.rollupStart();
-			})
+			});
+			this.blockFactory.socket.on("mantaRollup", () => {
+				if (window.txStreetPhaser.streetController.hidden || this.game.scene.isSleeping(this)) return;
+				this.mantaRollupStart();
+			});
 		}, 50);
 
 		this.blockFactory.once("connected", async () => {
@@ -414,7 +414,7 @@ export class Street extends Phaser.Scene {
 		this.mailman.addMove(mirrorX(540, this.side), toRes(260), {
 			onComplete: () => {
 				this.mailman.wait();
-			}
+			},
 		});
 	}
 
@@ -425,13 +425,28 @@ export class Street extends Phaser.Scene {
 		this.mailman.animListener = (anim, frame) => {
 			if (!this.mailman.rolling) return;
 			this.mailman.setFlipX(frame.index === 4);
-			this.mailman.anims.msPerFrame += 8 * (this.mailman.spinDirection);
+			this.mailman.anims.msPerFrame += 8 * this.mailman.spinDirection;
 			if (this.mailman.anims.msPerFrame <= 70) this.mailman.anims.msPerFrame = 90;
 			if (this.mailman.anims.msPerFrame <= 90) {
-				if (!this.mailman.rollingUp)
-					this.rollup();
+				if (!this.mailman.rollingUp) this.rollup();
 			}
-		}
+		};
+		this.mailman.on(Phaser.Animations.Events.ANIMATION_UPDATE, this.mailman.animListener);
+	}
+
+	mantaRollupStart() {
+		this.mailman.rolling = true;
+		this.mailman.spinDirection = -1;
+		this.mailman.anims.play("mailman-spin");
+		this.mailman.animListener = (anim, frame) => {
+			if (!this.mailman.rolling) return;
+			this.mailman.setFlipX(frame.index === 4);
+			this.mailman.anims.msPerFrame += 8 * this.mailman.spinDirection;
+			if (this.mailman.anims.msPerFrame <= 70) this.mailman.anims.msPerFrame = 90;
+			if (this.mailman.anims.msPerFrame <= 90) {
+				if (!this.mailman.rollingUp) this.rollup();
+			}
+		};
 		this.mailman.on(Phaser.Animations.Events.ANIMATION_UPDATE, this.mailman.animListener);
 	}
 
@@ -460,7 +475,7 @@ export class Street extends Phaser.Scene {
 				this.mailman.rollingUp = false;
 				this.mailman.rolling = false;
 				this.mailmanLeave();
-			}
+			},
 		});
 		for (let i = 0; i < this.letters.children.entries.length; i++) {
 			const letter = this.letters.children.entries[i];
@@ -470,10 +485,10 @@ export class Street extends Phaser.Scene {
 				duration: 500 * window.txStreetPhaser.streetController.fpsTimesFaster,
 				y: this.mailman.y,
 				x: this.mailman.x,
-				rotation: Math.floor((Math.random() * (5)) + 1) * (Math.random() > 0.5 ? 1 : -1),
+				rotation: Math.floor(Math.random() * 5 + 1) * (Math.random() > 0.5 ? 1 : -1),
 				onComplete: () => {
 					letter.destroy();
-				}
+				},
 			};
 			this.add.tween(tweenConfig);
 		}
@@ -489,9 +504,9 @@ export class Street extends Phaser.Scene {
 				this.mailman.addMove(mirrorX(540, this.side), toRes(260), {
 					onComplete: () => {
 						this.mailman.wait(false);
-					}
+					},
 				});
-			}
+			},
 		});
 	}
 
@@ -598,7 +613,7 @@ export class Street extends Phaser.Scene {
 	}
 
 	loadNFTSprite(sprite, collection, id, pixelArt = false) {
-		let key = collection + '-' + id;
+		let key = collection + "-" + id;
 		if (this.textures.exists(key)) {
 			if (sprite) sprite.setTexture(key);
 			return sprite;
@@ -606,8 +621,7 @@ export class Street extends Phaser.Scene {
 		if (sprite) sprite.setVisible(false);
 		this.load.image(key, process.env.VUE_APP_STORAGE_URL + collection + "/" + id);
 		this.load.once(Phaser.Loader.Events.COMPLETE, () => {
-			if (pixelArt)
-				this.textures.list[key].setFilter(Phaser.Textures.FilterMode.NEAREST);
+			if (pixelArt) this.textures.list[key].setFilter(Phaser.Textures.FilterMode.NEAREST);
 			if (sprite) {
 				sprite.setTexture(key);
 				sprite.setVisible(true);
@@ -619,7 +633,6 @@ export class Street extends Phaser.Scene {
 		return sprite;
 	}
 
-
 	newTx(data, status = "new", addPerson = true, addToVue = true) {
 		//TODO, when no fee, set it to average
 		if (this.lineManager[data.tx]) return false;
@@ -629,7 +642,7 @@ export class Street extends Phaser.Scene {
 
 		let modSize = this.getModSize(data);
 		if (data.char && userSettings.globalSettings.nfts.value) {
-			const charSplit = data.char.split("-")
+			const charSplit = data.char.split("-");
 			const potentialChar = charSplit.length > 1 ? charSplit.slice(0, -1).join("-") : data.char;
 			if (this.charConfig[potentialChar] && charSplit[charSplit.length - 1]) {
 				data.char = {
@@ -637,8 +650,7 @@ export class Street extends Phaser.Scene {
 					texture: charSplit[charSplit.length - 1] + ".png",
 				};
 				this.loadNFTSprite(false, data.char.sheet, data.char.texture, this.charConfig[potentialChar].pixelArt);
-			}
-			else if (!this?.textures?.list?.sheet?.frames?.[potentialChar + "-0.png"]) {
+			} else if (!this?.textures?.list?.sheet?.frames?.[potentialChar + "-0.png"]) {
 				//check if texture exists on default sheet
 				console.log("deleted " + data.char, potentialChar + "-0.png");
 				delete data.char;
@@ -646,7 +658,10 @@ export class Street extends Phaser.Scene {
 		}
 		data.charType = data?.char?.sheet || "default";
 
-		data.spriteNo = data.char && userSettings.globalSettings.nfts.value ? data.char : window.txStreetPhaser.streetController.generateSpriteNo();
+		data.spriteNo =
+			data.char && userSettings.globalSettings.nfts.value
+				? data.char
+				: window.txStreetPhaser.streetController.generateSpriteNo();
 		data.random = Math.random();
 		data.maxScale = this.setMaxScalePerson(false, modSize);
 		// //first create entry in line manager
@@ -847,7 +862,6 @@ export class Street extends Phaser.Scene {
 				}
 			}
 		}
-
 	}
 
 	getModSize(txData) {
@@ -867,10 +881,13 @@ export class Street extends Phaser.Scene {
 		this.time.addEvent({
 			delay: 1000,
 			callback: () => {
-				this.vue.stats["pendingBatchCountLive"].value = Math.max(this.vue.stats["pendingBatchCount"].value, this.letters.children.entries.length);
+				this.vue.stats["pendingBatchCountLive"].value = Math.max(
+					this.vue.stats["pendingBatchCount"].value,
+					this.letters.children.entries.length
+				);
 			},
-			loop: true
-		})
+			loop: true,
+		});
 	}
 
 	checkNewBlocks() {
@@ -890,7 +907,9 @@ export class Street extends Phaser.Scene {
 			}
 			block.processed = true;
 			this.processingBlock = false;
-			this.blockchain.sort((a, b) => { b.height - a.height });
+			this.blockchain.sort((a, b) => {
+				b.height - a.height;
+			});
 			break;
 		}
 	}
@@ -936,10 +955,7 @@ export class Street extends Phaser.Scene {
 	}
 
 	createHouse(name) {
-		let path =
-			this.config.ticker +
-			"/" +
-			name;
+		let path = this.config.ticker + "/" + name;
 		let houseComponents = [];
 		if (this.housePlans[name].dataSources && this.housePlans[name].dataSources.includes("wiki")) {
 			houseComponents.push({
@@ -1057,7 +1073,7 @@ export class Street extends Phaser.Scene {
 			if (!moveList.length) {
 				if (status === "walkway") {
 					person.y -= toRes(70 / this.game.loop.actualFps);
-					if (person.y <= -100){
+					if (person.y <= -100) {
 						let hash = person.getData("txHash");
 						this.removeFollower(hash, 0);
 						person.bye();
@@ -1126,7 +1142,12 @@ export class Street extends Phaser.Scene {
 			let count = peopleWaiting.length;
 			if (count > 0) {
 				let person = Phaser.Utils.Array.GetRandom(peopleWaiting);
-				if (typeof person !== "undefined" && person && typeof person.anims !== "undefined" && person.animsEnabled)
+				if (
+					typeof person !== "undefined" &&
+					person &&
+					typeof person.anims !== "undefined" &&
+					person.animsEnabled
+				)
 					person.anims.nextFrame();
 
 				let nextDelay = msPerFrame / count;
@@ -1138,8 +1159,8 @@ export class Street extends Phaser.Scene {
 
 	populateMail(amount) {
 		for (let i = 0; i < amount; i++) {
-			let x = mirrorX(Math.floor((Math.random() * (450 + 1)) + 310), this.side);
-			let y = toRes(400) - toRes(Math.floor((Math.random() * (45 + 1)) + 35));
+			let x = mirrorX(Math.floor(Math.random() * (450 + 1) + 310), this.side);
+			let y = toRes(400) - toRes(Math.floor(Math.random() * (45 + 1) + 35));
 			let letter = this.add.image(x, y, getSheetKey("envelope.png"), "envelope.png");
 			letter.setScale(config.resolution);
 			letter.angle = Phaser.Math.Angle.RandomDegrees();
@@ -1153,7 +1174,7 @@ export class Street extends Phaser.Scene {
 
 		this.fastProcessBlocks();
 		this.letters.clear(true);
-		this.populateMail(this.vue.stats['pendingBatchCount'].value);
+		this.populateMail(this.vue.stats["pendingBatchCount"].value);
 
 		this.resetMailman();
 		this.customCallback("resume", "after", this);
@@ -1313,7 +1334,7 @@ export class Street extends Phaser.Scene {
 		}
 		delete this.txFollowers[hash];
 		this.txFollowersHashes.splice(this.txFollowersHashes.indexOf(hash), 1);
-		if(saveFollowers) this.saveFollowers();
+		if (saveFollowers) this.saveFollowers();
 		return true;
 	}
 

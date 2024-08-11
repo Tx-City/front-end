@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>6</int>
         <key>texturePackerVersion</key>
-        <string>7.3.0</string>
+        <string>7.4.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -269,6 +269,7 @@
             <key type="filename">../public/static/img/singles/coin_logos/celo.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/eth.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/ltc.png</key>
+            <key type="filename">../public/static/img/singles/coin_logos/manta.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/rinkeby.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/xmr.png</key>
             <struct type="IndividualSpriteSettings">
@@ -531,7 +532,10 @@
             <key type="filename">../public/static/img/singles/house_logos/dice2win.png</key>
             <key type="filename">../public/static/img/singles/house_logos/donation.png</key>
             <key type="filename">../public/static/img/singles/house_logos/eatbch.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/heart.png</key>
             <key type="filename">../public/static/img/singles/house_logos/ismikekomaranskydead.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/peng.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/pudgypenguin.png</key>
             <key type="filename">../public/static/img/singles/house_logos/pudgypenguins.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

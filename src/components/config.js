@@ -1095,17 +1095,17 @@ export const LUKSO = {
 		},
 	}),
 };
-
+//#ffe599
 export const CELO = {
 	ticker: "CELO",
 	coinName: "CELO",
-	color: "fff1f8",
-	busColor: "fff1f8",
+	color: "ffe599",
+	busColor: "ffe599",
 	busCapacity: 0,
 	feeVar: "gp",
-	explorerTxUrl: "",
-	explorerBlockUrl: "",
-	explorerBlocksUrl: "",
+	explorerTxUrl: "https://explorer.celo.org/mainnet/tx/",
+	explorerBlockUrl: "https://explorer.celo.org/mainnet/block/",
+	explorerBlocksUrl: "https://explorer.celo.org/mainnet/blocks/",
 	explorerAddressUrl: "",
 	liveTxs: [],
 	liveBlocks: [],
@@ -1280,7 +1280,7 @@ export const CELO = {
 		},
 		"medianFee-gasPrice": {
 			title: () => {
-				return i18n.t("lukso.medianFee-gasPrice");
+				return i18n.t("celo.medianFee-gasPrice");
 			},
 			value: false,
 			socket: true,
@@ -1291,7 +1291,7 @@ export const CELO = {
 		},
 		"supply-circulating": {
 			title: () => {
-				return i18n.t("lukso.supply-circulating");
+				return i18n.t("celo.supply-circulating");
 			},
 			decimals: 0,
 			socket: true,
@@ -1299,7 +1299,7 @@ export const CELO = {
 		},
 		"fiatPrice-usd": {
 			title: () => {
-				return i18n.t("lukso.fiatPrice-usd");
+				return i18n.t("celo.fiatPrice-usd");
 			},
 			decimals: 2,
 			before: "$",
@@ -1382,7 +1382,7 @@ export const CELO = {
 		blockHeight: { hidden: true, value: false },
 		"marketCap-usd": {
 			title: () => {
-				return i18n.t("lukso.marketCap-usd");
+				return i18n.t("celo.marketCap-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -1391,7 +1391,7 @@ export const CELO = {
 		},
 		"volume-usd": {
 			title: () => {
-				return i18n.t("lukso.volume-usd");
+				return i18n.t("celo.volume-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -1414,6 +1414,195 @@ export const ARBI = {
 	explorerBlockUrl: "https://arbiscan.io/block/",
 	explorerBlocksUrl: "https://arbiscan.io/blocks",
 	explorerAddressUrl: "https://arbiscan.io/address/",
+	liveTxs: [],
+	liveBlocks: [],
+	houseArray: [],
+	maxBlocksToKeep: 100,
+	addressNonces: {},
+	blockFormat: ETH.blockFormat,
+	calcBlockFeeArray: ETH.calcBlockFeeArray,
+	getFee: ETH.getFee,
+	getAndApplyFee: ETH.getAndApplyFee,
+	socketBlocks: true,
+	isRollup: true,
+	missingRecentMultiplier: 1000,
+	ignoreMissingRecent: true,
+	userSettings: {
+		blockNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.block", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: false,
+			writable: true,
+		},
+		txNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.transaction", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: true,
+			writable: true,
+		},
+		maxBuses: {
+			title: () => {
+				return i18n.t("settings.max-buses");
+			},
+			type: "range",
+			min: 1,
+			max: 100,
+			restart: false,
+			value: 25,
+			writable: true,
+		},
+		signArray: {
+			title: "Sign Display",
+			type: "multiselect",
+			value: ["medianFee-usdTransfer", "pendingBatchCountLive"],
+			writable: true,
+			invisible: true,
+			restart: false,
+		},
+	},
+	stats: Vue.observable({
+		ctps: {
+			title: () => {
+				return i18n.t("eth.ctps");
+			},
+			decimals: 2,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/ctps"],
+		},
+		"medianFee-usd": {
+			title: () => {
+				return i18n.t("eth.medianFee-usd");
+			},
+			signTitle: "Median Contract Fee",
+			before: "~$",
+			after: " USD",
+			value: false,
+			socket: true,
+			wiki: ["ETH/stats/medianContractFee", "common/transaction-fees"],
+		},
+		"medianFee-usdTransfer": {
+			title: () => {
+				return i18n.t("eth.medianFee-usdTransfer");
+			},
+			signTitle: "Median Transfer Fee",
+			after: " USD",
+			before: "~$",
+			value: false,
+			socket: true,
+			wiki: ["ETH/stats/medianTransferFee", "common/transaction-fees"],
+		},
+		"medianFee-gasPrice": {
+			title: () => {
+				return i18n.t("eth.medianFee-gasPrice");
+			},
+			value: false,
+			socket: true,
+			format: (val) => {
+				return ethUnits(val);
+			},
+			wiki: ["ETH/stats/medianGasPrice"],
+		},
+		lastBlock: {
+			title: () => {
+				return i18n.t("eth.lastBlock");
+			},
+			value: false,
+			wiki: ["common/stats/lastBlock", "common/block-time"],
+		},
+		pendingBatchCount: {
+			value: 0,
+			decimals: 0,
+			default: 0,
+			socket: true,
+			hidden: true,
+		},
+		pendingBatchCountLive: {
+			title: "Pending Batch Count",
+			value: 0,
+			decimals: 0,
+			default: 0,
+			wiki: ["common/stats/pendingBatchSize"],
+		},
+		medianTxsPerBlock: {
+			title: () => {
+				return i18n.t("eth.medianTxsPerBlock");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["common/stats/medianTxsPerBlock"],
+		},
+		gasLimit: {
+			title: () => {
+				return i18n.t("eth.gasLimit");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/gasLimit"],
+		},
+		gasTarget: {
+			title: () => {
+				return i18n.t("eth.gasTarget");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/gasTarget"],
+		},
+		medianGasUsed: {
+			title: () => {
+				return i18n.t("eth.medianGasUsed");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/medianBlockGas"],
+		},
+		gasUsedDif: {
+			title: () => {
+				return i18n.t("eth.gasUsedDif");
+			},
+			value: 100,
+			decimals: 2,
+			socket: true,
+			after: "%",
+			wiki: ["ETH/stats/gasUsedDif"],
+		},
+		medianBlockTime: {
+			title: () => {
+				return i18n.t("eth.medianBlockTime");
+			},
+			value: 0,
+			timeAgo: true,
+			socket: true,
+			default: 0,
+			wiki: ["common/stats/medianBlockTime", "common/block-time"],
+		},
+		blockHeight: { hidden: true, value: false },
+	}),
+};
+
+export const MANTA = {
+	ticker: "MANTA",
+	coinName: "Manta",
+	coinSlug: "Manta",
+	initialHouseY: 340,
+	color: "#0091FF",
+	busColor: "#0091FF",
+	busCapacity: 0,
+	feeVar: "gp",
+	explorerTxUrl: "https://pacific-explorer.manta.network/tx/",
+	explorerBlockUrl: "https://pacific-explorer.manta.network/block/",
+	explorerBlocksUrl: "https://pacific-explorer.manta.network/block",
+	explorerAddressUrl: "",
 	liveTxs: [],
 	liveBlocks: [],
 	houseArray: [],
@@ -2053,6 +2242,7 @@ export const enabledConfig = {
 	XMR,
 	LTC,
 	ARBI,
+	MANTA,
 	CELO,
 	LUKSO,
 };

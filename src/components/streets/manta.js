@@ -1,13 +1,13 @@
 import { Street } from "../mall.js";
 import { toRes, ethNewTxSetDepending } from "../utils/";
-import { ARBI, ethUnits } from "../config.js";
+import { MANTA, ethUnits } from "../config.js";
 import i18n from "../../i18n";
 import eventHub from "../vue/eventHub.js";
 import state from "../../wallet";
 
-export default class ARBIStreet extends Street {
+export default class MANTAStreet extends Street {
 	constructor(side) {
-		super(ARBI, side);
+		super(MANTA, side);
 	}
 
 	init() {
@@ -250,4 +250,4 @@ export default class ARBIStreet extends Street {
 	}
 }
 
-ARBIStreet.config = ARBI;
+MANTAStreet.config = MANTA;
