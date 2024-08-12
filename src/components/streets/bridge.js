@@ -69,7 +69,8 @@ export default class bridge extends Phaser.Scene {
        let  myY = mypos.myStartY;
        let mySide = mypos.mySide;
        let myRightStartPoint = mypos.myRightPoint;
-        this.createPersonOnBridge(this.myPersonData,myX,myY,mySide,myRightStartPoint);
+       let myBridgePeople = mypos.myBridgeTxData;
+        this.createPersonOnBridge(this.myPersonData,myX,myY,mySide,myRightStartPoint,myBridgePeople);
      });
     //will change the calling of the function to be triggered by bridgeTransaction
     //    setTimeout(() => {
@@ -106,20 +107,48 @@ export default class bridge extends Phaser.Scene {
 
 
 
-    createPersonOnBridge(data,startx,starty,side,rightStartPoint) {
+    createPersonOnBridge(data,startx,starty,side,rightStartPoint,myBridgPeopleData) {
 
-        console.log(data);
-        console.log(data.txData);
-        console.log(data.txData.spriteNo);
-        this.myPerson = new Person(this);
-        this.myPerson.setTexture(getSheetKey("person-"),"mailman-0.png");
-        this.myPerson.x = this.myBridge.x;
-        this.myPerson.y = this.myBridge.y;
-        this.myPerson.active = true;
-		this.myPerson.visible = true;
-        let mySkinSpriteNo = data.txData.spriteNo;
-        console.log(mySkinSpriteNo);
-        this.myPerson.customResetData();
+
+        for (let i = 0 ; i < myBridgPeopleData.length ; i++){
+
+
+            console.log(data);
+            console.log(data.txData);
+            console.log(data.txData.spriteNo);
+            this.myPerson = new Person(this);
+            this.myPerson.setTexture(getSheetKey("person-"),"mailman-0.png");
+            this.myPerson.x = this.myBridge.x;
+            this.myPerson.y = this.myBridge.y;
+            this.myPerson.active = true;
+            this.myPerson.visible = true;
+            let mySkinSpriteNo = data.txData.spriteNo;
+            console.log(mySkinSpriteNo);
+            this.myPerson.customResetData();
+
+            if (side === "left") {
+                this.myPerson.createPath([startx-40,starty-50,
+                    this.myBridge.x-350,this.myBridge.y+200,this.myBridge.x-350,this.myBridge.y-150,
+                    this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x+380,this.myBridge.y-150,
+                    this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y+1400,
+                ])
+            }else{
+    
+                this.myPerson.createPath([startx+40+rightStartPoint/2,starty-50,
+                    this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y-150,
+                    this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x-350,this.myBridge.y-150,
+                    this.myBridge.x-350,this.myBridge.y+200 ,this.myBridge.x-350,this.myBridge.y+1400,
+                ])
+            }
+    
+         
+    
+            this.myPerson.goAlongPath(mySkinSpriteNo,side,myBridgPeopleData[i].completionTime*1000);
+           
+            this.myPerson.setDepth(1000);
+    
+        }
+       
 
        // this.myPerson.resetData(data.txData);
    
@@ -128,27 +157,7 @@ export default class bridge extends Phaser.Scene {
       
         //this.myPerson.setLineData("status", null);
 
-        if (side === "left") {
-            this.myPerson.createPath([startx-40,starty-50,
-                this.myBridge.x-350,this.myBridge.y+200,this.myBridge.x-350,this.myBridge.y-150,
-                this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x+380,this.myBridge.y-150,
-                this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y+1400,
-            ])
-        }else{
-
-            this.myPerson.createPath([startx+40+rightStartPoint/2,starty-50,
-                this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y-150,
-                this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x-350,this.myBridge.y-150,
-                this.myBridge.x-350,this.myBridge.y+200 ,this.myBridge.x-350,this.myBridge.y+1400,
-            ])
-        }
-
-     
-
-        this.myPerson.goAlongPath(mySkinSpriteNo,side);
-       
-        this.myPerson.setDepth(1000);
-
+      
     }
 
     createmyBridgeBus() {
