@@ -22,6 +22,7 @@ export default class ETHStreet extends Street {
 		this.myMainCameraPosition= 1300;
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
+		this.bridgeTx = [];
 		this.decelerationArea = 500;
 		this.sceneHeight = toRes(10000);
 		let walkingLaneOffset = 10 * this.tileSize;
@@ -134,10 +135,20 @@ export default class ETHStreet extends Street {
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
 		});
+
+		eventHub.$on("EthBridgeTx",(bridgeTxData)=>{
+			this.addBridgeTx(bridgeTxData);
+		})
 		eventHub.$on("createMyStaticSearch",()=>{this.createStaticSearch()});
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
 	
+	}
+
+	addBridgeTx(myBridgeTxData){
+
+		this.bridgeTx.push(myBridgeTxData);
+		console.log(this.bridgeTx);
 	}
 
 	checkSideAddSign(side){
@@ -468,7 +479,11 @@ export default class ETHStreet extends Street {
 			bus.baseFee = this.calcBusBaseFee(activeBuses, i);
 			bus.feeText = ethUnits(bus.baseFee, true, true);
 			// to enable visualistion of bridge transaction currently a test and should be more dyanmic if block has bridge transaction
-			bus.hasBridgeTransaction = true;
+			if (this.bridgeTx.length >= 1){
+				bus.bridgTxs.push(...this.bridgeTx)
+				this.bridgeTx.splice(0,this.bridgeTx.length);
+				bus.hasBridgeTransaction = true;
+			}
 			bus.onSide = this.mySide;
 			this.addBusTxs(bus, hashArray, skipTxs, instant, increasingNonces, toMove);
 		}

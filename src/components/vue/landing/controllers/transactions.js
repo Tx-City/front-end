@@ -84,6 +84,16 @@ class Transactions {
         let bridgeSocket = getSocket(false, bridgeSocketServerUrl);
         bridgeSocket.socket.on("newTransaction", data => {
             console.log('newTransaction emitted', data);
+
+            if(data.direction === "LYX->wLYX"){
+                
+                eventHub.$emit("LuxoBridgeTx", data); 
+              
+            }
+            if (data.direction === "wLYX->LYX"){
+
+                eventHub.$emit("EthBridgeTx", data);
+            }
             this.bridge.addTx(data);
         });
 
