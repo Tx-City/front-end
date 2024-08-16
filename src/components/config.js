@@ -266,7 +266,7 @@ export const BTC = {
 export const DASH = {
 	ticker: "DASH",
 	coinName: "Dash",
-	color: "f7931a",
+	color: "ffffff",
 	busColor: "f2a445",
 	busCapacity: 1000000,
 	feeVar: "spb",
