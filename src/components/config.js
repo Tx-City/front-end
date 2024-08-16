@@ -263,6 +263,228 @@ export const BTC = {
 	}),
 };
 
+export const DASH = {
+	ticker: "DASH",
+	coinName: "Dash",
+	color: "f7931a",
+	busColor: "f2a445",
+	busCapacity: 1000000,
+	feeVar: "spb",
+	explorerTxUrl: "https://www.blockchain.com/btc/tx/",
+	explorerBlockUrl: "https://www.blockchain.com/btc/block/",
+	explorerBlocksUrl: "https://www.blockchain.com/btc/blocks",
+	explorerAddressUrl: "https://www.blockchain.com/btc/address/",
+	liveTxs: [],
+	liveBlocks: [],
+	houseArray: [],
+	maxBlocksToKeep: 10,
+	userSettings: {
+		blockNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.block", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: false,
+			writable: true,
+		},
+		txNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.transaction", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: true,
+			writable: true,
+		},
+		maxBuses: {
+			title: () => {
+				return i18n.t("settings.max-buses");
+			},
+			type: "range",
+			min: 1,
+			max: 30,
+			restart: false,
+			value: 5,
+			writable: true,
+		},
+		signArray: {
+			title: "Sign Display",
+			type: "multiselect",
+			value: ["lastBlock", "medianFee-usd", "mempool-size"],
+			writable: true,
+			invisible: true,
+			restart: false,
+		},
+	},
+	stats: Vue.observable({
+		tps: {
+			title: () => {
+				return i18n.t("btc.tps");
+			},
+			decimals: 2,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/tps"],
+		},
+		ctps: {
+			title: () => {
+				return i18n.t("btc.ctps");
+			},
+			decimals: 2,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/ctps"],
+		},
+		"mempool-bytes": {
+			title: () => {
+				return i18n.t("btc.mempool-bytes");
+			},
+			after: " MB",
+			divide: 1000000,
+			decimals: 3,
+			value: false,
+			guide: ["mempool_size", "mempool"],
+			socket: true,
+			wiki: ["common/stats/mempool-size", "common/mempool"],
+		},
+		"mempool-size": {
+			title: () => {
+				return i18n.t("btc.mempool-size");
+			},
+			signTitle: "Pending Txs",
+			decimals: 0,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/mempool-count", "common/mempool"],
+		},
+		"medianFee-usd": {
+			title: () => {
+				return i18n.t("btc.medianFee-usd");
+			},
+			signTitle: "Median Tx Fee",
+			before: "$",
+			value: false,
+			socket: true,
+			wiki: ["common/stats/medianFee-usd", "common/transaction-fees"],
+		},
+		"medianFee-satPerByte": {
+			title: () => {
+				return i18n.t("btc.medianFee-satPerByte");
+			},
+			common: "medianFeeSat",
+			value: false,
+			socket: true,
+			wiki: ["common/stats/medianFee-satPerByte", "common/transaction-fees"],
+		},
+		bps: {
+			title: () => {
+				return i18n.t("btc.bps");
+			},
+			decimals: 0,
+			after: " vB",
+			value: false,
+			socket: true,
+			wiki: ["common/stats/bps"],
+		},
+		"supply-circulating": {
+			title: () => {
+				return i18n.t("btc.supply-circulating");
+			},
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		"fiatPrice-usd": {
+			title: () => {
+				return i18n.t("btc.fiatPrice-usd");
+			},
+			decimals: 2,
+			before: "$",
+			value: false,
+			socket: true,
+		},
+		lastBlock: {
+			title: () => {
+				return i18n.t("btc.lastBlock");
+			},
+			value: false,
+			wiki: ["common/stats/lastBlock", "common/block-time"],
+		},
+		medianTxsPerBlock: {
+			title: () => {
+				return i18n.t("btc.medianTxsPerBlock");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["common/stats/medianTxsPerBlock"],
+		},
+		blockchainSize: {
+			title: () => {
+				return i18n.t("btc.blockchainSize");
+			},
+			after: " MB",
+			value: false,
+			socket: true,
+		},
+		difficulty: {
+			title: () => {
+				return i18n.t("btc.difficulty");
+			},
+			value: false,
+			decimals: 0,
+			socket: true,
+		},
+		medianBlockSize: {
+			title: () => {
+				return i18n.t("btc.medianBlockSize");
+			},
+			decimals: 3,
+			divide: 1000000,
+			after: " MB",
+			value: false,
+			socket: true,
+			wiki: ["common/stats/medianBlockSize"],
+		},
+		medianBlockTime: {
+			title: () => {
+				return i18n.t("btc.medianBlockTime");
+			},
+			value: 0,
+			timeAgo: true,
+			socket: true,
+			wiki: ["common/stats/medianBlockTime", "common/block-time"],
+		},
+		blockHeight: { hidden: true, value: false },
+		"marketCap-usd": {
+			title: () => {
+				return i18n.t("btc.marketCap-usd");
+			},
+			before: "$",
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		"volume-usd": {
+			title: () => {
+				return i18n.t("btc.volume-usd");
+			},
+			before: "$",
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		halving: {
+			title: () => {
+				return i18n.t("btc.halving");
+			},
+			signTitle: "Halving in",
+			value: false,
+		},
+	}),
+};
+
 export const LTC = {
 	ticker: "LTC",
 	coinName: "Litecoin",
@@ -911,7 +1133,7 @@ export const LUKSO = {
 	stats: Vue.observable({
 		tps: {
 			title: () => {
-				return i18n.t("lukso.tps");
+				return i18n.t("eth.tps");
 			},
 			decimals: 2,
 			value: false,
@@ -920,7 +1142,7 @@ export const LUKSO = {
 		},
 		ctps: {
 			title: () => {
-				return i18n.t("lukso.ctps");
+				return i18n.t("eth.ctps");
 			},
 			decimals: 2,
 			value: false,
@@ -953,7 +1175,7 @@ export const LUKSO = {
 		},
 		"medianFee-usd": {
 			title: () => {
-				return i18n.t("eth.medianFee-usd");
+				return i18n.t("lukso.medianFee-usd");
 			},
 			signTitle: "Median Contract Fee",
 			before: "~$",
@@ -986,7 +1208,7 @@ export const LUKSO = {
 		},
 		"supply-circulating": {
 			title: () => {
-				return i18n.t("lukso.supply-circulating");
+				return i18n.t("eth.supply-circulating");
 			},
 			decimals: 0,
 			socket: true,
@@ -1077,7 +1299,7 @@ export const LUKSO = {
 		blockHeight: { hidden: true, value: false },
 		"marketCap-usd": {
 			title: () => {
-				return i18n.t("lukso.marketCap-usd");
+				return i18n.t("eth.marketCap-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -1086,7 +1308,7 @@ export const LUKSO = {
 		},
 		"volume-usd": {
 			title: () => {
-				return i18n.t("lukso.volume-usd");
+				return i18n.t("eth.volume-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -1216,7 +1438,7 @@ export const CELO = {
 	stats: Vue.observable({
 		tps: {
 			title: () => {
-				return i18n.t("celo.tps");
+				return i18n.t("eth.tps");
 			},
 			decimals: 2,
 			value: false,
@@ -1225,7 +1447,7 @@ export const CELO = {
 		},
 		ctps: {
 			title: () => {
-				return i18n.t("celo.ctps");
+				return i18n.t("eth.ctps");
 			},
 			decimals: 2,
 			value: false,
@@ -1258,7 +1480,7 @@ export const CELO = {
 		},
 		"medianFee-usd": {
 			title: () => {
-				return i18n.t("eth.medianFee-usd");
+				return i18n.t("celo.medianFee-usd");
 			},
 			signTitle: "Median Contract Fee",
 			before: "~$",
@@ -1269,18 +1491,18 @@ export const CELO = {
 		},
 		"medianFee-usdTransfer": {
 			title: () => {
-				return i18n.t("eth.medianFee-usdTransfer");
+				return i18n.t("celo.medianFee-usdTransfer");
 			},
 			signTitle: "Median Transfer Fee",
 			after: " USD",
 			before: "~$",
-			value: false,
+			value: 0.0003,
 			socket: true,
 			wiki: ["ETH/stats/medianTransferFee", "common/transaction-fees"],
 		},
 		"medianFee-gasPrice": {
 			title: () => {
-				return i18n.t("celo.medianFee-gasPrice");
+				return i18n.t("eth.medianFee-gasPrice");
 			},
 			value: false,
 			socket: true,
@@ -1291,7 +1513,7 @@ export const CELO = {
 		},
 		"supply-circulating": {
 			title: () => {
-				return i18n.t("celo.supply-circulating");
+				return i18n.t("eth.supply-circulating");
 			},
 			decimals: 0,
 			socket: true,
@@ -1299,7 +1521,7 @@ export const CELO = {
 		},
 		"fiatPrice-usd": {
 			title: () => {
-				return i18n.t("celo.fiatPrice-usd");
+				return i18n.t("eth.fiatPrice-usd");
 			},
 			decimals: 2,
 			before: "$",
@@ -1382,7 +1604,7 @@ export const CELO = {
 		blockHeight: { hidden: true, value: false },
 		"marketCap-usd": {
 			title: () => {
-				return i18n.t("celo.marketCap-usd");
+				return i18n.t("eth.marketCap-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -1391,7 +1613,7 @@ export const CELO = {
 		},
 		"volume-usd": {
 			title: () => {
-				return i18n.t("celo.volume-usd");
+				return i18n.t("eth.volume-usd");
 			},
 			before: "$",
 			decimals: 0,
@@ -1596,7 +1818,7 @@ export const MANTA = {
 	coinSlug: "Manta",
 	initialHouseY: 340,
 	color: "29CCB9",
-	busColor: "0091FF",
+	busColor: "29CCB9",
 	busCapacity: 0,
 	feeVar: "gp",
 	explorerTxUrl: "https://pacific-explorer.manta.network/tx/",
@@ -2238,6 +2460,7 @@ export const commonTitleOverrides = {
 export const enabledConfig = {
 	ETH,
 	BTC,
+	DASH,
 	BCH,
 	XMR,
 	LTC,

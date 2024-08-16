@@ -7,6 +7,9 @@ export const donateData = (ticker) => {
 		case "BTC":
 			walletAddress = "bc1qa83s92u6xqnyag4lcg45cm2cjzajr4av4m9q7z";
 			break;
+		case "DASH":
+			walletAddress = "XgEDxXDiJaYhEW4Uh6mKsDKZ6Lnnh4udyz";
+			break;
 		case "XMR":
 			walletAddress =
 				"42WoZCDP4dQPbh7vpXRJAGV2rHtubYaQyD61d3WLMz3qD5i5FihDorbKG2Xv2YjKgxaD25Sm1xV6ic7Akp2w2A7P6KXRYAb";
