@@ -267,7 +267,7 @@ export const DASH = {
 	ticker: "DASH",
 	coinName: "Dash",
 	color: "ffffff",
-	busColor: "f2a445",
+	busColor: "ffffff",
 	busCapacity: 1000000,
 	feeVar: "spb",
 	explorerTxUrl: "https://www.blockchain.com/btc/tx/",
