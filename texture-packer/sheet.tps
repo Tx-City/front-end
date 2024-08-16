@@ -267,6 +267,7 @@
             <key type="filename">../public/static/img/singles/coin_logos/bch.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/btc.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/celo.png</key>
+            <key type="filename">../public/static/img/singles/coin_logos/dash.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/eth.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/ltc.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/manta.png</key>
@@ -1049,7 +1050,6 @@
             <key type="filename">../public/static/img/singles/tween_icons/coins.png</key>
             <key type="filename">../public/static/img/singles/tween_icons/edit.png</key>
             <key type="filename">../public/static/img/singles/tween_icons/follow.png</key>
-            <key type="filename">../public/static/img/singles/tween_icons/heart.png</key>
             <key type="filename">../public/static/img/singles/tween_icons/info.png</key>
             <key type="filename">../public/static/img/singles/tween_icons/poll.png</key>
             <key type="filename">../public/static/img/singles/tween_icons/post.png</key>

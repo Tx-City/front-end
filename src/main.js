@@ -13,7 +13,7 @@ String.prototype.hashCode = function () {
         chr = this.charCodeAt(i);
         hash = (hash << 5) - hash + chr;
         hash |= 0; // Convert to 32bit integer
-    } 
+    }
     return hash;
 };
 Vue.use(Toast, {
@@ -30,21 +30,21 @@ Vue.use(Toast, {
     toastDefaults: {
         [TYPE.WARNING]: {
             icon: {
-                iconClass: "fas fa-exclamation-triangle",
+                iconClass: "fas fa-exclamation-triangle", // Optional
                 // iconChildren: "warning", // Optional
                 iconTag: "span", // Optional
             },
         },
         [TYPE.ERROR]: {
             icon: {
-                iconClass: "fas fa-exclamation-circle",
+                iconClass: "fas fa-exclamation-circle", // Optional
                 // iconChildren: "error", // Optional
                 iconTag: "span", // Optional
             },
         },
         [TYPE.SUCCESS]: {
             icon: {
-                iconClass: "fas fa-check",
+                iconClass: "fas fa-check", // Optional
                 // iconChildren: "check_circle", // Optional
                 iconTag: "span", // Optional
             },
