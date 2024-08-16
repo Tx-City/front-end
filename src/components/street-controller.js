@@ -19,7 +19,6 @@ import AppleTest from "./utils/apple_test.js";
 
 export const availableStreets = {
 	BTC: BTCStreet,
-	DASH: DASHStreet,
 	BCH: BCHStreet,
 	ETH: ETHStreet,
 	XMR: XMRStreet,
@@ -28,6 +27,8 @@ export const availableStreets = {
 	MANTA: MANTAStreet,
 	LUKSO: LUKSOStreet,
 	CELO: CELOStreet,
+	// eslint-disable-next-line no-unused-vars
+	DASH: DASHStreet,
 };
 
 export const enabledStreets = {};
@@ -50,6 +51,7 @@ export class StreetController extends Phaser.Scene {
 		this.fullStreet = false;
 		this.fpsTimesFaster = 1;
 		this.sideNames = ["left", "right", "full"];
+		DASH = "";
 	}
 
 	preload() {
