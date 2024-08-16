@@ -5,6 +5,7 @@ import eventHub from "../vue/eventHub.js";
 import { ETH,charConfig ,config} from "../config.js";
 import Bus from "../game-objects/bus.js";
 import Person from "../game-objects/person";
+import Popup from "../game-objects/popup";
 // import sideCtor from "../vue/SideController.vue";
 //import { Street } from "../street.js";
 export default class bridge extends Phaser.Scene {
@@ -15,6 +16,7 @@ export default class bridge extends Phaser.Scene {
     //    this.ticker = ETH.ticker;
        this.config = config;
        this.movingPeople = [];
+       this.popUps = [];
        this.charConfig = charConfig;
        this.lineManager = {};
        this.sizeVar = "g";
@@ -104,7 +106,12 @@ export default class bridge extends Phaser.Scene {
 		this[callbackName](obj);
 		return true;
 	}
+    // this.input.on('gameobjectdown', function (pointer, gameObject) {
 
+    //     fork.x = pointer.x;
+    //     fork.y = pointer.y;
+
+    // });
 
 
     createPersonOnBridge(data,startx,starty,side,rightStartPoint,myBridgPeopleData) {
@@ -117,6 +124,7 @@ export default class bridge extends Phaser.Scene {
             console.log(data.txData);
             console.log(data.txData.spriteNo);
             this.myPerson = new Person(this);
+            this.myPerson.setInteractive({useHandCursor: true});
             this.myPerson.setTexture(getSheetKey("person-"),"mailman-0.png");
             this.myPerson.x = this.myBridge.x;
             this.myPerson.y = this.myBridge.y;
@@ -127,14 +135,14 @@ export default class bridge extends Phaser.Scene {
             this.myPerson.customResetData();
 
             if (side === "left") {
-                this.myPerson.createPath([startx-40,starty-50,
+                this.myPerson.createPath([startx-70,starty-80,
                     this.myBridge.x-350,this.myBridge.y+200,this.myBridge.x-350,this.myBridge.y-150,
                     this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x+380,this.myBridge.y-150,
                     this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y+1400,
                 ])
             }else{
     
-                this.myPerson.createPath([startx+40+rightStartPoint/2,starty-50,
+                this.myPerson.createPath([startx+60+rightStartPoint/2,starty-80,
                     this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y-150,
                     this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x-350,this.myBridge.y-150,
                     this.myBridge.x-350,this.myBridge.y+200 ,this.myBridge.x-350,this.myBridge.y+1400,
@@ -142,14 +150,36 @@ export default class bridge extends Phaser.Scene {
             }
     
          
-    
-            this.myPerson.goAlongPath(mySkinSpriteNo,side,myBridgPeopleData[i].completionTime*1000);
-           
             this.myPerson.setDepth(1000);
+            this.myPerson.goAlongPath(mySkinSpriteNo,side,myBridgPeopleData[i].completionTime*1000);
+            this.movingPeople.push(this.myPerson);
+     
+
+            this.myPopUp = new Popup(
+                this,
+                this.myPerson.x,
+                this.myPerson.y,
+                false,
+                "popup",
+               myBridgPeopleData[i].address,
+                myBridgPeopleData[i].amount,
+                myBridgPeopleData[i].transactionHash,
+                myBridgPeopleData[i].type,
+              
+            );
+
+            this.myPopUp.setInvisible();
+
+            this.popUps.push(this.myPopUp);
+
+         
+         
     
         }
        
-
+      
+        this.createPopUpFunctionality();
+        this.popUpEnabled = true;
        // this.myPerson.resetData(data.txData);
    
 
@@ -158,6 +188,36 @@ export default class bridge extends Phaser.Scene {
         //this.myPerson.setLineData("status", null);
 
       
+    }
+
+    createPopUpFunctionality() {
+
+        if (this.popUpEnabled) return;
+
+        this.input.on("gameobjectup", (pointer,gameObject) => {
+
+            let p = pointer;
+            let obj = gameObject;
+            console.log(p);
+            console.log(obj);
+           
+
+            
+            for (let i = 0; i < this.movingPeople.length; i++) {
+
+              if( obj == this.movingPeople[i]){
+               console.log("found");
+               if (this.popUps[i].isVisible()) { 
+                   this.popUps[i].setInvisible();
+               } else {
+                   this.popUps[i].setVisible();
+               }
+              }
+              }
+
+
+           });
+
     }
 
     createmyBridgeBus() {
@@ -211,7 +271,16 @@ export default class bridge extends Phaser.Scene {
     calcBusHeight() {
 		return (20 / 1000000) * 195 - 115;
 	}
-    update() {}
+    update() {
+
+        for (let i = 0; i < this.movingPeople.length; i++) {
+            let person = this.movingPeople[i];
+            let popup = this.popUps[i];
+         
+            popup.x = person.x - popup.width /5;
+            popup.y = person.y  - popup.height / 3.25;
+        }
+    }
 
 
 
