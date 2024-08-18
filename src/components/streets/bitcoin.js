@@ -11,7 +11,7 @@ export default class BTCStreet extends Street {
 
 	init() {
 		this.foundBoarding = false;
-		this.busStop = toRes(1500);
+		this.busStop = toRes(200);
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 3;
 		this.decelerationArea = toRes(500);
@@ -64,7 +64,6 @@ export default class BTCStreet extends Street {
 		super.create();
 		this.createPeople();
 		this.streetCreate();
-		this.add.image(97, 800, "BRIDGESIGN");
 		this.vue.busFeeTitle = "Sat/vB";
 		(this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");

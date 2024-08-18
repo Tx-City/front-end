@@ -15,6 +15,7 @@ import Tutorial from "./vue/toasts/Tutorial";
 import Vue from "vue";
 import AppleTest from './utils/apple_test.js';
 import bridge from "./streets/bridge.js";
+import eventHub from "./vue/eventHub.js";
 
 export const availableStreets = {
 	BTC: BTCStreet,
@@ -47,7 +48,9 @@ export class StreetController extends Phaser.Scene {
 		this.fullStreet = false;
 		this.fpsTimesFaster = 1;
 		this.sideNames = ["left", "right", "full"];
-	}
+		this.bridgeSwitch = 0;
+		this.housePosAdj = 0;
+		}
 
 	preload() {
 		this.load.setPath(config.baseUrl + "static/img/");
@@ -90,9 +93,45 @@ export class StreetController extends Phaser.Scene {
 		}
 
 		if (streetsToLoad.length > 1) {
+			let isETH = false;
+			let isLUKSO = false;
+
+			if (streetsToLoad[0].street.config.ticker == availableStreets.ETH.config.ticker || streetsToLoad[1].street.config.ticker == availableStreets.ETH.config.ticker ){
+				isETH = true;
+			}
+ 
+			if (streetsToLoad[0].street.config.ticker == availableStreets.LUKSO.config.ticker || streetsToLoad[1].street.config.ticker == availableStreets.LUKSO.config.ticker ){
+				isLUKSO = true;
+			}
+			if (isETH && isLUKSO){
+
+				eventHub.$emit("BridgeAdjust");
+				availableStreets.ETH.prototype.setBusStop(1500);
+				availableStreets.ETH.prototype.adjustMyView(true);
+
+				availableStreets.LUKSO.prototype.setBusStop(1500);
+				availableStreets.LUKSO.prototype.adjustMyView(true);
+			}else{
+
+				availableStreets.ETH.prototype.setBusStop(200);
+				availableStreets.LUKSO.prototype.setBusStop(200);
+			
+			}
+			
 			this.createStreet("left", streetsToLoad[0].street);
 			this.createStreet("right", streetsToLoad[1].street);
-			this.createBridge();
+
+
+			if (isETH && isLUKSO){
+				this.createBridge();
+				this.bridgeSwitch = 1;
+				this.housePosAdj = 1500;
+				// console.log("Bridge created");
+				
+			}
+		// 	if (streetsToLoad[0].street.config.ticker == availableStreets.ETH.config.ticker || streetsToLoad[1].street.config.ticker == availableStreets.ETH.config.ticker && streetsToLoad[0].street.config.ticker == availableStreets.LUKSO.config.ticker || streetsToLoad[1].street.config.ticker == availableStreets.LUKSO.config.ticker) {
+			
+		// }
 		} else {
 			this.createStreet("full", streetsToLoad[0].street);
 		}
@@ -409,7 +448,7 @@ export class StreetController extends Phaser.Scene {
 		let scenes = this.game.scene.getScenes(true);
 		let housesLoaded = true;
 		let activeStreets = [];
-		for (let i = 0; i < scenes.length-1; i++) {
+		for (let i = 0; i < scenes.length-this.bridgeSwitch; i++) {
 			let scene = scenes[i];
 			if (scene == this || this.game.scene.isSleeping(scene)) continue;
 			activeStreets.push(scene);
@@ -439,7 +478,7 @@ export class StreetController extends Phaser.Scene {
 			let skip1Side = [];
 			for (let i = 0; i < houses.length; i++) {
 				let house = houses[i];
-				let y = houseY[house.side]+1500;
+				let y = houseY[house.side]+this.housePosAdj ;
 				if (house.type === "mall") {
 					skip1Side.push(y);
 				}

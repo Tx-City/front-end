@@ -15,11 +15,15 @@ export default class ETHStreet extends Street {
 	}
 
 	init() {
+	
+		
 		
 		this.myDummyData;
+		//this.adjustView = false;
 		this.foundBoarding = false;
-		this.busStop = toRes(1500);
-		this.myMainCameraPosition= 1300;
+		//this.busStop = toRes(200);
+		
+		
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.bridgeTx = [];
@@ -96,9 +100,11 @@ export default class ETHStreet extends Street {
 	
 	async create() {
 		super.create();
+	
 		this.addressNonces = this.config.addressNonces;
+		if(this.adjustView){this.cameras.main.scrollY =1300;}
 		this.streetCreate();
-		//this.cameras.main.scrollY =this.myMainCameraPosition;
+		if(this.adjustView){this.checkSideAddSign(this.mySide);}
 		this.vue.navigation.unshift({
 			key: "characters",
 			html: "<span class='fas fa-user-astronaut'></span>",
@@ -129,7 +135,7 @@ export default class ETHStreet extends Street {
 			(this.vue.sizeTitle = () => {
 				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
 			}),
-        this.checkSideAddSign(this.mySide);
+ 
 		this.ethBuses();
 		this.createPeople();
 		eventHub.$on(this.ticker + "-follow", (address) => {
@@ -143,6 +149,14 @@ export default class ETHStreet extends Street {
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
 	
+	}
+	
+	setBusStop(stop){
+		this.busStop = toRes(stop);
+	}
+
+	adjustMyView(mybool){
+     this.adjustView = mybool;
 	}
 
 	addBridgeTx(myBridgeTxData){

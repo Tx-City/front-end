@@ -16,7 +16,7 @@ export default class LUKSOStreet extends Street {
 
 	init() {
 		this.foundBoarding = false;
-		this.busStop = toRes(1500);
+		//this.busStop = toRes(1500);
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.bridgeTx = [];
@@ -93,9 +93,9 @@ export default class LUKSOStreet extends Street {
 	async create() {
 		super.create();
 		this.addressNonces = this.config.addressNonces;
-
+		if(this.adjustView){this.cameras.main.scrollY =1300;}
 		this.streetCreate();
-		this.checkSideAddSign(this.mySide);
+		if(this.adjustView){this.checkSideAddSign(this.mySide);}
 		// await console.log("this.streetCreate()", this.streetCreate());
 		this.vue.navigation.unshift({
 			key: "characters",
@@ -137,6 +137,14 @@ export default class LUKSOStreet extends Street {
 		})
 		if (state.address) this.followAddress(state.address);
 
+	}
+
+	setBusStop(stop){
+		this.busStop = toRes(stop);
+	}
+
+	adjustMyView(mybool){
+     this.adjustView = mybool;
 	}
 
 	addBridgeTx(myBridgeTxData){

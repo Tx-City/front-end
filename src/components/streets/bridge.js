@@ -56,11 +56,14 @@ export default class bridge extends Phaser.Scene {
     }
     preload() {}
    async create() {
+    this.createMasks();
     this.busFloors = this.add.group();
-    this.myBridge =  this.add.image(965, 500, "BRIDGE");
+    this.myBridge =  this.add.image(960, 500, "BRIDGE").setVisible(false);
     eventHub.$on("myScrollData",(mydata)=>{
-    this.cameras.main.scrollY=mydata.cameraY;});
-
+    this.cameras.main.scrollY=mydata.cameraY;
+    this.myBridge.setVisible(true);
+});
+  
     eventHub.$on("myTestPersonData",(myData)=>{
        this.myPersonData = myData.myPersonData;
       console.log("changed");
@@ -114,6 +117,26 @@ export default class bridge extends Phaser.Scene {
     // });
 
 
+    createMasks(){
+
+ 
+    this.maskRectLeft = this.add.rectangle(520, 1380, 420, 135, 0x000000).setVisible(false);
+    this.myMaskLeft = this.maskRectLeft.createGeometryMask();
+    this.myMaskLeft.invertAlpha = true;
+    this.maskRectRight = this.add.rectangle(1400, 1380, 420, 135, 0x000000).setVisible(false);
+    this.myMaskRight = this.maskRectRight.createGeometryMask();
+    this.myMaskRight.invertAlpha = true;
+
+    }
+
+    maskBridgePeopleLeft(myPerson){
+        myPerson.setMask(this.myMaskLeft);
+    }
+
+    maskBridgePeopleRight(myPerson){
+        myPerson.setMask(this.myMaskRight);
+    }
+
     createPersonOnBridge(data,startx,starty,side,rightStartPoint,myBridgPeopleData) {
 
 
@@ -135,13 +158,14 @@ export default class bridge extends Phaser.Scene {
             this.myPerson.customResetData();
 
             if (side === "left") {
+                this.maskBridgePeopleRight(this.myPerson);
                 this.myPerson.createPath([startx-70,starty-80,
                     this.myBridge.x-350,this.myBridge.y+200,this.myBridge.x-350,this.myBridge.y-150,
                     this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x+380,this.myBridge.y-150,
                     this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y+1400,
                 ])
             }else{
-    
+                this.maskBridgePeopleLeft(this.myPerson);
                 this.myPerson.createPath([startx+60+rightStartPoint/2,starty-80,
                     this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y-150,
                     this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x-350,this.myBridge.y-150,
