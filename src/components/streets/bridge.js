@@ -63,6 +63,8 @@ export default class bridge extends Phaser.Scene {
     this.cameras.main.scrollY=mydata.cameraY;
     this.myBridge.setVisible(true);
 });
+
+    eventHub.$on("scrollToBridge",()=>{ setTimeout(()=>{  this.myBridge.setVisible(true);},2500);});
   
     eventHub.$on("myTestPersonData",(myData)=>{
        this.myPersonData = myData.myPersonData;

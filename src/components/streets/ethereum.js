@@ -23,7 +23,7 @@ export default class ETHStreet extends Street {
 		this.foundBoarding = false;
 		//this.busStop = toRes(200);
 		
-		
+		this.myMainCameraPosition = 1300;
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.bridgeTx = [];
@@ -145,6 +145,7 @@ export default class ETHStreet extends Street {
 		eventHub.$on("EthBridgeTx",(bridgeTxData)=>{
 			this.addBridgeTx(bridgeTxData);
 		})
+		eventHub.$on("scrollToBridge",()=>{this.scrollToBridge()});
 		eventHub.$on("createMyStaticSearch",()=>{this.createStaticSearch()});
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
@@ -172,6 +173,16 @@ export default class ETHStreet extends Street {
 		}else{
 			this.add.image(97, 800, "BRIDGESIGN");
 		}
+	}
+
+	scrollToBridge(){
+		setInterval(() => {
+			if(this.myMainCameraPosition > 0){
+			this.myMainCameraPosition -= 10;
+			this.cameras.main.scrollY = this.myMainCameraPosition;
+		}}, 20);
+	
+
 	}
 
 	createStaticSearch(){

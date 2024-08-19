@@ -17,6 +17,7 @@ export default class LUKSOStreet extends Street {
 	init() {
 		this.foundBoarding = false;
 		//this.busStop = toRes(1500);
+		this.myMainCameraPosition = 1300;
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.bridgeTx = [];
@@ -132,6 +133,7 @@ export default class LUKSOStreet extends Street {
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
 		});
+		eventHub.$on("scrollToBridge",()=>{this.scrollToBridge()});
 		eventHub.$on("LuxoBridgeTx",(bridgeTxData)=>{
 			this.addBridgeTx(bridgeTxData);
 		})
@@ -160,6 +162,15 @@ export default class LUKSOStreet extends Street {
 		}else{
 			this.add.image(97, 800, "BRIDGESIGN");
 		}
+	}
+	scrollToBridge(){
+		setInterval(() => {
+			if(this.myMainCameraPosition > 0){
+			this.myMainCameraPosition -= 10;
+			this.cameras.main.scrollY = this.myMainCameraPosition;
+		}}, 20);
+	
+
 	}
 
 	crowdCountDisplay() {
