@@ -141,14 +141,14 @@ export class StreetController extends Phaser.Scene {
 			if (isETH && isLUKSO){
 
 				eventHub.$emit("BridgeAdjust");
-				availableStreets.ETH.prototype.setBusStop(1500);
+				availableStreets.ETH.prototype.setBusStop(1530);
 				availableStreets.ETH.prototype.adjustMyView(true);
 
 				availableStreets.LUKSO.prototype.setBusStop(1500);
 				availableStreets.LUKSO.prototype.adjustMyView(true);
 			}else{
 
-				availableStreets.ETH.prototype.setBusStop(200);
+				availableStreets.ETH.prototype.setBusStop(230);
 				availableStreets.LUKSO.prototype.setBusStop(200);
 			
 			}
