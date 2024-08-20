@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { config, enabledConfig, userSettings, moonheadNames, DASH } from "./config.js";
+import { config, enabledConfig, userSettings, moonheadNames } from "./config.js";
 import { toRes, resetNeededRooms, getSheetKey } from "./utils/";
 import { resizeAll } from "./listeners.js";
 import BTCStreet from "./streets/bitcoin.js";
