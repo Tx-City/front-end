@@ -41,14 +41,36 @@ const Bus = new Phaser.Class({
 		if (this.busHeight < 1) this.busHeight = 1;
 
 		//sprites
-		this.busTopSprite = this.scene.add.image(0, -87, getSheetKey("bus_top.png"), "bus_top.png");
-		this.busTopSprite.setTint("0x" + this.scene.config.busColor);
-		this.busBottomSprite = this.scene.add.image(0, this.busHeight - 10, getSheetKey("bus_bottom.png"), "bus_bottom.png");
+		if(this.scene.config.ticker == "ETH"){
+				this.busTopSprite = this.scene.add.image(5, -97, "btop").setScale(1.8);
+				this.busBottomSprite = this.scene.add.image(1, this.busHeight - 10, "bbottom").setScale(1.8);
+				//this.ethBusRoof = this.scene.add.image(3, this.busHeight - 10, "ethroof").setScale(1.8).setDepth(1001);
+				this.doorSprite = this.scene.add.image(52, -80, "ethdoorTop").setScale(1.8,2.2);
+				this.backDoorSprite = this.scene.add.image(52, 45 + this.busHeight - 80, "ethdoorback").setScale(1.8);
+				this.busMiddle = this.scene.add.rectangle(0, -59, 120, this.busHeight, "0x" + this.scene.config.busColor, 1);
+				this.busMiddle.setVisible(false);
+				this.text1 = this.scene.add.bitmapText(0, -91, "roboto", "" + this.getData("id"), 19);
+			
+				this.text1.setOrigin(0.5);
+				this.text2 = this.scene.add.bitmapText(0, -69, "roboto", "", 24);
+			
+				this.text2.setOrigin(0.5);
+				this.text3 = this.scene.add.bitmapText(0, -48, "roboto", "", 19);
+				
+				this.text3.setOrigin(0.5);
+				this.lightsSprite = [];
+				this.lightsSprite[0] = this.scene.add.image(1, 107 + this.busHeight - 80, getSheetKey("lights.png"), "lights.png");
+	
+		}else{
+			this.busTopSprite = this.scene.add.image(0, -87, getSheetKey("bus_top.png"), "bus_top.png");
+			this.busBottomSprite = this.scene.add.image(0, this.busHeight - 10, getSheetKey("bus_bottom.png"), "bus_bottom.png");
+			this.doorSprite = this.scene.add.image(57, -76, getSheetKey("door.png"), "door.png");
+			this.backDoorSprite = this.scene.add.image(57, 45 + this.busHeight - 80, getSheetKey("door.png"), "door.png");
+			this.busMiddle = this.scene.add.rectangle(0, -59, 120, this.busHeight, "0x" + this.scene.config.busColor, 1);
+			this.busTopSprite.setTint("0x" + this.scene.config.busColor);
+			this.doorSprite.setTint("0x" + this.scene.config.busColor);
+			this.backDoorSprite.setTint("0x" + this.scene.config.busColor);
 		this.busBottomSprite.setTint("0x" + this.scene.config.busColor);
-		this.bottomSpriteName = "busBottomSprite";
-		this.busMiddle = this.scene.add.rectangle(0, -59, 120, this.busHeight, "0x" + this.scene.config.busColor, 1);
-		this.busMiddle.originalFill = "0x" + this.scene.config.busColor;
-		this.busMiddle.setOrigin(0.5, 0);
 		this.text1 = this.scene.add.bitmapText(-1, -91, "roboto", "" + this.getData("id"), 19);
 		this.text1.setTint(this.textColor.color);
 		this.text1.originalTint = this.textColor.color;
@@ -61,6 +83,17 @@ const Bus = new Phaser.Class({
 		this.text3.setTint(this.textColor.color);
 		this.text3.originalTint = this.textColor.color;
 		this.text3.setOrigin(0.5);
+		this.lightsSprite = [];
+		this.lightsSprite[0] = this.scene.add.image(0, 107 + this.busHeight - 80, getSheetKey("lights.png"), "lights.png");
+	
+		}
+	
+		
+		this.bottomSpriteName = "busBottomSprite";
+		
+		this.busMiddle.originalFill = "0x" + this.scene.config.busColor;
+		this.busMiddle.setOrigin(0.5, 0);
+		
 
 		this.logo = this.scene.add.image(0, -35, getSheetKey("coin_logo"), this.scene.ticker.toLowerCase() + ".png");
 		this.logo.setScale(0.6);
@@ -68,31 +101,44 @@ const Bus = new Phaser.Class({
 		this.logo.originalTint = this.logoColor.color;
 		this.logo.setOrigin(0.5, 0);
 
-		this.lightsSprite = [];
-		this.lightsSprite[0] = this.scene.add.image(0, 107 + this.busHeight - 80, getSheetKey("lights.png"), "lights.png");
-		this.doorSprite = this.scene.add.image(57, -76, getSheetKey("door.png"), "door.png");
-		this.doorSprite.setTint("0x" + this.scene.config.busColor);
-		this.backDoorSprite = this.scene.add.image(57, 45 + this.busHeight - 80, getSheetKey("door.png"), "door.png");
-		this.backDoorSprite.setTint("0x" + this.scene.config.busColor);
+		
 		if (this.scene.side !== "right") {
-			this.busTopSprite.setFlipX(true);
-			this.busBottomSprite.setFlipX(true);
-			this.doorSprite.setFlipX(true);
-			this.backDoorSprite.setFlipX(true);
-			this.doorSprite.x = -57;
-			this.backDoorSprite.x = -57;
+			
+			if(this.scene.config.ticker == "ETH"){
+				this.busTopSprite.setFlipX(true);
+				this.busTopSprite.x = -3;
+				this.busBottomSprite.setFlipX(true);
+				this.busBottomSprite.x = 1;
+				this.doorSprite.setFlipX(true);
+				this.backDoorSprite.setFlipX(true);
+				this.doorSprite.x = -50;
+				this.backDoorSprite.x =-50;
+			
+
+			}else{
+				this.busTopSprite.setFlipX(true);
+				this.busBottomSprite.setFlipX(true);
+				this.doorSprite.setFlipX(true);
+				this.backDoorSprite.setFlipX(true);
+				this.doorSprite.x = -57;
+				this.backDoorSprite.x = -57;
+			}
+			
 		}
 
 		this.add(this.busMiddle);
 		this.add(this.busTopSprite);
 		this.add(this.busBottomSprite);
+		this.add(this.doorSprite);
+		this.add(this.backDoorSprite);
 		this.add(this.logo);
 		this.add(this.text1);
 		this.add(this.text2);
 		this.add(this.text3);
-		this.add(this.doorSprite);
-		this.add(this.backDoorSprite);
 		this.add(this.lightsSprite[0]);
+		if(this.ethBusRoof){
+			this.add(this.ethBusRoof);
+		}
 
 		this.tintObjects = [
 			this.busTopSprite,
@@ -105,14 +151,27 @@ const Bus = new Phaser.Class({
 			this.backDoorSprite,
 		];
 		this.fillObjects = [this.busMiddle];
-		this.busFloor = this.scene.add.rectangle(
-			this.scene.side === "right" ? this.x + toRes(53) : this.x - toRes(60),
-			this.y - toRes(100),
-			7,
-			toRes(this.busHeight + 90),
-			this.floorColor.color,
-			1
-		);
+		if(this.scene.config.ticker == "ETH"){
+			this.busFloor = this.scene.add.rectangle(
+				this.scene.side === "right" ? this.x + toRes(53) : this.x - toRes(60),
+				this.y - toRes(100),
+				7,
+				toRes(this.busHeight + 90),
+				this.floorColor.color,
+				1
+			);
+			this.busFloor.setVisible(false);
+		}else{
+			this.busFloor = this.scene.add.rectangle(
+				this.scene.side === "right" ? this.x + toRes(53) : this.x - toRes(60),
+				this.y - toRes(100),
+				7,
+				toRes(this.busHeight + 90),
+				this.floorColor.color,
+				1
+			);
+		}
+
 		this.scene.busFloors.add(this.busFloor);
 		this.busFloor.setOrigin(0, 0);
 		this.busFloor.setScale(config.resolution);
@@ -370,6 +429,31 @@ Bus.prototype.switchSide = function (newSide) {
 	if (this.entryArc) {
 		this.entryArc.destroy();
 		delete this.entryArc;
+	}
+	
+	if (newSide !== "right") {
+			
+		if(this.scene.config.ticker == "ETH"){
+			this.busTopSprite.setFlipX(true);
+			this.busTopSprite.x = -3;
+			this.busBottomSprite.setFlipX(true);
+			this.busBottomSprite.x = 1;
+			this.doorSprite.setFlipX(true);
+			this.backDoorSprite.setFlipX(true);
+			this.doorSprite.x = -50;
+			this.backDoorSprite.x =-50;
+
+		}
+		
+	}else{
+		if(this.scene.config.ticker == "ETH"){
+		this.busTopSprite.setFlipX(false);
+		this.busTopSprite.x = 5;
+		this.busBottomSprite.setFlipX(false);
+		this.doorSprite.setFlipX(false);
+		this.backDoorSprite.setFlipX(false);
+		this.doorSprite.x = 52;
+		this.backDoorSprite.x = 52;}
 	}
 };
 
@@ -662,7 +746,10 @@ Bus.prototype.moveLength = function (value, callback, duration = 1000, moveBelow
 };
 
 Bus.prototype.boardingY = function () {
-	return this.busTopSprite.getTopLeft(null, true).y + this.scene.busDoorFromTop;
+	if(this.scene.config.ticker == "ETH"){return this.busTopSprite.getTopLeft(null, true).y + this.scene.busDoorFromTop+toRes(35);}else{
+		return this.busTopSprite.getTopLeft(null, true).y + this.scene.busDoorFromTop;
+	}
+	
 };
 
 Bus.prototype.exitY = function () {

@@ -3,7 +3,7 @@ import { fds, default as i18n } from "../../i18n";
 import { add } from "date-fns";
 import io from "socket.io-client";
 
-export const getSheetKey = frame => {
+export const getSheetKey = (frame) => {
 	const theme = config.theme;
 	if (theme.frames.includes(frame)) return theme.key;
 	if (frame.includes("person-")) return "characters";
@@ -16,9 +16,9 @@ export const getSheetKey = frame => {
 		if (sheetConfig.frames.includes(frame)) return sheetConfig.key;
 	}
 	return "sheet";
-}
+};
 
-export const setClipboard = value => {
+export const setClipboard = (value) => {
 	var tempInput = document.createElement("input");
 	tempInput.style = "position: absolute; left: -1000px; top: -1000px";
 	tempInput.value = value;
@@ -30,13 +30,13 @@ export const setClipboard = value => {
 
 async function loadBlockCloudFlare(ticker, hash) {
 	if (ticker !== "ETH") return false;
-	const url = "https://cloudflare-eth.com/"
+	const url = "https://cloudflare-eth.com/";
 	const response = await fetch(url, {
 		method: "POST",
 		headers: {
-			'Content-Type': 'application/json'
+			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({ id: 1, jsonrpc: "2.0", method: "eth_getBlockByHash", params: [hash, true] })
+		body: JSON.stringify({ id: 1, jsonrpc: "2.0", method: "eth_getBlockByHash", params: [hash, true] }),
 	});
 	const text = await response.text();
 	try {
@@ -63,7 +63,7 @@ function formatCloudFlareBlock(data) {
 		height: parseInt(data.number),
 		time: parseInt(data.timestamp),
 		baseFee: parseInt(data.baseFeePerGas),
-		gl: parseInt(data.gasLimit)
+		gl: parseInt(data.gasLimit),
 	};
 	for (let i = 0; i < data.transactions.length; i++) {
 		const tx = data.transactions[i];
@@ -79,7 +79,7 @@ function formatCloudFlareBlock(data) {
 			t: parseInt(tx.value),
 			bh: tx.blockHash,
 			ty: parseInt(tx.type),
-		}
+		};
 		if (tx.maxFeePerGas) {
 			block.txFull[tx.hash].mfpg = parseInt(tx.maxFeePerGas);
 		}
@@ -101,7 +101,7 @@ export const loadBlock = async (ticker, hash, retries = 0) => {
 			});
 			setTimeout(() => {
 				resolve(false);
-			}, 5000)
+			}, 5000);
 		});
 		socket.socket.emit("fetch-block", ticker, hash);
 		return promise;
@@ -134,19 +134,22 @@ export const ethNewTxSetDepending = (tx, config) => {
 	if (addressNonces[tx.fr] !== tx.n) tx.dependingOn = true;
 };
 
-export const getHouseArray = async config => {
+export const getHouseArray = async (config) => {
 	if (config.houseArray.length) return config.houseArray;
 	try {
 		const result = await fetch(`${process.env.VUE_APP_REST_API}/static/live/houses-${config.ticker}`);
 		let houses = await result.json();
-		
+
 		if (houses) {
 			houses = houses.filter(function (obj) {
-				return obj.name !== 'donation';
+				return obj.name !== "donation";
 			});
+			console.log("houses===", houses);
+
 			houses = houses.sort((a, b) => b.priority - a.priority);
 
 			config.houseArray = houses;
+			console.log("config.houseArray===", config.houseArray);
 			return houses;
 		}
 	} catch (e) {
@@ -179,7 +182,7 @@ export const calcStatValue = (stat, customValue = false) => {
 	return value;
 };
 
-export const toRes = value => {
+export const toRes = (value) => {
 	return value * config.resolution;
 };
 
@@ -283,7 +286,7 @@ export function leaveRoom(coinConfigOrTicker, room, force = false, wsServerUrl =
 	if (room !== "blocks") {
 		// TEMP DONT ALLOW LEAVING BLOCKS
 		socket.socket.emit("leave-room", socketTicker + "-" + room);
-		socket.rooms = socket.rooms.filter(e => e !== room);
+		socket.rooms = socket.rooms.filter((e) => e !== room);
 	}
 	return socket.socket;
 }

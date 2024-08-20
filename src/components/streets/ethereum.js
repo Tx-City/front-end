@@ -104,6 +104,7 @@ export default class ETHStreet extends Street {
 		this.addressNonces = this.config.addressNonces;
 		if(this.adjustView){this.cameras.main.scrollY =1300;}
 		this.streetCreate();
+		this.createEtherPeopleAnims();
 		if(this.adjustView){this.checkSideAddSign(this.mySide);}
 		this.vue.navigation.unshift({
 			key: "characters",
@@ -256,7 +257,51 @@ export default class ETHStreet extends Street {
 
 	}
 
+     createEtherPeopleAnims() {
 
+		this.anims.create({
+            key: "walk_up_2002",
+            frames: this.anims.generateFrameNumbers("etherPeopleBack"),
+            frameRate: 6,
+            repeat: -1,
+            repeatDelay: 0,
+            callbackScope: this,
+            onComplete: function () {}
+        });
+
+		
+		this.anims.create({
+            key: "walk_down_2002",
+            frames: this.anims.generateFrameNumbers("etherPeopleFront"),
+            frameRate: 6,
+            repeat: -1,
+            repeatDelay: 0,
+            callbackScope: this,
+            onComplete: function () {}
+        });
+
+		this.anims.create({
+            key: "walk_side_2002",
+            frames: this.anims.generateFrameNumbers("etherPeopleSide"),
+            frameRate: 6,
+            repeat: -1,
+            repeatDelay: 0,
+            callbackScope: this,
+            onComplete: function () {}
+        });
+
+		
+		this.anims.create({
+            key: "stand_2002",
+            frames: this.anims.generateFrameNumbers("etherPeopleFront"),
+            frameRate: 0,
+            repeat: 0,
+            repeatDelay: 0,
+            callbackScope: this,
+            onComplete: function () {}
+        });
+
+	}
 
 	// cycleIsaMessage() {
 	// 	if (!this.isabella.isaChange) {

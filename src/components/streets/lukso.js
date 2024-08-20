@@ -38,7 +38,7 @@ export default class LUKSOStreet extends Street {
 				title: () => {
 					return "Max " + i18n.t(this.ticker.toLowerCase() + ".gp"); //TODO change to max gas price
 				},
-				format: val => {
+				format: (val) => {
 					return ethUnits(val);
 				},
 				key: "feeVal",
@@ -47,7 +47,7 @@ export default class LUKSOStreet extends Street {
 				title: () => {
 					return i18n.t(this.ticker.toLowerCase() + ".mpfpg"); //TODO change to max gas price
 				},
-				format: val => {
+				format: (val) => {
 					return ethUnits(val);
 				},
 				key: "mpfpg",
@@ -89,7 +89,7 @@ export default class LUKSOStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 
-	preload() { }
+	preload() {}
 
 	async create() {
 		super.create();
@@ -138,7 +138,6 @@ export default class LUKSOStreet extends Street {
 			this.addBridgeTx(bridgeTxData);
 		})
 		if (state.address) this.followAddress(state.address);
-
 	}
 
 	setBusStop(stop){
@@ -304,7 +303,10 @@ export default class LUKSOStreet extends Street {
 
 	addTxToBus(entry, bus, busId, instant, skipTxs, increasingNonces, toMove) {
 		if (skipTxs.hashes[entry.txData.tx]) return false;
-		if (typeof increasingNonces[entry.txData.fr] === "undefined" || increasingNonces[entry.txData.fr] !== entry.txData.n) {
+		if (
+			typeof increasingNonces[entry.txData.fr] === "undefined" ||
+			increasingNonces[entry.txData.fr] !== entry.txData.n
+		) {
 			entry.txData.dependingOn = true;
 			this.addToMove(entry, toMove);
 			return false;
@@ -442,7 +444,7 @@ export default class LUKSOStreet extends Street {
 			// activeBuses.splice(i, 1);
 		}
 
-		const notDeleted = hashArray.filter(obj => !obj.txData.deleted).length;
+		const notDeleted = hashArray.filter((obj) => !obj.txData.deleted).length;
 		const pplLeftover = this.bottomStats["mempool-size"].value - notDeleted;
 
 		if (activeBuses.length > 0 && pplLeftover > 1000 && activeBuses[0].loaded === this.config.busCapacity) {
