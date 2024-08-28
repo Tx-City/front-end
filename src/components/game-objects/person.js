@@ -27,7 +27,7 @@ Person.prototype.createPath = function(points){
 	this.myGraphics.lineStyle(0,0xffffff,0.5);
 
 	this.curve.draw(this.myGraphics,20);
-	this.setScale(.5);
+	this.setScale(toRes(.5));
 
 }
 
@@ -36,7 +36,7 @@ Person.prototype.goAlongPath = function(mySkin,side,walkTime){
 	this.scene.tweens.add({
 
 		targets:this,
-		scale:1,
+		scale:toRes(1),
 		duration:3000,
 		ease:'Linear',
 

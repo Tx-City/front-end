@@ -94,7 +94,7 @@ export default class LUKSOStreet extends Street {
 	async create() {
 		super.create();
 		this.addressNonces = this.config.addressNonces;
-		if(this.adjustView){this.cameras.main.scrollY =1300;}
+		if(this.adjustView){this.cameras.main.scrollY =toRes(1300);}
 		this.streetCreate();
 		if(this.adjustView){this.checkSideAddSign(this.mySide);}
 		// await console.log("this.streetCreate()", this.streetCreate());
@@ -157,9 +157,9 @@ export default class LUKSOStreet extends Street {
 	checkSideAddSign(side){
 
 		if(side == "left"){
-			this.add.image(toRes(865), toRes(800), "BRIDGESIGN");
+			this.add.image(toRes(865), toRes(800), "BRIDGESIGN").setScale(toRes(1));
 		}else{
-			this.add.image(toRes(97), toRes(800), "BRIDGESIGN");
+			this.add.image(toRes(97), toRes(800), "BRIDGESIGN").setScale(toRes(1));
 		}
 	}
 	scrollToBridge(){

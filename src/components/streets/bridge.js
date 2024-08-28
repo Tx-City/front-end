@@ -58,7 +58,7 @@ export default class bridge extends Phaser.Scene {
    async create() {
     this.createMasks();
     this.busFloors = this.add.group();
-    this.myBridge =  this.add.image(toRes(960), toRes(500), "BRIDGE").setVisible(false);
+    this.myBridge =  this.add.image(toRes(960), toRes(500), "BRIDGE").setVisible(false).setScale(toRes(1));
     eventHub.$on("myScrollData",(mydata)=>{
     this.cameras.main.scrollY=mydata.cameraY;
     this.myBridge.setVisible(true);
@@ -161,17 +161,17 @@ export default class bridge extends Phaser.Scene {
 
             if (side === "left") {
                 this.maskBridgePeopleRight(this.myPerson);
-                this.myPerson.createPath([startx-70,starty-80,
-                    this.myBridge.x-350,this.myBridge.y+200,this.myBridge.x-350,this.myBridge.y-150,
-                    this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x+380,this.myBridge.y-150,
-                    this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y+1400,
+                this.myPerson.createPath([startx - toRes(70), starty - toRes(80),
+                    this.myBridge.x - toRes(350), this.myBridge.y + toRes(200), this.myBridge.x - toRes(350), this.myBridge.y - toRes(150),
+                    this.myBridge.x + toRes(250), this.myBridge.y - toRes(150), this.myBridge.x + toRes(380), this.myBridge.y - toRes(150),
+                    this.myBridge.x + toRes(380), this.myBridge.y + toRes(200), this.myBridge.x + toRes(380), this.myBridge.y + toRes(1400),
                 ])
             }else{
                 this.maskBridgePeopleLeft(this.myPerson);
-                this.myPerson.createPath([startx+60+rightStartPoint/2,starty-80,
-                    this.myBridge.x+380,this.myBridge.y+200,this.myBridge.x+380,this.myBridge.y-150,
-                    this.myBridge.x+250,this.myBridge.y-150,this.myBridge.x-350,this.myBridge.y-150,
-                    this.myBridge.x-350,this.myBridge.y+200 ,this.myBridge.x-350,this.myBridge.y+1400,
+                this.myPerson.createPath([ startx + toRes(60)+ rightStartPoint / 2, starty - toRes(80),
+                    this.myBridge.x + toRes(380), this.myBridge.y + toRes(200), this.myBridge.x + toRes(380), this.myBridge.y - toRes(150),
+                    this.myBridge.x + toRes(250), this.myBridge.y - toRes(150), this.myBridge.x - toRes(350), this.myBridge.y - toRes(150),
+                    this.myBridge.x - toRes(350), this.myBridge.y + toRes(200), this.myBridge.x - toRes(350), this.myBridge.y + toRes(1400)
                 ])
             }
     
