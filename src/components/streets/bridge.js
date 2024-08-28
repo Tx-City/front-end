@@ -1,6 +1,6 @@
 //import { Street } from "../street.js";
 import Phaser from "phaser";
-import {getSheetKey } from "../utils/";
+import {getSheetKey,toRes } from "../utils/";
 import eventHub from "../vue/eventHub.js";
 import { ETH,charConfig ,config} from "../config.js";
 import Bus from "../game-objects/bus.js";
@@ -58,7 +58,7 @@ export default class bridge extends Phaser.Scene {
    async create() {
     this.createMasks();
     this.busFloors = this.add.group();
-    this.myBridge =  this.add.image(960, 500, "BRIDGE").setVisible(false);
+    this.myBridge =  this.add.image(toRes(960), toRes(500), "BRIDGE").setVisible(false);
     eventHub.$on("myScrollData",(mydata)=>{
     this.cameras.main.scrollY=mydata.cameraY;
     this.myBridge.setVisible(true);

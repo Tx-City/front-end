@@ -157,9 +157,9 @@ export default class LUKSOStreet extends Street {
 	checkSideAddSign(side){
 
 		if(side == "left"){
-			this.add.image(865, 800, "BRIDGESIGN");
+			this.add.image(toRes(865), toRes(800), "BRIDGESIGN");
 		}else{
-			this.add.image(97, 800, "BRIDGESIGN");
+			this.add.image(toRes(97), toRes(800), "BRIDGESIGN");
 		}
 	}
 	scrollToBridge(){
