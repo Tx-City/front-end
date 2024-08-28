@@ -122,10 +122,10 @@ export default class bridge extends Phaser.Scene {
     createMasks(){
 
  
-    this.maskRectLeft = this.add.rectangle(520, 1380, 420, 135, 0x000000).setVisible(false);
+    this.maskRectLeft = this.add.rectangle(toRes(520), toRes(1380), 420, toRes(135), 0x000000).setVisible(false);
     this.myMaskLeft = this.maskRectLeft.createGeometryMask();
     this.myMaskLeft.invertAlpha = true;
-    this.maskRectRight = this.add.rectangle(1400, 1380, 420, 135, 0x000000).setVisible(false);
+    this.maskRectRight = this.add.rectangle(toRes(1400), toRes(1380), 420, toRes(135), 0x000000).setVisible(false);
     this.myMaskRight = this.maskRectRight.createGeometryMask();
     this.myMaskRight.invertAlpha = true;
 
