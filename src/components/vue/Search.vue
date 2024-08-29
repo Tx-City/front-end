@@ -24,19 +24,25 @@ export default {
                 this.query = this.query.trim();
                 const type = this.getType(this.query);
                 if (type === "tx") {
+                    console.log("niTx");
                     this.searchTransaction(this.query);
                 } else if (type === "address"){
+                    console.log("niaddress");
+                    eventHub.$emit("bridgeSearchData",{searchData:this.query});
                     this.searchAddress(this.query);
                 } else if (type === "block") {
+                    console.log("niblock");
                     this.searchBlock(this.query);
                 } else {
                     //nothing to search
+                    console.log("niradaChafu");
                     this.icon = "exclamation-circle"
                 }
                 this.$nextTick(() => {
             //this.dropdownActive = false; 
             this.$emit("toggleWindowAfterSearch");
-            eventHub.$emit("createMyStaticSearch");
+            console.log("tumefungaShop");
+          //  eventHub.$emit("createMyStaticSearch");
 
         });
             }, 1);

@@ -43,6 +43,10 @@ export default class Popup extends Phaser.GameObjects.Container {
 		this.destroy();
 	}
 
+	getHash(){
+		return this.transactionHashText;
+	}
+
 	setDestroy() {
 		if (!this.timeLength) return false;
 		setTimeout(() => {
@@ -265,6 +269,13 @@ export default class Popup extends Phaser.GameObjects.Container {
 		this.popUpTexType.setOrigin(0.5);
 		this.popUpTexType.setPosition(this.popUpwidth / 2, this.popUpheight / 1.1);
 
+		this.popupexitButton = this.scene.add.sprite(this.popUpwidth / 1.1, this.popUpheight / 14, "xbut");
+		this.add(this.popupexitButton);
+		this.popupexitButton.setInteractive({useHandCursor: true}); 
+		this.popupexitButton.on('pointerdown', () => {
+			this.setInvisible();
+		});
+
 		// this.popUpTextAddress.setText([
 		// 	{ text: 'from:\n', style: { fontWeight: 'bold' } },
 		// 	{ text: this.contents, style: { fill: '#ff0000' } }
@@ -282,6 +293,7 @@ export default class Popup extends Phaser.GameObjects.Container {
 		this.Popupbackground.visible = false;
 		this.popUpTextHeader.visible = false;
 		this.popUpTextAddress.visible = false;
+		this.popupexitButton.visible = false;
 		this.popUpTexType.visible = false;
 		this.popUpTexHash.visible = false;
 		this.popUpTextAmount.visible = false;
@@ -292,6 +304,7 @@ export default class Popup extends Phaser.GameObjects.Container {
 		this.Popupbackground.visible = true;
 		this.popUpTextHeader.visible = true;
 		this.popUpTextAddress.visible = true;
+		this.popupexitButton.visible = true;
 		this.popUpTexType.visible = true;
 		this.popUpTexHash.visible = true;
 		this.popUpTextAmount.visible = true;

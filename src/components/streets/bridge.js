@@ -1,6 +1,7 @@
 //import { Street } from "../street.js";
 import Phaser from "phaser";
 import {getSheetKey,toRes } from "../utils/";
+import AppleTest from '../utils/apple_test.js';
 import eventHub from "../vue/eventHub.js";
 import { ETH,charConfig ,config} from "../config.js";
 import Bus from "../game-objects/bus.js";
@@ -20,6 +21,7 @@ export default class bridge extends Phaser.Scene {
        this.charConfig = charConfig;
        this.lineManager = {};
        this.sizeVar = "g";
+       this._appleTest = new AppleTest();
 	}
 
 	init() {
@@ -53,6 +55,8 @@ export default class bridge extends Phaser.Scene {
             return txData.feeVal;
         }
 
+        this.postFxPlugin = this._getRightFxPlugin();
+
     }
     preload() {}
    async create() {
@@ -63,6 +67,10 @@ export default class bridge extends Phaser.Scene {
     this.cameras.main.scrollY=mydata.cameraY;
     this.myBridge.setVisible(true);
 });
+    eventHub.$on("bridgeSearchData",(searchdata)=>{
+     console.log(searchdata.searchData);
+     this.checkIfBridgeTxFollow(searchdata.searchData);
+    })
 
     eventHub.$on("scrollToBridge",()=>{ setTimeout(()=>{  this.myBridge.setVisible(true);},2500);});
   
@@ -118,6 +126,55 @@ export default class bridge extends Phaser.Scene {
 
     // });
 
+    checkIfBridgeTxFollow(data) {
+
+     
+        for (let i = 0; i < this.movingPeople.length; i++) {
+
+            if( data == this.popUps[i].transactionHashText){
+             console.log("searchfound");
+             if (this.popUps[i].isVisible()) { 
+                 this.popUps[i].setInvisible();
+             } else {
+                 this.popUps[i].setVisible();
+                 window.txStreetPhaser.streetController.addToRainbow(this.movingPeople[i]);
+             }
+            }
+            }
+
+
+    }
+
+
+    _getRightFxPlugin() {
+		if (this._isABadApple()) {
+			return {
+				add: () => {
+
+
+				},
+				get: () => {
+					return [
+						{
+							setOutlineColor: (gameObject, colorCode) => {
+								this._handleTint(gameObject, colorCode);
+							}
+						}
+					]
+				},
+				remove: (gobject) => {
+
+					this._handleRemoveTint(gobject)
+				}
+			}
+		} else {
+			return this.plugins.get("rexOutlinePipeline");
+		}
+	}
+
+    _isABadApple() {
+		return this._appleTest.isABadApple();
+	}
 
     createMasks(){
 
@@ -198,9 +255,7 @@ export default class bridge extends Phaser.Scene {
 
             this.popUps.push(this.myPopUp);
 
-         
-         
-    
+
         }
        
       
@@ -224,17 +279,14 @@ export default class bridge extends Phaser.Scene {
 
             let p = pointer;
             let obj = gameObject;
-            console.log(p);
-            console.log(obj);
-           
-
-            
+ 
             for (let i = 0; i < this.movingPeople.length; i++) {
 
               if( obj == this.movingPeople[i]){
                console.log("found");
                if (this.popUps[i].isVisible()) { 
                    this.popUps[i].setInvisible();
+                   window.txStreetPhaser.streetController.removeFromRainbow(this.movingPeople[i]);
                } else {
                    this.popUps[i].setVisible();
                }
