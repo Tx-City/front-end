@@ -243,7 +243,7 @@ export default class bridge extends Phaser.Scene {
                     this.myBridge.x + toRes(380), this.myBridge.y + toRes(200), this.myBridge.x + toRes(380), this.myBridge.y - toRes(150),
                     this.myBridge.x + toRes(250), this.myBridge.y - toRes(150), this.myBridge.x - toRes(350), this.myBridge.y - toRes(150),
                     this.myBridge.x - toRes(350), this.myBridge.y + toRes(200), this.myBridge.x - toRes(350), this.myBridge.y + toRes(1400),
-                    this.myBridge.x - toRes(1800), this.myBridge.y + toRes(1400)
+                    this.myBridge.x - toRes(1800), this.myBridge.y + toRes(1350)
                 ])
             }
     
