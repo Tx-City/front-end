@@ -181,6 +181,7 @@ export default class ETHStreet extends Street {
 			if(this.myMainCameraPosition > 0){
 			this.myMainCameraPosition -= 10;
 			this.cameras.main.scrollY = this.myMainCameraPosition;
+			eventHub.$emit("myScrollData",{ cameraY: this.cameras.main.scrollY });
 		}}, 20);
 	
 

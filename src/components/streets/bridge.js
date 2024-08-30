@@ -62,6 +62,8 @@ export default class bridge extends Phaser.Scene {
    async create() {
     this.createMasks();
     this.busFloors = this.add.group();
+    this.createBridgeButton();
+    this.cameras.main.scrollY=1300
     this.myBridge =  this.add.image(toRes(960), toRes(500), "BRIDGE").setVisible(false).setScale(toRes(1));
     eventHub.$on("myScrollData",(mydata)=>{
     this.cameras.main.scrollY=mydata.cameraY;
@@ -125,6 +127,17 @@ export default class bridge extends Phaser.Scene {
     //     fork.y = pointer.y;
 
     // });
+
+    createBridgeButton(){
+
+        this.bridgeBut = this.add.image(toRes(960), toRes(1320),'bridgeBut').setScale(toRes(0.3));
+        this.bridgeBut.setInteractive({useHandCursor: true}); 
+		this.bridgeBut.on('pointerup', () => {
+            eventHub.$emit("scrollToBridge");
+            this.bridgeBut.setActive = false;
+            this.bridgeBut.setVisible(false)
+		});
+    }
 
     checkIfBridgeTxFollow(data) {
 

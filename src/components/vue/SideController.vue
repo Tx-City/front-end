@@ -16,9 +16,9 @@
 				<span class="icon is-normal"><i class="fas fa-chevron-down"></i></span>
 			</div>
 
-			<button v-if="!buttonRendered" class="button is-medium" @click="handleButtonClick">
+			<!-- <button v-if="!buttonRendered" class="button is-medium" @click="handleButtonClick">
                 BRIDGE
-            </button>
+            </button> -->
 
 			<div v-if="dropdownActive" class="coin-dropdown-container">
 				<div class="coin-dropdown box">
