@@ -270,10 +270,10 @@ export const DASH = {
 	busColor: "ffffff",
 	busCapacity: 1000000,
 	feeVar: "spb",
-	explorerTxUrl: "https://www.blockchain.com/btc/tx/",
-	explorerBlockUrl: "https://www.blockchain.com/btc/block/",
-	explorerBlocksUrl: "https://www.blockchain.com/btc/blocks",
-	explorerAddressUrl: "https://www.blockchain.com/btc/address/",
+	explorerTxUrl: "https://blockchair.com/dash/transaction/",
+	explorerBlockUrl: "https://blockchair.com/dash/block/",
+	explorerBlocksUrl: "https://blockchair.com/dash/blocks/",
+	explorerAddressUrl: "https://blockchair.com/dash/address/",
 	liveTxs: [],
 	liveBlocks: [],
 	houseArray: [],
@@ -320,7 +320,7 @@ export const DASH = {
 	stats: Vue.observable({
 		tps: {
 			title: () => {
-				return i18n.t("btc.tps");
+				return i18n.t("dash.tps");
 			},
 			decimals: 2,
 			value: false,
@@ -329,7 +329,7 @@ export const DASH = {
 		},
 		ctps: {
 			title: () => {
-				return i18n.t("btc.ctps");
+				return i18n.t("dash.ctps");
 			},
 			decimals: 2,
 			value: false,
@@ -338,7 +338,7 @@ export const DASH = {
 		},
 		"mempool-bytes": {
 			title: () => {
-				return i18n.t("btc.mempool-bytes");
+				return i18n.t("dash.mempool-bytes");
 			},
 			after: " MB",
 			divide: 1000000,
@@ -350,7 +350,7 @@ export const DASH = {
 		},
 		"mempool-size": {
 			title: () => {
-				return i18n.t("btc.mempool-size");
+				return i18n.t("dash.mempool-size");
 			},
 			signTitle: "Pending Txs",
 			decimals: 0,
@@ -360,7 +360,7 @@ export const DASH = {
 		},
 		"medianFee-usd": {
 			title: () => {
-				return i18n.t("btc.medianFee-usd");
+				return i18n.t("dash.medianFee-usd");
 			},
 			signTitle: "Median Tx Fee",
 			before: "$",
@@ -370,7 +370,7 @@ export const DASH = {
 		},
 		"medianFee-satPerByte": {
 			title: () => {
-				return i18n.t("btc.medianFee-satPerByte");
+				return i18n.t("dash.medianFee-satPerByte");
 			},
 			common: "medianFeeSat",
 			value: false,
@@ -379,10 +379,10 @@ export const DASH = {
 		},
 		bps: {
 			title: () => {
-				return i18n.t("btc.bps");
+				return i18n.t("dash.bps");
 			},
 			decimals: 0,
-			after: " vB",
+			after: " B",
 			value: false,
 			socket: true,
 			wiki: ["common/stats/bps"],
@@ -422,7 +422,7 @@ export const DASH = {
 		},
 		blockchainSize: {
 			title: () => {
-				return i18n.t("btc.blockchainSize");
+				return i18n.t("dash.blockchainSize");
 			},
 			after: " MB",
 			value: false,
@@ -477,7 +477,7 @@ export const DASH = {
 		},
 		halving: {
 			title: () => {
-				return i18n.t("btc.halving");
+				return i18n.t("dash.halving");
 			},
 			signTitle: "Halving in",
 			value: false,
