@@ -56,7 +56,9 @@ export default class DASHStreet extends Street {
 		];
 		this.bottomStats = this.config.stats;
 	}
-
+	beforeNewTx(tx) {
+		tx.char = "flash";
+	}
 	preload() {}
 
 	create() {

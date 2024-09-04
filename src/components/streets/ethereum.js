@@ -33,7 +33,7 @@ export default class ETHStreet extends Street {
 				title: () => {
 					return "Max " + i18n.t(this.ticker.toLowerCase() + ".gp"); //TODO change to max gas price
 				},
-				format: val => {
+				format: (val) => {
 					return ethUnits(val);
 				},
 				key: "feeVal",
@@ -42,7 +42,7 @@ export default class ETHStreet extends Street {
 				title: () => {
 					return i18n.t(this.ticker.toLowerCase() + ".mpfpg"); //TODO change to max gas price
 				},
-				format: val => {
+				format: (val) => {
 					return ethUnits(val);
 				},
 				key: "mpfpg",
@@ -84,7 +84,7 @@ export default class ETHStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 
-	preload() { }
+	preload() {}
 
 	async create() {
 		super.create();
@@ -92,7 +92,7 @@ export default class ETHStreet extends Street {
 
 		this.streetCreate();
 		this.createEtherPeopleAnims();
-		
+
 		this.vue.navigation.unshift({
 			key: "characters",
 			html: "<span class='fas fa-user-astronaut'></span>",
@@ -128,96 +128,49 @@ export default class ETHStreet extends Street {
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
 		});
-		if (state.address) this.followAddress(state.address);
-		this.createIsabella();
 	}
 
-     createEtherPeopleAnims() {
+	createEtherPeopleAnims() {
+		this.anims.create({
+			key: "walk_up_2002",
+			frames: this.anims.generateFrameNumbers("etherPeopleBack"),
+			frameRate: 6,
+			repeat: -1,
+			repeatDelay: 0,
+			callbackScope: this,
+			onComplete: function () {},
+		});
 
 		this.anims.create({
-            key: "walk_up_2002",
-            frames: this.anims.generateFrameNumbers("etherPeopleBack"),
-            frameRate: 6,
-            repeat: -1,
-            repeatDelay: 0,
-            callbackScope: this,
-            onComplete: function () {}
-        });
-
-		
-		this.anims.create({
-            key: "walk_down_2002",
-            frames: this.anims.generateFrameNumbers("etherPeopleFront"),
-            frameRate: 6,
-            repeat: -1,
-            repeatDelay: 0,
-            callbackScope: this,
-            onComplete: function () {}
-        });
+			key: "walk_down_2002",
+			frames: this.anims.generateFrameNumbers("etherPeopleFront"),
+			frameRate: 6,
+			repeat: -1,
+			repeatDelay: 0,
+			callbackScope: this,
+			onComplete: function () {},
+		});
 
 		this.anims.create({
-            key: "walk_side_2002",
-            frames: this.anims.generateFrameNumbers("etherPeopleSide"),
-            frameRate: 6,
-            repeat: -1,
-            repeatDelay: 0,
-            callbackScope: this,
-            onComplete: function () {}
-        });
+			key: "walk_side_2002",
+			frames: this.anims.generateFrameNumbers("etherPeopleSide"),
+			frameRate: 6,
+			repeat: -1,
+			repeatDelay: 0,
+			callbackScope: this,
+			onComplete: function () {},
+		});
 
-		
 		this.anims.create({
-            key: "stand_2002",
-            frames: this.anims.generateFrameNumbers("etherPeopleFront"),
-            frameRate: 0,
-            repeat: 0,
-            repeatDelay: 0,
-            callbackScope: this,
-            onComplete: function () {}
-        });
-
+			key: "stand_2002",
+			frames: this.anims.generateFrameNumbers("etherPeopleFront"),
+			frameRate: 0,
+			repeat: 0,
+			repeatDelay: 0,
+			callbackScope: this,
+			onComplete: function () {},
+		});
 	}
-
-	// cycleIsaMessage() {
-	// 	if (!this.isabella.isaChange) {
-	// 		this.isabella.currentMessage = 0;
-	// 		this.isabella.isaChange = setInterval(() => {
-	// 			this.cycleIsaMessage();
-	// 		}, 30000);
-	// 	}
-
-	// 	if (this.isapop) this.isapop.destroy();
-	// 	if (!this.isabella.messages[this.isabella.currentMessage]) {
-	// 		clearInterval(this.isabella.isaChange);
-	// 		delete this.isabella.isaChange;
-	// 		return;
-	// 	}
-	// 	this.isapop = new Popup(
-	// 		this,
-	// 		mirrorX(390, this.side),
-	// 		toRes(170),
-	// 		false,
-	// 		"bubble",
-	// 		this.isabella.messages[this.isabella.currentMessage++]
-	// 	);
-	// }
-
-	// createIsabella() {
-	// 	this.isabella = this.add.image(mirrorX(390, this.side), toRes(160), getSheetKey("taha-1.png"), "taha-1.png");
-	// 	this.isabella.setDisplaySize(toRes(128), toRes(128));
-	// 	this.isabella.setInteractive({ useHandCursor: true });
-	// 	this.isabella.on("pointerup", () => {
-	// 		this.cycleIsaMessage();
-	// 	});
-	// 	this.isabella.setDepth(this.personDepth);
-	// 	this.isabella.messages = [
-	// 		"Hi Anon! My name is Taha, like to add your L2 here?",
-	// 		"Are you looking to Rent a house on our street?",
-	// 		"Feel free to reach out to me on X @web3dopamine",
-	// 	];
-	// 	this.cycleIsaMessage();
-	// }
-
 
 	crowdCountDisplay() {
 		if (this.vue.stats["mempool-size"].value && this.vue.stats["mempool-size"].value > 75000) {
@@ -350,7 +303,10 @@ export default class ETHStreet extends Street {
 
 	addTxToBus(entry, bus, busId, instant, skipTxs, increasingNonces, toMove) {
 		if (skipTxs.hashes[entry.txData.tx]) return false;
-		if (typeof increasingNonces[entry.txData.fr] === "undefined" || increasingNonces[entry.txData.fr] !== entry.txData.n) {
+		if (
+			typeof increasingNonces[entry.txData.fr] === "undefined" ||
+			increasingNonces[entry.txData.fr] !== entry.txData.n
+		) {
 			entry.txData.dependingOn = true;
 			this.addToMove(entry, toMove);
 			return false;
@@ -483,7 +439,7 @@ export default class ETHStreet extends Street {
 			activeBuses.splice(i, 1);
 		}
 
-		const notDeleted = hashArray.filter(obj => !obj.txData.deleted).length;
+		const notDeleted = hashArray.filter((obj) => !obj.txData.deleted).length;
 		const pplLeftover = this.bottomStats["mempool-size"].value - notDeleted;
 
 		if (activeBuses.length > 0 && pplLeftover > 1000 && activeBuses[0].loaded === this.config.busCapacity) {

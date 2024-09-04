@@ -11,7 +11,7 @@ import {
 	getHouseArray,
 	shortHash,
 	resetNeededRooms,
-	getSheetKey
+	getSheetKey,
 } from "./utils/";
 import median from "./utils/median";
 import Person from "./game-objects/person.js";
@@ -21,8 +21,8 @@ import Stoplight from "./game-objects/stoplight.js";
 import sideCtor from "./vue/SideController.vue";
 import { fds, default as i18n } from "../i18n";
 import Notification from "./vue/toasts/Notification";
-import AppleTest from './utils/apple_test.js';
-
+import AppleTest from "./utils/apple_test.js";
+import eventHub from "./vue/eventHub.js";
 
 //Main street class which all streets inherit from (e.g. btc, eth, etc)
 export class Street extends Phaser.Scene {
@@ -62,8 +62,9 @@ export class Street extends Phaser.Scene {
 		this.charConfig = charConfig;
 
 		this._appleTest = new AppleTest();
-
 	}
+
+	preload() {}
 
 	//Phaser scene function
 	async create() {
@@ -86,24 +87,20 @@ export class Street extends Phaser.Scene {
 	_getRightFxPlugin() {
 		if (this._isABadApple()) {
 			return {
-				add: () => {
-
-
-				},
+				add: () => {},
 				get: () => {
 					return [
 						{
 							setOutlineColor: (gameObject, colorCode) => {
 								this._handleTint(gameObject, colorCode);
-							}
-						}
-					]
+							},
+						},
+					];
 				},
 				remove: (gobject) => {
-
-					this._handleRemoveTint(gobject)
-				}
-			}
+					this._handleRemoveTint(gobject);
+				},
+			};
 		} else {
 			return this.plugins.get("rexOutlinePipeline");
 		}
@@ -112,7 +109,6 @@ export class Street extends Phaser.Scene {
 	_isABadApple() {
 		return this._appleTest.isABadApple();
 	}
-
 
 	_handleTint(gameObject, colorCode) {
 		if (gameObject.type == "Sprite" || gameObject.type == "Image") {
@@ -132,18 +128,15 @@ export class Street extends Phaser.Scene {
 							}
 						}
 					}
-
 				} else if (obj.type == "BitmapText") {
-
 					if (obj.setTint) {
 						obj.oldTint = obj.tint;
 						obj.setTint(colorCode);
 					}
 				}
-			})
+			});
 		}
 	}
-
 
 	_handleRemoveTint(gameObject) {
 		if (gameObject.type == "Sprite" || gameObject.type == "Image") {
@@ -159,14 +152,13 @@ export class Street extends Phaser.Scene {
 							this._restoreOriginalTint(obj);
 						}
 					}
-
 				} else if (obj.type == "BitmapText") {
 					if (obj.clearTint) {
 						obj.clearTint();
 						this._restoreOriginalTint(obj);
 					}
 				}
-			})
+			});
 		}
 	}
 
@@ -178,7 +170,7 @@ export class Street extends Phaser.Scene {
 		let frames = [];
 
 		for (const ticker in enabledConfig) {
-			let frame = ticker.toLowerCase() + ".png"
+			let frame = ticker.toLowerCase() + ".png";
 			frames.push(frame);
 		}
 
@@ -426,7 +418,7 @@ export class Street extends Phaser.Scene {
 
 	busesLoaded() {
 		if (!this.buses.children.entries.length) return false;
-		console.log("this.buses.children.entries", this.buses.children.entries)
+		console.log("this.buses.children.entries", this.buses.children.entries);
 		for (let i = 0; i < this.buses.children.entries.length; i++) {
 			let bus = this.buses.children.entries[i];
 			if (bus.getData("leaving")) continue;
@@ -1036,7 +1028,6 @@ export class Street extends Phaser.Scene {
 		});
 
 		this.blockFactory.on("addBlock", (data, sendNotification) => {
-
 			this.vue.emitBlock(data);
 			if (
 				!document.hasFocus() &&
@@ -1138,6 +1129,7 @@ export class Street extends Phaser.Scene {
 			if (type == "person") {
 				let txData = gameObject.getLineData("txData");
 				this.vue.txWindow(txData);
+				console.log("txData", txData);
 			}
 		});
 		this.input.on("gameobjectup", (pointer, gameObject) => {
@@ -1160,27 +1152,30 @@ export class Street extends Phaser.Scene {
 			} else if (type == "mweb") {
 				let height = gameObject.parentContainer.getData("id");
 				let key = "mweb-block-" + height;
-				let components = [{
-					name: "Block",
-					key: key,
-					props: {
-						data: height,
-						windowKey: key,
-						mwebOnly: true
+				let components = [
+					{
+						name: "Block",
+						key: key,
+						props: {
+							data: height,
+							windowKey: key,
+							mwebOnly: true,
+						},
 					},
-				}, {
-					name: "Spacer",
-					props: {
-						size: "2rem",
-					}
-				},
-				{
-					name: "LoadWiki",
-					key: "LTC/mweb",
-					props: {
-						path: "LTC/mweb",
-					}
-				}];
+					{
+						name: "Spacer",
+						props: {
+							size: "2rem",
+						},
+					},
+					{
+						name: "LoadWiki",
+						key: "LTC/mweb",
+						props: {
+							path: "LTC/mweb",
+						},
+					},
+				];
 
 				let data = {
 					key: "LTCmweb" + height,
@@ -1193,14 +1188,12 @@ export class Street extends Phaser.Scene {
 				};
 				this.vue.createWindowData(data);
 
-
-
-
 				// this.vue.wikiWindow("MWEB", ["LTC/mweb"]);
 			} else if (type == "popup") {
 				if (gameObject.person) {
 					let txData = gameObject.person.getLineData("txData");
 					this.vue.txWindow(txData);
+					console.log("txData", txData);
 				}
 				gameObject.bye();
 			}
@@ -1293,9 +1286,7 @@ export class Street extends Phaser.Scene {
 	async getPendingTxs(initial = true) {
 		if (!this.vue.isConnected && !initial) return false;
 		try {
-			let response = await fetch(
-				`${process.env.VUE_APP_REST_API}/static/live/pendingTxs-${this.ticker}`
-			);
+			let response = await fetch(`${process.env.VUE_APP_REST_API}/static/live/pendingTxs-${this.ticker}`);
 			let json = await response.json();
 
 			if (json) {
@@ -1337,7 +1328,12 @@ export class Street extends Phaser.Scene {
 			callback: function () {
 				let available = this.countAvailablePeople();
 				if (available < 1000) {
-					this.people.createMultiple({ key: getSheetKey("person-"), quantity: 1000, active: false, visible: false });
+					this.people.createMultiple({
+						key: getSheetKey("person-"),
+						quantity: 1000,
+						active: false,
+						visible: false,
+					});
 					this.people.setDepth(this.personDepth);
 				}
 			},
@@ -1456,7 +1452,7 @@ export class Street extends Phaser.Scene {
 	}
 
 	loadNFTSprite(sprite, collection, id, pixelArt = false) {
-		let key = collection + '-' + id;
+		let key = collection + "-" + id;
 		if (this.textures.exists(key)) {
 			if (sprite) sprite.setTexture(key);
 			return sprite;
@@ -1464,8 +1460,7 @@ export class Street extends Phaser.Scene {
 		if (sprite) sprite.setVisible(false);
 		this.load.image(key, process.env.VUE_APP_STORAGE_URL + collection + "/" + id);
 		this.load.once(Phaser.Loader.Events.COMPLETE, () => {
-			if (pixelArt)
-				this.textures.list[key].setFilter(Phaser.Textures.FilterMode.NEAREST);
+			if (pixelArt) this.textures.list[key].setFilter(Phaser.Textures.FilterMode.NEAREST);
 			if (sprite) {
 				sprite.setTexture(key);
 				sprite.setVisible(true);
@@ -1476,7 +1471,6 @@ export class Street extends Phaser.Scene {
 
 		return sprite;
 	}
-
 
 	newTx(data, status = "new", addPerson = true, addToVue = true) {
 		//TODO, when no fee, set it to average
@@ -1507,9 +1501,9 @@ export class Street extends Phaser.Scene {
 		}
 
 		if (data.char && userSettings.globalSettings.nfts.value) {
-			const charSplit = data.char.split("-")
+			const charSplit = data.char.split("-");
 			const potentialChar = charSplit.length > 1 ? charSplit.slice(0, -1).join("-") : data.char;
-			
+
 			if (this.charConfig[potentialChar] && charSplit[charSplit.length - 1]) {
 				data.char = {
 					sheet: potentialChar,
@@ -1519,9 +1513,7 @@ export class Street extends Phaser.Scene {
 
 				console.log("listing out  data.char.texture" + data.char.texture);
 				this.loadNFTSprite(false, data.char.sheet, data.char.texture, this.charConfig[potentialChar].pixelArt);
-			}
-			
-			else if (!this?.textures?.list?.characters?.frames?.[potentialChar + "-0.png"]) {
+			} else if (!this?.textures?.list?.characters?.frames?.[potentialChar + "-0.png"]) {
 				//check if texture exists on default sheet
 				console.log("deleted " + data.char);
 				delete data.char;
@@ -1529,7 +1521,10 @@ export class Street extends Phaser.Scene {
 		}
 		data.charType = data?.char?.sheet || "default";
 
-		data.spriteNo = data.char && userSettings.globalSettings.nfts.value ? data.char : window.txStreetPhaser.streetController.generateSpriteNo();
+		data.spriteNo =
+			data.char && userSettings.globalSettings.nfts.value
+				? data.char
+				: window.txStreetPhaser.streetController.generateSpriteNo();
 		data.random = Math.random();
 		data.maxScale = this.setMaxScalePerson(false, modSize);
 		// //first create entry in line manager
@@ -1739,6 +1734,7 @@ export class Street extends Phaser.Scene {
 		this.cameras.main.setScroll(xPos, yPos);
 		if (Math.abs(amount) > 4) this.checkView();
 		this.events.emit("scrollY", { amount: amount, reset: reset });
+		eventHub.$emit("myScrollData", { cameraY: yPos, bottom: yPos + newHeight });
 	}
 
 	scrollTileSprites(amount, reset) {
@@ -1871,8 +1867,8 @@ export class Street extends Phaser.Scene {
 						if (!this.crowd.positions[i]) {
 							let sourceTexture =
 								window.txStreetPhaser.streetController.crowdTextures[
-								(i + (this.side === "right" ? 1 : 0)) %
-								window.txStreetPhaser.streetController.crowdTextures.length
+									(i + (this.side === "right" ? 1 : 0)) %
+										window.txStreetPhaser.streetController.crowdTextures.length
 								];
 							this.crowd.positions[i] = this.add.renderTexture(
 								0,
@@ -1939,12 +1935,11 @@ export class Street extends Phaser.Scene {
 	}
 
 	getBoardingY() {
-		if(this.ticker === "ETH") {
+		if (this.ticker === "ETH") {
 			return this.boarding.y + 100;
-		}else{
+		} else {
 			return this.boarding.y;
 		}
-		
 	}
 
 	resetInLineCount() {
@@ -2374,7 +2369,12 @@ export class Street extends Phaser.Scene {
 		this.crowd.leftPole.setTint(0x1f1413);
 		this.crowd.add(this.crowd.leftPole);
 
-		this.crowd.rightPole = this.add.image(rWidth * scale, toRes(-17), getSheetKey("sign_pole.png"), "sign_pole.png");
+		this.crowd.rightPole = this.add.image(
+			rWidth * scale,
+			toRes(-17),
+			getSheetKey("sign_pole.png"),
+			"sign_pole.png"
+		);
 		this.crowd.rightPole.setFlipX(true);
 		this.crowd.rightPole.setScale(toRes(0.6));
 		this.crowd.rightPole.setTint(0x1f1413);
@@ -2708,7 +2708,10 @@ export class Street extends Phaser.Scene {
 					house.overlay.setFlipX(flipHouse);
 				}
 				if (house.ethPost) {
-					house.ethPost.setPosition(houseX + (toRes(115) * (this.side === "right" ? -1 : 1)), houseY - toRes(28));
+					house.ethPost.setPosition(
+						houseX + toRes(115) * (this.side === "right" ? -1 : 1),
+						houseY - toRes(28)
+					);
 				}
 			}
 		}
@@ -2718,9 +2721,7 @@ export class Street extends Phaser.Scene {
 	createHouse(houseObj) {
 		let path =
 			// (config.locale === "en" ? "" : config.locale + "/") +
-			this.config.ticker +
-			"/" +
-			houseObj.name;
+			this.config.ticker + "/" + houseObj.name;
 		let houseComponents = [];
 		if (this.housePlans[houseObj.name].dataSources && this.housePlans[houseObj.name].dataSources.includes("wiki")) {
 			houseComponents.push({
@@ -2736,12 +2737,21 @@ export class Street extends Phaser.Scene {
 			houseComponents.push({
 				name: "LoadHtml",
 				props: {
-					url: process.env.VUE_APP_STORAGE_URL + "info/houses/" + this.ticker + "_" + houseObj.name + "/index.html",
+					url:
+						process.env.VUE_APP_STORAGE_URL +
+						"info/houses/" +
+						this.ticker +
+						"_" +
+						houseObj.name +
+						"/index.html",
 				},
 			});
 		}
 
-		if (this.housePlans[houseObj.name].dataSources && this.housePlans[houseObj.name].dataSources.includes("inner")) {
+		if (
+			this.housePlans[houseObj.name].dataSources &&
+			this.housePlans[houseObj.name].dataSources.includes("inner")
+		) {
 			houseComponents.push({
 				name: "LoadHouse",
 				props: {
@@ -2776,7 +2786,9 @@ export class Street extends Phaser.Scene {
 				height: "45rem",
 			},
 		});
-		let doorColor = Phaser.Display.Color.HexStringToColor(this.housePlans[houseObj.name].colors[0]).lighten(30).color;
+		let doorColor = Phaser.Display.Color.HexStringToColor(this.housePlans[houseObj.name].colors[0]).lighten(
+			30
+		).color;
 
 		let doorWidth = houseObj.type === "house" ? 110 : 335;
 		let doorHeight = houseObj.type === "house" ? 41 : 73;
@@ -2788,7 +2800,10 @@ export class Street extends Phaser.Scene {
 		this.doors.add(door);
 
 		let logo = this.add.image(0, 0, getSheetKey("coin_logo"), houseObj.name + ".png", 40, 40);
-		if (typeof this.housePlans[houseObj.name].colors[1] !== "undefined" && this.housePlans[houseObj.name].colors[1]) {
+		if (
+			typeof this.housePlans[houseObj.name].colors[1] !== "undefined" &&
+			this.housePlans[houseObj.name].colors[1]
+		) {
 			if (this.housePlans[houseObj.name].colors[1] === "lighten") {
 				logo.setTint(doorColor);
 			} else {
@@ -3015,7 +3030,12 @@ export class Street extends Phaser.Scene {
 			let count = peopleWaiting.length;
 			if (count > 0) {
 				let person = Phaser.Utils.Array.GetRandom(peopleWaiting);
-				if (typeof person !== "undefined" && person && typeof person.anims !== "undefined" && person.animsEnabled)
+				if (
+					typeof person !== "undefined" &&
+					person &&
+					typeof person.anims !== "undefined" &&
+					person.animsEnabled
+				)
 					person.anims.nextFrame();
 
 				let nextDelay = msPerFrame / count;
@@ -3315,7 +3335,7 @@ export class Street extends Phaser.Scene {
 					targets: particle,
 					x: particle.x + Math.floor(Math.random() * maxX) + minX,
 					ease: "Sine.easeInOut",
-					duration: (Math.floor(Math.random() * MaxDur) + minDur),
+					duration: Math.floor(Math.random() * MaxDur) + minDur,
 					yoyo: true,
 					loop: -1,
 				},

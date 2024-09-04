@@ -101,7 +101,7 @@ export default class XMRStreet extends Street {
 			this.createIsabella();
 			this.createClouds();
 		});
-		this.events.on("checkView", obj => {
+		this.events.on("checkView", (obj) => {
 			let topMeasure = obj.cameraY - toRes(400);
 			let bottomMeasure = obj.bottom + toRes(300);
 			for (let i = 0; i < this.clouds.children.entries.length; i++) {
@@ -139,7 +139,7 @@ export default class XMRStreet extends Street {
 
 	destroyCloud(cloud) {
 		cloud.tween.remove();
-		cloud.each(circle => {
+		cloud.each((circle) => {
 			if (circle.tween) circle.tween.remove();
 		});
 		clearTimeout(cloud.timeout);
@@ -206,7 +206,7 @@ export default class XMRStreet extends Street {
 
 		let colors = [0xecedef];
 		let color = depthAdd % 2 == 0 ? 0xffffff : colors[Math.floor(Math.random() * colors.length)];
-		cloud.each(circle => {
+		cloud.each((circle) => {
 			if (!circle.setTint) return;
 			circle.tween = this.add.tween({
 				targets: circle,
@@ -306,7 +306,12 @@ export default class XMRStreet extends Street {
 	}
 
 	createIsabella() {
-		this.isabella = this.add.image(mirrorX(700, this.side), toRes(160), getSheetKey("isabella-0.png"), "isabella-0.png");
+		this.isabella = this.add.image(
+			mirrorX(700, this.side),
+			toRes(160),
+			getSheetKey("isabella-0.png"),
+			"isabella-0.png"
+		);
 		this.isabella.setDisplaySize(toRes(64), toRes(64));
 		this.isabella.setInteractive({ useHandCursor: true });
 		this.isabella.on("pointerup", () => {
@@ -401,7 +406,8 @@ export default class XMRStreet extends Street {
 				halo.x = person.x;
 				halo.y = person.y - person.displayHeight / 2;
 				let toPass = mirrorX(256, this.side);
-				let passed = ((person.x < toPass && this.side === "right") || (person.x > toPass && this.side !== "right"));
+				let passed =
+					(person.x < toPass && this.side === "right") || (person.x > toPass && this.side !== "right");
 				if (passed && !person.halo.deleting) {
 					person.halo.deleting = true;
 					this.add.tween({
