@@ -63,7 +63,7 @@ export default class DASHStreet extends Street {
 		super.create();
 		this.createPeople();
 		this.streetCreate();
-		this.vue.busFeeTitle = "Sat/B";
+		this.vue.busFeeTitle = "Duff/B";
 		(this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
 		}),
