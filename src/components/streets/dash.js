@@ -13,7 +13,7 @@ export default class DASHStreet extends Street {
 		this.foundBoarding = false;
 		this.busStop = toRes(200);
 		this.busDoorFromTop = toRes(42);
-		this.personPixelsPerSecond = 3;
+		this.personPixelsPerSecond = 10;
 		this.decelerationArea = toRes(500);
 		this.sceneHeight = toRes(10000);
 		this.alwaysGetPendingAfterBlock = true;
