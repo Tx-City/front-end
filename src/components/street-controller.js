@@ -133,6 +133,26 @@ export class StreetController extends Phaser.Scene {
 			let isETH = false;
 			let isLUKSO = false;
 
+				let leftStreet = this.getSideStreet("left");
+				let rightStreet = this.getSideStreet("right");
+
+			if (leftStreet.ticker == availableStreets.ETH.config.ticker){
+				availableStreets.ETH.prototype.setSide("left");
+			}
+	
+			if (rightStreet.ticker == availableStreets.ETH.config.ticker){
+				availableStreets.ETH.prototype.setSide("right");
+			}
+	
+			if (leftStreet.ticker == availableStreets.LUKSO.config.ticker){
+				availableStreets.LUKSO.prototype.setSide("left");
+			}
+	
+			if (rightStreet.ticker == availableStreets.LUKSO.config.ticker){
+				availableStreets.LUKSO.prototype.setSide("right");
+			}
+	
+
 			if (streetsToLoad[0].street.config.ticker == availableStreets.ETH.config.ticker || streetsToLoad[1].street.config.ticker == availableStreets.ETH.config.ticker ){
 				isETH = true;
 			}
@@ -349,6 +369,24 @@ export class StreetController extends Phaser.Scene {
 
 		console.log("***LEFT****",leftStreet.ticker);
 		console.log("***RIGHT****",rightStreet.ticker);
+
+		if (leftStreet.ticker == availableStreets.ETH.config.ticker){
+			availableStreets.ETH.prototype.setSide("left");
+		}
+
+		if (rightStreet.ticker == availableStreets.ETH.config.ticker){
+			availableStreets.ETH.prototype.setSide("right");
+		}
+
+		if (leftStreet.ticker == availableStreets.LUKSO.config.ticker){
+			availableStreets.LUKSO.prototype.setSide("left");
+		}
+
+		if (rightStreet.ticker == availableStreets.LUKSO.config.ticker){
+			availableStreets.LUKSO.prototype.setSide("right");
+		}
+
+
 
 		if (leftStreet.ticker == availableStreets.ETH.config.ticker || rightStreet.ticker == availableStreets.ETH.config.ticker ){
 			isETH = true;

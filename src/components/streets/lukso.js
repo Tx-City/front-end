@@ -134,7 +134,8 @@ export default class LUKSOStreet extends Street {
 			this.followAddress(address);
 		});
 		eventHub.$on("scrollToBridge",()=>{this.scrollToBridge()});
-		eventHub.$on("stopSignAdjustwithBridge",()=>{this.adjustBusHeight = true;})
+		eventHub.$on("stopSignAdjustwithBridge",()=>{this.adjustBusHeight = true;this.checkSideAddSign(this.mysetSide);})
+		eventHub.$on("stopSignAdjust",()=>{	if(this.myBridgeRoadSign){this.myBridgeRoadSign.destroy();}})
 		eventHub.$on("LuxoBridgeTx",(bridgeTxData)=>{
 			this.addBridgeTx(bridgeTxData);
 		})
@@ -158,13 +159,20 @@ export default class LUKSOStreet extends Street {
 		this.bridgeTx.push(myBridgeTxData);
 		console.log(this.bridgeTx);
 	}
+	setSide(side){
+		this.mysetSide = side;
+	}
 
 	checkSideAddSign(side){
 
+		console.log("###############",side)
+
+		if(this.myBridgeRoadSign){this.myBridgeRoadSign.destroy();}
+
 		if(side == "left"){
-			this.add.image(toRes(865), toRes(800), "BRIDGESIGN").setScale(toRes(1));
+		this.myBridgeRoadSign = this.add.image(toRes(865), toRes(800), "BRIDGESIGN").setScale(toRes(1));
 		}else{
-			this.add.image(toRes(97), toRes(800), "BRIDGESIGN").setScale(toRes(1));
+		this.myBridgeRoadSign = this.add.image(toRes(97), toRes(800), "BRIDGESIGN").setScale(toRes(1));
 		}
 	}
 	scrollToBridge(){

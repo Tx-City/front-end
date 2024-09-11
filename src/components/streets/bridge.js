@@ -134,6 +134,7 @@ export default class bridge extends Phaser.Scene {
         this.bridgeBut.setInteractive({useHandCursor: true}); 
 		this.bridgeBut.on('pointerup', () => {
             eventHub.$emit("scrollToBridge");
+            this.myBridge.setVisible(true);
             this.bridgeBut.setActive = false;
             this.bridgeBut.setVisible(false)
 		});

@@ -101,7 +101,7 @@ export default class ETHStreet extends Street {
 	
 	async create() {
 		super.create();
-	
+console.log(this.mySide)
 		this.addressNonces = this.config.addressNonces;
 		if(this.adjustView){this.cameras.main.scrollY =toRes(1300);}
 		if(this.resetView){	this.cameras.main.scrollY =-toRes(1300)}
@@ -150,8 +150,8 @@ export default class ETHStreet extends Street {
 		})
 		eventHub.$on("scrollToBridge",()=>{this.scrollToBridge()});
 		eventHub.$on("createMyStaticSearch",()=>{this.createStaticSearch()});
-		eventHub.$on("stopSignAdjustwithBridge",()=>{this.adjustBusHeight = true;})
-		//eventHub.$on("stopSignAdjust",()=>{this.adjustCrowdPos = false;})
+		eventHub.$on("stopSignAdjustwithBridge",()=>{this.adjustBusHeight = true;this.checkSideAddSign(this.mysetSide);})
+		eventHub.$on("stopSignAdjust",()=>{	if(this.myBridgeRoadSign){this.myBridgeRoadSign.destroy();}})
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
 	
@@ -183,12 +183,16 @@ export default class ETHStreet extends Street {
 		console.log(this.bridgeTx);
 	}
 
+	setSide(side){
+		this.mysetSide = side;
+	}
 	checkSideAddSign(side){
-
+		console.log("###############",side)
+		if(this.myBridgeRoadSign){this.myBridgeRoadSign.destroy();}
 		if(side == "left"){
-			this.add.image(toRes(865),toRes(800), "BRIDGESIGN").setScale(toRes(1));
+			this.myBridgeRoadSign =	this.add.image(toRes(865),toRes(800), "BRIDGESIGN").setScale(toRes(1));
 		}else{
-			this.add.image(toRes(97), toRes(800), "BRIDGESIGN").setScale(toRes(1));
+			this.myBridgeRoadSign = this.add.image(toRes(97), toRes(800), "BRIDGESIGN").setScale(toRes(1));
 		}
 	}
 
