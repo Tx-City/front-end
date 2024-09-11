@@ -1,4 +1,5 @@
 import { Street } from "../street.js";
+import Phaser from "phaser";
 // import { toRes, ethNewTxSetDepending } from "../utils/";
 import { toRes, ethNewTxSetDepending,getSheetKey } from "../utils/";
 import { ETH, ethUnits } from "../config.js";
@@ -22,7 +23,7 @@ export default class ETHStreet extends Street {
 		//this.adjustView = false;
 		this.foundBoarding = false;
 		//this.busStop = toRes(200);
-		
+		this.onceAdjust = false;
 		this.myMainCameraPosition = 1300;
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
@@ -103,6 +104,7 @@ export default class ETHStreet extends Street {
 	
 		this.addressNonces = this.config.addressNonces;
 		if(this.adjustView){this.cameras.main.scrollY =toRes(1300);}
+		if(this.resetView){	this.cameras.main.scrollY =-toRes(1300)}
 		this.streetCreate();
 		this.createEtherPeopleAnims();
 		if(this.adjustView){this.checkSideAddSign(this.mySide);}
@@ -148,6 +150,8 @@ export default class ETHStreet extends Street {
 		})
 		eventHub.$on("scrollToBridge",()=>{this.scrollToBridge()});
 		eventHub.$on("createMyStaticSearch",()=>{this.createStaticSearch()});
+		eventHub.$on("stopSignAdjustwithBridge",()=>{this.adjustBusHeight = true;})
+		//eventHub.$on("stopSignAdjust",()=>{this.adjustCrowdPos = false;})
 		if (state.address) this.followAddress(state.address);
 		this.createIsabella();
 	
@@ -158,7 +162,19 @@ export default class ETHStreet extends Street {
 	}
 
 	adjustMyView(mybool){
-     this.adjustView = mybool;
+     this.adjustView = mybool; 
+	
+		
+	}
+
+	setAdjustCrowdPos(mycrowdBool)
+	{
+ this.adjustCrowdPos = mycrowdBool
+ console.log('******************TUMEPATA NI****** ',mycrowdBool);
+	}
+
+	setView(view){
+		this.resetView = view;
 	}
 
 	addBridgeTx(myBridgeTxData){
@@ -186,6 +202,83 @@ export default class ETHStreet extends Street {
 	
 
 	}
+
+	generateLine(value) {
+
+		setTimeout(() => {
+			
+	
+		let boardingSide = this.side == "left" || this.side == "full" ? this.curbX - 1 : this.curbX + 1;
+		let oppositeSide =
+			this.side == "left" || this.side == "full" ? this.walkingLane + toRes(32) : this.walkingLane - toRes(32);
+		let xSeperator = toRes(17);
+		let ySeperator = toRes(17);
+		let row = 0;
+		let column = 0;
+
+		this.lineStructure = [];
+		for (let i = 0; i < value; i++) {
+			let addedX = column * xSeperator + Math.random() * toRes(20);
+			let addedY = row * ySeperator + Math.random() * toRes(20);
+			let x = Math.round(boardingSide + (this.side == "left" || this.side == "full" ? -addedX : addedX));
+			let	y = Math.round(this.busStop + addedY);
+			this.lineStructure.push([x, y]);
+			// if(this.adjustCrowdPos){
+			// 	this.lineStructure.push([x, y+toRes(100)]);
+			// 	// this.onceAdjust = true;
+			// //	console.log("##################adjustTrue#####################")
+			// }
+			// if(this.adjustCrowdPos === false){
+
+			// 	this.lineStructure.push([x, y+toRes(100)]);
+			// 	// if(this.onceAdjust){
+			// 	// 	this.lineStructure.push([x, y-toRes(1300)]);
+			// 	// 	this.onceAdjust = false;
+			// 	// }else{
+			// 	// 	this.lineStructure.push([x, y]);
+			// 	// }
+			// 	//console.log("##################adjustFalse#####################")
+				
+			// }
+			// if(this.adjustCrowdPos === undefined){
+		
+			// 	//console.log("##################UNDEFFFF#####################")
+			// }
+
+		
+			column++;
+			if (
+				column >= this.peoplePerRow(row) ||
+				((this.side == "left" || this.side == "full") && x < oppositeSide) ||
+				(this.side == "right" && x > oppositeSide)
+			) {
+				row++;
+				column = 0;
+			}
+		}
+	}, 30);
+	}
+
+	setCrowdY(y) {
+
+		if (y === this.crowd.rawY) return false;
+		if (y < this.crowd.rawY) {
+			this.crowd.changeLowerCount++;
+			if (this.crowd.changeLowerCount < 10) return false;
+		}
+		this.crowd.changeLowerCount = 0;
+		this.crowd.y = y + toRes(100);
+		this.crowd.rawY = y;
+		if (this.crowd.y < toRes(1000)) this.crowd.y = toRes(1000);
+		this.crowd.y = Math.ceil(this.crowd.y / toRes(50)) * toRes(50);
+		this.crowdSign.y = this.crowd.y - toRes(30);
+		this.crowdSign.x = this.crowd.x;
+		this.checkView();
+
+
+		
+
+		}
 
 	createStaticSearch(){
 
@@ -538,6 +631,17 @@ export default class ETHStreet extends Street {
 			if (bus.tx.length > 0) nonEmptyBuses.push(bus.getData("id"));
 		}
 
+		if(this.adjustBusHeight){
+
+			let mybuses = this.activeBuses(false);
+
+			for (let i = 0; i < mybuses.length; i++) {
+
+				mybuses[i].y += toRes(1300);
+			}
+			this.adjustBusHeight = false;
+
+		}
 		let activeBuses = this.activeBuses();
 
 		for (let i = 0; i < this.config.userSettings.maxBuses.value; i++) {
@@ -549,6 +653,8 @@ export default class ETHStreet extends Street {
 			}
 			bus.baseFee = this.calcBusBaseFee(activeBuses, i);
 			bus.feeText = ethUnits(bus.baseFee, true, true);
+
+			
 			// to enable visualistion of bridge transaction currently a test and should be more dyanmic if block has bridge transaction
 			if (this.bridgeTx.length >= 1){
 				bus.bridgTxs.push(...this.bridgeTx)

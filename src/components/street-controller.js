@@ -297,7 +297,11 @@ export class StreetController extends Phaser.Scene {
 
 	createStreet(side, coin) {
 		//dont add if its already on one side
+		console.log(side)
+	//	this.checkETHLUKSOonSwitch();
 		if (this.getCoinStreet(coin)) {
+		
+			console.log("jacob two two ")
 			this.wakeStreet(side, coin);
 			return false;
 		}
@@ -340,8 +344,11 @@ export class StreetController extends Phaser.Scene {
 
 		let isETH = false;
 		let isLUKSO = false;
-		let leftStreet = this.getLeftStreet();
+		let leftStreet = this.getSideStreet("left");
 		let rightStreet = this.getSideStreet("right");
+
+		console.log("***LEFT****",leftStreet.ticker);
+		console.log("***RIGHT****",rightStreet.ticker);
 
 		if (leftStreet.ticker == availableStreets.ETH.config.ticker || rightStreet.ticker == availableStreets.ETH.config.ticker ){
 			isETH = true;
@@ -352,22 +359,38 @@ export class StreetController extends Phaser.Scene {
 		}
 		if (isETH && isLUKSO)
 			{
-				availableStreets.ETH.prototype.setBusStop(1500);
+				
+				availableStreets.ETH.prototype.setBusStop(1530);
 				availableStreets.ETH.prototype.adjustMyView(true);
 
 				availableStreets.LUKSO.prototype.setBusStop(1500);
 				availableStreets.LUKSO.prototype.adjustMyView(true);
 
+               availableStreets.ETH.prototype.setAdjustCrowdPos(true);
+				eventHub.$emit("stopSignAdjustwithBridge");
+
 				this.createBridge();
 				this.bridgeIsOn = true;
 				this.bridgeSwitch = 1;
 				this.housePosAdj = 1500;
+				console.log("sidechanged")
+			
              } 
 			else{
-				availableStreets.ETH.prototype.setBusStop(200);
+			
+				availableStreets.ETH.prototype.setAdjustCrowdPos(false);
+				availableStreets.ETH.prototype.setBusStop(230);
+				//availableStreets.ETH.prototype.setView(true);
 				availableStreets.LUKSO.prototype.setBusStop(200);
+				availableStreets.ETH.prototype.adjustMyView(false);
+				availableStreets.LUKSO.prototype.adjustMyView(false);
+				eventHub.$emit("stopSignAdjust");
+				//availableStreets.LUKSO.prototype.setView(true);
+
 				this.bridgeSwitch = 0;
 				this.housePosAdj = 0;
+				this.bridgeIsOn = false;
+				console.log("sidenotchanged")
 
 			}
 
@@ -390,11 +413,21 @@ export class StreetController extends Phaser.Scene {
 		let otherSideStreet = side !== "full" ? this[otherSide + "Street"] : false;
 		let replacingScene = this.getSideStreet(side);
 		this.sleepAllStreets();
+		//this.checkETHLUKSOonSwitch();
 		setTimeout(() => {
+			//this.checkETHLUKSOonSwitch();
+			console.log(side)
+			console.log(coin)
+			console.log(otherSideStreet)
+			console.log(replacingScene)
+			console.log(this.enabledStreets[replacingScene.ticker])
+			console.log(otherSide)
+			console.log(this.getFirstStreet(coin))
 			this.createStreet(side, coin);
 			if (side !== "full") {
 				if (otherSideStreet == coin && replacingScene) {
 					//we are moving this street to this side
+				
 					this.createStreet(otherSide, this.enabledStreets[replacingScene.ticker]);
 				} else {
 					if (replacingScene) {
@@ -404,11 +437,11 @@ export class StreetController extends Phaser.Scene {
 					}
 				}
 			}
-			this.changeSelectedCoins();
-           // this.checkETHLUKSOonSwitch();
+			this.checkETHLUKSOonSwitch();
+			this.changeSelectedCoins();     
 			this.positionHouses(true);
 			if (window.mainVue) window.mainVue.replaceVizPage();
-			this.checkLoaded();
+			this.checkLoaded();		
 			setTimeout(() => {
 				resizeAll(this.game);
 			}, 5);

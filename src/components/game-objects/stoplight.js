@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { config } from "./../config.js";
 import { toRes, getSheetKey } from "./../utils/";
+import eventHub from "../vue/eventHub.js";
 
 export default class Stoplight extends Phaser.GameObjects.Container {
 	constructor(scene) {
@@ -11,6 +12,12 @@ export default class Stoplight extends Phaser.GameObjects.Container {
 		this.x = (this.scene.side == "right" ? toRes(62) : toRes(898));
 		if(this.scene.config.ticker == "ETH"){this.y = this.scene.busStop - toRes(130);}else{this.y = this.scene.busStop - toRes(100);}
 		
+		eventHub.$on('stopSignAdjust',()=>{if(this.scene.config.ticker == "ETH"){this.y = toRes(100) ;}})
+		eventHub.$on('stopSignAdjustwithBridge',()=>{if(this.scene.config.ticker == "ETH"){this.y = this.scene.busStop - toRes(130); }})
+
+		eventHub.$on('stopSignAdjust',()=>{if(this.scene.config.ticker == "LUKSO"){this.y = toRes(100) }})
+		eventHub.$on('stopSignAdjustwithBridge',()=>{if(this.scene.config.ticker == "LUKSO"){this.y = this.scene.busStop - toRes(100); }})
+		console.log("**TRAFFICLIGHT***",this.y)
 
 		this.offAlpha = 0.2;
 		this.lightSize = 9;
