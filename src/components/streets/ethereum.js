@@ -638,14 +638,15 @@ console.log(this.mySide)
 		if(this.adjustBusHeight){
 
 			let mybuses = this.activeBuses(false);
-
+             console.log(mybuses[0].y);
 			for (let i = 0; i < mybuses.length; i++) {
 
-				mybuses[i].y += toRes(1300);
+				
+				mybuses[i].y =this.busStop +toRes(140) + toRes(230*i);
 				mybuses[i].busFloor.y =mybuses[i].y - toRes(100);
 			}
 			this.adjustBusHeight = false;
-
+			console.log(mybuses[0].y);
 		}
 		let activeBuses = this.activeBuses();
 
