@@ -463,6 +463,7 @@ export default class LUKSOStreet extends Street {
 			for (let i = 0; i < mybuses.length; i++) {
 
 				mybuses[i].y += toRes(1300);
+				mybuses[i].busFloor.y =mybuses[i].y - toRes(100);
 			}
 			this.adjustBusHeight = false;
 

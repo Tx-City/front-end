@@ -551,6 +551,7 @@ Bus.prototype.leaveTween = function () {
 			onComplete: () => {
 				this.movingTween = null;
 				this.hasBridgeTransaction = false;
+				this.busFloor.y = this.y - toRes(100);
 				this.brake();
 				this.doorOpen();
 				eventHub.$emit("AlightBridge",{myStartX:this.x,myStartY:this.y,mySide:this.onSide,myRightPoint:this.busRightBridgeStartPoint,myBridgeTxData:this.bridgTxs});
