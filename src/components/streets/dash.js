@@ -1,5 +1,5 @@
 import { Street } from "../street.js";
-import { toRes, getSheetKey } from "../utils/";
+import { mirrorX, toRes, toResRev, getSheetKey } from "../utils/";
 import { DASH } from "../config.js";
 import { fds, default as i18n } from "../../i18n";
 import { add } from "date-fns";
@@ -63,7 +63,7 @@ export default class DASHStreet extends Street {
 
 	create() {
 		super.create();
-		this.createPeople();
+
 		this.streetCreate();
 		this.vue.busFeeTitle = "Duff/B";
 		(this.vue.busFeeTitleLong = () => {
@@ -73,7 +73,7 @@ export default class DASHStreet extends Street {
 				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
 			});
 		this.createBuses();
-
+		this.createPeople();
 		this.vue.$watch("blockchainLength", (val) => {
 			this.calcHalving(val);
 		});
@@ -96,8 +96,58 @@ export default class DASHStreet extends Street {
 		});
 	}
 
+	newSetInitialPosition(person) {
+		let count = this.inLineCount(true);
+		let cords = this.getLineCords(count);
+		let yPos;
+		let xPos;
+		//check that the house exists on the street
+		yPos = Math.random() * (cords[1] + toRes(1100));
+		xPos = mirrorX(0, this.side);
+		// if (yPos < this.busStop) {
+		// 	yPos = 10;
+		// 	xPos = mirrorX(Math.random() * 150 + 50, this.side);
+		// }
+		person.setPosition(xPos, yPos);
+		person.halo = this.add.image(
+			xPos,
+			yPos - person.displayHeight / 2,
+			getSheetKey("lightning.png"),
+			"lightning.png"
+		);
+		person.halo.setScale(person.scale * 2);
+		person.halo.setDepth(500);
+		person.halo.setAlpha(0.7);
+	}
+
 	update() {
 		this.streetUpdate();
+		for (let i = this.movingPeople.length - 1; i >= 0; i--) {
+			let person = this.movingPeople[i];
+			if (person.halo) {
+				let halo = person.halo;
+				halo.x = person.x;
+				halo.y = person.y - person.displayHeight / 2;
+				let toPass = mirrorX(256, this.side);
+				let passed =
+					(person.x < toPass && this.side === "right") || (person.x > toPass && this.side !== "right");
+				if (passed && !person.halo.deleting) {
+					person.halo.deleting = true;
+					this.add.tween({
+						targets: [halo],
+						duration: 500 * window.txStreetPhaser.streetController.fpsTimesFaster,
+						alpha: {
+							getStart: () => 0.7,
+							getEnd: () => 0,
+						},
+						onComplete: () => {
+							if (halo) halo.destroy();
+							if (person) delete person.halo;
+						},
+					});
+				}
+			}
+		}
 	}
 
 	afterEnterBus(array) {
