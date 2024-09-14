@@ -71,11 +71,8 @@ export default class DASHStreet extends Street {
 		}),
 			(this.vue.sizeTitle = () => {
 				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
-			}),
-			(this.vue.sizeAltTitle = () => {
-				return i18n.t(this.ticker.toLowerCase() + ".sizeAltTitle");
-			}),
-			this.createBuses();
+			});
+		this.createBuses();
 
 		this.vue.$watch("blockchainLength", (val) => {
 			this.calcHalving(val);
@@ -120,8 +117,6 @@ export default class DASHStreet extends Street {
 	afterSortBusesLoadTx(array) {
 		let entry = array[0];
 		let bus = array[1];
-
-		bus.loadedAlt += entry.txData.rs;
 	}
 }
 
