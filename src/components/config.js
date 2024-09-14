@@ -2708,6 +2708,7 @@ export const genesisNames = [
 	"santa",
 	"snowman",
 	"isabella",
+	"flash",
 	"alien",
 	"mib",
 	"moonboy",
