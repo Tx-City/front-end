@@ -102,7 +102,8 @@ export default class DASHStreet extends Street {
 		let yPos;
 		let xPos;
 		//check that the house exists on the street
-		yPos = Math.random() * (cords[1] + toRes(1100));
+		yPos = this.busStop + (Math.random() * (cords[1] + toRes(500)));
+		console.log(yPos)
 		xPos = mirrorX(0, this.side);
 		// if (yPos < this.busStop) {
 		// 	yPos = 10;
