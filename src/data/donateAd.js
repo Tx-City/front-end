@@ -32,6 +32,9 @@ export const donateData = (ticker) => {
 		case "LUKSO":
 			walletAddress = "0x93905fd3f9b8732015f2b3Ca6c16Cbcb60ECf895";
 			break;
+		case "SOL":
+			walletAddress = "2BzRmvnk9juzrsbN9Yj7Q6yYggcUU6F35cDR5m5gLGZW";
+			break;
 		default:
 			walletAddress = "0x09";
 	}
