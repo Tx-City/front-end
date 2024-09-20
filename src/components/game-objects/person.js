@@ -17,6 +17,97 @@ const Person = new Phaser.Class({
 	},
 });
 
+Person.prototype.createPath = function(points){
+	this.points = points;
+	this.curve = new Phaser.Curves.Spline(this.points);
+	this.x = this.curve.getPoint(0).x;
+	this.y = this.curve.getPoint(0).y;
+
+	this.myGraphics = this.scene.add.graphics();
+	this.myGraphics.lineStyle(0,0xffffff,0.5);
+
+	this.curve.draw(this.myGraphics,20);
+	this.setScale(toRes(.5));
+
+}
+
+Person.prototype.goAlongPath = function(mySkin,side,walkTime){
+
+	this.scene.tweens.add({
+
+		targets:this,
+		scale:toRes(1),
+		duration:3000,
+		ease:'Linear',
+
+
+	})
+
+
+	
+
+		const tweenPath = {
+			t:0,
+			mycurve:this.curve,
+			mySprite:this,
+			getT:function(){
+				return this.t;
+			},
+			setT:function(v){
+				this.t = v;
+				const point = this.mycurve.getPoint(this.t);
+				this.x = point.x;
+				this.y = point.y;
+			}
+	
+		}
+	
+				this.scene.tweens.add({
+				targets:tweenPath,
+				t:1,
+				duration:walkTime,
+				ease:'Cubic',
+				repeat:0,
+				yoyo:false,
+				onUpdate:()=>{
+				const point = this.curve.getPoint(tweenPath.t);
+			
+	
+			let myBridgedirection = this.getDirection(this.x, this.y, point.x, point.y);
+			//  let myAngle = this.curve.getTangent(tweenPath.t);
+			//  let myPersonRotation = Math.atan(myAngle.y / myAngle.x) - 4.712389; 
+			// if (myAngle.x < 0) {
+			// 	myPersonRotation += Math.PI;}
+			if(this.previousDirection !== myBridgedirection){
+				
+				if(side=="right"){if (myBridgedirection == "left") {this.play("walk_side_"+ mySkin.toString());this.setFlipX(false);}}
+				else{if (myBridgedirection == "left") {this.play("walk_side_"+ mySkin.toString());}}
+	
+				if(side=="left"){if (myBridgedirection == "right") {this.play("walk_side_"+ mySkin.toString()); this.setFlipX(true);}}
+				else{if (myBridgedirection == "right") {this.play("walk_side_"+ mySkin.toString()); this.setFlipX(true);}}
+				
+				
+				if (myBridgedirection == "up") {this.play("walk_up_"+ mySkin.toString());}
+				if (myBridgedirection == "down") {this.play("walk_down_"+ mySkin.toString());}
+				
+				this.previousDirection = myBridgedirection;
+			}
+				this.x = point.x;
+				this.y = point.y;
+			},  
+			onComplete:()=>{	
+				this.setFlipX(false);
+			}
+	
+		})
+		
+
+
+
+	
+
+}
+
 Person.prototype.customResetData = function (char = "mailman") {
 	if (userSettings.globalSettings.animations.value) this.animsEnabled = true;
 	this.resetMoveList();

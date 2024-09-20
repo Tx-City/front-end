@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { config, userSettings } from "../config.js";
 import { toRes, calcStatValue, getSheetKey } from "../utils/";
 import { donateData } from "../../data/donateAd.js";
+import eventHub from "../vue/eventHub.js";
 
 export default class Sign extends Phaser.GameObjects.Container {
 	constructor(scene) {
@@ -16,6 +17,13 @@ export default class Sign extends Phaser.GameObjects.Container {
 		} else {
 			this.y = this.scene.busStop - toRes(105);
 		}
+
+		eventHub.$on('stopSignAdjust',()=>{if(this.scene.config.ticker == "ETH"){this.y = toRes(100) }});
+		eventHub.$on('stopSignAdjustwithBridge',()=>{if(this.scene.config.ticker == "ETH"){this.y = this.scene.busStop - toRes(100); }})
+
+		eventHub.$on('stopSignAdjust',()=>{if(this.scene.config.ticker == "LUKSO"){this.y = toRes(100) }})
+		eventHub.$on('stopSignAdjustwithBridge',()=>{if(this.scene.config.ticker == "LUKSO"){this.y = this.scene.busStop - toRes(100); }})	
+
 		this.signWidth = toRes(430);
 		this.adBanner = process.env.VUE_APP_SIGN_ADS === "true" ? true : false;
 		this.resetAd();

@@ -16,9 +16,13 @@
 				<span class="icon is-normal"><i class="fas fa-chevron-down"></i></span>
 			</div>
 
+			<!-- <button v-if="!buttonRendered" class="button is-medium" @click="handleButtonClick">
+                BRIDGE
+            </button> -->
+
 			<div v-if="dropdownActive" class="coin-dropdown-container">
 				<div class="coin-dropdown box">
-					<search key="search" ref="search"></search>
+					<search key="search" ref="search"  @toggleWindowAfterSearch="toggleWindow(window)"></search>
 					<div class="coin-dropdown-section section">
 						<div class="subtitle is-4 has-text-centered">Change Street</div>
 						<div class="columns is-multiline">
@@ -338,6 +342,11 @@ export default Vue.extend({
 			}
 			this.emitTx(tx);
 		},
+		handleButtonClick: function (){
+			// Handle the button click event here
+			console.log('New Button Clicked');
+			eventHub.$emit("scrollToBridge");
+        },
 		emitTx: function (tx) {
 			eventHub.$emit("addTx-" + this.coinConfig.ticker, tx);
 		},
