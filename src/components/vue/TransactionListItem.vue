@@ -13,7 +13,11 @@
 			<span v-if="source.e && source.e.op_return" :class="$root.darkMode ? 'is-black' : 'is-info'" class="tag"
 				>OP_R</span
 			>
-			<span v-if="source.e && street.config.coinName !== 'DASH' && source.e.sw" :class="$root.darkMode ? 'is-black' : 'is-info'" class="tag">
+			<!-- <span v-if="source.e && street.config.coinName !== 'DASH' && source.e.sw" :class="$root.darkMode ? 'is-black' : 'is-info'" class="tag">
+				<img class="white" :src="config.baseUrl + 'static/img/singles/segwit_outline.png'" />
+			</span> -->
+
+			<span v-if="source.e && source.e.sw" :class="$root.darkMode ? 'is-black' : 'is-info'" class="tag">
 				<img class="white" :src="config.baseUrl + 'static/img/singles/segwit_outline.png'" />
 			</span>
 			<span

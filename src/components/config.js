@@ -270,7 +270,7 @@ export const DASH = {
 	busColor: "ffffff",
 	busCapacity: 1000000,
 	feeVar: "spb",
-	explorerTxUrl: "https://blockchair.com/dash/transaction/",
+	explorerTxUrl: "https://insight.dash.org/insight/tx/",
 	explorerBlockUrl: "https://blockchair.com/dash/block/",
 	explorerBlocksUrl: "https://blockchair.com/dash/blocks/",
 	explorerAddressUrl: "https://blockchair.com/dash/address/",
@@ -2460,8 +2460,8 @@ export const commonTitleOverrides = {
 export const enabledConfig = {
 	ETH,
 	BTC,
-	DASH,
 	BCH,
+	DASH,
 	XMR,
 	LTC,
 	ARBI,
