@@ -57,7 +57,14 @@ export default class DASHStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 	beforeNewTx(tx) {
-		tx.char = "dash";
+		console.log("tx======", tx);
+		if (tx.h == "coinjoin") {
+			tx.char = "flash";
+		} else if (tx.h == "ps") {
+			tx.char = "ps";
+		} else {
+			tx.char = "dash";
+		}
 	}
 	preload() {}
 
