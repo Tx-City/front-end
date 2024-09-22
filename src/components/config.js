@@ -424,9 +424,16 @@ export const DASH = {
 			title: () => {
 				return i18n.t("dash.blockchainSize");
 			},
-			after: " MB",
 			value: false,
 			socket: true,
+			format: function (value) {
+				// Check if value is a number and not null/undefined
+				if (typeof value === "number" && !isNaN(value)) {
+					return value.toLocaleString("en-US") + " MB";
+				}
+				// Return the original value if it's not a valid number, appended with MB
+				return value + " MB";
+			},
 		},
 		difficulty: {
 			title: () => {
