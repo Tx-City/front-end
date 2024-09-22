@@ -57,7 +57,7 @@ export default class DASHStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 	beforeNewTx(tx) {
-		tx.char = "flash";
+		tx.char = "dash";
 	}
 	preload() {}
 
@@ -96,29 +96,29 @@ export default class DASHStreet extends Street {
 		});
 	}
 
-	newSetInitialPosition(person) {
-		let count = this.inLineCount(true);
-		let cords = this.getLineCords(count);
-		let yPos;
-		let xPos;
-		//check that the house exists on the street
-		yPos = Math.random() * (cords[1] + toRes(1100));
-		xPos = mirrorX(0, this.side);
-		// if (yPos < this.busStop) {
-		// 	yPos = 10;
-		// 	xPos = mirrorX(Math.random() * 150 + 50, this.side);
-		// }
-		person.setPosition(xPos, yPos);
-		person.halo = this.add.image(
-			xPos,
-			yPos - person.displayHeight / 2,
-			getSheetKey("lightning.png"),
-			"lightning.png"
-		);
-		person.halo.setScale(person.scale * 2);
-		person.halo.setDepth(500);
-		person.halo.setAlpha(0.7);
-	}
+	// newSetInitialPosition(person) {
+	// 	let count = this.inLineCount(true);
+	// 	let cords = this.getLineCords(count);
+	// 	let yPos;
+	// 	let xPos;
+	// 	//check that the house exists on the street
+	// 	yPos = Math.random() * (cords[1] + toRes(1100));
+	// 	xPos = mirrorX(0, this.side);
+	// 	// if (yPos < this.busStop) {
+	// 	// 	yPos = 10;
+	// 	// 	xPos = mirrorX(Math.random() * 150 + 50, this.side);
+	// 	// }
+	// 	person.setPosition(xPos, yPos);
+	// 	person.halo = this.add.image(
+	// 		xPos,
+	// 		yPos - person.displayHeight / 2,
+	// 		getSheetKey("lightning.png"),
+	// 		"lightning.png"
+	// 	);
+	// 	person.halo.setScale(person.scale * 2);
+	// 	person.halo.setDepth(500);
+	// 	person.halo.setAlpha(0.7);
+	// }
 
 	update() {
 		this.streetUpdate();
