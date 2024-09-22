@@ -60,7 +60,7 @@ export default class DASHStreet extends Street {
 		console.log("tx======", tx);
 		if (tx.h == "coinjoin") {
 			tx.char = "flash";
-		} else if (tx.h == "ps") {
+		} else if (tx.h == "privatesend") {
 			tx.char = "ps";
 		} else {
 			tx.char = "dash";
