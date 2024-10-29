@@ -287,6 +287,35 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../public/static/img/singles/coin_logos/flare.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/cashtokens.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/coinbase.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/coinjoin.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/coinjoin1.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/dice2win.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/donation.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/eatbch.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/heart.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/ismikekomaranskydead.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/peng.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/privatesend.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/privatesend1.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/pudgypenguin.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/pudgypenguins.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,13,25,25</rect>
+                <key>scale9Paddings</key>
+                <rect>13,13,25,25</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../public/static/img/singles/coin_logos/lukso.png</key>
             <key type="filename">../public/static/img/singles/house_logos/up.png</key>
             <struct type="IndividualSpriteSettings">
@@ -525,30 +554,6 @@
                 <rect>20,13,39,25</rect>
                 <key>scale9Paddings</key>
                 <rect>20,13,39,25</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../public/static/img/singles/house_logos/cashtokens.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/coinbase.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/dice2win.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/donation.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/eatbch.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/heart.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/ismikekomaranskydead.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/peng.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/pudgypenguin.png</key>
-            <key type="filename">../public/static/img/singles/house_logos/pudgypenguins.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>13,13,25,25</rect>
-                <key>scale9Paddings</key>
-                <rect>13,13,25,25</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

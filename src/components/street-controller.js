@@ -7,6 +7,7 @@ import DASHStreet from "./streets/dash.js";
 import BCHStreet from "./streets/bitcoin-cash.js";
 import ETHStreet from "./streets/ethereum.js";
 import LUKSOStreet from "./streets/lukso.js";
+import FLRStreet from "./streets/flr.js";
 import CELOStreet from "./streets/celo.js";
 import ARBIStreet from "./streets/abitrum";
 import MANTAStreet from "./streets/manta";
@@ -27,6 +28,7 @@ export const availableStreets = {
 	ARBI: ARBIStreet,
 	MANTA: MANTAStreet,
 	LUKSO: LUKSOStreet,
+	FLR: FLRStreet,
 	CELO: CELOStreet,
 };
 
