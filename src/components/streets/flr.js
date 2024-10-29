@@ -1,19 +1,21 @@
 import { Street } from "../street.js";
 // import { toRes, ethNewTxSetDepending } from "../utils/";
-import { toRes, ethNewTxSetDepending } from "../utils/";
-import { ETH, ethUnits } from "../config.js";
-import i18n from "../../i18n";
+// import { mirrorX, toRes, ethNewTxSetDepending, getSheetKey } from "../utils/";
+import { toRes, ethNewTxSetDepending } from "../utils/index.js";
+import { FLR, ethUnits } from "../config.js";
+import i18n from "../../i18n.js";
 import eventHub from "../vue/eventHub.js";
-import state from "../../wallet";
+import state from "../../wallet.js";
+// import Popup from "../game-objects/popup";
 
-export default class ETHStreet extends Street {
+export default class FLRStreet extends Street {
 	constructor(side) {
-		super(ETH, side);
+		super(FLR, side);
 	}
 
 	init() {
 		this.foundBoarding = false;
-		this.busStop = toRes(230);
+		this.busStop = toRes(200);
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.decelerationArea = 500;
@@ -91,8 +93,7 @@ export default class ETHStreet extends Street {
 		this.addressNonces = this.config.addressNonces;
 
 		this.streetCreate();
-		this.createEtherPeopleAnims();
-
+		// await console.log("this.streetCreate()", this.streetCreate());
 		this.vue.navigation.unshift({
 			key: "characters",
 			html: "<span class='fas fa-user-astronaut'></span>",
@@ -123,53 +124,12 @@ export default class ETHStreet extends Street {
 			(this.vue.sizeTitle = () => {
 				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
 			}),
-			this.ethBuses();
+			this.flrBuses();
 		this.createPeople();
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
 		});
-	}
-
-	createEtherPeopleAnims() {
-		this.anims.create({
-			key: "walk_up_2002",
-			frames: this.anims.generateFrameNumbers("etherPeopleBack"),
-			frameRate: 6,
-			repeat: -1,
-			repeatDelay: 0,
-			callbackScope: this,
-			onComplete: function () {},
-		});
-
-		this.anims.create({
-			key: "walk_down_2002",
-			frames: this.anims.generateFrameNumbers("etherPeopleFront"),
-			frameRate: 6,
-			repeat: -1,
-			repeatDelay: 0,
-			callbackScope: this,
-			onComplete: function () {},
-		});
-
-		this.anims.create({
-			key: "walk_side_2002",
-			frames: this.anims.generateFrameNumbers("etherPeopleSide"),
-			frameRate: 6,
-			repeat: -1,
-			repeatDelay: 0,
-			callbackScope: this,
-			onComplete: function () {},
-		});
-
-		this.anims.create({
-			key: "stand_2002",
-			frames: this.anims.generateFrameNumbers("etherPeopleFront"),
-			frameRate: 0,
-			repeat: 0,
-			repeatDelay: 0,
-			callbackScope: this,
-			onComplete: function () {},
-		});
+		if (state.address) this.followAddress(state.address);
 	}
 
 	crowdCountDisplay() {
@@ -414,8 +374,6 @@ export default class ETHStreet extends Street {
 				this.lineManager[entry.txData.tx].status = "waiting";
 				//add to line as person
 				this.newPerson(this.lineManager[entry.txData.tx]);
-
-				// console.log(this.lineManager[entry.txData.tx]);
 			}
 		}
 
@@ -435,8 +393,8 @@ export default class ETHStreet extends Street {
 				activeBuses[i].resize(overTarget > 0 ? Math.round(overTarget / 500000) : 0);
 				continue;
 			}
-			activeBuses[i].bye();
-			activeBuses.splice(i, 1);
+			// activeBuses[i].bye();
+			// activeBuses.splice(i, 1);
 		}
 
 		const notDeleted = hashArray.filter((obj) => !obj.txData.deleted).length;
@@ -488,12 +446,12 @@ export default class ETHStreet extends Street {
 		return scale;
 	}
 
-	ethBuses() {
+	flrBuses() {
 		this.busesLeaving = this.add.group();
 		this.config.busCapacity = this.vue.stats.gasLimit.value;
 		if (typeof this.config.busCapacity === "undefined" || !this.config.busCapacity) {
 			setTimeout(() => {
-				this.ethBuses();
+				this.flrBuses();
 			}, 100);
 			return false;
 		}
@@ -527,4 +485,4 @@ export default class ETHStreet extends Street {
 	}
 }
 
-ETHStreet.config = ETH;
+FLRStreet.config = FLR;
