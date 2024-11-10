@@ -1,7 +1,7 @@
 import Vue from "vue";
 import i18n from "../i18n";
 import median from "./utils/median";
-
+import Phaser from "phaser";
 export const ethUnits = (wei, readable = true, round = false) => {
 	let val = wei;
 	let units = "Wei";
@@ -2988,13 +2988,23 @@ export const applySavedSettings = () => {
 	}
 };
 applySavedSettings();
-
 export const config = {
+	type: Phaser.AUTO, // Add this to let Phaser choose WebGL when available
+	scale: {
+		mode: Phaser.Scale.FIT,
+		width: userSettings.globalSettings.resWidth.value,
+		height: Math.floor(userSettings.globalSettings.resWidth.value * (1080 / 1920)),
+		autoCenter: Phaser.Scale.CENTER_BOTH,
+	},
 	resolution: userSettings.globalSettings.resWidth.value / 1920,
-	vPadding: 0,
+	backgroundColor: themes[userSettings.globalSettings.theme.value].background || "#000000",
+	pixelArt: false, // Set to true if you're using pixel art
+	roundPixels: true, // Can help with sharper rendering
 	antialias: userSettings.globalSettings.antialias.value,
+	powerPreference: "high-performance", // Prioritize performance
 	render: {
 		antialias: userSettings.globalSettings.antialias.value,
+		batchSize: 4096, // Increase batch size for better performance
 	},
 	fps: {
 		target: userSettings.globalSettings.fps.value,
@@ -3013,7 +3023,54 @@ export const config = {
 	dev: process.env.NODE_ENV == "development",
 	theme: themes[userSettings.globalSettings.theme.value],
 	locale: "en",
+	physics: {
+		default: "arcade",
+		arcade: {
+			debug: process.env.NODE_ENV == "development",
+			gravity: { y: 0 },
+			fps: userSettings.globalSettings.fps.value,
+			timeScale: 1,
+			skipQuadTree: false, // Enable for better collision performance
+		},
+	},
+	dom: {
+		createContainer: true, // Only enable if you're using DOM elements
+	},
+	audio: {
+		disableWebAudio: false,
+		noAudio: false,
+	},
+	banner: false, // Disable Phaser banner in console
+	loader: {
+		maxParallelDownloads: 4, // Adjust based on your needs
+	},
 };
+
+// export const config = {
+// 	resolution: userSettings.globalSettings.resWidth.value / 1920,
+// 	vPadding: 0,
+// 	antialias: userSettings.globalSettings.antialias.value,
+// 	render: {
+// 		antialias: userSettings.globalSettings.antialias.value,
+// 	},
+// 	fps: {
+// 		target: userSettings.globalSettings.fps.value,
+// 		min: userSettings.globalSettings.fps.value,
+// 		forceSetTimeOut: userSettings.globalSettings.fps.value < 60,
+// 	},
+// 	disabledStreets: [
+// 		// "Ethereum"
+// 	],
+// 	baseUrl: "/",
+// 	path:
+// 		window.location.protocol +
+// 		"//" +
+// 		window.location.hostname +
+// 		(window.location.port ? ":" + window.location.port : ""),
+// 	dev: process.env.NODE_ENV == "development",
+// 	theme: themes[userSettings.globalSettings.theme.value],
+// 	locale: "en",
+// };
 
 export const zoomerNames = ["bat", "bear", "bull", "frog", "lion", "lizard", "monkey", "penguin", "unicorn", "wolf"];
 export const genesisNames = [
