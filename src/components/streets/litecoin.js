@@ -92,9 +92,13 @@ export default class LTCStreet extends Street {
 		this.calcHalving(this.blockchain.length);
 
 		this.createArise();
+		this.createLester();
 		this.events.on("changeSide", () => {
 			this.destroyArise();
 			this.createArise();
+
+			this.destroyLester();
+			this.createLester();
 		});
 	}
 
@@ -103,7 +107,22 @@ export default class LTCStreet extends Street {
 		this.arise.destroy();
 		this.arisepop.destroy();
 	}
+	destroyLester() {
+		clearInterval(this.lester.isaChange);
+		this.lester.destroy();
+		this.lesterpop.destroy();
+	}
 
+	createLester() {
+		this.lester = this.add.image(mirrorX(320, this.side), toRes(170), getSheetKey("lester.png"), "lester.png");
+		this.lester.setInteractive({ useHandCursor: true });
+		this.lester.on("pointerup", () => {
+			this.cycleLesterMessage();
+		});
+		this.lester.setDepth(this.personDepth);
+		this.lester.messages = ["Hi I am Lester!"];
+		this.cycleLesterMessage();
+	}
 	createArise() {
 		this.arise = this.add.image(mirrorX(700, this.side), toRes(160), getSheetKey("ltc-0.png"), "ltc-0.png");
 		this.arise.setInteractive({ useHandCursor: true });
@@ -118,7 +137,29 @@ export default class LTCStreet extends Street {
 		];
 		this.cycleAriseMessage();
 	}
+	cycleLesterMessage() {
+		if (!this.lester.isaChange) {
+			this.lester.currentMessage = 0;
+			this.lester.isaChange = setInterval(() => {
+				this.cycleLesterMessage();
+			}, 80000);
+		}
 
+		if (this.lesterpop) this.lesterpop.destroy();
+		if (!this.lester.messages[this.lester.currentMessage]) {
+			clearInterval(this.lester.isaChange);
+			delete this.lester.isaChange;
+			return;
+		}
+		this.lesterpop = new Popup(
+			this,
+			mirrorX(310, this.side),
+			toRes(220),
+			false,
+			"bubble",
+			this.lester.messages[this.lester.currentMessage++]
+		);
+	}
 	cycleAriseMessage() {
 		if (!this.arise.isaChange) {
 			this.arise.currentMessage = 0;

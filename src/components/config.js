@@ -3029,7 +3029,7 @@ export const genesisNames = [
 	"moonboy",
 	"mailman",
 	"ltc",
-	"taha",
+	"lester",
 ];
 export const moonheadNames = zoomerNames.concat(genesisNames);
 
