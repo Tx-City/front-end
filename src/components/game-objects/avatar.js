@@ -13,18 +13,66 @@ const Avatar = new Phaser.Class({
 		this.side = side;
 		this.transferAmount = "0.001"; // Default transfer amount in ETH
 
+		// Create the avatar sprite and center it
 		this.myAvatar = this.scene.add.sprite(x, y, key).setScale(1.5);
 		this.myAvatar.setTexture(getSheetKey("person-"), key);
-		this.myAvatar.setInteractive(); // Make the sprite interactive
 
-		// Add click handler
-		this.myAvatar.on("pointerdown", () => {
-			console.log("Character clicked!");
+		// Create Transfer button - positioned left
+		const transferButton = this.scene.add
+			.text(x - 100, y - 20, "TRANSFER", {
+				backgroundColor: "#ffffff",
+				padding: { x: 10, y: 5 },
+				fontSize: "16px",
+				color: "#000000",
+				align: "center",
+			})
+			.setInteractive();
+
+		// Create BridgeTX button - positioned right
+		const bridgeButton = this.scene.add
+			.text(x + 40, y - 20, "BRIDGETX", {
+				backgroundColor: "#ffffff",
+				padding: { x: 10, y: 5 },
+				fontSize: "16px",
+				color: "#000000",
+				align: "center",
+			})
+			.setInteractive();
+
+		// Add hover effects
+		[transferButton, bridgeButton].forEach((button) => {
+			button.on("pointerover", () => {
+				button.setStyle({ backgroundColor: "#e0e0e0" });
+			});
+			button.on("pointerout", () => {
+				button.setStyle({ backgroundColor: "#ffffff" });
+			});
+		});
+
+		// Add click handlers
+		transferButton.on("pointerdown", () => {
+			console.log("Transfer clicked!");
 			this.initiateTransfer();
 		});
 
-		this.add(this.myAvatar);
+		bridgeButton.on("pointerdown", () => {
+			console.log("BridgeTX clicked!");
+			// Add bridge functionality here
+		});
+
+		// Add everything to the container
+		this.add([this.myAvatar, transferButton, bridgeButton]);
 		this.scene.add.existing(this);
+
+		// Store buttons for position updates
+		this.transferButton = transferButton;
+		this.bridgeButton = bridgeButton;
+
+		// Update button positions when avatar moves
+		this.updateButtonPositions = () => {
+			this.transferButton.setPosition(this.x - 100, this.y - 20);
+			this.bridgeButton.setPosition(this.x + 40, this.y - 20);
+		};
 	},
 });
 
@@ -62,12 +110,14 @@ Avatar.prototype.setupControls = function (scene) {
 		this.y += 5;
 		this.myAvatar.y = this.y;
 		this.myAvatar.anims.play("walk_down_2", true);
+		this.updateButtonPositions();
 	});
 
 	scene.input.keyboard.on("keydown-W", () => {
 		this.y -= 5;
 		this.myAvatar.y = this.y;
 		this.myAvatar.anims.play("walk_up_2", true);
+		this.updateButtonPositions();
 	});
 
 	scene.input.keyboard.on("keydown-D", () => {
@@ -75,6 +125,7 @@ Avatar.prototype.setupControls = function (scene) {
 		this.myAvatar.x = this.x;
 		this.myAvatar.setFlipX(true);
 		this.myAvatar.anims.play("walk_side_2", true);
+		this.updateButtonPositions();
 	});
 
 	scene.input.keyboard.on("keydown-A", () => {
@@ -82,6 +133,7 @@ Avatar.prototype.setupControls = function (scene) {
 		this.myAvatar.x = this.x;
 		this.myAvatar.setFlipX(false);
 		this.myAvatar.anims.play("walk_side_2", true);
+		this.updateButtonPositions();
 	});
 };
 
