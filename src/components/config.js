@@ -1325,6 +1325,311 @@ export const LUKSO = {
 	}),
 };
 
+export const LUMIA = {
+	ticker: "LUMIA",
+	coinName: "LUMIA",
+	color: "000000",
+	busColor: "000000",
+	busCapacity: 0,
+	feeVar: "gp",
+	explorerTxUrl: "https://explorer.lumia.org/tx/",
+	explorerBlockUrl: "https://explorer.lumia.org/blocks",
+	explorerBlocksUrl: "https://explorer.lumia.org/blocks",
+	explorerAddressUrl: "",
+	liveTxs: [],
+	liveBlocks: [],
+	houseArray: [],
+	addressNonces: {},
+	maxBlocksToKeep: 25,
+	blockFormat: [
+		{
+			title: () => {
+				return i18n.t("eth.gu");
+			},
+			icon: "fas fa-oil-can",
+			key: "gu",
+			color: "D6CDEA",
+			format: (val) => {
+				return val.toLocaleString(i18n.locale);
+			},
+		},
+		{
+			title: () => {
+				return "Base Fee";
+			},
+			key: "baseFee",
+			color: "F9D8D6",
+			icon: "fas fa-ticket-alt",
+			format: (val) => {
+				return ethUnits(val);
+			},
+		},
+	],
+	calcBlockFeeArray: function (data) {
+		if (data.feeArray || !data.txFull) return;
+		data.lowFee = Math.pow(10, 36);
+		data.highFee = 0;
+		data.feeArray = [];
+
+		Object.values(data.txFull).forEach((tx) => {
+			const gp = this.getFee(tx);
+			let fee = gp - (data.baseFee || 0);
+			if (tx.mpfpg && fee > Number(tx.mpfpg)) {
+				fee = Number(tx.mpfpg);
+			}
+			fee /= 1000000000; //hardcode to gwei for now
+			if (fee <= 0) fee = 0.01;
+			if (fee < data.lowFee) data.lowFee = fee;
+			if (fee > data.highFee) data.highFee = fee;
+			data.feeArray.push(fee);
+		});
+		data.medianFee = Math.round(median(data.feeArray));
+	},
+	getFee: function (txData) {
+		if (typeof txData.ty === "undefined") return 0;
+		if (txData.ty === 0) {
+			return txData.gp || 0;
+		} else if (txData.ty === 1) {
+			return txData.gp || 0;
+		} else if (txData.ty === 2) {
+			return txData.mfpg || 0;
+		} else {
+			return 0;
+		}
+	},
+	getAndApplyFee: function (txData) {
+		if (txData.feeVal) return txData.feeVal;
+		txData.feeVal = this.getFee(txData);
+
+		return txData.feeVal;
+	},
+	userSettings: {
+		blockNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.block", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: false,
+			writable: true,
+		},
+		txNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.transaction", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: true,
+			writable: true,
+		},
+		maxBuses: {
+			title: () => {
+				return i18n.t("settings.max-buses");
+			},
+			type: "range",
+			min: 1,
+			max: 100,
+			restart: false,
+			value: 25,
+			writable: true,
+		},
+		signArray: {
+			title: "Sign Display",
+			type: "multiselect",
+			value: ["lastBlock", "medianFee-usdTransfer", "mempool-size"],
+			writable: true,
+			invisible: true,
+			restart: false,
+		},
+	},
+	stats: Vue.observable({
+		tps: {
+			title: () => {
+				return i18n.t("eth.tps");
+			},
+			decimals: 2,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/tps"],
+		},
+		ctps: {
+			title: () => {
+				return i18n.t("eth.ctps");
+			},
+			decimals: 2,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/ctps"],
+		},
+		baseFee: {
+			title: () => {
+				return i18n.t("eth.baseFee");
+			},
+			signTitle: "Base Fee",
+			value: 0,
+			socket: true,
+			format: (val) => {
+				return ethUnits(val);
+			},
+			wiki: ["ETH/stats/baseFee"],
+		},
+
+		"mempool-size": {
+			title: () => {
+				return i18n.t("eth.mempool-size");
+			},
+			signTitle: "Pending Txs",
+			value: 0,
+			decimals: 0,
+			limit: 75000,
+			socket: true,
+			wiki: ["common/stats/mempool-count", "common/mempool"],
+		},
+		"medianFee-usd": {
+			title: () => {
+				return i18n.t("lumia.medianFee-usd");
+			},
+			signTitle: "Median Contract Fee",
+			before: "~$",
+			after: " USD",
+			value: false,
+			socket: true,
+			wiki: ["ETH/stats/medianContractFee", "common/transaction-fees"],
+		},
+		"medianFee-usdTransfer": {
+			title: () => {
+				return i18n.t("eth.medianFee-usdTransfer");
+			},
+			signTitle: "Median Transfer Fee",
+			after: " USD",
+			before: "~$",
+			value: false,
+			socket: true,
+			wiki: ["ETH/stats/medianTransferFee", "common/transaction-fees"],
+		},
+		"medianFee-gasPrice": {
+			title: () => {
+				return i18n.t("lumia.medianFee-gasPrice");
+			},
+			value: false,
+			socket: true,
+			format: (val) => {
+				return ethUnits(val);
+			},
+			wiki: ["ETH/stats/medianGasPrice"],
+		},
+		"supply-circulating": {
+			title: () => {
+				return i18n.t("eth.supply-circulating");
+			},
+			decimals: 0,
+			socket: true,
+			value: false,
+		},
+		"fiatPrice-usd": {
+			title: () => {
+				return i18n.t("lumia.fiatPrice-usd");
+			},
+			decimals: 2,
+			before: "$",
+			socket: true,
+			value: false,
+		},
+		lastBlock: {
+			title: () => {
+				return i18n.t("eth.lastBlock");
+			},
+			value: false,
+			wiki: ["common/stats/lastBlock", "common/block-time"],
+		},
+		medianTxsPerBlock: {
+			title: () => {
+				return i18n.t("eth.medianTxsPerBlock");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["common/stats/medianTxsPerBlock"],
+		},
+		gasLimit: {
+			title: () => {
+				return i18n.t("eth.gasLimit");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/gasLimit"],
+		},
+		gasTarget: {
+			title: () => {
+				return i18n.t("eth.gasTarget");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/gasTarget"],
+		},
+		medianGasUsed: {
+			title: () => {
+				return i18n.t("eth.medianGasUsed");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/medianBlockGas"],
+		},
+		medianBlockSize: {
+			title: () => {
+				return i18n.t("eth.medianBlockSize");
+			},
+			value: 0,
+			decimals: 3,
+			divide: 1000000,
+			socket: true,
+			after: " MB",
+			wiki: ["common/stats/medianBlockSize"],
+		},
+		gasUsedDif: {
+			title: () => {
+				return i18n.t("eth.gasUsedDif");
+			},
+			value: 100,
+			decimals: 2,
+			socket: true,
+			after: "%",
+			wiki: ["ETH/stats/gasUsedDif"],
+		},
+		medianBlockTime: {
+			title: () => {
+				return i18n.t("eth.medianBlockTime");
+			},
+			value: 0,
+			timeAgo: true,
+			socket: true,
+			wiki: ["common/stats/medianBlockTime", "common/block-time"],
+		},
+		blockHeight: { hidden: true, value: false },
+		"marketCap-usd": {
+			title: () => {
+				return i18n.t("eth.marketCap-usd");
+			},
+			before: "$",
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		"volume-usd": {
+			title: () => {
+				return i18n.t("eth.volume-usd");
+			},
+			before: "$",
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+	}),
+};
+
 export const FLR = {
 	ticker: "FLR",
 	coinName: "flr",
@@ -2780,6 +3085,7 @@ export const enabledConfig = {
 	MANTA,
 	CELO,
 	LUKSO,
+	LUMIA,
 	FLR,
 };
 
