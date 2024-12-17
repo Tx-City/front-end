@@ -3082,11 +3082,11 @@ export const enabledConfig = {
 	XMR,
 	LTC,
 	ARBI,
-	MANTA,
-	CELO,
+	// MANTA,
+	// CELO,
 	LUKSO,
 	LUMIA,
-	FLR,
+	// FLR,
 };
 
 export const additionalSheets = {
