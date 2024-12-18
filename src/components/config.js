@@ -3086,7 +3086,7 @@ export const enabledConfig = {
 	// CELO,
 	LUKSO,
 	LUMIA,
-	// FLR,
+	FLR,
 };
 
 export const additionalSheets = {
