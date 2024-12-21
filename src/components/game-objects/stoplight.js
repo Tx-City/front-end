@@ -8,9 +8,8 @@ export default class Stoplight extends Phaser.GameObjects.Container {
 		this.scene = scene;
 		scene.add.existing(this);
 
-		this.x = (this.scene.side == "right" ? toRes(62) : toRes(898));
-		if(this.scene.config.ticker == "ETH"){this.y = this.scene.busStop - toRes(130);}else{this.y = this.scene.busStop - toRes(100);}
-		
+		this.x = this.scene.side == "right" ? toRes(62) : toRes(898);
+		this.y = this.scene.busStop - toRes(100);
 
 		this.offAlpha = 0.2;
 		this.lightSize = 9;
@@ -23,7 +22,7 @@ export default class Stoplight extends Phaser.GameObjects.Container {
 	}
 
 	recreate() {
-		this.x = (this.scene.side == "right" ? toRes(62) : toRes(898));
+		this.x = this.scene.side == "right" ? toRes(62) : toRes(898);
 		this.pole.destroy();
 		this.sign.destroy();
 		this.redLight.destroy();
@@ -35,8 +34,18 @@ export default class Stoplight extends Phaser.GameObjects.Container {
 	}
 
 	createLight() {
-		this.pole = this.scene.add.image(0, 0 + (config.theme.stoplightPadding/2), getSheetKey("spotlight.png"), "stoplight.png");
-		this.sign = this.scene.add.image(this.scene.side == "right" ? -5 : 5, -20, getSheetKey("spotlight_sign.png"), "stoplight_sign.png");
+		this.pole = this.scene.add.image(
+			0,
+			0 + config.theme.stoplightPadding / 2,
+			getSheetKey("spotlight.png"),
+			"stoplight.png"
+		);
+		this.sign = this.scene.add.image(
+			this.scene.side == "right" ? -5 : 5,
+			-20,
+			getSheetKey("spotlight_sign.png"),
+			"stoplight_sign.png"
+		);
 		this.sign.clickObject = "stoplight";
 		this.sign.setInteractive({ cursor: "help" });
 

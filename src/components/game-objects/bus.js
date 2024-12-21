@@ -15,56 +15,33 @@ const Bus = new Phaser.Class({
 		this.drawers = {};
 		this.drawersUsed = {};
 		this.setData("color", Phaser.Display.Color.HexStringToColor(this.scene.config.busColor));
-		this.floorColor = this.getData("color")
-			.clone()
-			.darken(40);
+		this.floorColor = this.getData("color").clone().darken(40);
 		this.textColor = this.scene.config.busColorText
 			? Phaser.Display.Color.HexStringToColor(this.scene.config.busColorText)
 			: this.floorColor;
-		this.wallColor = this.getData("color")
-			.clone()
-			.darken(45);
+		this.wallColor = this.getData("color").clone().darken(45);
 		this.logoColor = this.scene.config.busColorLogo
 			? Phaser.Display.Color.HexStringToColor(this.scene.config.busColorLogo)
-			: this.getData("color")
-				.clone()
-				.darken(18);
+			: this.getData("color").clone().darken(18);
 		this.setScale(config.resolution);
 
 		this.busHeight = this.scene.calcBusHeight(this.scene.config.busCapacityVisual || this.scene.config.busCapacity);
 		if (this.busHeight < 1) this.busHeight = 1;
 
 		//sprites
-		if(this.scene.config.ticker == "ETH"){
-				this.busTopSprite = this.scene.add.image(5, -97, "btop").setScale(1.8);
-				this.busBottomSprite = this.scene.add.image(1, this.busHeight - 10, "bbottom").setScale(1.8);
-				//this.ethBusRoof = this.scene.add.image(3, this.busHeight - 10, "ethroof").setScale(1.8).setDepth(1001);
-				this.doorSprite = this.scene.add.image(52, -80, "ethdoorTop").setScale(1.8,2.2);
-				this.backDoorSprite = this.scene.add.image(52, 45 + this.busHeight - 80, "ethdoorback").setScale(1.8);
-				this.busMiddle = this.scene.add.rectangle(0, -59, 120, this.busHeight, "0x" + this.scene.config.busColor, 1);
-				this.busMiddle.setVisible(false);
-				this.text1 = this.scene.add.bitmapText(0, -91, "roboto", "" + this.getData("id"), 19);
-			
-				this.text1.setOrigin(0.5);
-				this.text2 = this.scene.add.bitmapText(0, -69, "roboto", "", 24);
-			
-				this.text2.setOrigin(0.5);
-				this.text3 = this.scene.add.bitmapText(0, -48, "roboto", "", 19);
-				
-				this.text3.setOrigin(0.5);
-				this.lightsSprite = [];
-				this.lightsSprite[0] = this.scene.add.image(1, 107 + this.busHeight - 80, getSheetKey("lights.png"), "lights.png");
-	
-		}else{
-			this.busTopSprite = this.scene.add.image(0, -87, getSheetKey("bus_top.png"), "bus_top.png");
-			this.busBottomSprite = this.scene.add.image(0, this.busHeight - 10, getSheetKey("bus_bottom.png"), "bus_bottom.png");
-			this.doorSprite = this.scene.add.image(57, -76, getSheetKey("door.png"), "door.png");
-			this.backDoorSprite = this.scene.add.image(57, 45 + this.busHeight - 80, getSheetKey("door.png"), "door.png");
-			this.busMiddle = this.scene.add.rectangle(0, -59, 120, this.busHeight, "0x" + this.scene.config.busColor, 1);
-			this.busTopSprite.setTint("0x" + this.scene.config.busColor);
-			this.doorSprite.setTint("0x" + this.scene.config.busColor);
-			this.backDoorSprite.setTint("0x" + this.scene.config.busColor);
+		this.busTopSprite = this.scene.add.image(0, -87, getSheetKey("bus_top.png"), "bus_top.png");
+		this.busTopSprite.setTint("0x" + this.scene.config.busColor);
+		this.busBottomSprite = this.scene.add.image(
+			0,
+			this.busHeight - 10,
+			getSheetKey("bus_bottom.png"),
+			"bus_bottom.png"
+		);
 		this.busBottomSprite.setTint("0x" + this.scene.config.busColor);
+		this.bottomSpriteName = "busBottomSprite";
+		this.busMiddle = this.scene.add.rectangle(0, -59, 120, this.busHeight, "0x" + this.scene.config.busColor, 1);
+		this.busMiddle.originalFill = "0x" + this.scene.config.busColor;
+		this.busMiddle.setOrigin(0.5, 0);
 		this.text1 = this.scene.add.bitmapText(-1, -91, "roboto", "" + this.getData("id"), 19);
 		this.text1.setTint(this.textColor.color);
 		this.text1.originalTint = this.textColor.color;
@@ -77,17 +54,6 @@ const Bus = new Phaser.Class({
 		this.text3.setTint(this.textColor.color);
 		this.text3.originalTint = this.textColor.color;
 		this.text3.setOrigin(0.5);
-		this.lightsSprite = [];
-		this.lightsSprite[0] = this.scene.add.image(0, 107 + this.busHeight - 80, getSheetKey("lights.png"), "lights.png");
-	
-		}
-	
-		
-		this.bottomSpriteName = "busBottomSprite";
-		
-		this.busMiddle.originalFill = "0x" + this.scene.config.busColor;
-		this.busMiddle.setOrigin(0.5, 0);
-		
 
 		this.logo = this.scene.add.image(0, -35, getSheetKey("coin_logo"), this.scene.ticker.toLowerCase() + ".png");
 		this.logo.setScale(0.6);
@@ -95,44 +61,36 @@ const Bus = new Phaser.Class({
 		this.logo.originalTint = this.logoColor.color;
 		this.logo.setOrigin(0.5, 0);
 
-		
+		this.lightsSprite = [];
+		this.lightsSprite[0] = this.scene.add.image(
+			0,
+			107 + this.busHeight - 80,
+			getSheetKey("lights.png"),
+			"lights.png"
+		);
+		this.doorSprite = this.scene.add.image(57, -76, getSheetKey("door.png"), "door.png");
+		this.doorSprite.setTint("0x" + this.scene.config.busColor);
+		this.backDoorSprite = this.scene.add.image(57, 45 + this.busHeight - 80, getSheetKey("door.png"), "door.png");
+		this.backDoorSprite.setTint("0x" + this.scene.config.busColor);
 		if (this.scene.side !== "right") {
-			
-			if(this.scene.config.ticker == "ETH"){
-				this.busTopSprite.setFlipX(true);
-				this.busTopSprite.x = -3;
-				this.busBottomSprite.setFlipX(true);
-				this.busBottomSprite.x = 1;
-				this.doorSprite.setFlipX(true);
-				this.backDoorSprite.setFlipX(true);
-				this.doorSprite.x = -50;
-				this.backDoorSprite.x =-50;
-			
-
-			}else{
-				this.busTopSprite.setFlipX(true);
-				this.busBottomSprite.setFlipX(true);
-				this.doorSprite.setFlipX(true);
-				this.backDoorSprite.setFlipX(true);
-				this.doorSprite.x = -57;
-				this.backDoorSprite.x = -57;
-			}
-			
+			this.busTopSprite.setFlipX(true);
+			this.busBottomSprite.setFlipX(true);
+			this.doorSprite.setFlipX(true);
+			this.backDoorSprite.setFlipX(true);
+			this.doorSprite.x = -57;
+			this.backDoorSprite.x = -57;
 		}
 
 		this.add(this.busMiddle);
 		this.add(this.busTopSprite);
 		this.add(this.busBottomSprite);
-		this.add(this.doorSprite);
-		this.add(this.backDoorSprite);
 		this.add(this.logo);
 		this.add(this.text1);
 		this.add(this.text2);
 		this.add(this.text3);
+		this.add(this.doorSprite);
+		this.add(this.backDoorSprite);
 		this.add(this.lightsSprite[0]);
-		if(this.ethBusRoof){
-			this.add(this.ethBusRoof);
-		}
 
 		this.tintObjects = [
 			this.busTopSprite,
@@ -145,27 +103,14 @@ const Bus = new Phaser.Class({
 			this.backDoorSprite,
 		];
 		this.fillObjects = [this.busMiddle];
-		if(this.scene.config.ticker == "ETH"){
-			this.busFloor = this.scene.add.rectangle(
-				this.scene.side === "right" ? this.x + toRes(53) : this.x - toRes(60),
-				this.y - toRes(100),
-				7,
-				toRes(this.busHeight + 90),
-				this.floorColor.color,
-				1
-			);
-			this.busFloor.setVisible(false);
-		}else{
-			this.busFloor = this.scene.add.rectangle(
-				this.scene.side === "right" ? this.x + toRes(53) : this.x - toRes(60),
-				this.y - toRes(100),
-				7,
-				toRes(this.busHeight + 90),
-				this.floorColor.color,
-				1
-			);
-		}
-
+		this.busFloor = this.scene.add.rectangle(
+			this.scene.side === "right" ? this.x + toRes(53) : this.x - toRes(60),
+			this.y - toRes(100),
+			7,
+			toRes(this.busHeight + 90),
+			this.floorColor.color,
+			1
+		);
 		this.scene.busFloors.add(this.busFloor);
 		this.busFloor.setOrigin(0, 0);
 		this.busFloor.setScale(config.resolution);
@@ -236,7 +181,12 @@ Bus.prototype.newBus = function (atStop = true) {
 		let busChunk = (this.busHeight + 115) / this.scene.busArticulated;
 		this.articulated = [];
 		for (let i = 0; i < this.scene.busArticulated - 1; i++) {
-			let art = this.scene.add.image(0, i * busChunk + 98, getSheetKey("bus_articulated.png"), "bus_articulated.png");
+			let art = this.scene.add.image(
+				0,
+				i * busChunk + 98,
+				getSheetKey("bus_articulated.png"),
+				"bus_articulated.png"
+			);
 			art.setTint("0x" + this.scene.config.busColor);
 			this.articulated.push(art);
 			this.tintObjects.push(art);
@@ -359,31 +309,6 @@ Bus.prototype.switchSide = function (newSide) {
 		this.entryArc.destroy();
 		delete this.entryArc;
 	}
-	
-	if (newSide !== "right") {
-			
-		if(this.scene.config.ticker == "ETH"){
-			this.busTopSprite.setFlipX(true);
-			this.busTopSprite.x = -3;
-			this.busBottomSprite.setFlipX(true);
-			this.busBottomSprite.x = 1;
-			this.doorSprite.setFlipX(true);
-			this.backDoorSprite.setFlipX(true);
-			this.doorSprite.x = -50;
-			this.backDoorSprite.x =-50;
-
-		}
-		
-	}else{
-		if(this.scene.config.ticker == "ETH"){
-		this.busTopSprite.setFlipX(false);
-		this.busTopSprite.x = 5;
-		this.busBottomSprite.setFlipX(false);
-		this.doorSprite.setFlipX(false);
-		this.backDoorSprite.setFlipX(false);
-		this.doorSprite.x = 52;
-		this.backDoorSprite.x = 52;}
-	}
 };
 
 Bus.prototype.getIndex = function (group = "buses") {
@@ -408,9 +333,9 @@ Bus.prototype.setFeeText = function () {
 	let text2 = this.feeText
 		? this.feeText
 		: this.lowFee
-			? Math.ceil(this.lowFee) + " " + this.scene.vue.busFeeTitle
-			: "";
-	
+		? Math.ceil(this.lowFee) + " " + this.scene.vue.busFeeTitle
+		: "";
+
 	if (text2 !== this.text2.text) this.text2.setText(text2);
 
 	let text3 = this.feeText2 || "";
@@ -483,7 +408,7 @@ Bus.prototype.leaveTween = function () {
 				newBus.moveToStop();
 			}
 		},
-		onUpdate: tween => {
+		onUpdate: (tween) => {
 			if (!doOnUpdate) return false;
 			this.busFloor.y = this.y - toRes(100);
 			let firstWaiting = this.scene.firstBusWaiting();
@@ -564,7 +489,7 @@ Bus.prototype.moveLength = function (value, callback, duration = 1000, moveBelow
 			}
 			if (typeof callback === "function") callback();
 		},
-		onUpdate: e => {
+		onUpdate: (e) => {
 			let change = toRes(e.data[0].current - e.data[0].previous);
 			this.busFloor.displayHeight += change;
 			if (moveBelow) {
@@ -598,7 +523,7 @@ Bus.prototype.moveLength = function (value, callback, duration = 1000, moveBelow
 	});
 	this.moveLengthActive2 = this.scene.add.tween({
 		targets: [this.busBottomSprite, this.backDoorSprite].concat(this.lightsSprite),
-		y: target => {
+		y: (target) => {
 			return target.y - difference;
 		},
 		ease: "Power1",
@@ -612,10 +537,7 @@ Bus.prototype.moveLength = function (value, callback, duration = 1000, moveBelow
 };
 
 Bus.prototype.boardingY = function () {
-	if(this.scene.config.ticker == "ETH"){return this.busTopSprite.getTopLeft(null, true).y + this.scene.busDoorFromTop+toRes(35);}else{
-		return this.busTopSprite.getTopLeft(null, true).y + this.scene.busDoorFromTop;
-	}
-	
+	return this.busTopSprite.getTopLeft(null, true).y + this.scene.busDoorFromTop;
 };
 
 Bus.prototype.exitY = function () {
@@ -624,7 +546,7 @@ Bus.prototype.exitY = function () {
 
 Bus.prototype.brake = function () {
 	if (this.braking) return true;
-	this.lightsSprite.forEach(lightSprite => {
+	this.lightsSprite.forEach((lightSprite) => {
 		lightSprite.tintFill = true;
 		lightSprite.setTintFill(0xff3838);
 	});
@@ -633,7 +555,7 @@ Bus.prototype.brake = function () {
 
 Bus.prototype.unbrake = function () {
 	if (!this.braking) return true;
-	this.lightsSprite.forEach(lightSprite => {
+	this.lightsSprite.forEach((lightSprite) => {
 		lightSprite.clearTint();
 	});
 	this.braking = false;
@@ -731,8 +653,7 @@ Bus.prototype.pplBlitterMWEB = function (force = false, skipErase = false, overr
 		this.mwebPplRt.clear();
 		this.mwebPplRt.resize(rtWidth, rtHeight);
 	}
-	if (!this.mwebDrawer)
-		this.mwebDrawer = this.scene.add.blitter(0, 0, "characters").setVisible(false);
+	if (!this.mwebDrawer) this.mwebDrawer = this.scene.add.blitter(0, 0, "characters").setVisible(false);
 	this.mwebDrawer.clear();
 	let xPos = 0;
 	let row = 0;
@@ -763,9 +684,7 @@ Bus.prototype.pplBlitterMWEB = function (force = false, skipErase = false, overr
 			if (finalYPos < 0) finalYPos = 0;
 
 			let textureFile = "ltc-0.png";
-			let arr = [finalXPos,
-				finalYPos,
-				textureFile];
+			let arr = [finalXPos, finalYPos, textureFile];
 
 			draws.push(arr);
 		}
@@ -792,7 +711,7 @@ Bus.prototype.pplBlitterMWEB = function (force = false, skipErase = false, overr
 	skipErase;
 	force;
 	this.mwebPplRt.setScale(0.25);
-}
+};
 
 Bus.prototype.pplBlitter = function (force = false, skipErase = false, overrideHeight = false) {
 	if (!this.visible) return false;
@@ -837,7 +756,9 @@ Bus.prototype.pplBlitter = function (force = false, skipErase = false, overrideH
 		if (sheet === "default") continue;
 		const sheetKey = String(c.scaleAdjust) + String(c.pixelArt);
 		if (!this.drawers[sheetKey]) {
-			this.drawers[sheetKey] = this.scene.add.renderTexture(0, 0, rtWidth / c.scaleAdjust, rtHeight / c.scaleAdjust).setVisible(false);
+			this.drawers[sheetKey] = this.scene.add
+				.renderTexture(0, 0, rtWidth / c.scaleAdjust, rtHeight / c.scaleAdjust)
+				.setVisible(false);
 			this.drawers[sheetKey].setScale(c.scaleAdjust);
 			//FIX BLUR
 			if (c.pixelArt) this.drawers[sheetKey].texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
@@ -876,11 +797,17 @@ Bus.prototype.pplBlitter = function (force = false, skipErase = false, overrideH
 			let finalYPos = row + random * 5;
 			if (finalYPos < 0) finalYPos = 0;
 
-			let textureFile = (tx.char ? typeof tx.char === "string" ? tx.char + "-0.png" : tx.char?.texture : "person-" + tx.spriteNo * 9 + ".png");
-			let arr = [finalXPos / (this.scene.charConfig?.[tx?.char?.sheet]?.scaleAdjust || 1),
-			finalYPos / (this.scene.charConfig?.[tx?.char?.sheet]?.scaleAdjust || 1),
-			tx?.char?.sheet || "characters",
-				textureFile];
+			let textureFile = tx.char
+				? typeof tx.char === "string"
+					? tx.char + "-0.png"
+					: tx.char?.texture
+				: "person-" + tx.spriteNo * 9 + ".png";
+			let arr = [
+				finalXPos / (this.scene.charConfig?.[tx?.char?.sheet]?.scaleAdjust || 1),
+				finalYPos / (this.scene.charConfig?.[tx?.char?.sheet]?.scaleAdjust || 1),
+				tx?.char?.sheet || "characters",
+				textureFile,
+			];
 			if (tx.char || followed[tx.tx]) {
 				arr.push(followed[tx.tx] ? true : false);
 				topDraws.push(arr);
@@ -921,8 +848,7 @@ Bus.prototype.pplBlitter = function (force = false, skipErase = false, overrideH
 				if (sheet === "characters") {
 					this.drawers.sheet.create(draw[0], draw[1], draw[3]);
 					this.drawersUsed.sheet = true;
-				}
-				else {
+				} else {
 					const c = this.scene.charConfig[sheet];
 					const sheetKey = String(c.scaleAdjust) + String(c.pixelArt);
 					this.drawers[sheetKey].drawFrame(sheet + "-" + draw[3], null, draw[0], draw[1]);
@@ -943,7 +869,7 @@ Bus.prototype.clearDrawers = function () {
 		drawer.clear();
 	}
 	this.drawersUsed = {};
-}
+};
 
 Bus.prototype.doDraws = function () {
 	for (const sheet in this.drawers) {
@@ -951,7 +877,7 @@ Bus.prototype.doDraws = function () {
 		if (!this.drawersUsed[sheet]) continue;
 		this.pplRt.draw(drawer, 0, 0);
 	}
-}
+};
 
 Bus.prototype.openTop = function () {
 	if (!this.roofCutout) {
@@ -995,10 +921,10 @@ Bus.prototype.boardedAnim = function (person) {
 	}
 };
 
-Bus.prototype.setTint = function () { };
+Bus.prototype.setTint = function () {};
 
-Bus.prototype.setTintFill = function () { };
+Bus.prototype.setTintFill = function () {};
 
-Bus.prototype.clearTint = function () { };
+Bus.prototype.clearTint = function () {};
 
 export default Bus;
