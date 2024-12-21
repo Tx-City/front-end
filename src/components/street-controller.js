@@ -61,27 +61,27 @@ export class StreetController extends Phaser.Scene {
 		this.load.multiatlas("sheet", "sheet.json?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("characters", "characters.json?v=" + process.env.VUE_APP_VERSION);
 		this.load.multiatlas("mall", "mall.json?v=" + process.env.VUE_APP_VERSION);
-		this.load.spritesheet("etherPeopleFront", "etherCharacterFront.png?v=" + process.env.VUE_APP_VERSION, {
-			frameWidth: 100,
-			frameHeight: 150,
-			endFrame: 2,
-		});
-		this.load.spritesheet("etherPeopleBack", "etherCharacterBack.png?v=" + process.env.VUE_APP_VERSION, {
-			frameWidth: 100,
-			frameHeight: 150,
-			endFrame: 2,
-		});
-		this.load.spritesheet("etherPeopleSide", "etherCharacterSide.png?v=" + process.env.VUE_APP_VERSION, {
-			frameWidth: 100,
-			frameHeight: 150,
-			endFrame: 2,
-		});
-		this.load.image("btop", "btop.png?v=" + process.env.VUE_APP_VERSION);
-		this.load.image("bbottom", "bbottom.png?v=" + process.env.VUE_APP_VERSION);
-		this.load.image("ethdoorback", "ethdoorback.png?v=" + process.env.VUE_APP_VERSION);
-		this.load.image("ethdoorTop", "ethdoorTop.png?v=" + process.env.VUE_APP_VERSION);
-		this.load.image("ethincover", "ethincover.png?v=" + process.env.VUE_APP_VERSION);
-		this.load.image("ethroof", "ethroof.png?v=" + process.env.VUE_APP_VERSION);
+		// this.load.spritesheet("etherPeopleFront", "etherCharacterFront.png?v=" + process.env.VUE_APP_VERSION, {
+		// 	frameWidth: 100,
+		// 	frameHeight: 150,
+		// 	endFrame: 2,
+		// });
+		// this.load.spritesheet("etherPeopleBack", "etherCharacterBack.png?v=" + process.env.VUE_APP_VERSION, {
+		// 	frameWidth: 100,
+		// 	frameHeight: 150,
+		// 	endFrame: 2,
+		// });
+		// this.load.spritesheet("etherPeopleSide", "etherCharacterSide.png?v=" + process.env.VUE_APP_VERSION, {
+		// 	frameWidth: 100,
+		// 	frameHeight: 150,
+		// 	endFrame: 2,
+		// });
+		// this.load.image("btop", "btop.png?v=" + process.env.VUE_APP_VERSION);
+		// this.load.image("bbottom", "bbottom.png?v=" + process.env.VUE_APP_VERSION);
+		// this.load.image("ethdoorback", "ethdoorback.png?v=" + process.env.VUE_APP_VERSION);
+		// this.load.image("ethdoorTop", "ethdoorTop.png?v=" + process.env.VUE_APP_VERSION);
+		// this.load.image("ethincover", "ethincover.png?v=" + process.env.VUE_APP_VERSION);
+		// this.load.image("ethroof", "ethroof.png?v=" + process.env.VUE_APP_VERSION);
 		if (config.theme.key === "holiday")
 			this.load.multiatlas("holiday", "sheet_holiday.json?v=" + process.env.VUE_APP_VERSION);
 

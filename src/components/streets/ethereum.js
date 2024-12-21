@@ -13,7 +13,7 @@ export default class ETHStreet extends Street {
 
 	init() {
 		this.foundBoarding = false;
-		this.busStop = toRes(230);
+		this.busStop = toRes(200);
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 5;
 		this.decelerationArea = 500;
