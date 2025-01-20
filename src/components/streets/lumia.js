@@ -1,12 +1,9 @@
-import { Street } from "../street.js";
-// import { toRes, ethNewTxSetDepending } from "../utils/";
-// import { mirrorX, toRes, ethNewTxSetDepending, getSheetKey } from "../utils/";
+import { Street } from "../mall.js";
 import { toRes, ethNewTxSetDepending } from "../utils/";
 import { LUMIA, ethUnits } from "../config.js";
 import i18n from "../../i18n";
 import eventHub from "../vue/eventHub.js";
 import state from "../../wallet";
-// import Popup from "../game-objects/popup";
 
 export default class LUMIAStreet extends Street {
 	constructor(side) {
@@ -33,7 +30,7 @@ export default class LUMIAStreet extends Street {
 		this.vueTxFormat = [
 			{
 				title: () => {
-					return "Max " + i18n.t(this.ticker.toLowerCase() + ".gp"); //TODO change to max gas price
+					return "Max " + i18n.t(this.ticker.toLowerCase() + ".gp");
 				},
 				format: (val) => {
 					return ethUnits(val);
@@ -42,7 +39,7 @@ export default class LUMIAStreet extends Street {
 			},
 			{
 				title: () => {
-					return i18n.t(this.ticker.toLowerCase() + ".mpfpg"); //TODO change to max gas price
+					return i18n.t(this.ticker.toLowerCase() + ".mpfpg");
 				},
 				format: (val) => {
 					return ethUnits(val);
@@ -69,12 +66,6 @@ export default class LUMIAStreet extends Street {
 			},
 			{
 				title: () => {
-					return "Address Nonce";
-				},
-				key: "an",
-			},
-			{
-				title: () => {
 					return i18n.t(this.ticker.toLowerCase() + ".tot");
 				},
 				key: "tot",
@@ -93,14 +84,6 @@ export default class LUMIAStreet extends Street {
 		this.addressNonces = this.config.addressNonces;
 
 		this.streetCreate();
-		// await console.log("this.streetCreate()", this.streetCreate());
-		this.vue.navigation.unshift({
-			key: "characters",
-			html: "<span class='fas fa-user-astronaut'></span>",
-			title: "Character Select",
-			tooltip: "Character Select",
-			hasWindow: true,
-		});
 
 		this.vue.windowData.push({
 			key: "characters",
@@ -123,8 +106,8 @@ export default class LUMIAStreet extends Street {
 		}),
 			(this.vue.sizeTitle = () => {
 				return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
-			}),
-			this.lumiaBuses();
+			});
+
 		this.createPeople();
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
@@ -219,212 +202,6 @@ export default class LUMIAStreet extends Street {
 		return txs;
 	}
 
-	addBusTxs(bus, hashArray, skipTxs, instant = false, increasingNonces, toMove) {
-		let busId = bus.getData("id");
-		let candidates = [];
-
-		for (let i = 0; i < hashArray.length; i++) {
-			const entry = hashArray[i];
-			if (skipTxs.hashes[entry.txData.tx]) continue;
-			if (this.config.getAndApplyFee(entry.txData) < bus.baseFee) continue;
-			if (entry.txData.deleted) continue;
-			if (typeof entry.modSize === "undefined") entry.modSize = this.getModSize(entry.txData);
-
-			//calculate tip based on base fee
-			let tip = entry.txData.feeVal - bus.baseFee;
-			if (entry.txData.mpfpg && tip > Number(entry.txData.mpfpg)) tip = Number(entry.txData.mpfpg);
-			entry.tipForBus = tip / 1000000000; //hardcoded to gwei for now
-			candidates.push(entry);
-		}
-
-		candidates.sort((a, b) => {
-			return b.tipForBus - a.tipForBus;
-		});
-
-		for (let i = 0; i < candidates.length; i++) {
-			const entry = candidates[i];
-			if (bus.loaded + entry.modSize > this.config.busCapacity) {
-				let fittedTxs = this.getFittingTxs(candidates, bus, skipTxs);
-				for (let j = 0; j < fittedTxs.length; j++) {
-					const fittedTx = fittedTxs[j];
-					if (typeof fittedTx.modSize === "undefined") fittedTx.modSize = this.getModSize(fittedTx.txData);
-					if (fittedTx.modSize + bus.loaded > this.config.busCapacity) continue;
-					if (this.addTxToBus(fittedTx, bus, busId, instant, skipTxs, increasingNonces, toMove)) {
-						fittedTx.ignoreBusFee = true;
-					}
-				}
-				break;
-			}
-			this.addTxToBus(entry, bus, busId, instant, skipTxs, increasingNonces, toMove);
-		}
-		bus.realLoaded = bus.loaded;
-		bus.loaded = this.config.busCapacity;
-	}
-
-	addTxToBus(entry, bus, busId, instant, skipTxs, increasingNonces, toMove) {
-		if (skipTxs.hashes[entry.txData.tx]) return false;
-		if (
-			typeof increasingNonces[entry.txData.fr] === "undefined" ||
-			increasingNonces[entry.txData.fr] !== entry.txData.n
-		) {
-			entry.txData.dependingOn = true;
-			this.addToMove(entry, toMove);
-			return false;
-		}
-		increasingNonces[entry.txData.fr]++;
-
-		skipTxs.hashes[entry.txData.tx] = true;
-		skipTxs.count++;
-
-		if ((typeof entry.ignoreBusFee === "undefined" || !entry.ignoreBusFee) && Boolean(entry.tipForBus)) {
-			bus.feeArray.push(parseFloat(entry.tipForBus.toFixed(2)));
-		}
-		bus.tx.push(entry.txData);
-		bus.loaded += entry.modSize;
-
-		if (instant) {
-			this.lineManager[entry.txData.tx].status = "on_bus";
-			this.lineManager[entry.txData.tx].boarded = busId;
-		}
-		this.lineManager[entry.txData.tx].destination = busId;
-		this.lineManager[entry.txData.tx].spot = "bus";
-
-		if (typeof toMove[entry.txData.fr] !== "undefined" && toMove[entry.txData.fr].length) {
-			let nextToAdd = toMove[entry.txData.fr][0];
-			let nextNonce = increasingNonces[nextToAdd.txData.fr];
-			//check if toMove entry meets requirements
-			if (
-				nextNonce === nextToAdd.txData.n &&
-				nextToAdd.feeVal > bus.baseFee &&
-				nextToAdd.modSize + bus.loaded < this.config.busCapacity
-			) {
-				//correct to add next one
-				toMove[entry.txData.fr].shift();
-				this.addTxToBus(nextToAdd, bus, busId, instant, skipTxs, increasingNonces, toMove);
-			}
-		}
-
-		return true;
-	}
-
-	//go through list
-	sortBuses(instant = false, hashArray = false) {
-		if (!hashArray) hashArray = this.sortedLineHashes(false);
-		for (let i = 0; i < hashArray.length; i++) {
-			hashArray[i].txData.dependingOn = false;
-		}
-		let increasingNonces = JSON.parse(JSON.stringify(this.addressNonces));
-		let skipTxs = {
-			hashes: {},
-			count: 0,
-		};
-		let toMove = {};
-		if (!this.vue.isConnected) return false;
-		let activeBusesBefore = this.activeBuses(false);
-		let nonEmptyBuses = [];
-		for (let i = 0; i < activeBusesBefore.length; i++) {
-			const bus = activeBusesBefore[i];
-			if (bus.tx.length > 0) nonEmptyBuses.push(bus.getData("id"));
-		}
-
-		let activeBuses = this.activeBuses();
-
-		for (let i = 0; i < this.config.userSettings.maxBuses.value; i++) {
-			let bus = activeBuses[i];
-			if (!bus) {
-				activeBuses.push(this.addBus());
-				i--;
-				continue;
-			}
-			bus.baseFee = this.calcBusBaseFee(activeBuses, i);
-			bus.feeText = ethUnits(bus.baseFee, true, true);
-			this.addBusTxs(bus, hashArray, skipTxs, instant, increasingNonces, toMove);
-		}
-
-		//get leftovers from hasharray (not in skipTxs)
-		let leftovers = [];
-		let peopleSizeAdded = 0;
-		let peopleAdded = 0;
-		for (let i = 0; i < hashArray.length; i++) {
-			const entry = hashArray[i];
-			if (skipTxs.hashes[entry.txData.tx]) continue;
-			if (entry.txData.deleted) continue;
-			leftovers.push(entry);
-		}
-		if (instant) this.resetBoardingAndDestination(leftovers);
-		this.sortLine(leftovers);
-		for (let i = 0; i < leftovers.length; i++) {
-			const entry = leftovers[i];
-			if (peopleSizeAdded > this.config.busCapacity || peopleAdded > 1000) {
-				//TODO also check count
-				if (this.txFollowers[entry.txData.tx]) {
-					this.lineManager[entry.txData.tx].spot = peopleAdded + 1;
-					continue;
-				}
-				if (entry.status === "waiting" || !entry.status) {
-					this.deleteLinePerson(entry.txData.tx, true);
-				}
-				continue;
-			}
-
-			peopleSizeAdded += entry.modSize;
-			peopleAdded++;
-			this.lineManager[entry.txData.tx].destination = false;
-			if (instant) {
-				this.lineManager[entry.txData.tx].status = "waiting";
-				//add to line as person
-				this.newPerson(this.lineManager[entry.txData.tx]);
-			}
-		}
-
-		let compare = this.getLineCords(peopleAdded)[1];
-		this.setCrowdY(compare);
-
-		let foundLoaded = false;
-		let target = this.getGasTarget();
-		for (let i = activeBuses.length - 1; i >= 0; i--) {
-			this.calcBusFees(activeBuses, i);
-			activeBuses[i].feeText2 = "+" + ethUnits(Math.ceil(activeBuses[i].lowFee) * 1000000000);
-			let busId = activeBuses[i].getData("id");
-			if (foundLoaded || nonEmptyBuses.includes(busId) || activeBuses[i].tx.length > 0) {
-				foundLoaded = true;
-				let overTarget = activeBuses[i].realLoaded - target;
-				if (overTarget < 0) overTarget = 0;
-				activeBuses[i].resize(overTarget > 0 ? Math.round(overTarget / 500000) : 0);
-				continue;
-			}
-			// activeBuses[i].bye();
-			// activeBuses.splice(i, 1);
-		}
-
-		const notDeleted = hashArray.filter((obj) => !obj.txData.deleted).length;
-		const pplLeftover = this.bottomStats["mempool-size"].value - notDeleted;
-
-		if (activeBuses.length > 0 && pplLeftover > 1000 && activeBuses[0].loaded === this.config.busCapacity) {
-			this.crowdCount = pplLeftover;
-			if (this.crowd.text)
-				this.crowd.text.setText(i18n.t("messages.low-fee-line") + ": " + this.crowdCountDisplay());
-		} else {
-			this.crowdCount = 0;
-		}
-
-		this.updateAllBusPercent(activeBuses);
-
-		this.vue.sortedCount++;
-		this.busInside();
-	}
-
-	calcBusHeight(/*size*/) {
-		return 0; //TODO maybe do dynamic, but block size is so small that it would show as 0 all the time
-	}
-
-	calcBusHeightFromBlock(block) {
-		let target = this.getGasTarget();
-		let overTarget = block.gu - target;
-		if (overTarget < 0) overTarget = 0;
-		return overTarget > 0 ? Math.round(overTarget / 500000) : 0;
-	}
-
 	setMaxScalePerson(person = false, txSize) {
 		let scale = 0.35;
 		if (txSize <= 21000) {
@@ -446,17 +223,6 @@ export default class LUMIAStreet extends Street {
 		return scale;
 	}
 
-	lumiaBuses() {
-		this.busesLeaving = this.add.group();
-		this.config.busCapacity = this.vue.stats.gasLimit.value;
-		if (typeof this.config.busCapacity === "undefined" || !this.config.busCapacity) {
-			setTimeout(() => {
-				this.lumiaBuses();
-			}, 100);
-			return false;
-		}
-	}
-
 	update() {
 		this.streetUpdate();
 	}
@@ -464,7 +230,6 @@ export default class LUMIAStreet extends Street {
 	beforeNewTx(tx) {
 		//set the address nonce
 		ethNewTxSetDepending(tx, this.config);
-
 		if (tx.dh) {
 			for (let i = 0; i < tx.dh.length; i++) {
 				const hashToDelete = tx.dh[i];
