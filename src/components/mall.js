@@ -272,6 +272,10 @@ export class Street extends Phaser.Scene {
 				if (window.txStreetPhaser.streetController.hidden || this.game.scene.isSleeping(this)) return;
 				this.rollupStart();
 			});
+			this.blockFactory.socket.on("lumiaRollup", () => {
+				if (window.txStreetPhaser.streetController.hidden || this.game.scene.isSleeping(this)) return;
+				this.lumiaRollupStart();
+			});
 			this.blockFactory.socket.on("mantaRollup", () => {
 				if (window.txStreetPhaser.streetController.hidden || this.game.scene.isSleeping(this)) return;
 				this.mantaRollupStart();
@@ -419,6 +423,22 @@ export class Street extends Phaser.Scene {
 	}
 
 	rollupStart() {
+		this.mailman.rolling = true;
+		this.mailman.spinDirection = -1;
+		this.mailman.anims.play("mailman-spin");
+		this.mailman.animListener = (anim, frame) => {
+			if (!this.mailman.rolling) return;
+			this.mailman.setFlipX(frame.index === 4);
+			this.mailman.anims.msPerFrame += 8 * this.mailman.spinDirection;
+			if (this.mailman.anims.msPerFrame <= 70) this.mailman.anims.msPerFrame = 90;
+			if (this.mailman.anims.msPerFrame <= 90) {
+				if (!this.mailman.rollingUp) this.rollup();
+			}
+		};
+		this.mailman.on(Phaser.Animations.Events.ANIMATION_UPDATE, this.mailman.animListener);
+	}
+
+	lumiaRollupStart() {
 		this.mailman.rolling = true;
 		this.mailman.spinDirection = -1;
 		this.mailman.anims.play("mailman-spin");
