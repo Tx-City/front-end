@@ -10,7 +10,7 @@
 		<a class="tx-link" :data-tx="source.tx" v-html="txDisplay(source)"></a>
 		<span class="tx-tags right">
 			<span v-if="source.bh" class="tag is-success fas fa-check"></span>
-			<span v-if="source.e && source.e.op_return && source.coin != 'DASH'" :class="$root.darkMode ? 'is-black' : 'is-info'" class="tag"
+			<span v-if="source.e && source.e.op_return && (source.chain != 'DASH' || source.char != 'dash')" :class="$root.darkMode ? 'is-black' : 'is-info'" class="tag"
 				>OP_R</span
 			>
 			<!-- <span v-if="source.e && street.config.coinName !== 'DASH' && source.e.sw" :class="$root.darkMode ? 'is-black' : 'is-info'" class="tag">
@@ -60,7 +60,7 @@ export default {
 			},
 		},
 	},
-	computed: {
+	computed: {	
 		config: function () {
 			return config;
 		},
@@ -77,6 +77,9 @@ export default {
 				return html;
 			};
 		},
+	},
+	mounted() {
+		console.log("Source data:", this.source);
 	},
 };
 </script>
