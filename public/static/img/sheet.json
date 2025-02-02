@@ -1732,6 +1732,27 @@
 					}
 				},
 				{
+					"filename": "Lumia.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 75,
+						"h": 75
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 3,
+						"w": 70,
+						"h": 69
+					},
+					"frame": {
+						"x": 0,
+						"y": 975,
+						"w": 70,
+						"h": 69
+					}
+				},
+				{
 					"filename": "segwit_outline.png",
 					"rotated": false,
 					"trimmed": false,
@@ -2304,6 +2325,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:ecafa9bf54967d91277497822ba116ec:f125fc489b64bbf167c8d329194063fe:9c44ecd7e9a522007eaff2949095bc1d$"
+		"smartupdate": "$TexturePacker:SmartUpdate:b2d7bac157dbb94b5c16babd58ef55f0:473048a272b65cb3b0b4f67d65f74b95:9c44ecd7e9a522007eaff2949095bc1d$"
 	}
 }
