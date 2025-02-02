@@ -2280,15 +2280,6 @@ export const LUMIA = {
 			socket: true,
 			wiki: ["ETH/stats/gasTarget"],
 		},
-		medianGasUsed: {
-			title: () => {
-				return i18n.t("eth.medianGasUsed");
-			},
-			value: 0,
-			decimals: 0,
-			socket: true,
-			wiki: ["ETH/stats/medianBlockGas"],
-		},
 		gasUsedDif: {
 			title: () => {
 				return i18n.t("eth.gasUsedDif");

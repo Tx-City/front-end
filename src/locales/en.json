@@ -288,7 +288,6 @@
         "medianFee-gasPrice": "@:eth.medianFee-gasPrice",
         "medianFee-usd": "@:eth.medianFee-usd",
         "medianFee-usdTransfer": "LUMIA Transfer Fee",
-        "medianGasUsed": "@:eth.medianGasUsed",
         "medianTxsPerBlock": "@:eth.medianTxsPerBlock",
         "mempool-size": "@:btc.mempool-size",
         "sizeTitle": "Gas",
