@@ -3,7 +3,7 @@
 		<span class="tx-tags">
 			<span v-if="source.h" :class="$root.darkMode ? 'is-black' : 'is-info'" class="tag">
 				<img
-					:src="config.baseUrl + 'static/img/singles/house_logos/' + source.h + '.png?v=' + $root.appVersion"
+					:src="config.baseUrl + 'static/img/singles/house_logos/' + (source.h === 'lumia' ? 'Lumia' : source.h) + '.png?v=' + $root.appVersion"
 				/>
 			</span>
 		</span>
