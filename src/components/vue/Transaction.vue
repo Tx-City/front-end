@@ -17,7 +17,7 @@
 		<div class="tags tx-display">
 			<a v-if="txData.h" class="tag is-info" @click="$root.toggleWindow(txData.h)">
 				<img
-					:src="config.baseUrl + 'static/img/singles/house_logos/' + txData.h + '.png?v=' + $root.appVersion"
+					:src="config.baseUrl + 'static/img/singles/house_logos/' + (txData.h === 'lumia' ? 'Lumia' : txData.h) + '.png?v=' + $root.appVersion"
 				/>
 				{{ houseTitle }}
 			</a>
