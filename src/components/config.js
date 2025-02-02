@@ -2253,15 +2253,6 @@ export const LUMIA = {
 			default: 0,
 			wiki: ["common/stats/pendingBatchSize"],
 		},
-		medianTxsPerBlock: {
-			title: () => {
-				return i18n.t("eth.medianTxsPerBlock");
-			},
-			value: 0,
-			decimals: 0,
-			socket: true,
-			wiki: ["common/stats/medianTxsPerBlock"],
-		},
 		gasLimit: {
 			title: () => {
 				return i18n.t("eth.gasLimit");
