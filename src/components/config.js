@@ -492,17 +492,17 @@ export const DASH = {
 	}),
 };
 
-export const DASHP = {
-	ticker: "DASHP",
+export const EVOLUTION = {
+	ticker: "EVOLUTION",
 	coinName: "Dash Evolution",
 	color: "ffffff",
 	busColor: "ffffff",
 	busCapacity: 1000000,
 	feeVar: "spb",
-	explorerTxUrl: "https://insight.dashp.org/insight/tx/",
-	explorerBlockUrl: "https://blockchair.com/dashp/block/",
-	explorerBlocksUrl: "https://blockchair.com/dashp/blocks/",
-	explorerAddressUrl: "https://blockchair.com/dashp/address/",
+	explorerTxUrl: "https://insight.evolution.org/insight/tx/",
+	explorerBlockUrl: "https://blockchair.com/evolution/block/",
+	explorerBlocksUrl: "https://blockchair.com/evolution/blocks/",
+	explorerAddressUrl: "https://blockchair.com/evolution/address/",
 	liveTxs: [],
 	liveBlocks: [],
 	houseArray: [],
@@ -549,7 +549,7 @@ export const DASHP = {
 	stats: Vue.observable({
 		tps: {
 			title: () => {
-				return i18n.t("dashp.tps");
+				return i18n.t("evolution.tps");
 			},
 			decimals: 2,
 			value: false,
@@ -558,7 +558,7 @@ export const DASHP = {
 		},
 		ctps: {
 			title: () => {
-				return i18n.t("dashp.ctps");
+				return i18n.t("evolution.ctps");
 			},
 			decimals: 2,
 			value: false,
@@ -567,7 +567,7 @@ export const DASHP = {
 		},
 		"mempool-bytes": {
 			title: () => {
-				return i18n.t("dashp.mempool-bytes");
+				return i18n.t("evolution.mempool-bytes");
 			},
 			after: " MB",
 			divide: 1000000,
@@ -579,7 +579,7 @@ export const DASHP = {
 		},
 		"mempool-size": {
 			title: () => {
-				return i18n.t("dashp.mempool-size");
+				return i18n.t("evolution.mempool-size");
 			},
 			signTitle: "Pending Txs",
 			decimals: 0,
@@ -589,7 +589,7 @@ export const DASHP = {
 		},
 		"medianFee-usd": {
 			title: () => {
-				return i18n.t("dashp.medianFee-usd");
+				return i18n.t("evolution.medianFee-usd");
 			},
 			signTitle: "Median Tx Fee",
 			before: "$",
@@ -599,7 +599,7 @@ export const DASHP = {
 		},
 		"medianFee-satPerByte": {
 			title: () => {
-				return i18n.t("dashp.medianFee-satPerByte");
+				return i18n.t("evolution.medianFee-satPerByte");
 			},
 			common: "medianFeeSat",
 			value: false,
@@ -608,7 +608,7 @@ export const DASHP = {
 		},
 		bps: {
 			title: () => {
-				return i18n.t("dashp.bps");
+				return i18n.t("evolution.bps");
 			},
 			decimals: 0,
 			after: " B",
@@ -651,7 +651,7 @@ export const DASHP = {
 		},
 		blockchainSize: {
 			title: () => {
-				return i18n.t("dashp.blockchainSize");
+				return i18n.t("evolution.blockchainSize");
 			},
 			value: false,
 			socket: true,
@@ -713,7 +713,7 @@ export const DASHP = {
 		},
 		halving: {
 			title: () => {
-				return i18n.t("dashp.halving");
+				return i18n.t("evolution.halving");
 			},
 			signTitle: "Halving in",
 			value: false,
@@ -3174,7 +3174,7 @@ export const enabledConfig = {
 	BTC,
 	BCH,
 	DASH,
-	DASHP,
+	EVOLUTION,
 	XMR,
 	LTC,
 	ARBI,

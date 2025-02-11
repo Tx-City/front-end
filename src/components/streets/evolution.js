@@ -1,12 +1,12 @@
 import { Street } from "../street.js";
 import { mirrorX, toRes, toResRev, getSheetKey } from "../utils/";
-import { DASHP } from "../config.js";
+import { EVOLUTION } from "../config.js";
 import { fds, default as i18n } from "../../i18n";
 import { add } from "date-fns";
 
-export default class DASHPStreet extends Street {
+export default class EVOLUTIONStreet extends Street {
 	constructor(side) {
-		super(DASHP, side);
+		super(EVOLUTION, side);
 	}
 
 	init() {
@@ -63,7 +63,7 @@ export default class DASHPStreet extends Street {
 		} else if (tx.h == "privatesend") {
 			tx.char = "ps";
 		} else {
-			tx.char = "dashp";
+			tx.char = "evolution";
 		}
 	}
 	preload() {}
@@ -177,4 +177,4 @@ export default class DASHPStreet extends Street {
 	}
 }
 
-DASHPStreet.config = DASHP;
+EVOLUTIONStreet.config = EVOLUTION;
