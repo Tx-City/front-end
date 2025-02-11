@@ -4,6 +4,7 @@ import { toRes, resetNeededRooms, getSheetKey } from "./utils/";
 import { resizeAll } from "./listeners.js";
 import BTCStreet from "./streets/bitcoin.js";
 import DASHStreet from "./streets/dash.js";
+import DASHPStreet from "./streets/dashp.js";
 import BCHStreet from "./streets/bitcoin-cash.js";
 import ETHStreet from "./streets/ethereum.js";
 import LUKSOStreet from "./streets/lukso.js";
@@ -22,6 +23,7 @@ import AppleTest from "./utils/apple_test.js";
 export const availableStreets = {
 	BTC: BTCStreet,
 	DASH: DASHStreet,
+	DASHP: DASHPStreet,
 	BCH: BCHStreet,
 	ETH: ETHStreet,
 	XMR: XMRStreet,
