@@ -85,7 +85,7 @@
         "tps": "Broadcasted Tx/Sec",
         "volume-usd": "24HR Volume (USD)"
     },
-    "dashp": {
+    "evolution": {
         "blockchainSize": "Blockchain Size",
         "bps": "Bytes Per Second",
         "ctps": "Confirmed Tx/Sec",
