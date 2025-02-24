@@ -2951,8 +2951,8 @@ export const enabledConfig = {
 	LUMIA,
 	// MANTA,
 	// CELO,
-	LUKSO,
-	FLR,
+	// LUKSO,
+	// FLR,
 };
 
 export const additionalSheets = {
