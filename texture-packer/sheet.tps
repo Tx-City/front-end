@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>6</int>
         <key>texturePackerVersion</key>
-        <string>7.4.0</string>
+        <string>7.5.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -270,9 +270,11 @@
             <key type="filename">../public/static/img/singles/coin_logos/dash.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/eth.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/ltc.png</key>
+            <key type="filename">../public/static/img/singles/coin_logos/lumia.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/manta.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/rinkeby.png</key>
             <key type="filename">../public/static/img/singles/coin_logos/xmr.png</key>
+            <key type="filename">../public/static/img/singles/house_logos/Lumia.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -287,7 +289,22 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../public/static/img/singles/coin_logos/flare.png</key>
+            <key type="filename">../public/static/img/singles/coin_logos/dashp.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>23,9,45,18</rect>
+                <key>scale9Paddings</key>
+                <rect>23,9,45,18</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../public/static/img/singles/coin_logos/flr.png</key>
             <key type="filename">../public/static/img/singles/house_logos/cashtokens.png</key>
             <key type="filename">../public/static/img/singles/house_logos/coinbase.png</key>
             <key type="filename">../public/static/img/singles/house_logos/coinjoin.png</key>

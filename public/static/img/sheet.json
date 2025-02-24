@@ -5,7 +5,7 @@
 			"format": "RGBA8888",
 			"size": {
 				"w": 251,
-				"h": 1501
+				"h": 1602
 			},
 			"scale": 1,
 			"frames": [
@@ -2257,27 +2257,6 @@
 					}
 				},
 				{
-					"filename": "bus_erase.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 236,
-						"h": 90
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 236,
-						"h": 90
-					},
-					"frame": {
-						"x": 0,
-						"y": 1346,
-						"w": 236,
-						"h": 90
-					}
-				},
-				{
 					"filename": "lights.png",
 					"rotated": false,
 					"trimmed": false,
@@ -2299,6 +2278,48 @@
 					}
 				},
 				{
+					"filename": "evolution.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 250,
+						"h": 100
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 250,
+						"h": 100
+					},
+					"frame": {
+						"x": 0,
+						"y": 1346,
+						"w": 250,
+						"h": 100
+					}
+				},
+				{
+					"filename": "bus_erase.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 236,
+						"h": 90
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 236,
+						"h": 90
+					},
+					"frame": {
+						"x": 0,
+						"y": 1447,
+						"w": 236,
+						"h": 90
+					}
+				},
+				{
 					"filename": "lane.png",
 					"rotated": false,
 					"trimmed": false,
@@ -2314,7 +2335,7 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 1437,
+						"y": 1538,
 						"w": 192,
 						"h": 64
 					}
@@ -2325,6 +2346,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:b2d7bac157dbb94b5c16babd58ef55f0:473048a272b65cb3b0b4f67d65f74b95:9c44ecd7e9a522007eaff2949095bc1d$"
+		"smartupdate": "$TexturePacker:SmartUpdate:fce2ca7a7193af746320a25d82458ac3:3a20cce58af1c8aac43e230fe90440db:9c44ecd7e9a522007eaff2949095bc1d$"
 	}
 }

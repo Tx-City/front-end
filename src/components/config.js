@@ -492,6 +492,235 @@ export const DASH = {
 	}),
 };
 
+export const EVOLUTION = {
+	ticker: "EVOLUTION",
+	coinName: "Dash Evolution",
+	color: "ffffff",
+	busColor: "ffffff",
+	busCapacity: 1000000,
+	feeVar: "spb",
+	explorerTxUrl: "https://insight.evolution.org/insight/tx/",
+	explorerBlockUrl: "https://blockchair.com/evolution/block/",
+	explorerBlocksUrl: "https://blockchair.com/evolution/blocks/",
+	explorerAddressUrl: "https://blockchair.com/evolution/address/",
+	liveTxs: [],
+	liveBlocks: [],
+	houseArray: [],
+	maxBlocksToKeep: 10,
+	userSettings: {
+		blockNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.block", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: false,
+			writable: true,
+		},
+		txNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.transaction", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: true,
+			writable: true,
+		},
+		maxBuses: {
+			title: () => {
+				return i18n.t("settings.max-buses");
+			},
+			type: "range",
+			min: 1,
+			max: 30,
+			restart: false,
+			value: 5,
+			writable: true,
+		},
+		signArray: {
+			title: "Sign Display",
+			type: "multiselect",
+			value: ["lastBlock", "medianFee-usd", "mempool-size"],
+			writable: true,
+			invisible: true,
+			restart: false,
+		},
+	},
+	stats: Vue.observable({
+		tps: {
+			title: () => {
+				return i18n.t("evolution.tps");
+			},
+			decimals: 2,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/tps"],
+		},
+		ctps: {
+			title: () => {
+				return i18n.t("evolution.ctps");
+			},
+			decimals: 2,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/ctps"],
+		},
+		"mempool-bytes": {
+			title: () => {
+				return i18n.t("evolution.mempool-bytes");
+			},
+			after: " MB",
+			divide: 1000000,
+			decimals: 3,
+			value: false,
+			guide: ["mempool_size", "mempool"],
+			socket: true,
+			wiki: ["common/stats/mempool-size", "common/mempool"],
+		},
+		"mempool-size": {
+			title: () => {
+				return i18n.t("evolution.mempool-size");
+			},
+			signTitle: "Pending Txs",
+			decimals: 0,
+			value: false,
+			socket: true,
+			wiki: ["common/stats/mempool-count", "common/mempool"],
+		},
+		"medianFee-usd": {
+			title: () => {
+				return i18n.t("evolution.medianFee-usd");
+			},
+			signTitle: "Median Tx Fee",
+			before: "$",
+			value: false,
+			socket: true,
+			wiki: ["common/stats/medianFee-usd", "common/transaction-fees"],
+		},
+		"medianFee-satPerByte": {
+			title: () => {
+				return i18n.t("evolution.medianFee-satPerByte");
+			},
+			common: "medianFeeSat",
+			value: false,
+			socket: true,
+			wiki: ["common/stats/medianFee-satPerByte", "common/transaction-fees"],
+		},
+		bps: {
+			title: () => {
+				return i18n.t("evolution.bps");
+			},
+			decimals: 0,
+			after: " B",
+			value: false,
+			socket: true,
+			wiki: ["common/stats/bps"],
+		},
+		"supply-circulating": {
+			title: () => {
+				return i18n.t("btc.supply-circulating");
+			},
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		"fiatPrice-usd": {
+			title: () => {
+				return i18n.t("btc.fiatPrice-usd");
+			},
+			decimals: 2,
+			before: "$",
+			value: false,
+			socket: true,
+		},
+		lastBlock: {
+			title: () => {
+				return i18n.t("btc.lastBlock");
+			},
+			value: false,
+			wiki: ["common/stats/lastBlock", "common/block-time"],
+		},
+		medianTxsPerBlock: {
+			title: () => {
+				return i18n.t("btc.medianTxsPerBlock");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["common/stats/medianTxsPerBlock"],
+		},
+		blockchainSize: {
+			title: () => {
+				return i18n.t("evolution.blockchainSize");
+			},
+			value: false,
+			socket: true,
+			format: function (value) {
+				// Check if value is a number and not null/undefined
+				if (typeof value === "number" && !isNaN(value)) {
+					return value.toLocaleString("en-US") + " MB";
+				}
+				// Return the original value if it's not a valid number, appended with MB
+				return value + " MB";
+			},
+		},
+		difficulty: {
+			title: () => {
+				return i18n.t("btc.difficulty");
+			},
+			value: false,
+			decimals: 0,
+			socket: true,
+		},
+		medianBlockSize: {
+			title: () => {
+				return i18n.t("btc.medianBlockSize");
+			},
+			decimals: 3,
+			divide: 1000000,
+			after: " MB",
+			value: false,
+			socket: true,
+			wiki: ["common/stats/medianBlockSize"],
+		},
+		medianBlockTime: {
+			title: () => {
+				return i18n.t("btc.medianBlockTime");
+			},
+			value: 0,
+			timeAgo: true,
+			socket: true,
+			wiki: ["common/stats/medianBlockTime", "common/block-time"],
+		},
+		blockHeight: { hidden: true, value: false },
+		"marketCap-usd": {
+			title: () => {
+				return i18n.t("btc.marketCap-usd");
+			},
+			before: "$",
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		"volume-usd": {
+			title: () => {
+				return i18n.t("btc.volume-usd");
+			},
+			before: "$",
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		halving: {
+			title: () => {
+				return i18n.t("evolution.halving");
+			},
+			signTitle: "Halving in",
+			value: false,
+		},
+	}),
+};
+
 export const LTC = {
 	ticker: "LTC",
 	coinName: "Litecoin",
@@ -2945,6 +3174,7 @@ export const enabledConfig = {
 	BTC,
 	BCH,
 	DASH,
+	EVOLUTION,
 	XMR,
 	LTC,
 	ARBI,
