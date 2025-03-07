@@ -16,7 +16,7 @@ logs/*.txt
 *.db-journal
 Thumbs.db:encryptable
 Thumbs.db
-
+vue.config.js
 # local env files
 .env
 .env.local
