@@ -2309,23 +2309,22 @@ export class Street extends Phaser.Scene {
 			if (this.vue.stats["mempool-size"] && bus.tx.length < this.vue.stats["mempool-size"].value * 0.95) {
 				bus.txsOverride = this.vue.stats["mempool-size"].value;
 			}
-		}
 
-		//calculate how many extra endbuses to display based on mempool count and number of txs loaded
-		const notDeleted = hashArray.filter((obj) => !obj.txData.deleted).length;
-		const pplLeftover = this.bottomStats["mempool-size"].value - notDeleted;
+			const notDeleted = hashArray.filter((obj) => !obj.txData.deleted).length;
+			const pplLeftover = this.bottomStats["mempool-size"].value - notDeleted;
 
-		if (activeBuses.length > 0 && pplLeftover > 1000 && activeBuses[0].loaded === this.config.busCapacity) {
-			this.crowdCount = pplLeftover;
-			if (this.crowd.text)
-				this.crowd.text.setText(i18n.t("messages.low-fee-line") + ": " + this.crowdCountDisplay());
-		} else {
-			this.crowdCount = 0;
+			if (activeBuses.length > 0 && pplLeftover > 1000 && activeBuses[0].loaded === this.config.busCapacity) {
+				this.crowdCount = pplLeftover;
+				if (this.crowd.text)
+					this.crowd.text.setText(i18n.t("messages.low-fee-line") + ": " + this.crowdCountDisplay());
+			} else {
+				this.crowdCount = 0;
+			}
+			let extraBuses = 0;
+			this.updateAllBusPercent(activeBuses, extraBuses);
+			this.vue.sortedCount++;
+			this.busInside();
 		}
-		let extraBuses = 0;
-		this.updateAllBusPercent(activeBuses, extraBuses);
-		this.vue.sortedCount++;
-		this.busInside();
 	}
 
 	crowdCountDisplay() {
@@ -2844,13 +2843,22 @@ export class Street extends Phaser.Scene {
 	}
 
 	createHouses(houses) {
+		// Add null check for houses array
+		if (!houses || !Array.isArray(houses)) {
+			console.error("Houses is undefined or not an array in createHouses method");
+			houses = []; // Set to empty array as fallback
+		}
+
 		this.houses.clear(true, true);
 		this.doors.clear(true, true);
 		this.houseLogos.clear(true, true);
 		let sideCount = [0, 0];
 
-		for (let i = 0; i < houses.length; i++) {
+		// Use optional chaining for safe access to length property
+		for (let i = 0; i < houses?.length || 0; i++) {
 			let house = houses[i];
+			if (!house) continue; // Skip undefined entries
+
 			if (house.side === 0) delete house.side;
 			if (house.type === "mall") house.side = 0;
 			if (typeof house.side == "undefined") {
@@ -3023,6 +3031,7 @@ export class Street extends Phaser.Scene {
 		//people waiting anim
 		if (userSettings.globalSettings.animations.value && this.time.now > this.nextPersonWaitingAnimUpdate) {
 			let peopleWaiting = Phaser.Utils.Array.GetAll(this.people.getChildren(), "status", "waiting");
+			let peopleToAnimate = Phaser.Utils.Array.GetRandom(peopleWaiting, 1);
 			let count = peopleWaiting.length;
 			if (count > 0) {
 				let person = Phaser.Utils.Array.GetRandom(peopleWaiting);
