@@ -147,19 +147,7 @@ Bus.prototype.newBus = function (atStop = true) {
 		}
 	}
 
-	// FIX: Check if blockchain exists and has valid height property
-	if (
-		this.scene.blockchain &&
-		this.scene.blockchain.length > 0 &&
-		this.scene.blockchain[this.scene.blockchain.length - 1] &&
-		typeof this.scene.blockchain[this.scene.blockchain.length - 1].height !== "undefined"
-	) {
-		this.setData("id", this.scene.blockchain[this.scene.blockchain.length - 1].height + busIndex);
-	} else {
-		// Fallback if height isn't available
-		this.setData("id", busIndex);
-		console.error("Height property undefined in blockchain. Using fallback busIndex value.");
-	}
+	this.setData("id", this.scene.blockchain[this.scene.blockchain.length - 1].height + busIndex);
 
 	this.busHeight = this.scene.calcBusHeight(this.scene.config.busCapacityVisual || this.scene.config.busCapacity);
 	if (this.busHeight < 1) this.busHeight = 1;

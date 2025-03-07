@@ -11,11 +11,44 @@ for (const code in supportedLocales) {
 process.env.VUE_APP_VERSION = require("./package.json").version;
 
 module.exports = {
+	chainWebpack: (config) => {
+		config.optimization.minimizer("terser").tap((args) => {
+			args[0].terserOptions.output = {
+				...args[0].terserOptions.output,
+				comments: false, // exclude all comments from output
+				ascii_only: true,
+			};
+			return args;
+		});
+	},
 	configureWebpack: {
-		devtool: false, // Force disable source maps in all environments
+		devtool: process.env.NODE_ENV === "production" ? false : "source-map",
 		performance: {
 			hints: false,
 		},
+	},
+	chainWebpack: (config) => {
+		// Custom error handling
+		config.plugin("define").tap((args) => {
+			args[0]["process.env"].NODE_ENV = JSON.stringify("production");
+			args[0]["process.env"].SUPPRESS_ERRORS = JSON.stringify("true");
+			return args;
+		});
+	},
+	pluginOptions: {
+		webpackBundleAnalyzer: {
+			analyzerMode: process.env.VUE_APP_MODE === "production" ? "disabled" : "static",
+			// openAnalyzer: process.env.VUE_APP_MODE === "production" ? false : true,
+			openAnalyzer: false,
+		},
+		i18n: {
+			locale: "en",
+			fallbackLocale: "en",
+			localeDir: "locales",
+			enableInSFC: true,
+		},
+	},
+	configureWebpack: {
 		// Add resolve fallbacks for node polyfills
 		resolve: {
 			fallback: {
@@ -40,7 +73,7 @@ module.exports = {
 			),
 			new CircularDependencyPlugin({
 				exclude: /a\.js|node_modules/,
-				failOnError: false, // Changed to false to prevent error display
+				failOnError: true,
 				allowAsyncCycles: false,
 				cwd: process.cwd(),
 			}),
@@ -68,59 +101,13 @@ module.exports = {
 					],
 				},
 			]),
-			// New plugin to help with error handling
-			new webpack.DefinePlugin({
-				"process.env.SUPPRESS_ERRORS": JSON.stringify("true"),
-				"process.env.NODE_ENV": JSON.stringify("production"),
-			}),
 		],
-	},
-	chainWebpack: (config) => {
-		// Optimize terser to remove comments
-		config.optimization.minimizer("terser").tap((args) => {
-			args[0].terserOptions.output = {
-				...args[0].terserOptions.output,
-				comments: false,
-				ascii_only: true,
-			};
-			return args;
-		});
-
-		// Define error suppression variables
-		config.plugin("define").tap((args) => {
-			args[0]["process.env"].SUPPRESS_ERRORS = JSON.stringify("true");
-			args[0]["process.env"].NODE_ENV = JSON.stringify("production");
-			return args;
-		});
-
-		// Add plugin to suppress error overlay
-		config.plugin("friendly-errors").tap((args) => {
-			args[0].clearConsole = false;
-			return args;
-		});
-	},
-	// Add dev server options to disable error overlay
-	devServer: {
-		client: {
-			overlay: false,
-		},
-	},
-	pluginOptions: {
-		webpackBundleAnalyzer: {
-			analyzerMode: "disabled",
-			openAnalyzer: false,
-		},
-		i18n: {
-			locale: "en",
-			fallbackLocale: "en",
-			localeDir: "locales",
-			enableInSFC: true,
-		},
 	},
 	publicPath: "/",
 	outputDir: "dist",
 	runtimeCompiler: true,
 	assetsDir: "static",
 	productionSourceMap: false,
+	// Disable ESLint errors (optional)
 	lintOnSave: false,
 };
