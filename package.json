@@ -1,90 +1,102 @@
 {
-	"name": "txstreet",
-	"version": "3.2.0",
-	"private": true,
-	"description": "Txcity Frontend",
-	"author": {
-		"name": "taha"
-	},
-	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build",
-		"lint": "vue-cli-service lint",
-		"create-env": "printenv > .env"
-	},
-	"dependencies": {
-		"@walletconnect/web3-provider": "^1.7.1",
-		"authereum": "^0.1.14",
-		"bchaddrjs": "^0.4.9",
-		"bulma": "^0.8.1",
-		"bulma-extensions": "^6.2.7",
-		"bulma-multiselect": "^0.0.9",
-		"circular-dependency-plugin": "^5.2.0",
-		"copy-webpack-plugin": "^6.0.3",
-		"core-js": "^3.6.5",
-		"date-fns": "^2.19.0",
-		"detect-gpu": "^4.0.20",
-		"interactjs": "^1.10.2",
-		"lightweight-charts": "^3.7.0",
-		"phaser": "3.60.0-beta.4", 
-		"phaser3-rex-plugins": "^1.1.63",
-		"rainbow-colors-array": "^0.0.31",
-		"sanitize-html": "^2.4.0",
-		"socket.io-client": "^4.3.2",
-		"vue": "^2.7.14",
-		"vue-bar-graph": "^1.3.0",
-		"vue-i18n": "^8.24.1",
-		"vue-multiselect": "^2.1.6",
-		"vue-toastification": "^1.7.11",
-		"vue-virtual-scroll-list": "^2.3.3",
-		"web3": "^1.7.0",
-		"web3modal": "^1.9.8",
-		"yarn": "^1.22.11"
-	},
-	"devDependencies": {
-		"@kazupon/vue-i18n-loader": "^0.5.0",
-		"@typescript-eslint/eslint-plugin": "^2.33.0",
-		"@typescript-eslint/parser": "^2.33.0",
-		"@vue/cli-plugin-babel": "~4.5.12",
-		"@vue/cli-plugin-eslint": "~4.5.12",
-		"@vue/cli-plugin-typescript": "~4.5.12",
-		"@vue/cli-service": "~4.5.12",
-		"@vue/eslint-config-typescript": "^5.0.2",
-		"babel-eslint": "^10.1.0",
-		"eslint": "^6.7.2",
-		"eslint-plugin-vue": "^6.2.2",
-		"replace-in-file-webpack-plugin": "^1.0.6",
-		"sass": "^1.26.10",
-		"sass-loader": "^9.0.3",
-		"typescript": "~4.1.5",
-		"vue-cli-plugin-i18n": "^2.0.2",
-		"vue-cli-plugin-webpack-bundle-analyzer": "~4.0.0",
-		"vue-template-compiler": "^2.6.11"
-	},
-	 "engines" : { 
-   		 "node" : "16.20.2" 
-  	},
-	"eslintConfig": {
-		"root": true,
-		"env": {
-			"node": true
-		},
-		"extends": [
-			"plugin:vue/essential",
-			"eslint:recommended",
-			"@vue/typescript"
-		],
-		"parserOptions": {
-			"parser": "@typescript-eslint/parser"
-		},
-		"rules": {
-			"no-unused-vars": "off"
-		}
-	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not dead"
-	],
-	"license": "MIT"
+  "name": "txstreet",
+  "version": "3.2.0",
+  "private": true,
+  "description": "Txcity Frontend",
+  "author": {
+    "name": "taha"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "create-env": "printenv > .env"
+  },
+  "dependencies": {
+    "@walletconnect/web3-provider": "^1.7.1",
+    "assert": "^2.1.0",
+    "authereum": "^0.1.14",
+    "bchaddrjs": "^0.4.9",
+    "buffer": "^6.0.3",
+    "bulma": "^0.8.1",
+    "bulma-extensions": "^6.2.7",
+    "bulma-multiselect": "^0.0.9",
+    "circular-dependency-plugin": "^5.2.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "core-js": "3",
+    "date-fns": "^2.19.0",
+    "detect-gpu": "^4.0.20",
+    "https-browserify": "^1.0.0",
+    "interactjs": "^1.10.2",
+    "lightweight-charts": "^3.7.0",
+    "os-browserify": "^0.3.0",
+    "phaser": "3.60.0-beta.4",
+    "phaser3-rex-plugins": "^1.1.63",
+    "process": "^0.11.10",
+    "rainbow-colors-array": "^0.0.31",
+    "sanitize-html": "^2.4.0",
+    "socket.io-client": "^4.3.2",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.4",
+    "vue": "^2.7.14",
+    "vue-bar-graph": "^1.3.0",
+    "vue-i18n": "^8.24.1",
+    "vue-multiselect": "^2.1.6",
+    "vue-toastification": "^1.7.11",
+    "vue-virtual-scroll-list": "^2.3.3",
+    "web3": "^1.7.0",
+    "web3modal": "^1.9.8",
+    "yarn": "^1.22.11"
+  },
+  "devDependencies": {
+    "@babel/core": "7.17.10",
+    "@babel/preset-env": "7.17.10",
+    "@kazupon/vue-i18n-loader": "^0.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-plugin-typescript": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
+    "@vue/eslint-config-typescript": "^14.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^10.0.0",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "replace-in-file-webpack-plugin": "^1.0.6",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.3",
+    "ts-loader": "^9.5.2",
+    "typescript": "~4.5.5",
+    "vue-cli-plugin-i18n": "^2.0.2",
+    "vue-cli-plugin-webpack-bundle-analyzer": "~4.0.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "engines": {
+    "node": "16.20.2 || 21.x || 22.x"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended",
+      "@vue/typescript"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
+    "rules": {
+      "no-unused-vars": "off"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "license": "MIT"
 }
