@@ -51,9 +51,7 @@ export default class BCHStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 
-	preload() {
-
-	}
+	preload() {}
 
 	create() {
 		super.create();
@@ -68,7 +66,7 @@ export default class BCHStreet extends Street {
 			}),
 			this.createBuses();
 
-		this.vue.$watch("blockchainLength", val => {
+		this.vue.$watch("blockchainLength", (val) => {
 			this.calcHalving(val);
 		});
 		this.calcHalving(this.blockchain.length);
@@ -98,7 +96,7 @@ export default class BCHStreet extends Street {
 		this.streetUpdate();
 	}
 
-	afterResume() { }
+	afterResume() {}
 }
 
 BCHStreet.config = BCH;
