@@ -41,3 +41,6 @@ pnpm-debug.log*
 **/cryptopunks
 **/moonheads
 .env.example
+Dockerfile
+deploy.sh
+nginx.conf
