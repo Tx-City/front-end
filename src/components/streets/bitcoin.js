@@ -57,14 +57,13 @@ export default class BTCStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 
-	preload() {
-	}
+	preload() {}
 
 	create() {
 		super.create();
 		this.createPeople();
 		this.streetCreate();
-		this.vue.busFeeTitle = "Sat/vB";
+		this.vue.busFeeTitle = "1 Sat/vB";
 		(this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
 		}),
@@ -76,14 +75,14 @@ export default class BTCStreet extends Street {
 			}),
 			this.createBuses();
 
-		this.vue.$watch("blockchainLength", val => {
+		this.vue.$watch("blockchainLength", (val) => {
 			this.calcHalving(val);
 		});
 		this.calcHalving(this.blockchain.length);
 	}
 
-	calcHalving(val){
-		if(!this.blockchain.length) return;
+	calcHalving(val) {
+		if (!this.blockchain.length) return;
 		let recentBlock = this.blockchain[val - 1];
 		let height = recentBlock.height;
 		let halvingHeight = 0;
@@ -163,7 +162,7 @@ export default class BTCStreet extends Street {
 
 		this.add.tween({
 			targets: [bus.trailer, bus.segwitInside, bus.segwitColor, bus.segwitOutside],
-			y: target => {
+			y: (target) => {
 				return target.y - difference;
 			},
 			ease: "Power1",

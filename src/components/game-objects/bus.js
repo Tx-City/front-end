@@ -330,11 +330,18 @@ Bus.prototype.positionLogo = function () {
 };
 
 Bus.prototype.setFeeText = function () {
-	let text2 = this.feeText
-		? this.feeText
-		: this.lowFee
-		? Math.ceil(this.lowFee) + " " + this.scene.vue.busFeeTitle
-		: "";
+	let text2 = "";
+
+	if (this.feeText) {
+		text2 = this.feeText;
+	} else if (this.scene && this.scene.vue && this.scene.vue.busFeeTitle) {
+		if (this.lowFee) {
+			text2 = Math.ceil(this.lowFee) + " " + this.scene.vue.busFeeTitle;
+		} else {
+			// Always show the busFeeTitle even if lowFee is not available
+			text2 = this.scene.vue.busFeeTitle;
+		}
+	}
 
 	if (text2 !== this.text2.text) this.text2.setText(text2);
 
