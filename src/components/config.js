@@ -497,16 +497,32 @@ export const EVOLUTION = {
 	coinName: "Dash Evolution",
 	color: "ffffff",
 	busColor: "ffffff",
+	busColorText: "000000", // Adding text color to ensure visibility
 	busCapacity: 1000000,
 	feeVar: "spb",
-	explorerTxUrl: "https://insight.evolution.org/insight/tx/",
-	explorerBlockUrl: "https://blockchair.com/evolution/block/",
-	explorerBlocksUrl: "https://blockchair.com/evolution/blocks/",
-	explorerAddressUrl: "https://blockchair.com/evolution/address/",
+	explorerTxUrl: "https://platform-explorer.com/transactions/",
+	explorerBlockUrl: "https://platform-explorer.com/blocks/",
+	explorerBlocksUrl: "https://platform-explorer.com/blocks/",
+	explorerAddressUrl: "https://platform-explorer.com/identity/",
 	liveTxs: [],
 	liveBlocks: [],
 	houseArray: [],
 	maxBlocksToKeep: 10,
+	// Simple implementation of required functions without dependencies
+	// getAndApplyFee: function (txData) {
+	// 	if (txData.feeVal) return txData.feeVal;
+	// 	txData.feeVal = txData.fee || 10;
+	// 	return txData.feeVal;
+	// },
+
+	// calcBlockFeeArray: function (data) {
+	// 	if (data.feeArray || !data.txFull) return;
+	// 	data.lowFee = 9999999;
+	// 	data.highFee = 0;
+	// 	data.feeArray = [];
+	// 	data.medianFee = 10;
+	// },
+
 	userSettings: {
 		blockNotifications: {
 			title: () => {
@@ -532,43 +548,38 @@ export const EVOLUTION = {
 			},
 			type: "range",
 			min: 1,
-			max: 30,
+			max: 100,
 			restart: false,
-			value: 5,
+			value: 25,
 			writable: true,
 		},
 		signArray: {
 			title: "Sign Display",
 			type: "multiselect",
-			value: ["lastBlock", "medianFee-usd", "mempool-size"],
+			value: ["lastBlock", "medianFee-usdTransfer", "mempool-size"],
 			writable: true,
 			invisible: true,
 			restart: false,
 		},
 	},
+
 	stats: Vue.observable({
 		tps: {
-			title: () => {
-				return i18n.t("evolution.tps");
-			},
+			title: () => "Transactions Per Second",
 			decimals: 2,
 			value: false,
 			socket: true,
 			wiki: ["common/stats/tps"],
 		},
 		ctps: {
-			title: () => {
-				return i18n.t("evolution.ctps");
-			},
+			title: () => "Confirmed TPS",
 			decimals: 2,
 			value: false,
 			socket: true,
 			wiki: ["common/stats/ctps"],
 		},
 		"mempool-bytes": {
-			title: () => {
-				return i18n.t("evolution.mempool-bytes");
-			},
+			title: () => "Mempool Size",
 			after: " MB",
 			divide: 1000000,
 			decimals: 3,
@@ -577,19 +588,9 @@ export const EVOLUTION = {
 			socket: true,
 			wiki: ["common/stats/mempool-size", "common/mempool"],
 		},
-		"mempool-size": {
-			title: () => {
-				return i18n.t("evolution.mempool-size");
-			},
-			signTitle: "Pending Txs",
-			decimals: 0,
-			value: false,
-			socket: true,
-			wiki: ["common/stats/mempool-count", "common/mempool"],
-		},
 		"medianFee-usd": {
 			title: () => {
-				return i18n.t("evolution.medianFee-usd");
+				return i18n.t("dash.medianFee-usd");
 			},
 			signTitle: "Median Tx Fee",
 			before: "$",
@@ -599,7 +600,7 @@ export const EVOLUTION = {
 		},
 		"medianFee-satPerByte": {
 			title: () => {
-				return i18n.t("evolution.medianFee-satPerByte");
+				return i18n.t("dash.medianFee-satPerByte");
 			},
 			common: "medianFeeSat",
 			value: false,
@@ -607,9 +608,7 @@ export const EVOLUTION = {
 			wiki: ["common/stats/medianFee-satPerByte", "common/transaction-fees"],
 		},
 		bps: {
-			title: () => {
-				return i18n.t("evolution.bps");
-			},
+			title: () => "Bytes Per Second",
 			decimals: 0,
 			after: " B",
 			value: false,
@@ -617,9 +616,7 @@ export const EVOLUTION = {
 			wiki: ["common/stats/bps"],
 		},
 		"supply-circulating": {
-			title: () => {
-				return i18n.t("btc.supply-circulating");
-			},
+			title: () => "Circulating Supply",
 			decimals: 0,
 			value: false,
 			socket: true,
@@ -634,48 +631,30 @@ export const EVOLUTION = {
 			socket: true,
 		},
 		lastBlock: {
-			title: () => {
-				return i18n.t("btc.lastBlock");
-			},
+			title: () => "Last Block",
 			value: false,
 			wiki: ["common/stats/lastBlock", "common/block-time"],
 		},
 		medianTxsPerBlock: {
-			title: () => {
-				return i18n.t("btc.medianTxsPerBlock");
-			},
+			title: () => "Median Txs Per Block",
 			value: 0,
 			decimals: 0,
 			socket: true,
 			wiki: ["common/stats/medianTxsPerBlock"],
 		},
 		blockchainSize: {
-			title: () => {
-				return i18n.t("evolution.blockchainSize");
-			},
+			title: () => "Blockchain Size",
 			value: false,
 			socket: true,
-			format: function (value) {
-				// Check if value is a number and not null/undefined
-				if (typeof value === "number" && !isNaN(value)) {
-					return value.toLocaleString("en-US") + " MB";
-				}
-				// Return the original value if it's not a valid number, appended with MB
-				return value + " MB";
-			},
 		},
 		difficulty: {
-			title: () => {
-				return i18n.t("btc.difficulty");
-			},
+			title: () => "Difficulty",
 			value: false,
 			decimals: 0,
 			socket: true,
 		},
 		medianBlockSize: {
-			title: () => {
-				return i18n.t("btc.medianBlockSize");
-			},
+			title: () => "Median Block Size",
 			decimals: 3,
 			divide: 1000000,
 			after: " MB",
@@ -684,9 +663,7 @@ export const EVOLUTION = {
 			wiki: ["common/stats/medianBlockSize"],
 		},
 		medianBlockTime: {
-			title: () => {
-				return i18n.t("btc.medianBlockTime");
-			},
+			title: () => "Median Block Time",
 			value: 0,
 			timeAgo: true,
 			socket: true,
@@ -694,27 +671,21 @@ export const EVOLUTION = {
 		},
 		blockHeight: { hidden: true, value: false },
 		"marketCap-usd": {
-			title: () => {
-				return i18n.t("btc.marketCap-usd");
-			},
+			title: () => "Market Cap",
 			before: "$",
 			decimals: 0,
 			value: false,
 			socket: true,
 		},
 		"volume-usd": {
-			title: () => {
-				return i18n.t("btc.volume-usd");
-			},
+			title: () => "Volume (24h)",
 			before: "$",
 			decimals: 0,
 			value: false,
 			socket: true,
 		},
 		halving: {
-			title: () => {
-				return i18n.t("evolution.halving");
-			},
+			title: () => "Next Halving",
 			signTitle: "Halving in",
 			value: false,
 		},
