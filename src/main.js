@@ -5,6 +5,15 @@ import "./assets/scss/main.scss";
 import Main from "./components/vue/Main.vue";
 import Toast, { TYPE } from "vue-toastification";
 import Close from "./components/vue/toasts/Close";
+//------- SUGGESTED BY CLAUDE AI ---------
+// Add these imports at the top of your main.ts file
+import 'core-js/modules/es.iterator.constructor.js';
+import 'core-js/modules/es.iterator.filter.js';
+import 'core-js/modules/es.iterator.for-each.js';
+import 'core-js/modules/es.iterator.map.js';
+import 'core-js/modules/es.iterator.reduce.js';
+import 'core-js/modules/es.iterator.find.js';
+import './core-js-polyfills';
 String.prototype.hashCode = function () {
     var hash = 0, i, chr;
     if (this.length === 0)

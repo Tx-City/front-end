@@ -105,7 +105,7 @@
         "s": "Size (Bytes)",
         "sizeAltTitle": "Bytes",
         "sizeTitle": "Bytes",
-        "spb": "Fee (Duffs/Byte)",
+        "spb": "Total Fee (DASH)",
         "supply-circulating": "Circulating Supply",
         "tot": "Total Sent",
         "tps": "Broadcasted Tx/Sec",

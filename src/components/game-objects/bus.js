@@ -146,7 +146,10 @@ Bus.prototype.newBus = function (atStop = true) {
 			if (lastBus.getData("id")) busIndex++;
 		}
 	}
-
+	console.log(
+		"this.scene.blockchain[this.scene.blockchain.length - 1].height",
+		this.scene.blockchain[this.scene.blockchain.length - 1].height
+	);
 	this.setData("id", this.scene.blockchain[this.scene.blockchain.length - 1].height + busIndex);
 
 	this.busHeight = this.scene.calcBusHeight(this.scene.config.busCapacityVisual || this.scene.config.busCapacity);

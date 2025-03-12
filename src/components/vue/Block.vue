@@ -261,10 +261,18 @@ export default {
 		},
 		confirmationTime() {
 			let lastBlock = this.$root.coinConfig.liveBlocks[this.$root.coinConfig.liveBlocks.length - 1];
+
 			let lastHeight = lastBlock.height;
 			let thisHeight = this.blockInfo.height;
 			let difference = thisHeight - lastHeight;
 			let blockTime = this.$root.stats.medianBlockTime.value;
+			console.log("------------------------confirmationTime------------------------");
+			console.log("this.blockInfo",this.blockInfo);
+			console.log("thisHeight",thisHeight);
+			console.log("lastHeight",lastHeight);
+			console.log("lastBlock",lastBlock);
+			console.log("difference",difference);
+			console.log("blockTime",blockTime);
 			let ago = fds(new Date(), add(new Date(), { seconds: difference * blockTime }), {
 				roundingMethod: "floor",
 			});
