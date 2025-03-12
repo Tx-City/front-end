@@ -170,7 +170,10 @@ export default class EVOLUTIONStreet extends Street {
 				bus.newBus(true);
 				console.log("Bus initialized with ID:", bus.getData("id"));
 
-				// Explicitly position the bus
+				// Call the bus's own moveToStop method when creating a new bus
+
+				// console.error("Bus doesn't have moveToStop method");
+				// Explicitly position the bus as fallback
 				bus.y = this.busStop + toRes(140);
 				if (bus.busFloor) {
 					bus.busFloor.y = bus.y - toRes(100);
@@ -183,6 +186,8 @@ export default class EVOLUTIONStreet extends Street {
 			console.error("Failed to get bus from pool");
 		}
 	}
+
+	// We're not implementing moveToStop here since we're using the one from bus.js
 
 	// calcHalving(val) {
 	// 	if (!this.blockchain || !this.blockchain.length) return;
@@ -280,9 +285,35 @@ export default class EVOLUTIONStreet extends Street {
 		}
 	}
 
-	// Override fillBusesAndLeave to ensure buses move properly and light transitions work
+	// Update live blocks and confirmation time
+	updateLiveBlocks(block) {
+		if (!block) return;
+
+		// Update live blocks array
+		this.config.liveBlocks.push(block);
+
+		// Keep only the last N blocks
+		if (this.config.liveBlocks.length > this.config.maxBlocksToKeep) {
+			this.config.liveBlocks.shift();
+		}
+
+		// Update last block stat
+		if (this.vue && this.vue.stats && this.vue.stats["lastBlock"]) {
+			this.vue.stats["lastBlock"].value = block.height;
+		}
+
+		// Emit block update event
+		if (typeof eventHub !== "undefined" && eventHub.$emit) {
+			eventHub.$emit("addBlock-" + this.config.ticker, block);
+		}
+	}
+
+	// Override fillBusesAndLeave to update live blocks
 	fillBusesAndLeave(block, statusOnly = false) {
 		if (!block) return false;
+
+		// Update live blocks first
+		this.updateLiveBlocks(block);
 
 		let blockBus = this.getBusFromId(block.height);
 		if (!blockBus) {
@@ -344,7 +375,6 @@ export default class EVOLUTIONStreet extends Street {
 		}
 	}
 
-	// Called when a bus is destroyed
 	// Called when a bus is destroyed
 	afterByeBus(bus) {
 		console.log("Bus destroyed:", bus ? bus.getData("id") : "unknown");

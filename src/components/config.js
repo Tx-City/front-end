@@ -508,6 +508,30 @@ export const EVOLUTION = {
 	liveBlocks: [],
 	houseArray: [],
 	maxBlocksToKeep: 10,
+	blockFormat: [
+		{
+			title: () => {
+				return i18n.t("eth.gu");
+			},
+			icon: "fas fa-oil-can",
+			key: "gu",
+			color: "D6CDEA",
+			format: (val) => {
+				return val.toLocaleString(i18n.locale);
+			},
+		},
+		{
+			title: () => {
+				return "Base Fee";
+			},
+			key: "baseFee",
+			color: "F9D8D6",
+			icon: "fas fa-ticket-alt",
+			format: (val) => {
+				return ethUnits(val);
+			},
+		},
+	],
 	// Simple implementation of required functions without dependencies
 	// getAndApplyFee: function (txData) {
 	// 	if (txData.feeVal) return txData.feeVal;
@@ -654,9 +678,9 @@ export const EVOLUTION = {
 		},
 		medianBlockTime: {
 			title: () => "Median Block Time",
-			value: 0,
+			value: 180,
 			timeAgo: true,
-			socket: true,
+			socket: false,
 			wiki: ["common/stats/medianBlockTime", "common/block-time"],
 		},
 		blockHeight: { hidden: true, value: false },
