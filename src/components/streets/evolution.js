@@ -103,7 +103,7 @@ export default class EVOLUTIONStreet extends Street {
 
 		// Watch for blockchain updates
 		this.vue.$watch("blockchainLength", (val) => {
-			this.calcHalving(val);
+			// this.calcHalving(val);
 
 			// Process blocks when blockchain updates
 			if (this.loaded && !this.processingBlock && !this.busesMoving) {
@@ -111,7 +111,7 @@ export default class EVOLUTIONStreet extends Street {
 			}
 		});
 
-		this.calcHalving(this.blockchain ? this.blockchain.length : 0);
+		// this.calcHalving(this.blockchain ? this.blockchain.length : 0);
 
 		// Set initial traffic light color
 		if (this.stoplight) {
@@ -135,13 +135,7 @@ export default class EVOLUTIONStreet extends Street {
 				console.log("- Blockchain ready:", this.blockchain && this.blockchain.length > 0);
 				console.log("- Buses active:", this.buses && this.buses.countActive() > 0);
 			}
-
-			// Schedule another check in a moment
-			this.time.addEvent({
-				delay: 100,
-				callback: this.monitorBlockchainAndBuses,
-				callbackScope: this,
-			});
+			this.createInitialBus();
 		}
 	}
 
@@ -190,26 +184,26 @@ export default class EVOLUTIONStreet extends Street {
 		}
 	}
 
-	calcHalving(val) {
-		if (!this.blockchain || !this.blockchain.length) return;
-		let recentBlock = this.blockchain[val - 1];
-		if (!recentBlock) return;
+	// calcHalving(val) {
+	// 	if (!this.blockchain || !this.blockchain.length) return;
+	// 	let recentBlock = this.blockchain[val - 1];
+	// 	if (!recentBlock) return;
 
-		let height = recentBlock.height;
-		let halvingHeight = 0;
-		while (halvingHeight < height) {
-			halvingHeight += 210240;
-		}
-		let blocksUntilHalving = halvingHeight - height;
-		let secondsUntilHalving = blocksUntilHalving * 150;
+	// 	let height = recentBlock.height;
+	// 	let halvingHeight = 0;
+	// 	while (halvingHeight < height) {
+	// 		halvingHeight += 210240;
+	// 	}
+	// 	let blocksUntilHalving = halvingHeight - height;
+	// 	let secondsUntilHalving = blocksUntilHalving * 150;
 
-		if (this.vue && this.vue.stats && this.vue.stats["halving"]) {
-			this.vue.stats["halving"].value = fds(add(new Date(), { seconds: secondsUntilHalving }), new Date(), {
-				roundingMethod: "floor",
-				addSuffix: true,
-			});
-		}
-	}
+	// 	if (this.vue && this.vue.stats && this.vue.stats["halving"]) {
+	// 		this.vue.stats["halving"].value = fds(add(new Date(), { seconds: secondsUntilHalving }), new Date(), {
+	// 			roundingMethod: "floor",
+	// 			addSuffix: true,
+	// 		});
+	// 	}
+	// }
 
 	// Create and initialize bus-related groups
 	evolutionBuses() {
@@ -254,39 +248,6 @@ export default class EVOLUTIONStreet extends Street {
 		}
 		if (person) person.setData("maxScale", scale);
 		return scale;
-	}
-
-	// Override setCrowdY to add safety checks
-	setCrowdY(y) {
-		if (!this.crowd) {
-			// Return without error if crowd doesn't exist
-			return false;
-		}
-
-		if (y === this.crowd.rawY) return false;
-		if (y < this.crowd.rawY) {
-			if (!this.crowd.changeLowerCount) this.crowd.changeLowerCount = 0;
-			this.crowd.changeLowerCount++;
-			if (this.crowd.changeLowerCount < 10) return false;
-		}
-		this.crowd.changeLowerCount = 0;
-		this.crowd.y = y + toRes(100);
-		this.crowd.rawY = y;
-		if (this.crowd.y < toRes(1000)) this.crowd.y = toRes(1000);
-		this.crowd.y = Math.ceil(this.crowd.y / toRes(50)) * toRes(50);
-
-		// Add safety checks for crowd components
-		if (this.crowdSign) {
-			this.crowdSign.y = this.crowd.y - toRes(30);
-			this.crowdSign.x = this.crowd.x;
-		}
-
-		// Call checkView safely
-		try {
-			this.checkView();
-		} catch (error) {
-			console.warn("Error in checkView called from setCrowdY:", error);
-		}
 	}
 
 	update() {
@@ -423,116 +384,6 @@ export default class EVOLUTIONStreet extends Street {
 		// Track additional metrics
 		if (entry.txData && entry.txData.rs) {
 			bus.loadedAlt += entry.txData.rs;
-		}
-	}
-
-	// Override busLeavingUpdate to handle traffic light changes
-	busLeavingUpdate() {
-		if (!this.buses) return;
-
-		// Get the last bus that's leaving
-		let bus = this.lastBusLeaving();
-		if (!bus) return false;
-
-		// Check if past the bus stop and then set the light to yellow
-		if (bus.y < this.busStop && !bus.hasTriggeredLight) {
-			console.log("Bus passing stoplight, setting to yellow");
-			if (this.stoplight) {
-				this.stoplight.setLight("yellow");
-			}
-			bus.hasTriggeredLight = true;
-
-			// Set light to red after a delay
-			this.setRedLight = this.time.addEvent({
-				delay: 2000 * window.txStreetPhaser.streetController.fpsTimesFaster,
-				callback: () => {
-					if (this.stoplight && this.stoplight.currentColor == "yellow") {
-						this.setRedLight = null;
-						console.log("Setting stoplight back to red");
-						this.stoplight.setLight("red");
-					}
-				},
-			});
-		}
-	}
-
-	// Override scrollY to add safety checks
-	scrollY(amount, reset = false) {
-		// Check if we're in a follower focus mode
-		if (this.isFollowerFocused && typeof this.isFollowerFocused === "function" && this.isFollowerFocused()) {
-			if (!this.scrollWarnCount) this.scrollWarnCount = 0;
-			this.scrollWarnCount++;
-			if (this.scrollWarnCount > 15) {
-				try {
-					if (window.mainVue && window.mainVue.$toast) {
-						window.mainVue.$toast.warning(
-							{
-								component: Notification,
-								props: {
-									title: "Stop tracking to scroll.",
-								},
-							},
-							{
-								position: "bottom-center",
-								id: "track-scroll",
-							}
-						);
-					}
-				} catch (e) {
-					console.warn("Error showing toast:", e);
-				}
-				this.scrollWarnCount = 0;
-			}
-			return false;
-		}
-
-		this.scrollWarnCount = 0;
-
-		// Safety check to make sure cameras exist
-		if (!this.cameras || !this.cameras.main) return false;
-
-		if (this.cameras.main.scrollY + amount < 0 || reset) amount = -this.cameras.main.scrollY;
-
-		// Calculate new boundaries safely
-		let newHeight = toRes(960);
-		if (window.innerWidth) {
-			newHeight =
-				((this.side == "full" ? toRes(960) : toRes(1920)) / window.innerWidth) *
-				(window.innerHeight - (typeof config !== "undefined" ? config.vPadding : 0));
-		}
-
-		if (this.cameras.main.scrollY + newHeight + amount > this.sceneHeight)
-			amount = this.sceneHeight - (this.cameras.main.scrollY + newHeight);
-
-		let xPos = this.cameras.main.scrollX;
-		let yPos = this.cameras.main.scrollY + amount;
-
-		try {
-			this.scrollTileSprites(amount, reset);
-		} catch (e) {
-			console.warn("Error in scrollTileSprites:", e);
-		}
-
-		this.cameras.main.setScroll(xPos, yPos);
-
-		if (Math.abs(amount) > 4) {
-			try {
-				this.checkView();
-			} catch (e) {
-				console.warn("Error in checkView from scrollY:", e);
-			}
-		}
-
-		if (this.events) {
-			this.events.emit("scrollY", { amount: amount, reset: reset });
-		}
-
-		try {
-			if (typeof eventHub !== "undefined" && eventHub.$emit) {
-				eventHub.$emit("myScrollData", { cameraY: yPos, bottom: yPos + newHeight });
-			}
-		} catch (e) {
-			console.warn("Error emitting scroll data:", e);
 		}
 	}
 }
