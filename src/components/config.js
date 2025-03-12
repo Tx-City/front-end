@@ -500,7 +500,7 @@ export const EVOLUTION = {
 	busColorText: "000000", // Adding text color to ensure visibility
 	busCapacity: 1000000,
 	feeVar: "spb",
-	explorerTxUrl: "https://platform-explorer.com/transactions/",
+	explorerTxUrl: "https://platform-explorer.com/transaction/",
 	explorerBlockUrl: "https://platform-explorer.com/blocks/",
 	explorerBlocksUrl: "https://platform-explorer.com/blocks/",
 	explorerAddressUrl: "https://platform-explorer.com/identity/",
@@ -547,8 +547,8 @@ export const EVOLUTION = {
 				return i18n.t("settings.max-buses");
 			},
 			type: "range",
-			min: 1,
-			max: 100,
+			min: 10,
+			max: 10,
 			restart: false,
 			value: 25,
 			writable: true,
@@ -556,7 +556,7 @@ export const EVOLUTION = {
 		signArray: {
 			title: "Sign Display",
 			type: "multiselect",
-			value: ["lastBlock", "medianFee-usdTransfer", "mempool-size"],
+			value: ["lastBlock", "medianFee-usdTransfer"],
 			writable: true,
 			invisible: true,
 			restart: false,
@@ -577,16 +577,6 @@ export const EVOLUTION = {
 			value: false,
 			socket: true,
 			wiki: ["common/stats/ctps"],
-		},
-		"mempool-bytes": {
-			title: () => "Mempool Size",
-			after: " MB",
-			divide: 1000000,
-			decimals: 3,
-			value: false,
-			guide: ["mempool_size", "mempool"],
-			socket: true,
-			wiki: ["common/stats/mempool-size", "common/mempool"],
 		},
 		"medianFee-usd": {
 			title: () => {
