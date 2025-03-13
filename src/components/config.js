@@ -546,7 +546,63 @@ export const EVOLUTION = {
 	// 	data.feeArray = [];
 	// 	data.medianFee = 10;
 	// },
+	// Add the calcHalving function to the object
+	calcHalving: function (numberOfCountdowns = 1) {
+		// Set the first countdown date to March 16, 2025
+		const startDate = new Date(2025, 2, 16); // Month is 0-indexed (0=Jan, 1=Feb, 2=Mar)
 
+		// Array to store all countdown dates
+		const countdownDates = [];
+
+		// Calculate all the countdown dates
+		for (let i = 0; i < numberOfCountdowns; i++) {
+			// For the first countdown, use the start date
+			// For subsequent countdowns, add 9.125 days to the previous date
+			if (i === 0) {
+				countdownDates.push(new Date(startDate));
+			} else {
+				// Calculate the new date by adding 9.125 days to the previous date
+				const previousDate = new Date(countdownDates[i - 1]);
+
+				// Convert 9.125 days to milliseconds (9.125 * 24 * 60 * 60 * 1000)
+				const daysInMs = 9.125 * 24 * 60 * 60 * 1000;
+
+				// Add the time to the previous date
+				const newDate = new Date(previousDate.getTime() + daysInMs);
+				countdownDates.push(newDate);
+			}
+		}
+
+		// Format the date for output - just take the first countdown
+		if (countdownDates.length > 0) {
+			const date = countdownDates[0];
+			const day = date.getDate();
+			const month = date.toLocaleString("default", { month: "long" });
+
+			// Add suffix to day number (1st, 2nd, 3rd, etc.)
+			const daySuffix = this.getDaySuffix(day);
+
+			return `${day}${daySuffix} ${month}`;
+		}
+
+		return "16th March"; // Default fallback
+	},
+
+	// Helper function to get the correct suffix for a day number
+	getDaySuffix: function (day) {
+		if (day > 3 && day < 21) return "th";
+
+		switch (day % 10) {
+			case 1:
+				return "st";
+			case 2:
+				return "nd";
+			case 3:
+				return "rd";
+			default:
+				return "th";
+		}
+	},
 	userSettings: {
 		blockNotifications: {
 			title: () => {
@@ -588,18 +644,18 @@ export const EVOLUTION = {
 	},
 
 	stats: Vue.observable({
-		tps: {
-			title: () => "Transactions Per Second",
-			decimals: 2,
-			value: false,
-			socket: true,
-			wiki: ["common/stats/tps"],
-		},
+		// tps: {
+		// 	title: () => "Transactions Per Second",
+		// 	decimals: 2,
+		// 	value: false,
+		// 	socket: false,
+		// 	wiki: ["common/stats/tps"],
+		// },
 		ctps: {
 			title: () => "Confirmed TPS",
 			decimals: 2,
-			value: false,
-			socket: true,
+			value: 1,
+			socket: false,
 			wiki: ["common/stats/ctps"],
 		},
 		"medianFee-usd": {
@@ -608,8 +664,8 @@ export const EVOLUTION = {
 			},
 			signTitle: "Median Tx Fee",
 			before: "$",
-			value: false,
-			socket: true,
+			value: 0.0001,
+			socket: false,
 			wiki: ["common/stats/medianFee-usd", "common/transaction-fees"],
 		},
 		"medianFee-satPerByte": {
@@ -617,18 +673,18 @@ export const EVOLUTION = {
 				return i18n.t("dash.medianFee-satPerByte");
 			},
 			common: "medianFeeSat",
-			value: false,
-			socket: true,
+			value: 1,
+			socket: false,
 			wiki: ["common/stats/medianFee-satPerByte", "common/transaction-fees"],
 		},
-		bps: {
-			title: () => "Bytes Per Second",
-			decimals: 0,
-			after: " B",
-			value: false,
-			socket: true,
-			wiki: ["common/stats/bps"],
-		},
+		// bps: {
+		// 	title: () => "Bytes Per Second",
+		// 	decimals: 0,
+		// 	after: " B",
+		// 	value: false,
+		// 	socket: true,
+		// 	wiki: ["common/stats/bps"],
+		// },
 		"supply-circulating": {
 			title: () => "Circulating Supply",
 			decimals: 0,
@@ -649,33 +705,27 @@ export const EVOLUTION = {
 			value: false,
 			wiki: ["common/stats/lastBlock", "common/block-time"],
 		},
-		medianTxsPerBlock: {
-			title: () => "Median Txs Per Block",
-			value: 0,
-			decimals: 0,
-			socket: true,
-			wiki: ["common/stats/medianTxsPerBlock"],
-		},
+		// medianTxsPerBlock: {
+		// 	title: () => "Median Txs Per Block",
+		// 	value: 0,
+		// 	decimals: 0,
+		// 	socket: true,
+		// 	wiki: ["common/stats/medianTxsPerBlock"],
+		// },
 		blockchainSize: {
 			title: () => "Blockchain Size",
-			value: false,
-			socket: true,
+			value: 87 + "MB",
+			socket: false,
 		},
-		difficulty: {
-			title: () => "Difficulty",
-			value: false,
-			decimals: 0,
-			socket: true,
-		},
-		medianBlockSize: {
-			title: () => "Median Block Size",
-			decimals: 3,
-			divide: 1000000,
-			after: " MB",
-			value: false,
-			socket: true,
-			wiki: ["common/stats/medianBlockSize"],
-		},
+		// medianBlockSize: {
+		// 	title: () => "Median Block Size",
+		// 	decimals: 3,
+		// 	divide: 1000000,
+		// 	after: " MB",
+		// 	value: 0.0001,
+		// 	socket: true,
+		// 	wiki: ["common/stats/medianBlockSize"],
+		// },
 		medianBlockTime: {
 			title: () => "Median Block Time",
 			value: 180,
@@ -684,24 +734,12 @@ export const EVOLUTION = {
 			wiki: ["common/stats/medianBlockTime", "common/block-time"],
 		},
 		blockHeight: { hidden: true, value: false },
-		"marketCap-usd": {
-			title: () => "Market Cap",
-			before: "$",
-			decimals: 0,
-			value: false,
-			socket: true,
-		},
-		"volume-usd": {
-			title: () => "Volume (24h)",
-			before: "$",
-			decimals: 0,
-			value: false,
-			socket: true,
-		},
 		halving: {
-			title: () => "Next Halving",
+			title: () => "Next Epoch",
 			signTitle: "Halving in",
-			value: false,
+			get value() {
+				return EVOLUTION.calcHalving();
+			},
 		},
 	}),
 };

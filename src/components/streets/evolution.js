@@ -103,7 +103,7 @@ export default class EVOLUTIONStreet extends Street {
 
 		// Watch for blockchain updates
 		this.vue.$watch("blockchainLength", (val) => {
-			// this.calcHalving(val);
+			// this.calcHalving();
 
 			// Process blocks when blockchain updates
 			if (this.loaded && !this.processingBlock && !this.busesMoving) {
@@ -111,7 +111,7 @@ export default class EVOLUTIONStreet extends Street {
 			}
 		});
 
-		// this.calcHalving(this.blockchain ? this.blockchain.length : 0);
+		this.calcHalving();
 
 		// Set initial traffic light color
 		if (this.stoplight) {
@@ -119,6 +119,65 @@ export default class EVOLUTIONStreet extends Street {
 		}
 	}
 
+	calcHalving(numberOfCountdowns = 10) {
+		// Set the first countdown date to March 16, 2025
+		const startDate = new Date(2025, 2, 16); // Month is 0-indexed (0=Jan, 1=Feb, 2=Mar)
+
+		// Array to store all countdown dates
+		const countdownDates = [];
+
+		// Calculate all the countdown dates
+		for (let i = 0; i < numberOfCountdowns; i++) {
+			// For the first countdown, use the start date
+			// For subsequent countdowns, add 9.125 days to the previous date
+			if (i === 0) {
+				countdownDates.push(new Date(startDate));
+			} else {
+				// Calculate the new date by adding 9.125 days to the previous date
+				const previousDate = new Date(countdownDates[i - 1]);
+
+				// Convert 9.125 days to milliseconds (9.125 * 24 * 60 * 60 * 1000)
+				const daysInMs = 9.125 * 24 * 60 * 60 * 1000;
+
+				// Add the time to the previous date
+				const newDate = new Date(previousDate.getTime() + daysInMs);
+				countdownDates.push(newDate);
+			}
+		}
+
+		// Format the dates for output
+		const formattedDates = countdownDates.map((date, index) => {
+			const day = date.getDate();
+			const month = date.toLocaleString("default", { month: "long" });
+			const year = date.getFullYear();
+
+			// Add suffix to day number (1st, 2nd, 3rd, etc.)
+			const daySuffix = this.getDaySuffix(day);
+
+			return {
+				countdown: index + 1,
+				date: `${day}${daySuffix} ${month}`,
+			};
+		});
+		console.log("Halving countdowns:", formattedDates);
+		return formattedDates;
+	}
+
+	// Helper function to get the correct suffix for a day number
+	getDaySuffix(day) {
+		if (day > 3 && day < 21) return "th";
+
+		switch (day % 10) {
+			case 1:
+				return "st";
+			case 2:
+				return "nd";
+			case 3:
+				return "rd";
+			default:
+				return "th";
+		}
+	}
 	// Add this method to monitor blockchain state and create buses when ready
 	monitorBlockchainAndBuses() {
 		// If blockchain is loaded but we have no buses, create one
@@ -189,26 +248,11 @@ export default class EVOLUTIONStreet extends Street {
 
 	// We're not implementing moveToStop here since we're using the one from bus.js
 
-	// calcHalving(val) {
-	// 	if (!this.blockchain || !this.blockchain.length) return;
-	// 	let recentBlock = this.blockchain[val - 1];
-	// 	if (!recentBlock) return;
-
-	// 	let height = recentBlock.height;
-	// 	let halvingHeight = 0;
-	// 	while (halvingHeight < height) {
-	// 		halvingHeight += 210240;
-	// 	}
-	// 	let blocksUntilHalving = halvingHeight - height;
-	// 	let secondsUntilHalving = blocksUntilHalving * 150;
-
-	// 	if (this.vue && this.vue.stats && this.vue.stats["halving"]) {
-	// 		this.vue.stats["halving"].value = fds(add(new Date(), { seconds: secondsUntilHalving }), new Date(), {
-	// 			roundingMethod: "floor",
-	// 			addSuffix: true,
-	// 		});
-	// 	}
-	// }
+	// Example usage:
+	// const countdowns = calcHalving(5);
+	// countdowns.forEach(item => {
+	//     console.log(`Countdown ${item.countdown}: ${item.date}`);
+	// });
 
 	// Create and initialize bus-related groups
 	evolutionBuses() {
@@ -226,11 +270,11 @@ export default class EVOLUTIONStreet extends Street {
 
 	// Use a fixed height for all buses
 	calcBusHeight(size) {
-		return 80; // Fixed height for visibility
+		return 40; // Fixed height for visibility
 	}
 
 	calcBusHeightFromBlock(block) {
-		return 80; // Fixed height for all blocks
+		return 40; // Fixed height for all blocks
 	}
 
 	// Set person scaling based on transaction size
