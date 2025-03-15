@@ -514,7 +514,7 @@ export const EVOLUTION = {
 				return i18n.t("eth.gu");
 			},
 			icon: "fas fa-oil-can",
-			key: "gu",
+			key: "bv",
 			color: "D6CDEA",
 			format: (val) => {
 				return val.toLocaleString(i18n.locale);
@@ -524,7 +524,7 @@ export const EVOLUTION = {
 			title: () => {
 				return "Base Fee";
 			},
-			key: "baseFee",
+			key: "av",
 			color: "F9D8D6",
 			icon: "fas fa-ticket-alt",
 			format: (val) => {
