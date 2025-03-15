@@ -346,9 +346,7 @@ Bus.prototype.newBus = function (atStop = true) {
 	} else {
 		this.text1.setText(""); // Empty text instead of showing "#0" or similar
 	}
-
-	// this.text1.setText("#" + this.getData("id"));
-	// this.setFeeText();
+	this.setFeeText();
 
 	this.braking = false;
 	this.brake();
@@ -1119,13 +1117,17 @@ Bus.prototype.pplBlitter = function (force = false, skipErase = false, overrideH
 				const sheet = draw[2];
 
 				if (sheet === "characters") {
-					// Verify the frame exists before creating it
-					if (this.scene.textures.getFrame("characters", draw[3])) {
-						try {
-							this.drawers.sheet.create(draw[0], draw[1], draw[3]);
-							this.drawersUsed.sheet = true;
-						} catch (e) {
-							console.warn(`Error creating sprite in characters sheet: ${draw[3]}`, e);
+					// First check if the drawer is valid
+					if (this.drawers.sheet && !this.drawers.sheet.destroyed) {
+						// Then verify the frame exists and has valid properties before creating it
+						const frame = this.scene.textures.getFrame("characters", draw[3]);
+						if (frame && frame.sourceSize) {
+							try {
+								this.drawers.sheet.create(draw[0], draw[1], draw[3]);
+								this.drawersUsed.sheet = true;
+							} catch (e) {
+								console.warn(`Error creating sprite in characters sheet: ${draw[3]}`, e);
+							}
 						}
 					}
 				}
@@ -1144,13 +1146,17 @@ Bus.prototype.pplBlitter = function (force = false, skipErase = false, overrideH
 					const sheet = draw[2];
 
 					if (sheet === "characters") {
-						// Verify the frame exists before creating it
-						if (this.scene.textures.getFrame("characters", draw[3])) {
-							try {
-								this.drawers.sheet.create(draw[0], draw[1], draw[3]);
-								this.drawersUsed.sheet = true;
-							} catch (e) {
-								console.warn(`Error creating sprite in characters sheet (top row): ${draw[3]}`, e);
+						// First check if the drawer is valid
+						if (this.drawers.sheet && !this.drawers.sheet.destroyed) {
+							// Then verify the frame exists and has valid properties before creating it
+							const frame = this.scene.textures.getFrame("characters", draw[3]);
+							if (frame && frame.sourceSize) {
+								try {
+									this.drawers.sheet.create(draw[0], draw[1], draw[3]);
+									this.drawersUsed.sheet = true;
+								} catch (e) {
+									console.warn(`Error creating sprite in characters sheet (top row): ${draw[3]}`, e);
+								}
 							}
 						}
 					} else if (this.scene.charConfig && this.scene.charConfig[sheet]) {
@@ -1158,18 +1164,22 @@ Bus.prototype.pplBlitter = function (force = false, skipErase = false, overrideH
 						const sheetKey = String(c.scaleAdjust) + String(c.pixelArt);
 
 						if (this.drawers[sheetKey] && !this.drawers[sheetKey].destroyed) {
-							// Verify the texture exists before drawing
+							// Verify the texture frame exists and has valid properties before drawing
 							const fullTextureName = sheet + "-" + draw[3];
-							if (
-								this.scene.textures.exists(fullTextureName) ||
-								this.scene.textures.getFrame(sheet, draw[3])
-							) {
+							let frame = this.scene.textures.getFrame(sheet, draw[3]);
+							if (!frame) {
+								frame = this.scene.textures.getFrame(fullTextureName);
+							}
+
+							if (frame && frame.sourceSize) {
 								try {
 									this.drawers[sheetKey].drawFrame(fullTextureName, null, draw[0], draw[1]);
 									this.drawersUsed[sheetKey] = true;
 								} catch (e) {
 									console.warn(`Error drawing frame for custom sheet: ${fullTextureName}`, e);
 								}
+							} else {
+								console.warn(`Invalid frame for ${fullTextureName}`);
 							}
 						}
 					}
@@ -1236,15 +1246,28 @@ Bus.prototype.doDraws = function () {
 			if (!drawer || !this.drawersUsed[sheet]) continue;
 
 			// Verify drawer and render texture are valid before drawing
-			if (
-				drawer &&
-				!drawer.destroyed &&
-				this.pplRt &&
-				!this.pplRt.destroyed &&
-				this.pplRt.texture &&
-				this.pplRt.texture.valid
-			) {
-				this.pplRt.draw(drawer, 0, 0);
+			if (drawer && !drawer.destroyed) {
+				// For blitters, check that they have valid frames with sourceSize
+				if (drawer.children && drawer.children.length > 0) {
+					let allFramesValid = true;
+					for (let i = 0; i < drawer.children.length; i++) {
+						const child = drawer.children[i];
+						if (!child || !child.frame || !child.frame.sourceSize) {
+							allFramesValid = false;
+							break;
+						}
+					}
+
+					if (!allFramesValid) {
+						console.warn("Invalid frames detected in drawer, skipping draw");
+						continue;
+					}
+				}
+
+				// Then verify the render texture is valid
+				if (this.pplRt && !this.pplRt.destroyed && this.pplRt.texture && this.pplRt.texture.valid) {
+					this.pplRt.draw(drawer, 0, 0);
+				}
 			}
 		}
 	} catch (error) {
