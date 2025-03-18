@@ -119,124 +119,8 @@ const Bus = new Phaser.Class({
 
 		this.hitArea = new Phaser.Geom.Rectangle(-60, -120, 120, 0);
 		this.scene.customCallback("busConstructor", "after", this);
-
-		// Add a periodic texture refresh to prevent resource issues over time
-		this.setupTextureRefresh();
 	},
 });
-
-Bus.prototype.setupTextureRefresh = function () {
-	// Set up a periodic check (every 60 seconds) to ensure textures are valid
-	if (this.scene && this.scene.time) {
-		this.textureRefreshTimer = this.scene.time.addEvent({
-			delay: 60000, // 60 seconds
-			callback: this.checkAndRefreshTextures,
-			callbackScope: this,
-			loop: true,
-		});
-	}
-};
-
-Bus.prototype.checkAndRefreshTextures = function () {
-	// Only refresh if the bus is active and visible
-	if (!this.active || !this.visible) return;
-
-	// Check if any textures need rebuilding
-	let needsRefresh = false;
-
-	// Check render textures
-	if (this.pplRt && (this.pplRt.destroyed || !this.pplRt.texture || !this.pplRt.texture.valid)) {
-		needsRefresh = true;
-	}
-
-	// Check mweb render textures
-	if (this.mwebPplRt && (this.mwebPplRt.destroyed || !this.mwebPplRt.texture || !this.mwebPplRt.texture.valid)) {
-		needsRefresh = true;
-	}
-
-	// If any textures need refreshing, do a full rebuild
-	if (needsRefresh) {
-		this.refreshTextures();
-	}
-};
-
-Bus.prototype.refreshTextures = function () {
-	// Clean up and recreate textures that might have become invalid
-
-	// Clean up render textures
-	if (this.pplRt) {
-		const width = this.pplRt.width;
-		const height = this.pplRt.height;
-		const x = this.pplRt.x;
-		const y = this.pplRt.y;
-
-		try {
-			this.pplRt.destroy();
-		} catch (e) {
-			console.warn("Error destroying pplRt", e);
-		}
-
-		try {
-			this.pplRt = this.scene.add.renderTexture(x, y, width, height);
-			this.add(this.pplRt);
-			this.pplRt.setScale(0.5);
-		} catch (e) {
-			console.warn("Error recreating pplRt", e);
-			this.pplRt = null;
-		}
-	}
-
-	// Clean up mweb render textures if they exist
-	if (this.mwebPplRt) {
-		const width = this.mwebPplRt.width;
-		const height = this.mwebPplRt.height;
-		const x = this.mwebPplRt.x;
-		const y = this.mwebPplRt.y;
-
-		try {
-			this.mwebPplRt.destroy();
-		} catch (e) {
-			console.warn("Error destroying mwebPplRt", e);
-		}
-
-		try {
-			this.mwebPplRt = this.scene.add.renderTexture(x, y, width, height);
-			this.add(this.mwebPplRt);
-			this.mwebPplRt.setScale(0.25);
-		} catch (e) {
-			console.warn("Error recreating mwebPplRt", e);
-			this.mwebPplRt = null;
-		}
-	}
-
-	// Clean up drawers
-	this.safeDestroyDrawers();
-
-	// Force a redraw on the next frame
-	if (this.roofCutout && this.roofCutout.visible) {
-		this.scene.time.addEvent({
-			delay: 10,
-			callback: () => this.pplBlitter(true),
-			callbackScope: this,
-		});
-	}
-};
-
-Bus.prototype.safeDestroyDrawers = function () {
-	// Safely destroy and recreate drawer objects
-	for (const key in this.drawers) {
-		try {
-			if (this.drawers[key] && typeof this.drawers[key].destroy === "function") {
-				this.drawers[key].destroy();
-			}
-		} catch (e) {
-			console.warn(`Error destroying drawer ${key}`, e);
-		}
-	}
-
-	this.drawers = {};
-	this.drawersUsed = {};
-};
 
 Bus.prototype.newBus = function (atStop = true) {
 	this.loaded = 0;
@@ -262,24 +146,11 @@ Bus.prototype.newBus = function (atStop = true) {
 			if (lastBus.getData("id")) busIndex++;
 		}
 	}
-
-	// FIX: Add safe access to blockchain height
-	let nextBlockHeight;
-	if (this.scene.blockchain && this.scene.blockchain.length > 0) {
-		const lastBlock = this.scene.blockchain[this.scene.blockchain.length - 1];
-		if (lastBlock && typeof lastBlock.height !== "undefined" && lastBlock.height !== null) {
-			nextBlockHeight = lastBlock.height;
-			console.log("Next block height:", nextBlockHeight);
-		} else {
-			console.warn("Block height not available in last block");
-			nextBlockHeight = ""; // Empty string for UI
-		}
-	} else {
-		console.warn("Blockchain array is empty or undefined");
-		nextBlockHeight = ""; // Empty string for UI
-	}
-
-	this.setData("id", nextBlockHeight + busIndex);
+	console.log(
+		"this.scene.blockchain[this.scene.blockchain.length - 1].height",
+		this.scene.blockchain[this.scene.blockchain.length - 1].height
+	);
+	this.setData("id", this.scene.blockchain[this.scene.blockchain.length - 1].height + busIndex);
 
 	this.busHeight = this.scene.calcBusHeight(this.scene.config.busCapacityVisual || this.scene.config.busCapacity);
 	if (this.busHeight < 1) this.busHeight = 1;
@@ -339,13 +210,7 @@ Bus.prototype.newBus = function (atStop = true) {
 	this.lightsSprite[0].y = 107 + this.busHeight - 80;
 	this.backDoorSprite.y = 45 + this.busHeight - 80;
 
-	// Ensure we don't display empty values, zeros, etc. in the UI
-	const busId = this.getData("id");
-	if (busId && busId !== "" && busId !== 0) {
-		this.text1.setText("#" + busId);
-	} else {
-		this.text1.setText(""); // Empty text instead of showing "#0" or similar
-	}
+	this.text1.setText("#" + this.getData("id"));
 	this.setFeeText();
 
 	this.braking = false;
@@ -379,13 +244,6 @@ Bus.prototype.bye = function () {
 	window.txStreetPhaser.streetController.removeFromRainbow(this);
 	this.removeAllListeners();
 	this.disableInteractive();
-
-	// Clear the texture refresh timer
-	if (this.textureRefreshTimer) {
-		this.textureRefreshTimer.remove();
-		this.textureRefreshTimer = null;
-	}
-
 	if (typeof this.articulated !== "undefined") {
 		for (let i = 0; i < this.articulated.length; i++) {
 			let index = this.tintObjects.indexOf(this.articulated[i]);
@@ -394,43 +252,28 @@ Bus.prototype.bye = function () {
 		}
 		this.articulated = [];
 	}
-
-	// Safely clean up textures
-	this.safeDestroy(this.pplRt);
-	this.pplRt = null;
-
-	this.safeDestroy(this.mwebPplRt);
-	this.mwebPplRt = null;
-
-	this.safeDestroy(this.roofCutout);
-	this.roofCutout = null;
-
+	if (this.pplRt) {
+		this.pplRt.destroy();
+		delete this.pplRt;
+	}
+	if (this.mwebPplRt) {
+		this.mwebPplRt.destroy();
+		delete this.mwebPplRt;
+	}
+	if (this.roofCutout) {
+		this.roofCutout.destroy();
+		delete this.roofCutout;
+	}
 	if (this.boardedAnimTween) {
 		this.boardedAnimTween.remove();
-		this.boardedAnimTween = null;
+		delete this.boardedAnimTween;
 	}
-
-	this.safeDestroy(this.entryArc);
-	this.entryArc = null;
-
-	// Clean up drawers
-	this.safeDestroyDrawers();
-
+	if (this.entryArc) {
+		this.entryArc.destroy();
+		delete this.entryArc;
+	}
 	this.disableInteractive();
 	this.scene.customCallback("byeBus", "after", this);
-};
-
-Bus.prototype.safeDestroy = function (object) {
-	// Safely destroy an object with proper error handling
-	if (object) {
-		try {
-			if (typeof object.destroy === "function") {
-				object.destroy();
-			}
-		} catch (e) {
-			console.warn("Error safely destroying object", e);
-		}
-	}
 };
 
 Bus.prototype.blockFormat = function () {
@@ -465,9 +308,10 @@ Bus.prototype.switchSide = function (newSide) {
 	this.doorSprite.x = 57 * (flipped ? -1 : 1);
 	this.backDoorSprite.x = 57 * (flipped ? -1 : 1);
 	this.busFloor.x = flipped ? this.x - toRes(60) : this.x + toRes(53);
-
-	this.safeDestroy(this.entryArc);
-	this.entryArc = null;
+	if (this.entryArc) {
+		this.entryArc.destroy();
+		delete this.entryArc;
+	}
 };
 
 Bus.prototype.getIndex = function (group = "buses") {
@@ -741,11 +585,9 @@ Bus.prototype.backDoorOpen = function () {
 	let config = {
 		delay: 1500,
 		callback: function () {
-			if (this.closeBackDoorTimer && typeof this.closeBackDoorTimer.destroy === "undefined") return false;
-			if (this.closeBackDoorTimer) {
-				this.closeBackDoorTimer.destroy();
-				this.closeBackDoorTimer = false;
-			}
+			if (typeof this.closeBackDoorTimer.destroy === "undefined") return false;
+			this.closeBackDoorTimer.destroy();
+			this.closeBackDoorTimer = false;
 			this.backDoorClose();
 		},
 		callbackScope: this,
@@ -763,7 +605,6 @@ Bus.prototype.doorClose = function () {
 	if (this.doorSprite.visible) return false;
 	for (let i = 0; i < this.scene.people.children.entries.length; i++) {
 		let person = this.scene.people.children.entries[i];
-		if (!person.active) continue;
 		if (person.getData("boarding") == this.getData("id")) return false;
 	}
 	this.doorSprite.setVisible(true);
@@ -777,13 +618,9 @@ Bus.prototype.backDoorClose = function () {
 Bus.prototype.createInside = function (redraw = false) {
 	if (!redraw && !this.roofCutout) {
 		this.roofCutout = this.scene.add.graphics();
-	} else if (this.roofCutout) {
-		this.roofCutout.clear();
 	} else {
-		// If roofCutout was destroyed but we're trying to redraw it
-		this.roofCutout = this.scene.add.graphics();
+		this.roofCutout.clear();
 	}
-
 	this.roofCutout.fillStyle(this.floorColor.color, 1);
 	this.roofCutout.fillRoundedRect(-55, -115, 110, this.busHeight + 103, 10);
 
@@ -806,472 +643,249 @@ Bus.prototype.createInside = function (redraw = false) {
 
 //specifically for litecoin
 Bus.prototype.pplBlitterMWEB = function (force = false, skipErase = false, overrideHeight = false, blockInfo) {
-	try {
-		// Skip if the bus is inactive or invisible
-		if (!this.active || !this.visible) return;
+	let rtHeight = 54 * 4;
+	let rtWidth = 442 - 75;
+	blockInfo;
+	let percentLoaded = this.mwebTx.length / 500;
+	let rowsTotal = Math.floor((rtHeight - 15) / 15);
+	rtHeight = Math.min(rtHeight, 5000);
+	let rowsToFill = overrideHeight ? rowsTotal : Math.ceil(rowsTotal * percentLoaded);
+	let pplPerRow = Math.ceil(this.mwebTx.length / rowsToFill);
+	let everyX = Math.round(pplPerRow / 20);
+	let spacing = (rtWidth - 64) / (pplPerRow - 1);
+	if (pplPerRow < 2) spacing = rtWidth;
 
-		let rtHeight = 54 * 4;
-		let rtWidth = 442 - 75;
+	if (!this.mwebPplRt) {
+		this.mwebPplRt = this.scene.add.renderTexture(-45, 270, rtWidth, rtHeight);
+		this.mwebPplRt.setDepth(200);
+		this.add(this.mwebPplRt);
+	} else {
+		this.mwebPplRt.clear();
+		this.mwebPplRt.resize(rtWidth, rtHeight);
+	}
+	if (!this.mwebDrawer) this.mwebDrawer = this.scene.add.blitter(0, 0, "characters").setVisible(false);
+	this.mwebDrawer.clear();
+	let xPos = 0;
+	let row = 0;
+	let randPos = false;
+	if (spacing > 3) randPos = true;
+	let rows = [];
+	let draws = [];
 
-		// Check if mwebTx exists and has length
-		if (!this.mwebTx || !Array.isArray(this.mwebTx) || this.mwebTx.length === 0) {
-			// Clean up if no mweb transactions
-			if (this.mwebPplRt) {
-				this.mwebPplRt.clear();
-			}
-			if (this.mwebDrawer) {
-				this.mwebDrawer.clear();
-			}
-			return;
-		}
-
-		let percentLoaded = this.mwebTx.length / 500;
-		let rowsTotal = Math.floor((rtHeight - 15) / 15);
-		rtHeight = Math.min(rtHeight, 5000);
-		let rowsToFill = overrideHeight ? rowsTotal : Math.ceil(rowsTotal * percentLoaded);
-		let pplPerRow = Math.ceil(this.mwebTx.length / rowsToFill);
-		let everyX = Math.round(pplPerRow / 20);
-		let spacing = (rtWidth - 64) / (pplPerRow - 1);
-		if (pplPerRow < 2) spacing = rtWidth;
-
-		// Check if texture exists and is valid
-		const textureExists = this.scene.textures.exists("characters");
-		if (!textureExists) {
-			console.warn('Texture "characters" does not exist for MWEB blitter');
-			return;
-		}
-
-		// Create or reset the render texture
-		if (!this.mwebPplRt || this.mwebPplRt.destroyed) {
-			this.mwebPplRt = this.scene.add.renderTexture(-45, 270, rtWidth, rtHeight);
-			this.mwebPplRt.setDepth(200);
-			this.add(this.mwebPplRt);
-		} else {
-			this.mwebPplRt.clear();
-			this.mwebPplRt.resize(rtWidth, rtHeight);
-		}
-
-		// Create or reset the drawer
-		if (!this.mwebDrawer || this.mwebDrawer.destroyed) {
-			this.mwebDrawer = this.scene.add.blitter(0, 0, "characters").setVisible(false);
-		} else {
-			this.mwebDrawer.clear();
-		}
-
-		let xPos = 0;
-		let row = 0;
-		let randPos = false;
-		if (spacing > 3) randPos = true;
-		let rows = [];
-		let draws = [];
-
-		for (let i = 0; i < this.mwebTx.length; i++) {
-			const tx = this.mwebTx[i];
-			if (!tx) continue; // Skip null entries
-
-			let newRow = Math.floor(i / pplPerRow) * 15;
-			if (newRow > row) {
-				xPos = 0;
-				row = newRow;
-				draws.sort(function (a, b) {
-					return a[1] - b[1];
-				});
-				rows.push(draws);
-				draws = [];
-			}
-			//if there are too many to see, skip every so often;
-			if (pplPerRow < 11 || everyX < 3 || i % everyX == 0) {
-				let random = ((tx.random || Math.random()) - 0.5) * 2;
-				let finalXPos = randPos ? xPos + random * spacing : xPos;
-				if (finalXPos < 0) finalXPos = Math.abs(finalXPos) / 3;
-				if (finalXPos > rtWidth - 64) finalXPos = rtWidth - 64 - (finalXPos - (rtWidth - 64)) / 3;
-				let finalYPos = row + random * 5;
-				if (finalYPos < 0) finalYPos = 0;
-
-				let textureFile = "ltc-0.png";
-				let arr = [finalXPos, finalYPos, textureFile];
-
-				draws.push(arr);
-			}
-			xPos += spacing;
-		}
-		if (draws.length) {
+	for (let i = 0; i < this.mwebTx.length; i++) {
+		const tx = this.mwebTx[i];
+		let newRow = Math.floor(i / pplPerRow) * 15;
+		if (newRow > row) {
+			xPos = 0;
+			row = newRow;
 			draws.sort(function (a, b) {
 				return a[1] - b[1];
 			});
 			rows.push(draws);
+			draws = [];
 		}
+		//if there are too many to see, skip every so often;
+		if (pplPerRow < 11 || everyX < 3 || i % everyX == 0) {
+			let random = (tx.random - 0.5) * 2;
+			let finalXPos = randPos ? xPos + random * spacing : xPos;
+			if (finalXPos < 0) finalXPos = Math.abs(finalXPos) / 3;
+			if (finalXPos > rtWidth - 64) finalXPos = rtWidth - 64 - (finalXPos - (rtWidth - 64)) / 3;
+			let finalYPos = row + random * 5;
+			if (finalYPos < 0) finalYPos = 0;
 
-		// Check if we have any drawers to use
-		let drawerUsed = false;
-		for (let i = 0; i < rows.length; i++) {
-			const row = rows[i];
-			for (let j = 0; j < row.length; j++) {
-				const draw = row[j];
-				if (this.scene.textures.getFrame("characters", draw[2])) {
-					this.mwebDrawer.create(draw[0], draw[1], draw[2]);
-					drawerUsed = true;
-				}
-			}
+			let textureFile = "ltc-0.png";
+			let arr = [finalXPos, finalYPos, textureFile];
+
+			draws.push(arr);
 		}
-
-		if (!drawerUsed) return;
-
-		// Only draw if the render texture is valid
-		if (this.mwebPplRt && !this.mwebPplRt.destroyed && this.mwebDrawer && !this.mwebDrawer.destroyed) {
-			this.mwebPplRt.draw(this.mwebDrawer, 0, 0);
-			this.mwebPplRt.setScale(0.25);
-		}
-	} catch (error) {
-		console.warn("Error in pplBlitterMWEB:", error);
-		// Attempt recovery
-		this.safeDestroy(this.mwebPplRt);
-		this.mwebPplRt = null;
-		this.safeDestroy(this.mwebDrawer);
-		this.mwebDrawer = null;
+		xPos += spacing;
 	}
+	if (draws.length) {
+		draws.sort(function (a, b) {
+			return a[1] - b[1];
+		});
+		rows.push(draws);
+	}
+	let drawerUsed = false;
+	for (let i = 0; i < rows.length; i++) {
+		const row = rows[i];
+		for (let j = 0; j < row.length; j++) {
+			const draw = row[j];
+			this.mwebDrawer.create(draw[0], draw[1], draw[2]);
+			drawerUsed = true;
+		}
+	}
+
+	if (!drawerUsed) return;
+	this.mwebPplRt.draw(this.mwebDrawer, 0, 0);
+	skipErase;
+	force;
+	this.mwebPplRt.setScale(0.25);
 };
 
 Bus.prototype.pplBlitter = function (force = false, skipErase = false, overrideHeight = false) {
-	try {
-		// Skip if the bus is inactive or invisible
-		if (!this.visible || !this.active) return false;
+	if (!this.visible) return false;
 
-		let blockInfo = this.blockFormat();
-		if (
-			!force &&
-			this.blitterBlock &&
-			this.blitterBlock.txs === this.tx.length &&
-			this.blitterBlock.loaded === blockInfo.loaded
-		)
-			return false;
-		this.blitterBlock = blockInfo;
+	let blockInfo = this.blockFormat();
+	if (
+		!force &&
+		this.blitterBlock &&
+		this.blitterBlock.txs === this.tx.length &&
+		this.blitterBlock.loaded === blockInfo.loaded
+	)
+		return false;
+	this.blitterBlock = blockInfo;
 
-		//do mweb blitter
-		if (this.scene.ticker === "LTC") this.pplBlitterMWEB(force, skipErase, overrideHeight, blockInfo);
+	//do mweb blitter
+	if (this.scene.ticker === "LTC") this.pplBlitterMWEB(force, skipErase, overrideHeight, blockInfo);
 
-		// Check if tx exists and has length
-		if (!this.tx || !Array.isArray(this.tx) || this.tx.length === 0) {
-			// Clean up if no transactions
-			if (this.pplRt) {
-				this.pplRt.clear();
-			}
-			this.clearDrawers();
-			return false;
+	let busHeight = overrideHeight ? overrideHeight : this.busHeight;
+	let rtHeight = (busHeight + 119) * 2;
+	let rtWidth = 221;
+	let percentLoaded = blockInfo.loaded / blockInfo.busCapacity;
+	let rowsTotal = Math.floor((rtHeight - 15) / 15);
+	rtHeight = Math.min(rtHeight, 5000);
+	let rowsToFill = overrideHeight ? rowsTotal : Math.ceil(rowsTotal * percentLoaded);
+	let pplPerRow = Math.ceil(this.tx.length / rowsToFill);
+	let everyX = Math.round(pplPerRow / 20);
+	let spacing = (rtWidth - 64) / (pplPerRow - 1);
+	if (pplPerRow < 2) spacing = rtWidth;
+
+	if (!this.pplRt) {
+		this.pplRt = this.scene.add.renderTexture(-55, -98, rtWidth, rtHeight);
+		this.add(this.pplRt);
+	} else {
+		this.pplRt.clear();
+		this.pplRt.resize(rtWidth, rtHeight);
+	}
+	if (!this.drawers.sheet) {
+		this.drawers.sheet = this.scene.add.blitter(0, 0, "characters").setVisible(false);
+	}
+	for (const sheet in this.scene.charConfig) {
+		const c = this.scene.charConfig[sheet];
+		if (sheet === "default") continue;
+		const sheetKey = String(c.scaleAdjust) + String(c.pixelArt);
+		if (!this.drawers[sheetKey]) {
+			this.drawers[sheetKey] = this.scene.add
+				.renderTexture(0, 0, rtWidth / c.scaleAdjust, rtHeight / c.scaleAdjust)
+				.setVisible(false);
+			this.drawers[sheetKey].setScale(c.scaleAdjust);
+			//FIX BLUR
+			if (c.pixelArt) this.drawers[sheetKey].texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
 		}
-
-		let busHeight = overrideHeight ? overrideHeight : this.busHeight;
-		let rtHeight = (busHeight + 119) * 2;
-		let rtWidth = 221;
-		let percentLoaded = blockInfo.loaded / blockInfo.busCapacity;
-		let rowsTotal = Math.floor((rtHeight - 15) / 15);
-		rtHeight = Math.min(rtHeight, 5000);
-		let rowsToFill = overrideHeight ? rowsTotal : Math.ceil(rowsTotal * percentLoaded);
-		let pplPerRow = Math.ceil(this.tx.length / rowsToFill);
-		let everyX = Math.round(pplPerRow / 20);
-		let spacing = (rtWidth - 64) / (pplPerRow - 1);
-		if (pplPerRow < 2) spacing = rtWidth;
-
-		// Check if textures exist
-		const charactersExists = this.scene.textures.exists("characters");
-		if (!charactersExists) {
-			console.warn('Texture "characters" does not exist for blitter');
-			return false;
-		}
-
-		// Create or reset render texture
-		if (!this.pplRt || this.pplRt.destroyed) {
-			this.pplRt = this.scene.add.renderTexture(-55, -98, rtWidth, rtHeight);
-			this.add(this.pplRt);
-		} else {
-			this.pplRt.clear();
-			this.pplRt.resize(rtWidth, rtHeight);
-		}
-
-		// Set up drawers with validation
-		if (!this.drawers.sheet || this.drawers.sheet.destroyed) {
-			this.drawers.sheet = this.scene.add.blitter(0, 0, "characters").setVisible(false);
-		} else {
-			this.drawers.sheet.clear();
-		}
-
-		// Set up custom character sheets
-		if (this.scene.charConfig) {
-			for (const sheet in this.scene.charConfig) {
-				const c = this.scene.charConfig[sheet];
-				if (sheet === "default" || !this.scene.textures.exists(sheet + "-")) continue;
-
-				const sheetKey = String(c.scaleAdjust) + String(c.pixelArt);
-				if (!this.drawers[sheetKey] || this.drawers[sheetKey].destroyed) {
-					try {
-						this.drawers[sheetKey] = this.scene.add
-							.renderTexture(0, 0, rtWidth / c.scaleAdjust, rtHeight / c.scaleAdjust)
-							.setVisible(false);
-						this.drawers[sheetKey].setScale(c.scaleAdjust);
-
-						// Fix blur for pixel art
-						if (c.pixelArt && this.drawers[sheetKey].texture) {
-							this.drawers[sheetKey].texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
-						}
-					} catch (e) {
-						console.warn(`Error creating drawer for ${sheet}:`, e);
-					}
-				} else {
-					this.drawers[sheetKey].clear();
-				}
-			}
-		}
-
-		this.clearDrawers();
-
-		let xPos = 0;
-		let row = 0;
-		let randPos = false;
-		if (spacing > 3) randPos = true;
-		let rows = [];
-		let topRows = [];
-		let draws = [];
-		let topDraws = [];
-		let followed = this.scene.txFollowersHashes
-			? this.scene.txFollowersHashes.reduce((ac, a) => ({ ...ac, [a]: true }), {})
-			: {};
-
-		// Process transactions
-		for (let i = 0; i < this.tx.length; i++) {
-			const tx = this.tx[i];
-			if (!tx) continue; // Skip null entries
-
-			let newRow = Math.floor(i / pplPerRow) * 15;
-			if (newRow > row) {
-				xPos = 0;
-				row = newRow;
-				draws.sort(function (a, b) {
-					return a[1] - b[1];
-				});
-				topRows.push(topDraws);
-				rows.push(draws);
-				topDraws = [];
-				draws = [];
-			}
-
-			//if there are too many to see, skip every so often;
-			if (pplPerRow < 11 || everyX < 3 || i % everyX == 0 || tx.char || (followed && followed[tx.tx])) {
-				let random = ((tx.random || Math.random()) - 0.5) * 2;
-				let finalXPos = randPos ? xPos + random * spacing : xPos;
-				if (finalXPos < 0) finalXPos = Math.abs(finalXPos) / 3;
-				if (finalXPos > rtWidth - 64) finalXPos = rtWidth - 64 - (finalXPos - (rtWidth - 64)) / 3;
-				let finalYPos = row + random * 5;
-				if (finalYPos < 0) finalYPos = 0;
-
-				// Determine the texture file to use
-				let textureFile = "person-0.png"; // Default fallback
-				if (tx.spriteNo !== undefined) {
-					textureFile = "person-" + tx.spriteNo * 9 + ".png";
-				} else if (tx.char) {
-					if (typeof tx.char === "string") {
-						textureFile = tx.char + "-0.png";
-					} else if (tx.char && tx.char.texture) {
-						textureFile = tx.char.texture;
-					}
-				}
-
-				// Get the scale adjustment for custom character sheets
-				const scaleAdjust =
-					tx.char && tx.char.sheet && this.scene.charConfig && this.scene.charConfig[tx.char.sheet]
-						? this.scene.charConfig[tx.char.sheet].scaleAdjust || 1
-						: 1;
-
-				let arr = [
-					finalXPos / scaleAdjust,
-					finalYPos / scaleAdjust,
-					tx.char && tx.char.sheet ? tx.char.sheet : "characters",
-					textureFile,
-				];
-
-				// Special handling for followed transactions
-				if (tx.char || (followed && followed[tx.tx])) {
-					arr.push(followed && followed[tx.tx] ? true : false);
-					topDraws.push(arr);
-				} else {
-					draws.push(arr);
-				}
-			}
-			xPos += spacing;
-		}
-
-		if (draws.length) {
+	}
+	this.clearDrawers();
+	let xPos = 0;
+	let row = 0;
+	let randPos = false;
+	if (spacing > 3) randPos = true;
+	let rows = [];
+	let topRows = [];
+	let draws = [];
+	let topDraws = [];
+	let followed = this.scene.txFollowersHashes.reduce((ac, a) => ({ ...ac, [a]: true }), {});
+	for (let i = 0; i < this.tx.length; i++) {
+		const tx = this.tx[i];
+		let newRow = Math.floor(i / pplPerRow) * 15;
+		if (newRow > row) {
+			xPos = 0;
+			row = newRow;
 			draws.sort(function (a, b) {
 				return a[1] - b[1];
 			});
-			rows.push(draws);
-		}
-		if (topDraws.length) {
 			topRows.push(topDraws);
+			rows.push(draws);
+			topDraws = [];
+			draws = [];
 		}
+		//if there are too many to see, skip every so often;
+		if (pplPerRow < 11 || everyX < 3 || i % everyX == 0 || tx.char || followed[tx.tx]) {
+			let random = (tx.random - 0.5) * 2;
+			let finalXPos = randPos ? xPos + random * spacing : xPos;
+			if (finalXPos < 0) finalXPos = Math.abs(finalXPos) / 3;
+			if (finalXPos > rtWidth - 64) finalXPos = rtWidth - 64 - (finalXPos - (rtWidth - 64)) / 3;
+			let finalYPos = row + random * 5;
+			if (finalYPos < 0) finalYPos = 0;
 
-		// Draw regular transactions
-		for (let i = 0; i < rows.length; i++) {
-			const row = rows[i];
+			let textureFile = tx.char
+				? typeof tx.char === "string"
+					? tx.char + "-0.png"
+					: tx.char?.texture
+				: "person-" + tx.spriteNo * 9 + ".png";
+			let arr = [
+				finalXPos / (this.scene.charConfig?.[tx?.char?.sheet]?.scaleAdjust || 1),
+				finalYPos / (this.scene.charConfig?.[tx?.char?.sheet]?.scaleAdjust || 1),
+				tx?.char?.sheet || "characters",
+				textureFile,
+			];
+			if (tx.char || followed[tx.tx]) {
+				arr.push(followed[tx.tx] ? true : false);
+				topDraws.push(arr);
+			} else {
+				draws.push(arr);
+			}
+		}
+		xPos += spacing;
+	}
+	if (draws.length) {
+		draws.sort(function (a, b) {
+			return a[1] - b[1];
+		});
+		rows.push(draws);
+	}
+	if (topDraws.length) {
+		topRows.push(topDraws);
+	}
+	for (let i = 0; i < rows.length; i++) {
+		const row = rows[i];
+		for (let j = 0; j < row.length; j++) {
+			const draw = row[j];
+			const sheet = draw[2];
+			if (sheet === "characters") {
+				this.drawers.sheet.create(draw[0], draw[1], draw[3]);
+				this.drawersUsed.sheet = true;
+			}
+		}
+	}
+	this.doDraws();
+	if (topRows.length) {
+		this.clearDrawers();
+		for (let i = 0; i < topRows.length; i++) {
+			const row = topRows[i];
 			for (let j = 0; j < row.length; j++) {
 				const draw = row[j];
 				const sheet = draw[2];
-
 				if (sheet === "characters") {
-					// First check if the drawer is valid
-					if (this.drawers.sheet && !this.drawers.sheet.destroyed) {
-						// Then verify the frame exists and has valid properties before creating it
-						const frame = this.scene.textures.getFrame("characters", draw[3]);
-						if (frame && frame.sourceSize) {
-							try {
-								this.drawers.sheet.create(draw[0], draw[1], draw[3]);
-								this.drawersUsed.sheet = true;
-							} catch (e) {
-								console.warn(`Error creating sprite in characters sheet: ${draw[3]}`, e);
-							}
-						}
-					}
+					this.drawers.sheet.create(draw[0], draw[1], draw[3]);
+					this.drawersUsed.sheet = true;
+				} else {
+					const c = this.scene.charConfig[sheet];
+					const sheetKey = String(c.scaleAdjust) + String(c.pixelArt);
+					this.drawers[sheetKey].drawFrame(sheet + "-" + draw[3], null, draw[0], draw[1]);
+					this.drawersUsed[sheetKey] = true;
 				}
 			}
 		}
-
 		this.doDraws();
-
-		// Draw special transactions (followed or character)
-		if (topRows.length) {
-			this.clearDrawers();
-			for (let i = 0; i < topRows.length; i++) {
-				const row = topRows[i];
-				for (let j = 0; j < row.length; j++) {
-					const draw = row[j];
-					const sheet = draw[2];
-
-					if (sheet === "characters") {
-						// First check if the drawer is valid
-						if (this.drawers.sheet && !this.drawers.sheet.destroyed) {
-							// Then verify the frame exists and has valid properties before creating it
-							const frame = this.scene.textures.getFrame("characters", draw[3]);
-							if (frame && frame.sourceSize) {
-								try {
-									this.drawers.sheet.create(draw[0], draw[1], draw[3]);
-									this.drawersUsed.sheet = true;
-								} catch (e) {
-									console.warn(`Error creating sprite in characters sheet (top row): ${draw[3]}`, e);
-								}
-							}
-						}
-					} else if (this.scene.charConfig && this.scene.charConfig[sheet]) {
-						const c = this.scene.charConfig[sheet];
-						const sheetKey = String(c.scaleAdjust) + String(c.pixelArt);
-
-						if (this.drawers[sheetKey] && !this.drawers[sheetKey].destroyed) {
-							// Verify the texture frame exists and has valid properties before drawing
-							const fullTextureName = sheet + "-" + draw[3];
-							let frame = this.scene.textures.getFrame(sheet, draw[3]);
-							if (!frame) {
-								frame = this.scene.textures.getFrame(fullTextureName);
-							}
-
-							if (frame && frame.sourceSize) {
-								try {
-									this.drawers[sheetKey].drawFrame(fullTextureName, null, draw[0], draw[1]);
-									this.drawersUsed[sheetKey] = true;
-								} catch (e) {
-									console.warn(`Error drawing frame for custom sheet: ${fullTextureName}`, e);
-								}
-							} else {
-								console.warn(`Invalid frame for ${fullTextureName}`);
-							}
-						}
-					}
-				}
-			}
-			this.doDraws();
-		}
-
-		// Erase part of the render texture if needed
-		if (
-			!skipErase &&
-			this.pplRt &&
-			!this.pplRt.destroyed &&
-			window.txStreetPhaser &&
-			window.txStreetPhaser.streetController
-		) {
-			try {
-				const eraser = window.txStreetPhaser.streetController.busErase;
-				if (eraser) {
-					this.pplRt.erase(eraser, 110, rtHeight - 43);
-				}
-			} catch (e) {
-				console.warn("Error erasing part of the render texture", e);
-			}
-		}
-
-		if (this.pplRt && !this.pplRt.destroyed) {
-			this.pplRt.setScale(0.5);
-		}
-
-		return true;
-	} catch (error) {
-		console.warn("Error in pplBlitter:", error);
-		// Attempt recovery
-		this.safeDestroy(this.pplRt);
-		this.pplRt = null;
-		this.clearDrawers();
-		return false;
 	}
+	if (!skipErase) this.pplRt.erase(window.txStreetPhaser.streetController.busErase, 110, rtHeight - 43);
+	this.pplRt.setScale(0.5);
 };
 
 Bus.prototype.clearDrawers = function () {
-	try {
-		for (const sheet in this.drawers) {
-			const drawer = this.drawers[sheet];
-			if (!drawer || !this.drawersUsed[sheet]) continue;
-
-			if (typeof drawer.clear === "function") {
-				drawer.clear();
-			}
-		}
-		this.drawersUsed = {};
-	} catch (error) {
-		console.warn("Error in clearDrawers:", error);
+	for (const sheet in this.drawers) {
+		const drawer = this.drawers[sheet];
+		if (!this.drawersUsed[sheet]) continue;
+		drawer.clear();
 	}
+	this.drawersUsed = {};
 };
 
 Bus.prototype.doDraws = function () {
-	try {
-		if (!this.pplRt || this.pplRt.destroyed) return;
-
-		for (const sheet in this.drawers) {
-			const drawer = this.drawers[sheet];
-			if (!drawer || !this.drawersUsed[sheet]) continue;
-
-			// Verify drawer and render texture are valid before drawing
-			if (drawer && !drawer.destroyed) {
-				// For blitters, check that they have valid frames with sourceSize
-				if (drawer.children && drawer.children.length > 0) {
-					let allFramesValid = true;
-					for (let i = 0; i < drawer.children.length; i++) {
-						const child = drawer.children[i];
-						if (!child || !child.frame || !child.frame.sourceSize) {
-							allFramesValid = false;
-							break;
-						}
-					}
-
-					if (!allFramesValid) {
-						console.warn("Invalid frames detected in drawer, skipping draw");
-						continue;
-					}
-				}
-
-				// Then verify the render texture is valid
-				if (this.pplRt && !this.pplRt.destroyed && this.pplRt.texture && this.pplRt.texture.valid) {
-					this.pplRt.draw(drawer, 0, 0);
-				}
-			}
-		}
-	} catch (error) {
-		console.warn("Error in doDraws:", error);
+	for (const sheet in this.drawers) {
+		const drawer = this.drawers[sheet];
+		if (!this.drawersUsed[sheet]) continue;
+		this.pplRt.draw(drawer, 0, 0);
 	}
 };
 
@@ -1279,35 +893,24 @@ Bus.prototype.openTop = function () {
 	if (!this.roofCutout) {
 		this.createInside();
 	}
-	try {
-		this.pplBlitter();
-	} catch (e) {
-		console.warn("Error calling pplBlitter in openTop:", e);
-	}
-
-	if (this.pplRt && !this.pplRt.destroyed) this.pplRt.setVisible(true);
-	if (this.mwebPplRt && !this.mwebPplRt.destroyed) this.mwebPplRt.setVisible(true);
+	this.pplBlitter();
+	if (this.pplRt) this.pplRt.setVisible(true);
+	if (this.mwebPplRt) this.mwebPplRt.setVisible(true);
 	if (this.roofCutout) this.roofCutout.setVisible(true);
 	if (this.entryArc) this.entryArc.setVisible(true).setAlpha(0);
 };
 
 Bus.prototype.closeTop = function () {
-	if (this.pplRt && !this.pplRt.destroyed) this.pplRt.setVisible(false);
-	if (this.mwebPplRt && !this.mwebPplRt.destroyed) this.mwebPplRt.setVisible(false);
+	if (this.pplRt) this.pplRt.setVisible(false);
+	if (this.mwebPplRt) this.mwebPplRt.setVisible(false);
 	if (this.roofCutout) this.roofCutout.setVisible(false);
 	if (this.entryArc) this.entryArc.setVisible(false);
 };
 
 Bus.prototype.boardedAnim = function (person) {
-	if (!this.visible || !this.active || !this.roofCutout || !this.roofCutout.visible) return;
-
-	try {
-		if (typeof this.boardedAnimTween !== "undefined" && this.boardedAnimTween) {
-			this.boardedAnimTween.remove();
-			this.boardedAnimTween = null;
-		}
-
-		if (!this.entryArc || this.entryArc.destroyed) {
+	if (this.visible && this.roofCutout && this.roofCutout.visible) {
+		if (typeof this.boardedAnimTween !== "undefined") this.boardedAnimTween.remove();
+		if (!this.entryArc) {
 			if (this.scene.side === "right") {
 				this.entryArc = this.scene.add.arc(55, -79, 17, 90, 270, false, 0xffffff);
 			} else {
@@ -1315,11 +918,9 @@ Bus.prototype.boardedAnim = function (person) {
 			}
 			this.add(this.entryArc);
 		}
-
-		let maxScale = person.getData("maxScale") || 0.5;
+		let maxScale = person.getData("maxScale");
 		this.entryArc.setScale(maxScale * 3 - 0.8, 1);
 		this.entryArc.setAlpha(maxScale);
-
 		this.boardedAnimTween = this.scene.add.tween({
 			targets: this.entryArc,
 			alpha: 0,
@@ -1327,8 +928,6 @@ Bus.prototype.boardedAnim = function (person) {
 			ease: "Expo.easeOut",
 			duration: 1500 * window.txStreetPhaser.streetController.fpsTimesFaster,
 		});
-	} catch (error) {
-		console.warn("Error in boardedAnim:", error);
 	}
 };
 
