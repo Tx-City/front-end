@@ -3447,6 +3447,7 @@ export const genesisNames = [
 	"snowman",
 	"isabella",
 	"flash",
+	"blob",
 	"ps",
 	"dash",
 	"alien",

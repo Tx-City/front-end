@@ -504,6 +504,9 @@ export default class ETHStreet extends Street {
 	}
 
 	beforeNewTx(tx) {
+		if (tx.ty === 3) {
+			tx.char = "blob";
+		}
 		//set the address nonce
 		ethNewTxSetDepending(tx, this.config);
 

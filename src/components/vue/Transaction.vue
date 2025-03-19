@@ -21,6 +21,9 @@
 				/>
 				{{ houseTitle }}
 			</a>
+			<a v-if="txData.ty === 3" class="tag is-info" @click="$root.toggleWindow(txData.h)">
+    		BLOB
+			</a>
 			<span v-if="txData.e && txData.e.op_return" class="tag is-info">OP_RETURN</span>
 			<span v-if="txData.e && txData.e.sw" class="tag is-info">Segwit</span>
 			<span v-if="txData.e && (txData.e.mweb ||txData.e.mwebpegin ||txData.e.mwebpegout || txData.e.mwebhogex)" class="tag is-info">MWEB</span>
