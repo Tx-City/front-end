@@ -38,7 +38,7 @@ export default {
 			loadError: false,
 			loadVisualizer: false,
 			darkMode: true,
-			autoLoad: false,
+			autoLoad: true, // Changed default to true
 			autoLoading: false,
 			selectedCoins: ["ETH", "BTC"],
 			now: 0,
@@ -59,6 +59,11 @@ export default {
 			if (typeof val === "boolean") {
 				this[setting] = val;
 			}
+		}
+		
+		// Set autoLoad to true by default if it's not already set
+		if (localStorage.getItem("autoLoad") === null) {
+			this.autoLoad = true;
 		}
 
 		this.setAutoLoad();
@@ -109,6 +114,21 @@ export default {
 					this.autoLoading = true;
 					this.loading = true;
 					this.loadVisualizer = true;
+					
+					// Add a longer delay to ensure Phaser game has time to initialize
+					setTimeout(() => {
+						// Directly open the visualizer without requiring user interaction
+						this.loaded = true; // Mark as loaded to bypass the landing page
+						
+						// Force Phaser game to initialize if it hasn't already
+						if (window.txStreetPhaser && typeof window.txStreetPhaser.initGame === 'function') {
+							try {
+								window.txStreetPhaser.initGame();
+							} catch (e) {
+								console.error("Error initializing Phaser game:", e);
+							}
+						}
+					}, 1000); // 1 second delay
 				}
 			}
 		},
@@ -159,6 +179,21 @@ export default {
 		openVisualizer() {
 			this.loading = true;
 			this.loadVisualizer = true;
+			
+			// Ensure the visualizer fully loads by marking as loaded after a delay
+			setTimeout(() => {
+				this.loaded = true;
+				
+				// Additional check to ensure Phaser game starts properly
+				if (window.txStreetPhaser && typeof window.txStreetPhaser.initGame === 'function' && !window.txStreetPhaser.game) {
+					try {
+						console.log("Initializing Phaser game from openVisualizer");
+						window.txStreetPhaser.initGame();
+					} catch (e) {
+						console.error("Error initializing Phaser game:", e);
+					}
+				}
+			}, 800);
 		},
 		getVizTitleFromURL(pathname = false, updateDrops = false, onlyName = false) {
 			let title = "";
@@ -272,6 +307,13 @@ export default {
 				this.selectedCoins[1] = null;
 			}
 		},
+	},
+	created() {
+		// Ensure ETH-BTC are the default coins and auto-launch is enabled
+		this.selectedCoins = ["ETH", "BTC"];
+		if (!localStorage.getItem("autoLoad")) {
+			this.autoLoad = true;
+		}
 	},
 };
 </script>
