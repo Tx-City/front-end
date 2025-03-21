@@ -3204,7 +3204,7 @@ export const enabledConfig = {
 	LUMIA,
 	// MANTA,
 	// CELO,
-	// LUKSO,
+	LUKSO,
 	// FLR,
 };
 
