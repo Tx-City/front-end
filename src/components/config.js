@@ -1383,7 +1383,7 @@ export const LUKSO = {
 		signArray: {
 			title: "Sign Display",
 			type: "multiselect",
-			value: ["lastBlock", "medianFee-usdTransfer", "mempool-size"],
+			value: ["lastBlock", "medianFee-usdTransfer"],
 			writable: true,
 			invisible: true,
 			restart: false,
@@ -1450,8 +1450,8 @@ export const LUKSO = {
 			signTitle: "Median Transfer Fee",
 			after: " USD",
 			before: "~$",
-			value: false,
-			socket: true,
+			value: 0.001,
+			socket: false,
 			wiki: ["ETH/stats/medianTransferFee", "common/transaction-fees"],
 		},
 		"medianFee-gasPrice": {
