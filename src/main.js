@@ -7,62 +7,63 @@ import Toast, { TYPE } from "vue-toastification";
 import Close from "./components/vue/toasts/Close";
 //------- SUGGESTED BY CLAUDE AI ---------
 // Add these imports at the top of your main.ts file
-import 'core-js/modules/es.iterator.constructor.js';
-import 'core-js/modules/es.iterator.filter.js';
-import 'core-js/modules/es.iterator.for-each.js';
-import 'core-js/modules/es.iterator.map.js';
-import 'core-js/modules/es.iterator.reduce.js';
-import 'core-js/modules/es.iterator.find.js';
-import './core-js-polyfills';
+import "core-js/modules/es.iterator.constructor.js";
+import "core-js/modules/es.iterator.filter.js";
+import "core-js/modules/es.iterator.for-each.js";
+import "core-js/modules/es.iterator.map.js";
+import "core-js/modules/es.iterator.reduce.js";
+import "core-js/modules/es.iterator.find.js";
+import "./core-js-polyfills";
 String.prototype.hashCode = function () {
-    var hash = 0, i, chr;
-    if (this.length === 0)
-        return hash;
-    for (i = 0; i < this.length; i++) {
-        chr = this.charCodeAt(i);
-        hash = (hash << 5) - hash + chr;
-        hash |= 0; // Convert to 32bit integer
-    }
-    return hash;
+	var hash = 0,
+		i,
+		chr;
+	if (this.length === 0) return hash;
+	for (i = 0; i < this.length; i++) {
+		chr = this.charCodeAt(i);
+		hash = (hash << 5) - hash + chr;
+		hash |= 0; // Convert to 32bit integer
+	}
+	return hash;
 };
 Vue.use(Toast, {
-    filterBeforeCreate: (toast, toasts) => {
-        if (toast.id && toasts.filter(t => t.id === toast.id).length !== 0) {
-            // Returning false discards the toast
-            return false;
-        }
-        // You can modify the toast if you want
-        return toast;
-    },
-    icon: false,
-    closeButton: Close,
-    toastDefaults: {
-        [TYPE.WARNING]: {
-            icon: {
-                iconClass: "fas fa-exclamation-triangle", // Optional
-                // iconChildren: "warning", // Optional
-                iconTag: "span", // Optional
-            },
-        },
-        [TYPE.ERROR]: {
-            icon: {
-                iconClass: "fas fa-exclamation-circle", // Optional
-                // iconChildren: "error", // Optional
-                iconTag: "span", // Optional
-            },
-        },
-        [TYPE.SUCCESS]: {
-            icon: {
-                iconClass: "fas fa-check", // Optional
-                // iconChildren: "check_circle", // Optional
-                iconTag: "span", // Optional
-            },
-        },
-    },
+	filterBeforeCreate: (toast, toasts) => {
+		if (toast.id && toasts.filter((t) => t.id === toast.id).length !== 0) {
+			// Returning false discards the toast
+			return false;
+		}
+		// You can modify the toast if you want
+		return toast;
+	},
+	icon: false,
+	closeButton: Close,
+	toastDefaults: {
+		[TYPE.WARNING]: {
+			icon: {
+				iconClass: "fas fa-exclamation-triangle", // Optional
+				// iconChildren: "warning", // Optional
+				iconTag: "span", // Optional
+			},
+		},
+		[TYPE.ERROR]: {
+			icon: {
+				iconClass: "fas fa-exclamation-circle", // Optional
+				// iconChildren: "error", // Optional
+				iconTag: "span", // Optional
+			},
+		},
+		[TYPE.SUCCESS]: {
+			icon: {
+				iconClass: "fas fa-check", // Optional
+				// iconChildren: "check_circle", // Optional
+				iconTag: "span", // Optional
+			},
+		},
+	},
 });
 window.mainVue = new Vue({
-    i18n,
-    el: "#vue-main",
-    ...Main,
+	i18n,
+	el: "#vue-main",
+	...Main,
 });
 //# sourceMappingURL=main.js.map

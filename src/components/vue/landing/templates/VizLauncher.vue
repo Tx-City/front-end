@@ -107,10 +107,8 @@
 					</div>
 					<div v-if="$root.$refs.landing" class="dropdown-menu">
 						<div class="dropdown-content">
-							<template v-for="dropCoin in $root.$refs.landing.enabledConfig">
-								<a
-									:key="'dropdownopt-' + dropCoin.ticker"
-									@click="changeVisDropdown(i, dropCoin.ticker)"
+								<template v-for="dropCoin in $root.$refs.landing.enabledConfig" :key="'dropdownopt-' + dropCoin.ticker">
+								<a @click="changeVisDropdown(i, dropCoin.ticker)"
 									class="dropdown-item navbar-item"
 									><span
 										class="coin-logo"

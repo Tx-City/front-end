@@ -1,10 +1,9 @@
-import Vue from "vue";
-import VueI18n from "vue-i18n";
+import { createApp } from "vue";
+import { createI18n } from "vue-i18n";
 import supportedLocales from "./locales";
-export { supportedLocales };
-import { formatDistanceStrict } from 'date-fns'
+import { formatDistanceStrict } from "date-fns";
 
-Vue.use(VueI18n);
+export { supportedLocales };
 
 function loadLocaleMessages() {
 	const messages = {};
@@ -34,19 +33,25 @@ export function getStartingLocale() {
 	}
 }
 
-const instance = new VueI18n({
+const i18n = createI18n({
 	locale: getStartingLocale(),
 	fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
 	messages: loadLocaleMessages(),
+	legacy: false, // Set to true if using Vue 2 API style in Vue 3
 });
 
 export function fds(date1, date2, options) {
-    return formatDistanceStrict(date1, date2, {
-        ...options,
-        ...{
-            locale: supportedLocales[instance.locale].fns
-        }
-    });
+	// For Vue 3, we need to use i18n.global.locale.value to get current locale
+	const currentLocale = i18n.global.locale.value;
+	const locale =
+		supportedLocales[currentLocale] && supportedLocales[currentLocale].fns
+			? supportedLocales[currentLocale].fns
+			: undefined;
+
+	return formatDistanceStrict(date1, date2, {
+		...options,
+		...(locale ? { locale } : {}),
+	});
 }
 
-export default instance;
+export default i18n;

@@ -2,8 +2,8 @@
 	<div>
 		<div class="blocks">
 			<transition-group name="fade" tag="div">
-				<template v-for="block in blockList()">
-					<div class="box blocks-block" v-bind:key="block.hash">
+				<template v-for="block in blockList()" :key="block.hash">
+					<div class="box blocks-block">
 						<span v-if="block.uncle" class="far fa-exclamation-triangle"></span>
 						<div>
 							<p class="heading level">

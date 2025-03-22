@@ -1,6 +1,7 @@
 import Vue from "vue";
 import i18n from "../i18n";
 import median from "./utils/median";
+import { reactive } from "vue";
 
 export const ethUnits = (wei, readable = true, round = false) => {
 	let val = wei;
@@ -95,7 +96,7 @@ export const BTC = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("btc.tps");
@@ -317,7 +318,7 @@ export const DASH = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("dash.tps");
@@ -643,7 +644,7 @@ export const EVOLUTION = {
 		},
 	},
 
-	stats: Vue.observable({
+	stats: reactive({
 		// tps: {
 		// 	title: () => "Transactions Per Second",
 		// 	decimals: 2,
@@ -799,7 +800,7 @@ export const LTC = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("ltc.tps");
@@ -1084,7 +1085,7 @@ export const ETH = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("eth.tps");
@@ -1389,7 +1390,7 @@ export const LUKSO = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("eth.tps");
@@ -1694,7 +1695,7 @@ export const FLR = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("eth.tps");
@@ -1999,7 +2000,7 @@ export const CELO = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("eth.tps");
@@ -2252,7 +2253,7 @@ export const ARBI = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		ctps: {
 			title: () => {
 				return i18n.t("eth.ctps");
@@ -2441,7 +2442,7 @@ export const LUMIA = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		ctps: {
 			title: () => {
 				return i18n.t("eth.ctps");
@@ -2612,7 +2613,7 @@ export const MANTA = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		ctps: {
 			title: () => {
 				return i18n.t("eth.ctps");
@@ -2790,7 +2791,7 @@ export const BCH = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("bch.tps");
@@ -3002,7 +3003,7 @@ export const XMR = {
 			restart: false,
 		},
 	},
-	stats: Vue.observable({
+	stats: reactive({
 		tps: {
 			title: () => {
 				return i18n.t("xmr.tps");
