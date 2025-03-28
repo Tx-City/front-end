@@ -3,17 +3,23 @@ import { mirrorX, toRes, getSheetKey } from "../utils/";
 import { EVOLUTION } from "../config.js";
 import { fds, default as i18n } from "../../i18n";
 import { add } from "date-fns";
+import eventHub from "../vue/eventHub.js";
 
 export default class EVOLUTIONStreet extends Street {
 	constructor(side) {
 		super(EVOLUTION, side);
+		this.mySide = side;
 	}
 
 	init() {
+		this.myDummyData;
 		this.foundBoarding = false;
-		this.busStop = toRes(200);
+		//this.busStop = toRes(200);
+		this.onceAdjust = false;
+		this.myMainCameraPosition = 1300;
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 10;
+		this.bridgeTx = [];
 		this.decelerationArea = toRes(500);
 		this.sceneHeight = toRes(10000);
 		this.alwaysGetPendingAfterBlock = true;
@@ -80,6 +86,17 @@ export default class EVOLUTIONStreet extends Street {
 		super.create();
 
 		this.streetCreate();
+
+		if (this.adjustView) {
+			this.cameras.main.scrollY = toRes(1300);
+		}
+		if (this.resetView) {
+			this.cameras.main.scrollY = -toRes(1300);
+		}
+
+		if (this.adjustView) {
+			this.checkSideAddSign(this.mySide);
+		}
 		this.vue.busFeeTitle = "Duff/B";
 		this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
@@ -111,6 +128,22 @@ export default class EVOLUTIONStreet extends Street {
 			}
 		});
 
+		eventHub.$on("EVOBridgeTx", (bridgeTxData) => {
+			this.addBridgeTx(bridgeTxData);
+		});
+		eventHub.$on("scrollToBridge", () => {
+			this.scrollToBridge();
+		});
+		eventHub.$on("stopSignAdjustwithBridge", () => {
+			this.adjustBusHeight = true;
+			this.checkSideAddSign(this.mysetSide);
+		});
+		eventHub.$on("stopSignAdjust", () => {
+			if (this.myBridgeRoadSign) {
+				this.myBridgeRoadSign.destroy();
+			}
+		});
+
 		this.calcHalving();
 
 		// Set initial traffic light color
@@ -118,6 +151,55 @@ export default class EVOLUTIONStreet extends Street {
 			this.stoplight.setLight("red");
 		}
 	}
+
+	
+	setBusStop(stop) {
+		this.busStop = toRes(stop);
+	}
+
+	adjustMyView(mybool) {
+		this.adjustView = mybool;
+	}
+
+	setAdjustCrowdPos(mycrowdBool) {
+		this.adjustCrowdPos = mycrowdBool;
+		console.log("******************TUMEPATA NI****** ", mycrowdBool);
+	}
+
+	setView(view) {
+		this.resetView = view;
+	}
+
+	addBridgeTx(myBridgeTxData) {
+		this.bridgeTx.push(myBridgeTxData);
+		console.log(this.bridgeTx);
+	}
+
+	setSide(side) {
+		this.mysetSide = side;
+	}
+	checkSideAddSign(side) {
+		console.log("###############", side);
+		if (this.myBridgeRoadSign) {
+			this.myBridgeRoadSign.destroy();
+		}
+		if (side == "left") {
+			this.myBridgeRoadSign = this.add.image(toRes(865), toRes(800), "BRIDGESIGN").setScale(toRes(1));
+		} else {
+			this.myBridgeRoadSign = this.add.image(toRes(97), toRes(800), "BRIDGESIGN").setScale(toRes(1));
+		}
+	}
+
+	scrollToBridge() {
+		setInterval(() => {
+			if (this.myMainCameraPosition > 0) {
+				this.myMainCameraPosition -= 10;
+				this.cameras.main.scrollY = this.myMainCameraPosition;
+				eventHub.$emit("myScrollData", { cameraY: this.cameras.main.scrollY });
+			}
+		}, 20);
+	}
+
 
 	calcHalving(numberOfCountdowns = 10) {
 		// Set the first countdown date to March 16, 2025

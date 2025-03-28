@@ -3,17 +3,22 @@ import { mirrorX, toRes, toResRev, getSheetKey } from "../utils/";
 import { DASH } from "../config.js";
 import { fds, default as i18n } from "../../i18n";
 import { add } from "date-fns";
-
+import eventHub from "../vue/eventHub.js";
 export default class DASHStreet extends Street {
 	constructor(side) {
 		super(DASH, side);
+		this.mySide = side;
 	}
 
 	init() {
+		this.myDummyData;
 		this.foundBoarding = false;
-		this.busStop = toRes(200);
+		//this.busStop = toRes(200);
+		this.onceAdjust = false;
+		this.myMainCameraPosition = 1300;
 		this.busDoorFromTop = toRes(42);
 		this.personPixelsPerSecond = 10;
+		this.bridgeTx = [];
 		this.decelerationArea = toRes(500);
 		this.sceneHeight = toRes(10000);
 		this.alwaysGetPendingAfterBlock = true;
@@ -72,6 +77,17 @@ export default class DASHStreet extends Street {
 		super.create();
 
 		this.streetCreate();
+
+		if (this.adjustView) {
+			this.cameras.main.scrollY = toRes(1300);
+		}
+		if (this.resetView) {
+			this.cameras.main.scrollY = -toRes(1300);
+		}
+
+		if (this.adjustView) {
+			this.checkSideAddSign(this.mySide);
+		}
 		this.vue.busFeeTitle = "Duff/B";
 		(this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
@@ -84,8 +100,72 @@ export default class DASHStreet extends Street {
 		this.vue.$watch("blockchainLength", (val) => {
 			this.calcHalving(val);
 		});
+		eventHub.$on("DashBridgeTx", (bridgeTxData) => {
+			this.addBridgeTx(bridgeTxData);
+		});
+		eventHub.$on("scrollToBridge", () => {
+			this.scrollToBridge();
+		});
+		eventHub.$on("stopSignAdjustwithBridge", () => {
+			this.adjustBusHeight = true;
+			this.checkSideAddSign(this.mysetSide);
+		});
+		eventHub.$on("stopSignAdjust", () => {
+			if (this.myBridgeRoadSign) {
+				this.myBridgeRoadSign.destroy();
+			}
+		});
 		this.calcHalving(this.blockchain.length);
 	}
+
+	
+	setBusStop(stop) {
+		this.busStop = toRes(stop);
+	}
+
+	adjustMyView(mybool) {
+		this.adjustView = mybool;
+	}
+
+	setAdjustCrowdPos(mycrowdBool) {
+		this.adjustCrowdPos = mycrowdBool;
+		console.log("******************TUMEPATA NI****** ", mycrowdBool);
+	}
+
+	setView(view) {
+		this.resetView = view;
+	}
+
+	addBridgeTx(myBridgeTxData) {
+		this.bridgeTx.push(myBridgeTxData);
+		console.log(this.bridgeTx);
+	}
+
+	setSide(side) {
+		this.mysetSide = side;
+	}
+	checkSideAddSign(side) {
+		console.log("###############", side);
+		if (this.myBridgeRoadSign) {
+			this.myBridgeRoadSign.destroy();
+		}
+		if (side == "left") {
+			this.myBridgeRoadSign = this.add.image(toRes(865), toRes(800), "BRIDGESIGN").setScale(toRes(1));
+		} else {
+			this.myBridgeRoadSign = this.add.image(toRes(97), toRes(800), "BRIDGESIGN").setScale(toRes(1));
+		}
+	}
+
+	scrollToBridge() {
+		setInterval(() => {
+			if (this.myMainCameraPosition > 0) {
+				this.myMainCameraPosition -= 10;
+				this.cameras.main.scrollY = this.myMainCameraPosition;
+				eventHub.$emit("myScrollData", { cameraY: this.cameras.main.scrollY });
+			}
+		}, 20);
+	}
+
 
 	calcHalving(val) {
 		if (!this.blockchain.length) return;
