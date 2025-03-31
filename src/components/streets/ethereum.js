@@ -34,7 +34,7 @@ export default class ETHStreet extends Street {
 				title: () => {
 					return "Max " + i18n.t(this.ticker.toLowerCase() + ".gp"); //TODO change to max gas price
 				},
-				format: val => {
+				format: (val) => {
 					return ethUnits(val);
 				},
 				key: "feeVal",
@@ -43,7 +43,7 @@ export default class ETHStreet extends Street {
 				title: () => {
 					return i18n.t(this.ticker.toLowerCase() + ".mpfpg"); //TODO change to max gas price
 				},
-				format: val => {
+				format: (val) => {
 					return ethUnits(val);
 				},
 				key: "mpfpg",
@@ -85,7 +85,7 @@ export default class ETHStreet extends Street {
 		this.bottomStats = this.config.stats;
 	}
 
-	preload() { }
+	preload() {}
 
 	async create() {
 		super.create();
@@ -93,7 +93,7 @@ export default class ETHStreet extends Street {
 
 		this.streetCreate();
 		this.createEtherPeopleAnims();
-		
+
 		this.vue.navigation.unshift({
 			key: "characters",
 			html: "<span class='fas fa-user-astronaut'></span>",
@@ -128,7 +128,7 @@ export default class ETHStreet extends Street {
 		this.createPeople();
 		eventHub.$on(this.ticker + "-follow", (address) => {
 			this.followAddress(address);
-			if(!this.avatarCreated){
+			if (!this.avatarCreated) {
 				this.createAvatar();
 				this.avatarCreated = true;
 			}
@@ -138,50 +138,46 @@ export default class ETHStreet extends Street {
 		this.createIsabella();
 	}
 
-     createEtherPeopleAnims() {
+	createEtherPeopleAnims() {
+		this.anims.create({
+			key: "walk_up_2002",
+			frames: this.anims.generateFrameNumbers("etherPeopleBack"),
+			frameRate: 6,
+			repeat: -1,
+			repeatDelay: 0,
+			callbackScope: this,
+			onComplete: function () {},
+		});
 
 		this.anims.create({
-            key: "walk_up_2002",
-            frames: this.anims.generateFrameNumbers("etherPeopleBack"),
-            frameRate: 6,
-            repeat: -1,
-            repeatDelay: 0,
-            callbackScope: this,
-            onComplete: function () {}
-        });
-
-		
-		this.anims.create({
-            key: "walk_down_2002",
-            frames: this.anims.generateFrameNumbers("etherPeopleFront"),
-            frameRate: 6,
-            repeat: -1,
-            repeatDelay: 0,
-            callbackScope: this,
-            onComplete: function () {}
-        });
+			key: "walk_down_2002",
+			frames: this.anims.generateFrameNumbers("etherPeopleFront"),
+			frameRate: 6,
+			repeat: -1,
+			repeatDelay: 0,
+			callbackScope: this,
+			onComplete: function () {},
+		});
 
 		this.anims.create({
-            key: "walk_side_2002",
-            frames: this.anims.generateFrameNumbers("etherPeopleSide"),
-            frameRate: 6,
-            repeat: -1,
-            repeatDelay: 0,
-            callbackScope: this,
-            onComplete: function () {}
-        });
+			key: "walk_side_2002",
+			frames: this.anims.generateFrameNumbers("etherPeopleSide"),
+			frameRate: 6,
+			repeat: -1,
+			repeatDelay: 0,
+			callbackScope: this,
+			onComplete: function () {},
+		});
 
-		
 		this.anims.create({
-            key: "stand_2002",
-            frames: this.anims.generateFrameNumbers("etherPeopleFront"),
-            frameRate: 0,
-            repeat: 0,
-            repeatDelay: 0,
-            callbackScope: this,
-            onComplete: function () {}
-        });
-
+			key: "stand_2002",
+			frames: this.anims.generateFrameNumbers("etherPeopleFront"),
+			frameRate: 0,
+			repeat: 0,
+			repeatDelay: 0,
+			callbackScope: this,
+			onComplete: function () {},
+		});
 	}
 
 	// cycleIsaMessage() {
@@ -223,7 +219,6 @@ export default class ETHStreet extends Street {
 	// 	];
 	// 	this.cycleIsaMessage();
 	// }
-
 
 	crowdCountDisplay() {
 		if (this.vue.stats["mempool-size"].value && this.vue.stats["mempool-size"].value > 75000) {
@@ -356,7 +351,10 @@ export default class ETHStreet extends Street {
 
 	addTxToBus(entry, bus, busId, instant, skipTxs, increasingNonces, toMove) {
 		if (skipTxs.hashes[entry.txData.tx]) return false;
-		if (typeof increasingNonces[entry.txData.fr] === "undefined" || increasingNonces[entry.txData.fr] !== entry.txData.n) {
+		if (
+			typeof increasingNonces[entry.txData.fr] === "undefined" ||
+			increasingNonces[entry.txData.fr] !== entry.txData.n
+		) {
 			entry.txData.dependingOn = true;
 			this.addToMove(entry, toMove);
 			return false;
@@ -489,7 +487,7 @@ export default class ETHStreet extends Street {
 			activeBuses.splice(i, 1);
 		}
 
-		const notDeleted = hashArray.filter(obj => !obj.txData.deleted).length;
+		const notDeleted = hashArray.filter((obj) => !obj.txData.deleted).length;
 		const pplLeftover = this.bottomStats["mempool-size"].value - notDeleted;
 
 		if (activeBuses.length > 0 && pplLeftover > 1000 && activeBuses[0].loaded === this.config.busCapacity) {
