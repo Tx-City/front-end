@@ -447,6 +447,7 @@ export class StreetController extends Phaser.Scene {
 	}
 
 	switchStreet(side, coin) {
+		this.checkBridgeforDelete();
 		if (this[side + "Street"] == coin) return false;
 		window.mainVue.loading = true;
 		let otherSide = side == "right" ? "left" : "right";
@@ -467,6 +468,7 @@ export class StreetController extends Phaser.Scene {
 					}
 				}
 			}
+			this.checkDASHDASHEVOLUTIONonSwitch();
 			this.changeSelectedCoins();
 
 			this.positionHouses(true);
@@ -629,7 +631,7 @@ export class StreetController extends Phaser.Scene {
 			let skip1Side = [];
 			for (let i = 0; i < houses.length; i++) {
 				let house = houses[i];
-				let y = houseY[house.side];
+				let y = houseY[house.side] + this.housePosAdj;;
 				if (house.type === "mall") {
 					skip1Side.push(y);
 				}
