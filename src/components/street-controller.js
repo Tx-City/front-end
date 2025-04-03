@@ -1,10 +1,11 @@
 import Phaser from "phaser";
-import { config, enabledConfig, userSettings, moonheadNames, DASH, LUMIA, EVOLUTION } from "./config.js";
+import { config, enabledConfig, userSettings, moonheadNames } from "./config.js";
 import { toRes, resetNeededRooms, getSheetKey } from "./utils/";
 import { resizeAll } from "./listeners.js";
 import BTCStreet from "./streets/bitcoin.js";
 import DASHStreet from "./streets/dash.js";
 import EVOLUTIONStreet from "./streets/evolution.js";
+import XIONStreet from "./streets/xion.js";
 import BCHStreet from "./streets/bitcoin-cash.js";
 import ETHStreet from "./streets/ethereum.js";
 import LUKSOStreet from "./streets/lukso.js";
@@ -24,6 +25,7 @@ export const availableStreets = {
 	BTC: BTCStreet,
 	DASH: DASHStreet,
 	EVOLUTION: EVOLUTIONStreet,
+	XION: XIONStreet,
 	BCH: BCHStreet,
 	ETH: ETHStreet,
 	XMR: XMRStreet,

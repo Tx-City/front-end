@@ -492,6 +492,251 @@ export const DASH = {
 	}),
 };
 
+export const XION = {
+	ticker: "XION",
+	coinName: "XION",
+	color: "ffffff",
+	busColor: "ffffff",
+	busColorText: "000000", // Adding text color to ensure visibility
+	busCapacity: 1000000,
+	feeVar: "xion",
+	explorerTxUrl: "https://explorer.burnt.com/xion-mainnet-1/tx/",
+	explorerBlockUrl: "https://explorer.burnt.com/xion-mainnet-1/block/",
+	explorerBlocksUrl: "https://explorer.burnt.com/xion-mainnet-1/block/",
+	explorerAddressUrl: "https://explorer.burnt.com/xion-mainnet-1/account/",
+	liveTxs: [],
+	liveBlocks: [],
+	houseArray: [],
+	maxBlocksToKeep: 10,
+	blockFormat: [
+		{
+			title: () => {
+				return i18n.t("eth.gu");
+			},
+			icon: "fas fa-oil-can",
+			key: "bv",
+			color: "D6CDEA",
+			format: (val) => {
+				return val.toLocaleString(i18n.locale);
+			},
+		},
+		{
+			title: () => {
+				return "Base Fee";
+			},
+			key: "av",
+			color: "F9D8D6",
+			icon: "fas fa-ticket-alt",
+			format: (val) => {
+				return ethUnits(val);
+			},
+		},
+	],
+	// Simple implementation of required functions without dependencies
+	// getAndApplyFee: function (txData) {
+	// 	if (txData.feeVal) return txData.feeVal;
+	// 	txData.feeVal = txData.fee || 10;
+	// 	return txData.feeVal;
+	// },
+
+	// calcBlockFeeArray: function (data) {
+	// 	if (data.feeArray || !data.txFull) return;
+	// 	data.lowFee = 9999999;
+	// 	data.highFee = 0;
+	// 	data.feeArray = [];
+	// 	data.medianFee = 10;
+	// },
+	// Add the calcHalving function to the object
+	// calcHalving: function (numberOfCountdowns = 1) {
+	// 	// Set the first countdown date to March 16, 2025
+	// 	const startDate = new Date(2025, 2, 16); // Month is 0-indexed (0=Jan, 1=Feb, 2=Mar)
+
+	// 	// Array to store all countdown dates
+	// 	const countdownDates = [];
+
+	// 	// Calculate all the countdown dates
+	// 	for (let i = 0; i < numberOfCountdowns; i++) {
+	// 		// For the first countdown, use the start date
+	// 		// For subsequent countdowns, add 9.125 days to the previous date
+	// 		if (i === 0) {
+	// 			countdownDates.push(new Date(startDate));
+	// 		} else {
+	// 			// Calculate the new date by adding 9.125 days to the previous date
+	// 			const previousDate = new Date(countdownDates[i - 1]);
+
+	// 			// Convert 9.125 days to milliseconds (9.125 * 24 * 60 * 60 * 1000)
+	// 			const daysInMs = 9.125 * 24 * 60 * 60 * 1000;
+
+	// 			// Add the time to the previous date
+	// 			const newDate = new Date(previousDate.getTime() + daysInMs);
+	// 			countdownDates.push(newDate);
+	// 		}
+	// 	}
+
+	// 	// Format the date for output - just take the first countdown
+	// 	if (countdownDates.length > 0) {
+	// 		const date = countdownDates[0];
+	// 		const day = date.getDate();
+	// 		const month = date.toLocaleString("default", { month: "long" });
+
+	// 		// Add suffix to day number (1st, 2nd, 3rd, etc.)
+	// 		const daySuffix = this.getDaySuffix(day);
+
+	// 		return `${day}${daySuffix} ${month}`;
+	// 	}
+
+	// 	return "16th March"; // Default fallback
+	// },
+
+	// Helper function to get the correct suffix for a day number
+	getDaySuffix: function (day) {
+		if (day > 3 && day < 21) return "th";
+
+		switch (day % 10) {
+			case 1:
+				return "st";
+			case 2:
+				return "nd";
+			case 3:
+				return "rd";
+			default:
+				return "th";
+		}
+	},
+	userSettings: {
+		blockNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.block", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: false,
+			writable: true,
+		},
+		txNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.transaction", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: true,
+			writable: true,
+		},
+		maxBuses: {
+			title: () => {
+				return i18n.t("settings.max-buses");
+			},
+			type: "range",
+			min: 10,
+			max: 10,
+			restart: false,
+			value: 25,
+			writable: true,
+		},
+		signArray: {
+			title: "Sign Display",
+			type: "multiselect",
+			value: ["lastBlock", "medianFee-usdTransfer"],
+			writable: true,
+			invisible: true,
+			restart: false,
+		},
+	},
+
+	stats: Vue.observable({
+		// tps: {
+		// 	title: () => "Transactions Per Second",
+		// 	decimals: 2,
+		// 	value: false,
+		// 	socket: false,
+		// 	wiki: ["common/stats/tps"],
+		// },
+		ctps: {
+			title: () => "Confirmed TPS",
+			decimals: 2,
+			value: 1,
+			socket: false,
+			wiki: ["common/stats/ctps"],
+		},
+		"medianFee-usd": {
+			title: () => {
+				return i18n.t("xion.medianFee-usd");
+			},
+			signTitle: "Median Tx Fee",
+			before: "$",
+			value: 0.0001,
+			socket: false,
+			wiki: ["common/stats/medianFee-usd", "common/transaction-fees"],
+		},
+		"medianFee-satPerByte": {
+			title: () => {
+				return i18n.t("xion.medianFee-satPerByte");
+			},
+			common: "medianFeeSat",
+			value: 1,
+			socket: false,
+			wiki: ["common/stats/medianFee-satPerByte", "common/transaction-fees"],
+		},
+		// bps: {
+		// 	title: () => "Bytes Per Second",
+		// 	decimals: 0,
+		// 	after: " B",
+		// 	value: false,
+		// 	socket: true,
+		// 	wiki: ["common/stats/bps"],
+		// },
+		"supply-circulating": {
+			title: () => "Circulating Supply",
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		"fiatPrice-usd": {
+			title: () => {
+				return i18n.t("btc.fiatPrice-usd");
+			},
+			decimals: 2,
+			before: "$",
+			value: false,
+			socket: true,
+		},
+		lastBlock: {
+			title: () => "Last Block",
+			value: false,
+			wiki: ["common/stats/lastBlock", "common/block-time"],
+		},
+		// medianTxsPerBlock: {
+		// 	title: () => "Median Txs Per Block",
+		// 	value: 0,
+		// 	decimals: 0,
+		// 	socket: true,
+		// 	wiki: ["common/stats/medianTxsPerBlock"],
+		// },
+		blockchainSize: {
+			title: () => "Blockchain Size",
+			value: 87 + "MB",
+			socket: false,
+		},
+		// medianBlockSize: {
+		// 	title: () => "Median Block Size",
+		// 	decimals: 3,
+		// 	divide: 1000000,
+		// 	after: " MB",
+		// 	value: 0.0001,
+		// 	socket: true,
+		// 	wiki: ["common/stats/medianBlockSize"],
+		// },
+		medianBlockTime: {
+			title: () => "Median Block Time",
+			value: 180,
+			timeAgo: true,
+			socket: false,
+			wiki: ["common/stats/medianBlockTime", "common/block-time"],
+		},
+		blockHeight: { hidden: true, value: false },
+	}),
+};
+
 export const EVOLUTION = {
 	ticker: "EVOLUTION",
 	coinName: "Dash Evolution",
@@ -3202,6 +3447,7 @@ export const enabledConfig = {
 	LTC,
 	ARBI,
 	LUMIA,
+	XION,
 	// MANTA,
 	// CELO,
 	LUKSO,
