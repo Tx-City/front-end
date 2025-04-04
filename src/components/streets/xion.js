@@ -1,12 +1,12 @@
 import { Street } from "../street.js";
 import { mirrorX, toRes, getSheetKey } from "../utils/";
-import { EVOLUTION } from "../config.js";
+import { XION } from "../config.js";
 import { fds, default as i18n } from "../../i18n";
 import { add } from "date-fns";
 
-export default class EVOLUTIONStreet extends Street {
+export default class XIONStreet extends Street {
 	constructor(side) {
-		super(EVOLUTION, side);
+		super(XION, side);
 	}
 
 	init() {
@@ -27,13 +27,13 @@ export default class EVOLUTIONStreet extends Street {
 			address: [34, 42],
 		};
 		this.sizeVar = "s";
-		this.medianFeeStat = "medianFee-satPerByte";
+		this.medianFeeStat = "medianFee-gasPrice";
 		this.vueTxFormat = [
 			{
 				title: () => {
-					return i18n.t(this.ticker.toLowerCase() + ".spb");
+					return i18n.t(this.ticker.toLowerCase() + ".gp");
 				},
-				key: "spb",
+				key: "gp",
 			},
 			{
 				title: () => {
@@ -67,7 +67,7 @@ export default class EVOLUTIONStreet extends Street {
 		// } else if (tx.h == "privatesend") {
 		// 	tx.char = "ps";
 		// } else {
-		// 	tx.char = "evolution";
+		// 	tx.char = "xion";
 		// }
 
 		// Ensure transaction has size and fee values
@@ -80,7 +80,7 @@ export default class EVOLUTIONStreet extends Street {
 		super.create();
 
 		this.streetCreate();
-		this.vue.busFeeTitle = "Duff/B";
+		this.vue.busFeeTitle = "XION";
 		this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
 		};
@@ -98,7 +98,7 @@ export default class EVOLUTIONStreet extends Street {
 		// this.monitorBlockchainAndBuses();
 		this.createInitialBus();
 		// Initialize other components
-		this.evolutionBuses();
+		this.xionBuses();
 		this.createPeople();
 
 		// Watch for blockchain updates
@@ -255,8 +255,8 @@ export default class EVOLUTIONStreet extends Street {
 	// });
 
 	// Create and initialize bus-related groups
-	evolutionBuses() {
-		console.log("evolutionBuses called");
+	xionBuses() {
+		console.log("xionBuses called");
 		// Initialize busesLeaving group if it doesn't exist
 		if (!this.busesLeaving) {
 			this.busesLeaving = this.add.group();
@@ -462,4 +462,4 @@ export default class EVOLUTIONStreet extends Street {
 	// }
 }
 
-EVOLUTIONStreet.config = EVOLUTION;
+XIONStreet.config = XION;

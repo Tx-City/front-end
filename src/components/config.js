@@ -492,6 +492,127 @@ export const DASH = {
 	}),
 };
 
+export const XION = {
+	ticker: "XION",
+	coinName: "XION",
+	color: "ffffff",
+	busColor: "ffffff",
+	busColorText: "000000", // Adding text color to ensure visibility
+	busCapacity: 1000000,
+	feeVar: "xion",
+	explorerTxUrl: "https://explorer.burnt.com/xion-mainnet-1/tx/",
+	explorerBlockUrl: "https://explorer.burnt.com/xion-mainnet-1/block/",
+	explorerBlocksUrl: "https://explorer.burnt.com/xion-mainnet-1/block/",
+	explorerAddressUrl: "https://explorer.burnt.com/xion-mainnet-1/account/",
+	liveTxs: [],
+	liveBlocks: [],
+	houseArray: [],
+	maxBlocksToKeep: 10,
+	userSettings: {
+		blockNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.block", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: false,
+			writable: true,
+		},
+		txNotifications: {
+			title: () => {
+				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.transaction", 2) + ")";
+			},
+			type: "checkbox",
+			restart: false,
+			value: true,
+			writable: true,
+		},
+		maxBuses: {
+			title: () => {
+				return i18n.t("settings.max-buses");
+			},
+			type: "range",
+			min: 10,
+			max: 10,
+			restart: false,
+			value: 25,
+			writable: true,
+		},
+		signArray: {
+			title: "Sign Display",
+			type: "multiselect",
+			value: ["lastBlock", "medianFee-usdTransfer"],
+			writable: true,
+			invisible: true,
+			restart: false,
+		},
+	},
+
+	stats: Vue.observable({
+		tps: {
+			title: () => "Transactions Per Second",
+			decimals: 2,
+			value: false,
+			socket: false,
+			wiki: ["common/stats/tps"],
+		},
+		ctps: {
+			title: () => "Confirmed TPS",
+			decimals: 2,
+			value: 1,
+			socket: false,
+			wiki: ["common/stats/ctps"],
+		},
+		"medianFee-usd": {
+			title: () => {
+				return i18n.t("xion.medianFee-usd");
+			},
+			signTitle: "Median Tx Fee",
+			before: "$",
+			value: 0.0006,
+			socket: false,
+			wiki: ["common/stats/medianFee-usd", "common/transaction-fees"],
+		},
+		"medianFee-satPerByte": {
+			title: () => {
+				return i18n.t("xion.medianFee-satPerByte");
+			},
+			common: "medianFeeSat",
+			value: 0.0005,
+			socket: false,
+			wiki: ["common/stats/medianFee-satPerByte", "common/transaction-fees"],
+		},
+		"supply-circulating": {
+			title: () => "Circulating Supply",
+			decimals: 0,
+			value: false,
+			socket: true,
+		},
+		"fiatPrice-usd": {
+			title: () => {
+				return i18n.t("btc.fiatPrice-usd");
+			},
+			decimals: 2,
+			before: "$",
+			value: false,
+			socket: true,
+		},
+		lastBlock: {
+			title: () => "Last Block",
+			value: false,
+			wiki: ["common/stats/lastBlock", "common/block-time"],
+		},
+		medianBlockTime: {
+			title: () => "Median Block Time",
+			value: 180,
+			timeAgo: true,
+			socket: false,
+			wiki: ["common/stats/medianBlockTime", "common/block-time"],
+		},
+		blockHeight: { hidden: true, value: false },
+	}),
+};
+
 export const EVOLUTION = {
 	ticker: "EVOLUTION",
 	coinName: "Dash Evolution",
@@ -3202,6 +3323,7 @@ export const enabledConfig = {
 	LTC,
 	ARBI,
 	LUMIA,
+	XION,
 	// MANTA,
 	// CELO,
 	LUKSO,

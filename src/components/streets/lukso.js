@@ -328,6 +328,7 @@ export default class LUKSOStreet extends Street {
 		}
 
 		let activeBuses = this.activeBuses();
+		console.log("active LUKSO buses", activeBuses);
 
 		for (let i = 0; i < this.config.userSettings.maxBuses.value; i++) {
 			let bus = activeBuses[i];
