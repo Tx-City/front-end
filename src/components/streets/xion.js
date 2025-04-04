@@ -269,9 +269,9 @@ export default class XIONStreet extends Street {
 	}
 
 	// Use a fixed height for all buses
-	calcBusHeight(size) {
-		return 40; // Fixed height for visibility
-	}
+	// calcBusHeight(size) {
+	// 	return 40; // Fixed height for visibility
+	// }
 
 	calcBusHeightFromBlock(block) {
 		return 40; // Fixed height for all blocks
