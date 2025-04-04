@@ -122,7 +122,7 @@
         "marketCap-usd": "Market Cap (USD)",
         "medianBlockSize": "Median Block Size",
         "medianBlockTime": "Average Block Time",
-        "medianFee-satPerByte": "Median Fee (Duff/Byte)",
+        "medianFee-satPerByte": "Median Fee (XION)",
         "medianFee-usd": "Median Fee (USD)",
         "medianTxsPerBlock": "Median Txs Per Block",
         "mempool-bytes": "Mempool Size",

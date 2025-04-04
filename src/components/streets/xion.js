@@ -80,7 +80,7 @@ export default class XIONStreet extends Street {
 		super.create();
 
 		this.streetCreate();
-		this.vue.busFeeTitle = "Duff/B";
+		this.vue.busFeeTitle = "XION";
 		this.vue.busFeeTitleLong = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".spb");
 		};
