@@ -604,7 +604,7 @@ export const XION = {
 		},
 		medianBlockTime: {
 			title: () => "Median Block Time",
-			value: 180,
+			value: 5,
 			timeAgo: true,
 			socket: false,
 			wiki: ["common/stats/medianBlockTime", "common/block-time"],
