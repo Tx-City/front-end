@@ -114,26 +114,11 @@ export default class XIONStreet extends Street {
 		this.streetUpdate();
 	}
 
-	// Called when the street resumes
 	afterResume() {
 		console.log("Street resumed");
 	}
 
-	// Override newTx to ensure transactions are properly handled
-	newTx(data, status = "new", addPerson = true, addToVue = true) {
-		console.log("New transaction received:", data.tx);
-		const result = super.newTx(data, status, addPerson, addToVue);
-		if (result) {
-			// If we have transactions but no buses, create one
-			if (this.buses && this.buses.countActive() === 0) {
-				console.log("Creating bus for new transaction");
-				this.addBus();
-			}
-		}
-		return result;
-	}
-
-	// Override sortBuses to maintain at least one bus
+	// // Override sortBuses to maintain at least one bus
 	sortBuses() {
 		super.sortBuses();
 
@@ -145,62 +130,6 @@ export default class XIONStreet extends Street {
 			bus.loaded = 1;
 			bus.realLoaded = 1;
 		}
-	}
-
-	// Override lineToBlock to ensure transactions are properly loaded into buses
-	lineToBlock(data) {
-		console.log("Processing block:", data.height);
-		if (typeof data.txFull === "undefined" || !data.txFull) {
-			console.log("No transactions in block");
-			return false;
-		}
-
-		// Get or create a bus for this block
-		let bus = this.getBusFromId(data.height);
-		if (!bus) {
-			console.log("Creating new bus for block:", data.height);
-			bus = this.addBus();
-			bus.setData("id", data.height);
-		}
-
-		// Process transactions in the block
-		const tx = Object.keys(data.txFull);
-		console.log("Processing", tx.length, "transactions");
-		for (let i = 0; i < tx.length; i++) {
-			const hash = tx[i];
-			if (this.lineManager[hash]) {
-				let entry = this.lineManager[hash];
-				if (bus) {
-					bus.tx.push(entry.txData);
-					bus.loaded += entry.modSize || 0;
-				}
-				entry.leavingForBlock = data.height;
-				entry.destination = data.height;
-				entry.status = "on_bus";
-				entry.boarded = data.height;
-			} else {
-				// Create new transaction entry
-				this.newTx(data.txFull[hash], "new", true, false);
-				let entry = this.lineManager[hash];
-				if (entry && bus) {
-					bus.tx.push(entry.txData);
-					bus.loaded += entry.modSize || 0;
-					entry.leavingForBlock = data.height;
-					entry.destination = data.height;
-					entry.status = "on_bus";
-					entry.boarded = data.height;
-				}
-			}
-		}
-
-		// Update bus state
-		if (bus) {
-			console.log("Bus loaded with", bus.tx.length, "transactions, size:", bus.loaded);
-			bus.realLoaded = bus.loaded;
-			this.busInsideSingle(bus);
-		}
-
-		return true;
 	}
 }
 
