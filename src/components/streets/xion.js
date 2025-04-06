@@ -205,4 +205,3 @@ export default class XIONStreet extends Street {
 }
 
 XIONStreet.config = XION;
-s;
