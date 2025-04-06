@@ -532,10 +532,10 @@ export const XION = {
 				return i18n.t("settings.max-buses");
 			},
 			type: "range",
-			min: 10,
+			min: 1,
 			max: 10,
 			restart: false,
-			value: 25,
+			value: 5,
 			writable: true,
 		},
 		signArray: {
@@ -609,7 +609,12 @@ export const XION = {
 			socket: false,
 			wiki: ["common/stats/medianBlockTime", "common/block-time"],
 		},
-		blockHeight: { hidden: true, value: false },
+		blockHeight: {
+			title: () => "Block Height",
+			value: 0,
+			socket: true,
+			wiki: ["common/stats/blockHeight"],
+		},
 	}),
 };
 

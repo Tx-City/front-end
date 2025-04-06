@@ -64,7 +64,8 @@ export default class XIONStreet extends Street {
 
 	create() {
 		super.create();
-
+		console.log("XION street create() called");
+		this.createPeople();
 		this.streetCreate();
 		this.vue.busFeeTitle = "XION";
 		this.vue.busFeeTitleLong = () => {
@@ -73,31 +74,36 @@ export default class XIONStreet extends Street {
 		this.vue.sizeTitle = () => {
 			return i18n.t(this.ticker.toLowerCase() + ".sizeTitle");
 		};
+		this.createBuses();
+		console.log("Buses group created, active buses:", this.buses ? this.buses.countActive() : 0);
 
-		// Create buses with blockchain monitoring
-		console.log("Creating buses");
-		this.createPeople();
-		this.createInitialBus();
+		// Watch for blockchain updates
+		this.vue.$watch("blockchainLength", (val) => {
+			console.log("Blockchain length changed:", val);
+			if (this.loaded && !this.processingBlock && !this.busesMoving) {
+				console.log("Checking new blocks...");
+				this.checkNewBlocks();
+			} else {
+				console.log(
+					"Skipping block check - loaded:",
+					this.loaded,
+					"processing:",
+					this.processingBlock,
+					"buses moving:",
+					this.busesMoving
+				);
+			}
+		});
+
+		// Start monitoring for new blocks
+		this.checkBlockInterval();
 	}
 
-	// Method to safely create initial bus
-	createInitialBus() {
-		// Try to get a bus from the group
-		let bus = this.buses.get();
-		console.log("Bus from pool:", bus);
-		if (bus) {
-			try {
-				console.log("Got a bus object from pool");
-				bus.newBus(true);
-				console.log("Bus initialized with ID:", bus.getData("id"));
-
-				// bus.setVisible(true);
-			} catch (error) {
-				console.error("Error initializing bus:", error);
-			}
-		} else {
-			console.error("Failed to get bus from pool");
-		}
+	checkNewBlocks() {
+		console.log("Checking for new blocks...");
+		console.log("Blockchain length:", this.blockchain ? this.blockchain.length : 0);
+		console.log("Active buses:", this.buses ? this.buses.countActive() : 0);
+		super.checkNewBlocks();
 	}
 
 	calcBusHeightFromBlock(block) {
@@ -110,9 +116,93 @@ export default class XIONStreet extends Street {
 
 	// Called when the street resumes
 	afterResume() {
-		this.createInitialBus();
 		console.log("Street resumed");
+	}
+
+	// Override newTx to ensure transactions are properly handled
+	newTx(data, status = "new", addPerson = true, addToVue = true) {
+		console.log("New transaction received:", data.tx);
+		const result = super.newTx(data, status, addPerson, addToVue);
+		if (result) {
+			// If we have transactions but no buses, create one
+			if (this.buses && this.buses.countActive() === 0) {
+				console.log("Creating bus for new transaction");
+				this.addBus();
+			}
+		}
+		return result;
+	}
+
+	// Override sortBuses to maintain at least one bus
+	sortBuses() {
+		super.sortBuses();
+
+		// If no active buses, create one
+		if (this.buses && this.buses.countActive() === 0) {
+			console.log("No active buses, creating one");
+			const bus = this.addBus();
+			// Set a small loaded value to prevent immediate removal
+			bus.loaded = 1;
+			bus.realLoaded = 1;
+		}
+	}
+
+	// Override lineToBlock to ensure transactions are properly loaded into buses
+	lineToBlock(data) {
+		console.log("Processing block:", data.height);
+		if (typeof data.txFull === "undefined" || !data.txFull) {
+			console.log("No transactions in block");
+			return false;
+		}
+
+		// Get or create a bus for this block
+		let bus = this.getBusFromId(data.height);
+		if (!bus) {
+			console.log("Creating new bus for block:", data.height);
+			bus = this.addBus();
+			bus.setData("id", data.height);
+		}
+
+		// Process transactions in the block
+		const tx = Object.keys(data.txFull);
+		console.log("Processing", tx.length, "transactions");
+		for (let i = 0; i < tx.length; i++) {
+			const hash = tx[i];
+			if (this.lineManager[hash]) {
+				let entry = this.lineManager[hash];
+				if (bus) {
+					bus.tx.push(entry.txData);
+					bus.loaded += entry.modSize || 0;
+				}
+				entry.leavingForBlock = data.height;
+				entry.destination = data.height;
+				entry.status = "on_bus";
+				entry.boarded = data.height;
+			} else {
+				// Create new transaction entry
+				this.newTx(data.txFull[hash], "new", true, false);
+				let entry = this.lineManager[hash];
+				if (entry && bus) {
+					bus.tx.push(entry.txData);
+					bus.loaded += entry.modSize || 0;
+					entry.leavingForBlock = data.height;
+					entry.destination = data.height;
+					entry.status = "on_bus";
+					entry.boarded = data.height;
+				}
+			}
+		}
+
+		// Update bus state
+		if (bus) {
+			console.log("Bus loaded with", bus.tx.length, "transactions, size:", bus.loaded);
+			bus.realLoaded = bus.loaded;
+			this.busInsideSingle(bus);
+		}
+
+		return true;
 	}
 }
 
 XIONStreet.config = XION;
+s;
