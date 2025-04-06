@@ -127,15 +127,14 @@
         "medianTxsPerBlock": "Median Txs Per Block",
         "mempool-bytes": "Mempool Size",
         "mempool-size": "Mempool Count",
-        "rs": "Size (Bytes)",
-        "s": "Size (Bytes)",
         "sizeAltTitle": "Bytes",
         "sizeTitle": "Bytes",
         "spb": "Total Fee (XION)",
         "supply-circulating": "Circulating Supply",
         "tot": "Total Sent",
         "tps": "Broadcasted Tx/Sec",
-        "volume-usd": "24HR Volume (USD)"
+        "volume-usd": "24HR Volume (USD)",
+        "g":"Gas"
     },
     "ltc": {
         "blockchainSize": "@:btc.blockchainSize",
