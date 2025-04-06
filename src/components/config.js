@@ -552,7 +552,7 @@ export const XION = {
 		tps: {
 			title: () => "Transactions Per Second",
 			decimals: 2,
-			value: false,
+			value: 2500,
 			socket: false,
 			wiki: ["common/stats/tps"],
 		},
@@ -609,12 +609,16 @@ export const XION = {
 			socket: false,
 			wiki: ["common/stats/medianBlockTime", "common/block-time"],
 		},
-		blockHeight: {
-			title: () => "Block Height",
-			value: 0,
+		medianBlockSize: {
+			title: () => "Median Block Size",
+			decimals: 3,
+			divide: 1000000,
+			after: " MB",
+			value: 0.0001,
 			socket: true,
-			wiki: ["common/stats/blockHeight"],
+			wiki: ["common/stats/medianBlockSize"],
 		},
+		blockHeight: { hidden: true, value: false },
 	}),
 };
 
