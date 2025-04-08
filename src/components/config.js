@@ -497,17 +497,44 @@ export const XION = {
 	coinName: "XION",
 	color: "ffffff",
 	busColor: "ffffff",
-	busColorText: "000000", // Adding text color to ensure visibility
-	busCapacity: 1000000,
-	feeVar: "xion",
-	explorerTxUrl: "https://explorer.burnt.com/xion-mainnet-1/tx/",
-	explorerBlockUrl: "https://explorer.burnt.com/xion-mainnet-1/block/",
-	explorerBlocksUrl: "https://explorer.burnt.com/xion-mainnet-1/block/",
-	explorerAddressUrl: "https://explorer.burnt.com/xion-mainnet-1/account/",
+	busCapacity: 0,
+	feeVar: "g",
+	explorerTxUrl: "https://www.mintscan.io/xion/tx/",
+	explorerBlockUrl: "https://www.mintscan.io/xion/block/",
+	explorerBlocksUrl: "https://www.mintscan.io/xion/block",
+	explorerAddressUrl: "https://www.mintscan.io/xion/address/",
 	liveTxs: [],
 	liveBlocks: [],
 	houseArray: [],
-	maxBlocksToKeep: 10,
+	addressNonces: {},
+	maxBlocksToKeep: 25,
+	blockFormat: [],
+	calcBlockFeeArray: function (data) {
+		if (data.feeArray || !data.txFull) return;
+		data.lowFee = Math.pow(10, 36);
+		data.highFee = 0;
+		data.feeArray = [];
+
+		Object.values(data.txFull).forEach((tx) => {
+			const fee = this.getFee(tx); // Just get the gas value
+			if (fee <= 0) return; // Skip zero-fee transactions
+
+			if (fee < data.lowFee) data.lowFee = fee;
+			if (fee > data.highFee) data.highFee = fee;
+			data.feeArray.push(fee);
+		});
+
+		data.medianFee = data.feeArray.length > 0 ? Math.round(median(data.feeArray)) : 0;
+	},
+	getFee: function (txData) {
+		// For XION, we only use the gas value
+		return txData.g || 0;
+	},
+	getAndApplyFee(txData) {
+		if (txData.feeVal) return txData.feeVal;
+		txData.feeVal = txData.g || 0; // For XION, fee is just the gas value
+		return txData.feeVal;
+	},
 	userSettings: {
 		blockNotifications: {
 			title: () => {
@@ -533,94 +560,337 @@ export const XION = {
 			},
 			type: "range",
 			min: 1,
-			max: 10,
+			max: 100,
 			restart: false,
-			value: 5,
+			value: 25,
 			writable: true,
 		},
 		signArray: {
 			title: "Sign Display",
 			type: "multiselect",
-			value: ["lastBlock", "medianFee-usdTransfer"],
+			value: ["lastBlock", "medianFee-usdTransfer", "mempool-size"],
 			writable: true,
 			invisible: true,
 			restart: false,
 		},
 	},
-
 	stats: Vue.observable({
 		tps: {
-			title: () => "Transactions Per Second",
+			title: () => {
+				return i18n.t("eth.tps");
+			},
 			decimals: 2,
-			value: 2500,
-			socket: false,
+			value: false,
+			socket: true,
 			wiki: ["common/stats/tps"],
 		},
 		ctps: {
-			title: () => "Confirmed TPS",
+			title: () => {
+				return i18n.t("eth.ctps");
+			},
 			decimals: 2,
-			value: 1,
-			socket: false,
+			value: false,
+			socket: true,
 			wiki: ["common/stats/ctps"],
+		},
+		baseFee: {
+			title: () => {
+				return i18n.t("eth.baseFee");
+			},
+			signTitle: "Base Fee",
+			value: 0,
+			socket: true,
+			format: (val) => {
+				return ethUnits(val);
+			},
+			wiki: ["ETH/stats/baseFee"],
+		},
+
+		"mempool-size": {
+			title: () => {
+				return i18n.t("eth.mempool-size");
+			},
+			signTitle: "Pending Txs",
+			value: 0,
+			decimals: 0,
+			limit: 75000,
+			socket: true,
+			wiki: ["common/stats/mempool-count", "common/mempool"],
 		},
 		"medianFee-usd": {
 			title: () => {
-				return i18n.t("xion.medianFee-usd");
+				return i18n.t("eth.medianFee-usd");
 			},
-			signTitle: "Median Tx Fee",
-			before: "$",
-			value: 0.0006,
-			socket: false,
-			wiki: ["common/stats/medianFee-usd", "common/transaction-fees"],
+			signTitle: "Median Contract Fee",
+			before: "~$",
+			after: " USD",
+			value: false,
+			socket: true,
+			wiki: ["ETH/stats/medianContractFee", "common/transaction-fees"],
 		},
-		"medianFee-satPerByte": {
+		"medianFee-usdTransfer": {
 			title: () => {
-				return i18n.t("xion.medianFee-satPerByte");
+				return i18n.t("eth.medianFee-usdTransfer");
 			},
-			common: "medianFeeSat",
-			value: 0.0005,
-			socket: false,
-			wiki: ["common/stats/medianFee-satPerByte", "common/transaction-fees"],
+			signTitle: "Median Transfer Fee",
+			after: " USD",
+			before: "~$",
+			value: false,
+			socket: true,
+			wiki: ["ETH/stats/medianTransferFee", "common/transaction-fees"],
+		},
+		"medianFee-gasPrice": {
+			title: () => {
+				return i18n.t("eth.medianFee-gasPrice");
+			},
+			value: false,
+			socket: true,
+			format: (val) => {
+				return ethUnits(val);
+			},
+			wiki: ["ETH/stats/medianGasPrice"],
 		},
 		"supply-circulating": {
-			title: () => "Circulating Supply",
+			title: () => {
+				return i18n.t("eth.supply-circulating");
+			},
+			decimals: 0,
+			socket: true,
+			value: false,
+		},
+		"fiatPrice-usd": {
+			title: () => {
+				return i18n.t("eth.fiatPrice-usd");
+			},
+			decimals: 2,
+			before: "$",
+			socket: true,
+			value: false,
+		},
+		lastBlock: {
+			title: () => {
+				return i18n.t("eth.lastBlock");
+			},
+			value: false,
+			wiki: ["common/stats/lastBlock", "common/block-time"],
+		},
+		medianTxsPerBlock: {
+			title: () => {
+				return i18n.t("eth.medianTxsPerBlock");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["common/stats/medianTxsPerBlock"],
+		},
+		gasLimit: {
+			title: () => {
+				return i18n.t("eth.gasLimit");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/gasLimit"],
+		},
+		gasTarget: {
+			title: () => {
+				return i18n.t("eth.gasTarget");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/gasTarget"],
+		},
+		medianGasUsed: {
+			title: () => {
+				return i18n.t("eth.medianGasUsed");
+			},
+			value: 0,
+			decimals: 0,
+			socket: true,
+			wiki: ["ETH/stats/medianBlockGas"],
+		},
+		medianBlockSize: {
+			title: () => {
+				return i18n.t("eth.medianBlockSize");
+			},
+			value: 0,
+			decimals: 3,
+			divide: 1000000,
+			socket: true,
+			after: " MB",
+			wiki: ["common/stats/medianBlockSize"],
+		},
+		gasUsedDif: {
+			title: () => {
+				return i18n.t("eth.gasUsedDif");
+			},
+			value: 100,
+			decimals: 2,
+			socket: true,
+			after: "%",
+			wiki: ["ETH/stats/gasUsedDif"],
+		},
+		medianBlockTime: {
+			title: () => {
+				return i18n.t("eth.medianBlockTime");
+			},
+			value: 0,
+			timeAgo: true,
+			socket: true,
+			wiki: ["common/stats/medianBlockTime", "common/block-time"],
+		},
+		blockHeight: { hidden: true, value: false },
+		"marketCap-usd": {
+			title: () => {
+				return i18n.t("eth.marketCap-usd");
+			},
+			before: "$",
 			decimals: 0,
 			value: false,
 			socket: true,
 		},
-		"fiatPrice-usd": {
+		"volume-usd": {
 			title: () => {
-				return i18n.t("btc.fiatPrice-usd");
+				return i18n.t("eth.volume-usd");
 			},
-			decimals: 2,
 			before: "$",
+			decimals: 0,
 			value: false,
 			socket: true,
 		},
-		lastBlock: {
-			title: () => "Last Block",
-			value: false,
-			wiki: ["common/stats/lastBlock", "common/block-time"],
-		},
-		medianBlockTime: {
-			title: () => "Median Block Time",
-			value: 5,
-			timeAgo: true,
-			socket: false,
-			wiki: ["common/stats/medianBlockTime", "common/block-time"],
-		},
-		medianBlockSize: {
-			title: () => "Median Block Size",
-			decimals: 3,
-			divide: 1000000,
-			after: " MB",
-			value: 0.0001,
-			socket: true,
-			wiki: ["common/stats/medianBlockSize"],
-		},
-		blockHeight: { hidden: true, value: false },
 	}),
 };
+
+// export const XION = {
+// 	ticker: "XION",
+// 	coinName: "XION",
+// 	color: "ffffff",
+// 	busColor: "ffffff",
+// 	busColorText: "000000", // Adding text color to ensure visibility
+// 	busCapacity: 1000000,
+// 	feeVar: "xion",
+// 	explorerTxUrl: "https://explorer.burnt.com/xion-mainnet-1/tx/",
+// 	explorerBlockUrl: "https://explorer.burnt.com/xion-mainnet-1/block/",
+// 	explorerBlocksUrl: "https://explorer.burnt.com/xion-mainnet-1/block/",
+// 	explorerAddressUrl: "https://explorer.burnt.com/xion-mainnet-1/account/",
+// 	liveTxs: [],
+// 	liveBlocks: [],
+// 	houseArray: [],
+// 	maxBlocksToKeep: 10,
+// 	userSettings: {
+// 		blockNotifications: {
+// 			title: () => {
+// 				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.block", 2) + ")";
+// 			},
+// 			type: "checkbox",
+// 			restart: false,
+// 			value: false,
+// 			writable: true,
+// 		},
+// 		txNotifications: {
+// 			title: () => {
+// 				return i18n.t("settings.browser-notifications") + " (" + i18n.tc("general.transaction", 2) + ")";
+// 			},
+// 			type: "checkbox",
+// 			restart: false,
+// 			value: true,
+// 			writable: true,
+// 		},
+// 		maxBuses: {
+// 			title: () => {
+// 				return i18n.t("settings.max-buses");
+// 			},
+// 			type: "range",
+// 			min: 1,
+// 			max: 10,
+// 			restart: false,
+// 			value: 5,
+// 			writable: true,
+// 		},
+// 		signArray: {
+// 			title: "Sign Display",
+// 			type: "multiselect",
+// 			value: ["lastBlock", "medianFee-usdTransfer"],
+// 			writable: true,
+// 			invisible: true,
+// 			restart: false,
+// 		},
+// 	},
+
+// 	stats: Vue.observable({
+// 		tps: {
+// 			title: () => "Transactions Per Second",
+// 			decimals: 2,
+// 			value: 2500,
+// 			socket: false,
+// 			wiki: ["common/stats/tps"],
+// 		},
+// 		ctps: {
+// 			title: () => "Confirmed TPS",
+// 			decimals: 2,
+// 			value: 1,
+// 			socket: false,
+// 			wiki: ["common/stats/ctps"],
+// 		},
+// 		"medianFee-usd": {
+// 			title: () => {
+// 				return i18n.t("xion.medianFee-usd");
+// 			},
+// 			signTitle: "Median Tx Fee",
+// 			before: "$",
+// 			value: 0.0006,
+// 			socket: false,
+// 			wiki: ["common/stats/medianFee-usd", "common/transaction-fees"],
+// 		},
+// 		"medianFee-satPerByte": {
+// 			title: () => {
+// 				return i18n.t("xion.medianFee-satPerByte");
+// 			},
+// 			common: "medianFeeSat",
+// 			value: 0.0005,
+// 			socket: false,
+// 			wiki: ["common/stats/medianFee-satPerByte", "common/transaction-fees"],
+// 		},
+// 		"supply-circulating": {
+// 			title: () => "Circulating Supply",
+// 			decimals: 0,
+// 			value: false,
+// 			socket: true,
+// 		},
+// 		"fiatPrice-usd": {
+// 			title: () => {
+// 				return i18n.t("btc.fiatPrice-usd");
+// 			},
+// 			decimals: 2,
+// 			before: "$",
+// 			value: false,
+// 			socket: true,
+// 		},
+// 		lastBlock: {
+// 			title: () => "Last Block",
+// 			value: false,
+// 			wiki: ["common/stats/lastBlock", "common/block-time"],
+// 		},
+// 		medianBlockTime: {
+// 			title: () => "Median Block Time",
+// 			value: 5,
+// 			timeAgo: true,
+// 			socket: false,
+// 			wiki: ["common/stats/medianBlockTime", "common/block-time"],
+// 		},
+// 		medianBlockSize: {
+// 			title: () => "Median Block Size",
+// 			decimals: 3,
+// 			divide: 1000000,
+// 			after: " MB",
+// 			value: 0.0001,
+// 			socket: true,
+// 			wiki: ["common/stats/medianBlockSize"],
+// 		},
+// 		blockHeight: { hidden: true, value: false },
+// 	}),
+// };
 
 export const EVOLUTION = {
 	ticker: "EVOLUTION",
@@ -1513,7 +1783,7 @@ export const LUKSO = {
 		signArray: {
 			title: "Sign Display",
 			type: "multiselect",
-			value: ["lastBlock", "medianFee-usdTransfer"],
+			value: ["lastBlock", "medianFee-usdTransfer", "mempool-size"],
 			writable: true,
 			invisible: true,
 			restart: false,

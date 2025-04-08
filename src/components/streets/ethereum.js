@@ -189,12 +189,12 @@ export default class ETHStreet extends Street {
 		toMove[entry.txData.fr].push(entry);
 	}
 
-	getModSize(txData, g = false) {
+	static getModSize(txData, gasUsedDifValue = 100, g = false) {
 		if (txData.modSize) return txData.modSize;
 		let minGasDif;
 		let gasDif;
 		if (!g) {
-			gasDif = this.vue.stats.gasUsedDif.value / 100;
+			gasDif = gasUsedDifValue / 100;
 			minGasDif = 21000 / gasDif;
 		} else {
 			gasDif = g[0];
@@ -203,6 +203,10 @@ export default class ETHStreet extends Street {
 		let gas = txData.ag ? txData.ag : txData.g;
 		let modSize = gas > minGasDif ? gas * gasDif : gas;
 		return Number(modSize);
+	}
+
+	getModSize(txData, g = false) {
+		return ETHStreet.getModSize(txData, this.vue.stats.gasUsedDif.value, g);
 	}
 
 	getGasTarget() {
